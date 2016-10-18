@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:24:41 by amaitre           #+#    #+#             */
-/*   Updated: 2016/09/30 19:09:05 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/10/18 16:50:50 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,44 +26,46 @@ int			get_option(t_cwdata *data, int *i)
 	return (0);
 }
 
-unsigned char		*decimal_to_bytecode(int value, int size_value)
+static	int return_bytes(int num)
 {
-	char *tmp;
-	unsigned char *tmp1;
-	int i;
-	int j;
-
-	tmp = ft_itoa(value, 16);
-	tmp1 = ft_memset(ft_memalloc(size_value), 0, size_value);
-	i = 0;
-	j = size_value - ft_strlen(tmp) / 2;
-	while (j < size_value)
-	{
-		tmp1[j] = ((tmp[i] - ((tmp[i] >= 97 && tmp[i] <= 122) ? 87 : 48))
-		* ft_pwe(16, 1)) + ((tmp[i + 1] - ((tmp[i] >= 97 && tmp[i] <= 122)
-		 ? 87 : 48)) * ft_pwe(16, 0));
-		i += 2;
-		j += 1;
-	}
-	free(tmp);
-	return (tmp1);
+	if ((sizeof(num) * 8) == 32) // if 32bit
+		return (((num >> 24) & 0xff) | // move byte 3 to byte 0
+				((num << 8) & 0xff0000) | // move byte 1 to byte 2
+				((num >> 8) & 0xff00) | // move byte 2 to byte 1
+				((num << 24) & 0xff000000)); // byte 0 to byte 3
+	else
+		return (num >> 8) | (num << 8); // 16 bit
 }
 
 static int	reed_champion(char *champion)
 {
 	int			fd;
 	int			ret;
+	int			buf;
 	header_t	header;
 
 	fd = open(champion, O_RDONLY);
-	ret = read(fd, &header.magic, sizeof(header.magic));
-	ft_printf("My magic -> %s\n", decimal_to_bytecode(header.magic, sizeof(header.magic)));
-	if (ret < 0)
-		return (ft_printf("{red}Champion invalide\n"));
-	if (header.magic != (unsigned int)-209458688)
-		return (ft_printf("{red}le magic n'est pas bon\n"));
+	while ((ret = read(fd, &buf, sizeof(int))))
+	{
+		if (ret < 0)
+			return (ft_printf("{red}Champion invalide\n"));
+		ft_printf("-> %08x\n", return_bytes(buf));
+		buf = 0;
+	}
+
+	header.magic = return_bytes(header.magic);
+
+	// ft_printf("My magic -> %#x\n", header.magic);
+
+
+	// if (header.magic != COREWAR_EXEC_MAGIC)
+	// 	return (ft_printf("{red}le magic n'est pas bon\n"));
+
+
 	return (0);
 }
+
+
 
 int			get_champion(t_cwdata *data, int i)
 {
