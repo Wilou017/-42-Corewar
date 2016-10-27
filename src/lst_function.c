@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_push_back.c                              :+:      :+:    :+:   */
+/*   lst_function.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/07 18:42:49 by fsimmet           #+#    #+#             */
-/*   Updated: 2016/10/27 17:40:59 by amaitre          ###   ########.fr       */
+/*   Created: 2016/10/27 17:03:17 by amaitre           #+#    #+#             */
+/*   Updated: 2016/10/27 18:13:04 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <corewar.h>
 
-void	ft_lstadd_push_back(t_list **alst, t_list *nw)
+header2_t	*cw_add_champ_to_lst(t_cwdata *data)
 {
-	t_list	*tmp;
+	header2_t	new_champion_node;
+	t_list		*champion_node;
 
-	tmp = *alst;
-	if (*alst && nw)
-	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = nw;
-	}
-	else
-		*alst = nw;
+
+	new_champion_node.prog_name = ft_strnew(0);
+	new_champion_node.comment = ft_strnew(0);
+	champion_node = ft_lstnew((void *)&new_champion_node, sizeof(new_champion_node));
+
+	ft_lstadd_push_back(&data->beginlist, champion_node);
+
+	return ((header2_t*)champion_node->content);
 }

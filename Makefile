@@ -6,7 +6,7 @@
 #    By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 12:19:31 by amaitre           #+#    #+#              #
-#    Updated: 2016/09/30 19:03:18 by amaitre          ###   ########.fr        #
+#    Updated: 2016/10/27 17:40:56 by amaitre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME		=	corewar
 SRC			=	src/main.c
 SRC			+=	src/init.c
 SRC			+=	src/get_function.c
+SRC			+=	src/lst_function.c
 
 SRCO		=	$(SRC:.c=.o)
 HEADERSLIB	=	libftprintf/includes

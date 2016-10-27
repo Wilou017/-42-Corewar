@@ -88,6 +88,7 @@ SRC		=	ft_atoi.c \
 			ft_putwchar_fd.c \
 			ft_pwe.c \
 			ft_replace.c \
+			ft_return_bytes.c \
 			ft_show_tab.c \
 			ft_showtabint.c \
 			ft_sqrt.c \

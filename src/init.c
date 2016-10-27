@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:28:37 by amaitre           #+#    #+#             */
-/*   Updated: 2016/09/28 21:05:48 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/10/27 18:41:50 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ static void	init_data_default(t_cwdata *data)
 {
 	data->dumpcycles = -1;
 	data->nb_champion = 0;
+	data->beginlist = NULL;
+	data->lastdata = NULL;
 }
 
-void 		lastoption(t_cwdata *data, int i)
+void 		cw_lastoption(t_cwdata *data, int i)
 {
 	if(!ft_strcmp(data->v[i], "-dump"))
 		data->lastoption = DUMP;
@@ -37,9 +39,9 @@ void		 cw_init(t_cwdata *data)
 	while (data->c >= i)
 	{
 		data->lastoption = -1;
-		if (data->v[i][0] != '-' && get_champion(data, i))
+		if (data->v[i][0] != '-' && cw_get_champion(data, i))
 			return ;
-		else if (data->v[i][0] == '-' && get_option(data, &i))
+		if (data->v[i][0] == '-' && cw_get_option(data, &i))
 			return ;
 		i++;
 	}

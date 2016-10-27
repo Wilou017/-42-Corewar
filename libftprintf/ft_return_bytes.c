@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_push_back.c                              :+:      :+:    :+:   */
+/*   ft_return_bytes.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/07 18:42:49 by fsimmet           #+#    #+#             */
-/*   Updated: 2016/10/27 17:40:59 by amaitre          ###   ########.fr       */
+/*   Created: 2016/10/20 15:45:31 by amaitre           #+#    #+#             */
+/*   Updated: 2016/10/27 16:03:35 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
-void	ft_lstadd_push_back(t_list **alst, t_list *nw)
+int		return_bytes(int num, int octet)
 {
-	t_list	*tmp;
-
-	tmp = *alst;
-	if (*alst && nw)
-	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = nw;
-	}
+	if (octet == 4)
+		return (((num >> 24) & 0xff) |
+				((num << 8) & 0xff0000) |
+				((num >> 8) & 0xff00) |
+				((num << 24) & 0xff000000));
+	if (octet == 3)
+		 return (((num << 16) & 0xff0000)) |
+				((num << 0) & 0xff00) |
+				((num >> 16) & (0xff));
+	else if(octet == 2)
+		return (num >> 8) | (num << 8);
 	else
-		*alst = nw;
+		return (num);
 }

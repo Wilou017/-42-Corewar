@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:07:07 by amaitre           #+#    #+#             */
-/*   Updated: 2016/09/30 19:05:02 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/10/27 16:29:56 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int					ft_putwchar(wchar_t chr);
 int					ft_putwchar_fd(wchar_t chr, int fd);
 t_intmax			ft_pwe(int nb, int pwe);
 char				*ft_replace(char *search, char *rby, char *str, int ifre);
+int					return_bytes(int num, int octet);
 void				ft_show_tab(t_tab tab, int mark, char c, int center);
 void				ft_showtabint(int *a, int nb_nb, char *tabname, int rev);
 int					ft_sqrt(int nb);
