@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:07:07 by amaitre           #+#    #+#             */
-/*   Updated: 2016/10/27 16:29:56 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/10/29 17:26:17 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int					*ft_inttabjoin(int *tab1, int size1, int *tab2, int size2);
 int					ft_inttabmin(int *tab, int size);
 int					*ft_inttabnew(size_t size);
 int					ft_inttabsorted(int *tab, int size);
+char				*ft_inttostr(int octet);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
 int					ft_isascii(int c);

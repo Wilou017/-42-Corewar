@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:03:17 by amaitre           #+#    #+#             */
-/*   Updated: 2016/10/27 18:13:04 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/10/29 18:10:18 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,21 @@ header2_t	*cw_add_champ_to_lst(t_cwdata *data)
 	ft_lstadd_push_back(&data->beginlist, champion_node);
 
 	return ((header2_t*)champion_node->content);
+}
+
+void		cw_freeall(t_cwdata *data)
+{
+	t_list		*tmp;
+	t_list		*tmp2;
+
+	tmp = data->beginlist;
+	while (tmp)
+	{
+		free(((header2_t*)tmp->content)->prog_name);
+		free(((header2_t*)tmp->content)->comment);
+		free(tmp->content);
+		tmp2 = tmp;
+		tmp = tmp->next;
+		free(tmp2);
+	}
 }

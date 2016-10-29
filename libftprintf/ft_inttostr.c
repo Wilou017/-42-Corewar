@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_inttostr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/28 16:15:30 by amaitre           #+#    #+#             */
-/*   Updated: 2016/10/29 18:08:12 by amaitre          ###   ########.fr       */
+/*   Created: 2016/10/29 17:24:15 by amaitre           #+#    #+#             */
+/*   Updated: 2016/10/29 17:27:54 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <corewar.h>
+#include <libft.h>
 
-int main(int argc, t_tab argv)
+char	*ft_inttostr(int octet)
 {
-	t_cwdata	data;
+	char *str;
 
-	if(argc > 1)
-	{
-		data.v = argv;
-		data.c = argc - 1;
-		cw_init(&data);
-	}
-	else
-		ft_printf("{lgreen}use: ./corewar [-dump nbr_cycles] [[-n number] champ\
-ion1.cor] ...{eoc}\n");
-	cw_freeall(&data);
-	return (0);
+	str = ft_strnew(4);
+
+	str[0] = octet >> 24;
+	str[1] = octet >> 16;
+	str[2] = octet >> 8;
+	str[3] = octet >> 0;
+	return (str);
 }

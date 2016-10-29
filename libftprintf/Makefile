@@ -28,6 +28,7 @@ SRC		=	ft_atoi.c \
 			ft_inttabmin.c \
 			ft_inttabnew.c \
 			ft_inttabsorted.c \
+			ft_inttostr.c \
 			ft_isalnum.c \
 			ft_isalpha.c \
 			ft_isascii.c \
