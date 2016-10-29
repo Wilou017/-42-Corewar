@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:15:30 by amaitre           #+#    #+#             */
-/*   Updated: 2016/10/29 18:08:12 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/10/29 18:14:26 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int main(int argc, t_tab argv)
 		data.v = argv;
 		data.c = argc - 1;
 		cw_init(&data);
+		cw_freeall(&data);
 	}
 	else
 		ft_printf("{lgreen}use: ./corewar [-dump nbr_cycles] [[-n number] champ\
 ion1.cor] ...{eoc}\n");
-	cw_freeall(&data);
 	return (0);
 }
