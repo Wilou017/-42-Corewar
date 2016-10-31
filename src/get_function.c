@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:24:41 by amaitre           #+#    #+#             */
-/*   Updated: 2016/10/29 17:51:40 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/10/31 16:15:44 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,23 @@ static void	distrib_data(int status, int octet, header2_t *champion)
 {
 	if(status == 0)
 		champion->magic = octet;
-	if(status >= 1 && status <= (PROG_NAME_LENGTH/4 + 1))
+	else if(status <= (PROG_NAME_LENGTH/4 + 1))
 	{
 		champion->prog_name = ft_strjoin(champion->prog_name, ft_inttostr(octet), 3);
 	}
-	if(status > (PROG_NAME_LENGTH/4 + 2) &&
-		status - (PROG_NAME_LENGTH/4 + 2) < COMMENT_LENGTH/4)
+	else if(status <= (PROG_NAME_LENGTH/4 + 1) + COMMENT_LENGTH/4)
 	{
 		champion->comment = ft_strjoin(champion->comment, ft_inttostr(octet), 3);
+	}
+	else if (status == (PROG_NAME_LENGTH/4 + 1) + COMMENT_LENGTH/4 + 1)
+	{
+		ft_printf("Nom     = %s\n", champion->prog_name);
+		ft_printf("Comment = %s\n", champion->comment);
+		ft_printf("------------------------------------\n%d -> %.8x\n", status, octet);
+	}
+	else
+	{
+		ft_printf("%d -> %.8x\n", status, octet);
 	}
 }
 
@@ -59,18 +68,12 @@ static int	reed_champion(char *name, header2_t *champion)
 		if (ret < 0)
 			return (ft_printf("{red}Champion invalide\n"));
 		buf = return_bytes(buf, ret);
-		// ft_printf("%d -> %.8x\n", ret, buf);
 		distrib_data(status, buf, champion);
 		buf = 0;
 		status++;
 	}
 	if (champion->magic != 0xea83f3)
 		return (ft_printf("{red}Magic invalide\n"));
-
-	ft_printf("Nom     = %s\n", champion->prog_name);
-	ft_printf("Comment = %s\n", champion->comment);
-
-
 	return (0);
 }
 
