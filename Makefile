@@ -6,7 +6,7 @@
 #    By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 12:19:31 by amaitre           #+#    #+#              #
-#    Updated: 2016/11/07 18:58:23 by amaitre          ###   ########.fr        #
+#    Updated: 2016/11/07 19:10:39 by amaitre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,20 @@ HEADERS		=	includes
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 
-all: $(NAME)
+all: logo $(NAME)
 
-re: fclean all
+logo:
+	@echo "\033[36m\n\
+			        :::      ::::::::\n\
+			       :+:      :+:    :+:\n\
+			     +:+ +:+         +:+\n\
+			   +#+  +:+       +#+\n\
+			 +#+#+#+#+#+   +#+\n\
+			      #+#    #+#\n\
+			     ###   ########.fr\n\
+			    			$(NAME) \033[0m"
+
+re: logo fclean all
 
 %.o: %.c $(HEADERS)/$(NAME).h
 	@echo "\033[32mCorewar :\033[0m [Compilation:\033[33m $@\033[0m]"
@@ -39,19 +50,19 @@ $(NAME): $(SRCO)
 	@echo "[\033[32m--------------------------\033[0m]"
 	@echo "\033[32muse: ./$(NAME) [-dump nbr_cycles] [[-n number] champion1.cor] ... \033[0m"
 
-libft:
+libft: logo
 	@make -C libftprintf/
 
-clean:
+clean: logo
 	@echo "\033[32mCorewar :\033[0m [\033[31mSuppression des .o\033[0m]"
 	@make clean -C libftprintf/
 	@rm -f $(SRCO)
 
-fclean:
+fclean: logo
 	@echo "\033[32mCorewar :\033[0m [\033[31mSuppression des .o\033[0m]"
 	@rm -f $(SRCO)
 	@echo "\033[32mCorewar :\033[0m [\033[31mSuppression de $(NAME)\033[0m]"
 	@make fclean -C libftprintf/
 	@rm -f $(NAME)
 
-.PHONY: re clean fclean all libft
+.PHONY: re clean fclean all libft logo
