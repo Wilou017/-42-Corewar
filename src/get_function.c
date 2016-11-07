@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:24:41 by amaitre           #+#    #+#             */
-/*   Updated: 2016/10/31 16:15:44 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/07 19:55:01 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,21 @@ int			cw_get_champion(t_cwdata *data, int i)
 	champion = cw_add_champ_to_lst(data);
 	champion->id = (data->lastdata) ? ft_atoi(data->lastdata) :\
 	data->nb_champion * -1;
+	champion->inst.start = NULL;
+	champion->inst.end = NULL;
+
+
+ 	//******  Push instruction test ********//
+	cw_pushback_inst(champion, (void*)4);
+	cw_pushback_inst(champion, (void*)9);
+	cw_pushback_inst(champion, (void*)6);
+
+	ft_printf("\nsize -> %d\n", champion->inst.start->size);
+	ft_showtabint(champion->inst.start->inst, 6, "Tab", 0);
+	ft_showtabint(champion->inst.end->inst, 6, "Tab", 0);
+	//******  Push instruction test ********//
+
+
 
 	ft_printf("\nid -> %d\n", champion->id);
 	ft_printf("data->lastdata -> %s\n", data->lastdata);

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:16:46 by amaitre           #+#    #+#             */
-/*   Updated: 2016/10/29 18:10:07 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/07 19:52:31 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,49 +17,57 @@
 # include <newlibft.h>
 # include <op.h>
 
-typedef struct 		s_instructions
+typedef struct 			s_instnode
 {
-	int 			*instructions; // token
-	int 			size_instructions; // octet
-	int 			encodage;
-	struct s_instructions *next;
-	struct s_instructions *prev;
-}					t_instructions;
+	int 				*inst;		// token
+	int 				size;		// octet
+	int 				encodage;
+	struct s_instnode	*next;
+	struct s_instnode	*prev;
+}						t_instnode;
 
-typedef struct		header2_s // list champion
+typedef struct 			s_instdata
 {
-	unsigned int	id;
-	unsigned int	magic;
-	char			*prog_name;
-	unsigned int	prog_size;
-	char			*comment;
-	t_instructions  *instructions; // list instruction
-}					header2_t;
+	int 				size;
+	t_instnode			*start;
+	t_instnode			*end;
+}						t_instdata;
 
-typedef	struct	s_cwdata
+typedef struct			header2_s	// list champion
 {
-	int			dumpcycles;
-	int			lastoption;
-	char		*lastdata;
-	int			nb_champion;
-	t_tab		v;
-	int			c;
-	t_list		*beginlist;
-}				t_cwdata;
+	unsigned int		id;
+	unsigned int		magic;
+	char				*prog_name;
+	unsigned int		prog_size;
+	char				*comment;
+	t_instdata  		inst;		// list instruction
+}						header2_t;
+
+typedef	struct			s_cwdata
+{
+	int					dumpcycles;
+	int					lastoption;
+	char				*lastdata;
+	int					nb_champion;
+	t_tab				v;
+	int					c;
+	t_list				*beginlist;
+}						t_cwdata;
 
 
-typedef enum		e_opt
+typedef enum			e_opt
 {
 	ERROR,
 	DUMP,
 	N
-}					t_opt;
+}						t_opt;
 
-void			cw_init(t_cwdata *data);
-int				cw_get_option(t_cwdata *data, int *i);
-int				cw_get_champion(t_cwdata *data, int i);
-header2_t		*cw_add_champ_to_lst(t_cwdata *data);
-void 			cw_lastoption(t_cwdata *data, int i);
-void			cw_freeall(t_cwdata *data);
+void					cw_init(t_cwdata *data);
+int						cw_get_option(t_cwdata *data, int *i);
+int						cw_get_champion(t_cwdata *data, int i);
+header2_t				*cw_add_champ_to_lst(t_cwdata *data);
+void 					cw_lastoption(t_cwdata *data, int i);
+void					cw_freeall(t_cwdata *data);
+void					cw_pushback_inst(header2_t *champion, void *value);
 
 #endif
