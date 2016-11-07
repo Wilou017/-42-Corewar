@@ -17,13 +17,23 @@
 # include <newlibft.h>
 # include <op.h>
 
-typedef struct		header2_s
+typedef struct 		s_instructions
+{
+	int 			*instructions; // token
+	int 			size_instructions; // octet
+	int 			encodage;
+	struct s_instructions *next;
+	struct s_instructions *prev;
+}					t_instructions;
+
+typedef struct		header2_s // list champion
 {
 	unsigned int	id;
 	unsigned int	magic;
 	char			*prog_name;
 	unsigned int	prog_size;
 	char			*comment;
+	t_instructions  *instructions; // list instruction
 }					header2_t;
 
 typedef	struct	s_cwdata
