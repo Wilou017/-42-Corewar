@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:16:46 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/09 21:41:10 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/09 22:13:38 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,18 @@ typedef	struct			s_cwdata
 	t_list				*beginlist;
 }						t_cwdata;
 
+typedef	struct			s_reedstruct
+{
+	int			fd;
+	int			ret;
+	int			buf;
+	int			status;
+	int			reedsize;
+	int			inst_index;
+	int			inst_size;
+	int			*inst_tab;
+}						t_reedstruct;
+
 
 typedef enum			e_opt
 {
@@ -69,5 +81,6 @@ header2_t				*cw_add_champ_to_lst(t_cwdata *data);
 void 					cw_lastoption(t_cwdata *data, int i);
 void					cw_freeall(t_cwdata *data);
 void					cw_pushback_inst(header2_t *champion, t_instnode *new);
+void					cw_createnode(header2_t *champion, int *tab, int size);
 
 #endif

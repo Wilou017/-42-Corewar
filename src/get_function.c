@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:24:41 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/09 21:48:21 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/09 22:17:03 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,34 +30,39 @@ int			cw_get_option(t_cwdata *data, int *i)
 	return (0);
 }
 
-static int		distrib_data(int status, int octet, header2_t *champion)
+static int		distrib_data(t_reedstruct *reed, header2_t *champion)
 {
-	if (status == 0)
-		champion->magic = octet;
-	else if (status <= PROG_NAME_LENGTH/4)
+	if (reed->status == 0)
+		champion->magic = reed->buf;
+	else if (reed->status <= PROG_NAME_LENGTH/4)
 	{
-		champion->prog_name = ft_strjoin(champion->prog_name, ft_inttostr(octet), 3);
+		champion->prog_name = ft_strjoin(champion->prog_name, ft_inttostr(reed->buf), 3);
 	}
-	else if (status <= PROG_NAME_LENGTH/4 + 1)
+	else if (reed->status <= PROG_NAME_LENGTH/4 + 1)
 	{
-		ft_printf("%d Padding -> %.8X\n", status, octet);
+		ft_printf("%d Padding -> %.8X\n", reed->status, reed->buf);
 	}
-	else if (status <= PROG_NAME_LENGTH/4 + 2)
+	else if (reed->status <= PROG_NAME_LENGTH/4 + 2)
 	{
-		ft_printf("%d Progsize ? -> %.8X\n", status, octet);
+		ft_printf("%d Progsize ? -> %.8X\n", reed->status, reed->buf);
+		reed->inst_tab = ft_inttabnew(reed->buf);
+		reed->inst_size = reed->buf;
+		reed->inst_index = 0;
 	}
-	else if (status <= PROG_NAME_LENGTH/4 + 2 + COMMENT_LENGTH/4)
+	else if (reed->status <= PROG_NAME_LENGTH/4 + 2 + COMMENT_LENGTH/4)
 	{
-		champion->comment = ft_strjoin(champion->comment, ft_inttostr(octet), 3);
+		champion->comment = ft_strjoin(champion->comment, ft_inttostr(reed->buf), 3);
 	}
-	else if (status == PROG_NAME_LENGTH/4 + 2 + COMMENT_LENGTH/4 + 1)
+	else if (reed->status == PROG_NAME_LENGTH/4 + 2 + COMMENT_LENGTH/4 + 1)
 	{
-		ft_printf("%d Padding -> %.8X\n", status, octet);
+		ft_printf("%d Padding -> %.8X\n", reed->status, reed->buf);
 		return (1);
 	}
 	else
 	{
-		ft_printf("%d Programme-> {lred}%.2X{eoc} -> {lblue}%.2b{eoc}\n", status, octet, octet);
+		reed->inst_tab[reed->inst_index] = reed->buf;
+		reed->inst_index++;
+		ft_printf("%d Programme-> {lred}%.2X{eoc} -> {lblue}%.2b{eoc}\n", reed->status, reed->buf, reed->buf);
 		return (1);
 	}
 	return (sizeof(int));
@@ -65,24 +70,20 @@ static int		distrib_data(int status, int octet, header2_t *champion)
 
 static int	reed_champion(char *name, header2_t *champion)
 {
-	int			fd;
-	int			ret;
-	int			buf;
-	int			status;
-	int			reedsize;
+	t_reedstruct reed;
 
-	fd = open(name, O_RDONLY);
-	status = 0;
-	reedsize = sizeof(int);
+	reed.fd = open(name, O_RDONLY);
+	reed.status = 0;
+	reed.reedsize = sizeof(int);
 	ft_printf("\n\n------------------------------------\n\n");
-	while ((ret = read(fd, &buf, reedsize)))
+	while ((reed.ret = read(reed.fd, &reed.buf, reed.reedsize)))
 	{
-		if (ret < 0)
+		if (reed.ret < 0)
 			return (ft_printf("{red}Champion invalide\n"));
-		buf = return_bytes(buf, ret);
-		reedsize = distrib_data(status, buf, champion);
-		buf = 0;
-		status++;
+		reed.buf = return_bytes(reed.buf, reed.ret);
+		reed.reedsize = distrib_data(&reed, champion);
+		reed.buf = 0;
+		reed.status++;
 	}
 	if (champion->magic != 0xea83f3)
 		return (ft_printf("{red}Magic invalide\n"));
@@ -91,7 +92,9 @@ static int	reed_champion(char *name, header2_t *champion)
 	ft_printf("\n\nNom     = %s\n", champion->prog_name);
 	ft_printf("Comment = %s\n", champion->comment);
 
-	// cw_createnode(champion, tab, size);
+	// ft_showtabint(reed.inst_tab, reed.inst_size, "inst_tab", 0); // Affiche le tableau du programme en int decimal
+
+	// cw_createnode(champion, reed.inst_tab, reed.inst_size); // emvoye le tableau a la fonction de paring de dave
 
 	return (0);
 }
