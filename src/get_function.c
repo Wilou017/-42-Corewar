@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:24:41 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/09 21:43:58 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/09 21:48:21 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int		distrib_data(int status, int octet, header2_t *champion)
 	}
 	else
 	{
-		ft_printf("%d Programme-> %.2X\n", status, octet);
+		ft_printf("%d Programme-> {lred}%.2X{eoc} -> {lblue}%.2b{eoc}\n", status, octet, octet);
 		return (1);
 	}
 	return (sizeof(int));
