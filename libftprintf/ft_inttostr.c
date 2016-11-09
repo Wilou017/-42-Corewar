@@ -17,7 +17,6 @@ char	*ft_inttostr(int octet)
 	char *str;
 
 	str = ft_strnew(4);
-
 	str[0] = octet >> 24;
 	str[1] = octet >> 16;
 	str[2] = octet >> 8;

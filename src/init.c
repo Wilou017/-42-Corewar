@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:28:37 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/07 19:24:48 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/09 22:43:31 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ static void	init_data_default(t_cwdata *data)
 	data->lastdata = NULL;
 }
 
-void 		cw_lastoption(t_cwdata *data, int i)
+void		cw_lastoption(t_cwdata *data, int i)
 {
-	if(!ft_strcmp(data->v[i], "-dump"))
+	if (!ft_strcmp(data->v[i], "-dump"))
 		data->lastoption = DUMP;
-	else if(!ft_strcmp(data->v[i], "-n"))
+	else if (!ft_strcmp(data->v[i], "-n"))
 		data->lastoption = N;
 	else
 		data->lastoption = ERROR;
 }
 
-void		 cw_init(t_cwdata *data)
+void		cw_init(t_cwdata *data)
 {
 	int	i;
 

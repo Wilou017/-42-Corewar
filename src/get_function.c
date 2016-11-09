@@ -6,13 +6,13 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:24:41 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/09 22:17:03 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/09 22:45:35 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar.h>
 
-int			cw_get_option(t_cwdata *data, int *i)
+int				cw_get_option(t_cwdata *data, int *i)
 {
 	cw_lastoption(data, *i);
 	if (data->lastoption && data->c > *i)
@@ -26,34 +26,28 @@ int			cw_get_option(t_cwdata *data, int *i)
 		*i = (*i) + 1;
 	}
 	else if (data->lastoption == 0)
-		return(ft_printf("{red}l'option %s n'est pas valide\n", data->v[*i]));
+		return (ft_printf("{red}l'option %s n'est pas valide\n", data->v[*i]));
 	return (0);
 }
 
-static int		distrib_data(t_reedstruct *reed, header2_t *champion)
+static int		distrib_data(t_reedstruct *reed, t_header2 *champion)
 {
 	if (reed->status == 0)
 		champion->magic = reed->buf;
-	else if (reed->status <= PROG_NAME_LENGTH/4)
-	{
+	else if (reed->status <= PROG_NAME_LENGTH / 4)
 		champion->prog_name = ft_strjoin(champion->prog_name, ft_inttostr(reed->buf), 3);
-	}
-	else if (reed->status <= PROG_NAME_LENGTH/4 + 1)
-	{
+	else if (reed->status <= PROG_NAME_LENGTH / 4 + 1)
 		ft_printf("%d Padding -> %.8X\n", reed->status, reed->buf);
-	}
-	else if (reed->status <= PROG_NAME_LENGTH/4 + 2)
+	else if (reed->status <= PROG_NAME_LENGTH / 4 + 2)
 	{
 		ft_printf("%d Progsize ? -> %.8X\n", reed->status, reed->buf);
 		reed->inst_tab = ft_inttabnew(reed->buf);
 		reed->inst_size = reed->buf;
 		reed->inst_index = 0;
 	}
-	else if (reed->status <= PROG_NAME_LENGTH/4 + 2 + COMMENT_LENGTH/4)
-	{
+	else if (reed->status <= PROG_NAME_LENGTH / 4 + 2 + COMMENT_LENGTH / 4)
 		champion->comment = ft_strjoin(champion->comment, ft_inttostr(reed->buf), 3);
-	}
-	else if (reed->status == PROG_NAME_LENGTH/4 + 2 + COMMENT_LENGTH/4 + 1)
+	else if (reed->status == PROG_NAME_LENGTH / 4 + 2 + COMMENT_LENGTH / 4 + 1)
 	{
 		ft_printf("%d Padding -> %.8X\n", reed->status, reed->buf);
 		return (1);
@@ -68,7 +62,7 @@ static int		distrib_data(t_reedstruct *reed, header2_t *champion)
 	return (sizeof(int));
 }
 
-static int	reed_champion(char *name, header2_t *champion)
+static int		reed_champion(char *name, t_header2 *champion)
 {
 	t_reedstruct reed;
 
@@ -99,9 +93,9 @@ static int	reed_champion(char *name, header2_t *champion)
 	return (0);
 }
 
-int			cw_get_champion(t_cwdata *data, int i)
+int				cw_get_champion(t_cwdata *data, int i)
 {
-	header2_t	*champion;
+	t_header2	*champion;
 
 	data->nb_champion++;
 	champion = cw_add_champ_to_lst(data);

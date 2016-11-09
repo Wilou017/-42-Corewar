@@ -6,25 +6,22 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:03:17 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/09 22:04:03 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/09 22:23:01 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar.h>
 
-header2_t	*cw_add_champ_to_lst(t_cwdata *data)
+t_header2	*cw_add_champ_to_lst(t_cwdata *data)
 {
-	header2_t	new_node;
+	t_header2	new_node;
 	t_list		*champion_node;
-
 
 	new_node.prog_name = ft_strnew(0);
 	new_node.comment = ft_strnew(0);
 	champion_node = ft_lstnew((void *)&new_node, sizeof(new_node));
-
 	ft_lstadd_push_back(&data->beginlist, champion_node);
-
-	return ((header2_t*)champion_node->content);
+	return ((t_header2*)champion_node->content);
 }
 
 void		cw_freeall(t_cwdata *data)
@@ -35,8 +32,8 @@ void		cw_freeall(t_cwdata *data)
 	tmp = data->beginlist;
 	while (tmp)
 	{
-		free(((header2_t*)tmp->content)->prog_name);
-		free(((header2_t*)tmp->content)->comment);
+		free(((t_header2*)tmp->content)->prog_name);
+		free(((t_header2*)tmp->content)->comment);
 		free(tmp->content);
 		tmp2 = tmp;
 		tmp = tmp->next;
@@ -44,7 +41,7 @@ void		cw_freeall(t_cwdata *data)
 	}
 }
 
-void		cw_pushback_inst(header2_t *champion, t_instnode *new)
+void		cw_pushback_inst(t_header2 *champion, t_instnode *new)
 {
 	new->prev = champion->inst.end;
 	new->next = NULL;

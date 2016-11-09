@@ -12,11 +12,11 @@
 
 #include <corewar.h>
 
-int main(int argc, t_tab argv)
+int	main(int argc, t_tab argv)
 {
 	t_cwdata	data;
 
-	if(argc > 1)
+	if (argc > 1)
 	{
 		data.v = argv;
 		data.c = argc - 1;
