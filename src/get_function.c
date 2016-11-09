@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:24:41 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/07 19:55:01 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/09 21:40:33 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,28 +30,37 @@ int			cw_get_option(t_cwdata *data, int *i)
 	return (0);
 }
 
-static void	distrib_data(int status, int octet, header2_t *champion)
+static int		distrib_data(int status, int octet, header2_t *champion)
 {
-	if(status == 0)
+	if (status == 0)
 		champion->magic = octet;
-	else if(status <= (PROG_NAME_LENGTH/4 + 1))
+	else if (status <= PROG_NAME_LENGTH/4)
 	{
 		champion->prog_name = ft_strjoin(champion->prog_name, ft_inttostr(octet), 3);
 	}
-	else if(status <= (PROG_NAME_LENGTH/4 + 1) + COMMENT_LENGTH/4)
+	else if (status <= PROG_NAME_LENGTH/4 + 1)
+	{
+		ft_printf("%d Padding -> %.8X\n", status, octet);
+	}
+	else if (status <= PROG_NAME_LENGTH/4 + 2)
+	{
+		ft_printf("%d Progsize ? -> %.8X\n", status, octet);
+	}
+	else if (status <= PROG_NAME_LENGTH/4 + 2 + COMMENT_LENGTH/4)
 	{
 		champion->comment = ft_strjoin(champion->comment, ft_inttostr(octet), 3);
 	}
-	else if (status == (PROG_NAME_LENGTH/4 + 1) + COMMENT_LENGTH/4 + 1)
+	else if (status == PROG_NAME_LENGTH/4 + 2 + COMMENT_LENGTH/4 + 1)
 	{
-		ft_printf("Nom     = %s\n", champion->prog_name);
-		ft_printf("Comment = %s\n", champion->comment);
-		ft_printf("------------------------------------\n%d -> %.8x\n", status, octet);
+		ft_printf("%d Padding -> %.8X\n", status, octet);
+		return (1);
 	}
 	else
 	{
-		ft_printf("%d -> %.8x\n", status, octet);
+		ft_printf("%d Programme-> %.2X\n", status, octet);
+		return (1);
 	}
+	return (sizeof(int));
 }
 
 static int	reed_champion(char *name, header2_t *champion)
@@ -60,20 +69,30 @@ static int	reed_champion(char *name, header2_t *champion)
 	int			ret;
 	int			buf;
 	int			status;
+	int			reedsize;
 
 	fd = open(name, O_RDONLY);
 	status = 0;
-	while ((ret = read(fd, &buf, sizeof(int))))
+	reedsize = sizeof(int);
+	ft_printf("\n\n------------------------------------\n\n");
+	while ((ret = read(fd, &buf, reedsize)))
 	{
 		if (ret < 0)
 			return (ft_printf("{red}Champion invalide\n"));
 		buf = return_bytes(buf, ret);
-		distrib_data(status, buf, champion);
+		reedsize = distrib_data(status, buf, champion);
 		buf = 0;
 		status++;
 	}
 	if (champion->magic != 0xea83f3)
 		return (ft_printf("{red}Magic invalide\n"));
+
+
+	ft_printf("\n\nNom     = %s\n", champion->prog_name);
+	ft_printf("Comment = %s\n", champion->comment);
+
+	// cw_createnode(champion, tab, size);
+
 	return (0);
 }
 
@@ -89,21 +108,22 @@ int			cw_get_champion(t_cwdata *data, int i)
 	champion->inst.end = NULL;
 
 
- 	//******  Push instruction test ********//
-	cw_pushback_inst(champion, (void*)4);
-	cw_pushback_inst(champion, (void*)9);
-	cw_pushback_inst(champion, (void*)6);
+ 	// //******  Push instruction test ********//
+	// cw_pushback_inst(champion, (void*)4);
+	// cw_pushback_inst(champion, (void*)9);
+	// cw_pushback_inst(champion, (void*)6);
 
-	ft_printf("\nsize -> %d\n", champion->inst.start->size);
-	ft_showtabint(champion->inst.start->inst, 6, "Tab", 0);
-	ft_showtabint(champion->inst.end->inst, 6, "Tab", 0);
-	//******  Push instruction test ********//
+	// ft_printf("\nsize -> %d\n", champion->inst.start->size);
+	// ft_printf("\nsize -> %d\n", champion->inst.start->next->size);
+	// ft_printf("\nsize -> %d\n", champion->inst.start->next->next->size);
+	// ft_printf("\nsize -> %d\n", champion->inst.end->size);
+	// ft_showtabint(champion->inst.start->inst, 4, "Tab", 0);
+	// ft_showtabint(champion->inst.end->inst, 6, "Tab", 0);
+	// //******  Push instruction test ********//
 
 
 
 	ft_printf("\nid -> %d\n", champion->id);
-	ft_printf("data->lastdata -> %s\n", data->lastdata);
-
 	ft_strdel(&data->lastdata);
 
 	if (ft_strlen(data->v[i]) < 5 ||
@@ -111,7 +131,6 @@ int			cw_get_champion(t_cwdata *data, int i)
 		return (ft_printf("{red}les champions doivent etre des fichier .cor\n"));
 
 	ft_printf("Champion -> %s\n", data->v[i]);
-	ft_printf("dump -> %d\n", data->dumpcycles);
 
 	if (reed_champion(data->v[i], champion))
 		return (1);

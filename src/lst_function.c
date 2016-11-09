@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:03:17 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/07 19:52:29 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/09 21:40:57 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,8 @@ void		cw_freeall(t_cwdata *data)
 	}
 }
 
-void		cw_pushback_inst(header2_t *champion, void *value)
+void		cw_pushback_inst(header2_t *champion, t_instnode *new)
 {
-	t_instnode	*new;
-
-	new = (t_instnode*)malloc(sizeof(t_instnode));
-	new->inst = ft_inttabnew((int)value);
-	new->size = (int)value;
-	new->encodage = 1;
-
 	new->prev = champion->inst.end;
 	new->next = NULL;
 	champion->inst.size++;
