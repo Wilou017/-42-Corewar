@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:16:46 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/09 22:27:17 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/12 18:11:14 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define COREWAR_H
 
 # include <newlibft.h>
+
+# define DEBUG_PARSINGCOR		1
 
 # define IND_SIZE				2
 # define REG_SIZE				4

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:24:41 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/09 22:45:35 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/12 18:10:22 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,36 +30,97 @@ int				cw_get_option(t_cwdata *data, int *i)
 	return (0);
 }
 
+// static int		distrib_data(t_reedstruct *reed, t_header2 *champion)
+// {
+// 	if (reed->status == 0)
+// 		champion->magic = reed->buf;
+// 	else if (reed->status <= PROG_NAME_LENGTH / 4)
+// 		champion->prog_name = ft_strjoin(champion->prog_name, ft_inttostr(reed->buf), 3);
+// 	else if (reed->status <= PROG_NAME_LENGTH / 4 + 1)
+// 		ft_printf("%d Padding -> %.8X\n", reed->status, reed->buf);
+// 	else if (reed->status <= PROG_NAME_LENGTH / 4 + 2)
+// 	{
+// 		ft_printf("%d Progsize ? -> %.8X\n", reed->status, reed->buf);
+// 		reed->inst_tab = ft_inttabnew(reed->buf);
+// 		reed->inst_size = reed->buf;
+// 		reed->inst_index = 0;
+// 	}
+// 	else if (reed->status <= PROG_NAME_LENGTH / 4 + 2 + COMMENT_LENGTH / 4)
+// 		champion->comment = ft_strjoin(champion->comment, ft_inttostr(reed->buf), 3);
+// 	else if (reed->status == PROG_NAME_LENGTH / 4 + 2 + COMMENT_LENGTH / 4 + 1)
+// 	{
+// 		ft_printf("%d Padding -> %.8X\n", reed->status, reed->buf);
+// 		return (1);
+// 	}
+// 	else
+// 	{
+// 		reed->inst_tab[reed->inst_index] = reed->buf;
+// 		reed->inst_index++;
+// 		ft_printf("%d Programme-> {lred}%.2X{eoc} -> {lblue}%.2b{eoc}\n", reed->status, reed->buf, reed->buf);
+// 		return (1);
+// 	}
+// 	return (sizeof(int));
+// }
+
 static int		distrib_data(t_reedstruct *reed, t_header2 *champion)
 {
-	if (reed->status == 0)
-		champion->magic = reed->buf;
-	else if (reed->status <= PROG_NAME_LENGTH / 4)
-		champion->prog_name = ft_strjoin(champion->prog_name, ft_inttostr(reed->buf), 3);
-	else if (reed->status <= PROG_NAME_LENGTH / 4 + 1)
-		ft_printf("%d Padding -> %.8X\n", reed->status, reed->buf);
-	else if (reed->status <= PROG_NAME_LENGTH / 4 + 2)
+	if (reed->status == 0)																						// reed int
 	{
-		ft_printf("%d Progsize ? -> %.8X\n", reed->status, reed->buf);
+		champion->magic = reed->buf;
+		reed->status += 3;
+	}
+	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic))									// reed char
+	{
+		if (DEBUG_PARSINGCOR && reed->buf)
+			ft_printf("%04d Nom ? -> {lred}%.2X{eoc} -> %c\n", reed->status, reed->buf, reed->buf);
+		champion->prog_name = ft_strjoin(champion->prog_name, ft_chartostr(reed->buf, 1), 3);
+		if(reed->status == PROG_NAME_LENGTH + (int)sizeof(champion->magic) - 1)
+			return(sizeof(int));
+	}
+	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 4)								// reed int
+	{
+		if (reed->buf != 0)
+			return (-1);
+if (DEBUG_PARSINGCOR)
+			ft_printf("%04d Padding1 -> {lred}%.8X{eoc}\n", reed->status, reed->buf);
+		reed->status += 3;
+		return(sizeof(int));
+	}
+	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 4 + 4)							// reed int
+	{
+		if (reed->buf == 0)
+			return (-2);
+		if (DEBUG_PARSINGCOR)
+			ft_printf("%04d Progsize ? -> {lred}%.8X{eoc} -> {lgreen}%d{eoc}\n", reed->status, reed->buf, reed->buf);
 		reed->inst_tab = ft_inttabnew(reed->buf);
 		reed->inst_size = reed->buf;
 		reed->inst_index = 0;
+		reed->status += 3;
 	}
-	else if (reed->status <= PROG_NAME_LENGTH / 4 + 2 + COMMENT_LENGTH / 4)
-		champion->comment = ft_strjoin(champion->comment, ft_inttostr(reed->buf), 3);
-	else if (reed->status == PROG_NAME_LENGTH / 4 + 2 + COMMENT_LENGTH / 4 + 1)
+	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 4 + 4 + COMMENT_LENGTH)			// reed char
 	{
-		ft_printf("%d Padding -> %.8X\n", reed->status, reed->buf);
-		return (1);
+		if (DEBUG_PARSINGCOR && reed->buf)
+			ft_printf("%04d Comment ? -> {lred}%.2X{eoc} -> %c\n", reed->status, reed->buf, reed->buf);
+		champion->comment = ft_strjoin(champion->comment, ft_chartostr(reed->buf, 1), 3);
+		if(reed->status == PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 4 + 4 + COMMENT_LENGTH - 1)
+			return(sizeof(int));
+	}
+	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 8 + COMMENT_LENGTH + 4)			// reed int
+	{
+		if (reed->buf != 0)
+			return (-3);
+		if (DEBUG_PARSINGCOR)
+			ft_printf("%04d Padding2 -> {lred}%.8X{eoc}\n", reed->status, reed->buf);
+		reed->status += 3;
 	}
 	else
 	{
 		reed->inst_tab[reed->inst_index] = reed->buf;
 		reed->inst_index++;
-		ft_printf("%d Programme-> {lred}%.2X{eoc} -> {lblue}%.2b{eoc}\n", reed->status, reed->buf, reed->buf);
-		return (1);
+		if (DEBUG_PARSINGCOR)
+			ft_printf("%04d Programme -> {lred}%.2X{eoc} -> {lblue}%.2b{eoc} -> {lgreen}%03d{eoc}\n", reed->status, reed->buf, reed->buf, reed->buf);
 	}
-	return (sizeof(int));
+	return (1);
 }
 
 static int		reed_champion(char *name, t_header2 *champion)
@@ -76,6 +137,12 @@ static int		reed_champion(char *name, t_header2 *champion)
 			return (ft_printf("{red}Champion invalide\n"));
 		reed.buf = return_bytes(reed.buf, reed.ret);
 		reed.reedsize = distrib_data(&reed, champion);
+		if (reed.reedsize == -1)
+			return (ft_printf("{red}%s -> nom trop long | taille max = %d\n", name, PROG_NAME_LENGTH));
+		else if (reed.reedsize == -2)
+			return (ft_printf("{red}%s -> Progsize = 0\n",  name));
+		else if (reed.reedsize == -3)
+			return (ft_printf("{red}%s -> commentaire trop long | taille max = %d\n", name, COMMENT_LENGTH));
 		reed.buf = 0;
 		reed.status++;
 	}
@@ -85,6 +152,9 @@ static int		reed_champion(char *name, t_header2 *champion)
 
 	ft_printf("\n\nNom     = %s\n", champion->prog_name);
 	ft_printf("Comment = %s\n", champion->comment);
+
+	if (ft_strlen(champion->prog_name) > PROG_NAME_LENGTH)
+		return(ft_printf("{red}Le nom '%s' est trop grand: taille max -> %d", champion->prog_name, PROG_NAME_LENGTH));
 
 	// ft_showtabint(reed.inst_tab, reed.inst_size, "inst_tab", 0); // Affiche le tableau du programme en int decimal
 
