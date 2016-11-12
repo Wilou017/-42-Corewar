@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:24:41 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/12 18:10:22 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/12 18:21:31 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ if (DEBUG_PARSINGCOR)
 	}
 	else
 	{
+		if (reed->status == PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 8 + COMMENT_LENGTH + 4 && reed->buf == 0)
+			return (-4);
 		reed->inst_tab[reed->inst_index] = reed->buf;
 		reed->inst_index++;
 		if (DEBUG_PARSINGCOR)
@@ -138,11 +140,13 @@ static int		reed_champion(char *name, t_header2 *champion)
 		reed.buf = return_bytes(reed.buf, reed.ret);
 		reed.reedsize = distrib_data(&reed, champion);
 		if (reed.reedsize == -1)
-			return (ft_printf("{red}%s -> nom trop long | taille max = %d\n", name, PROG_NAME_LENGTH));
+			return (ft_printf("{red}%s -> Nom trop long | taille max = %d\n", name, PROG_NAME_LENGTH));
 		else if (reed.reedsize == -2)
 			return (ft_printf("{red}%s -> Progsize = 0\n",  name));
 		else if (reed.reedsize == -3)
-			return (ft_printf("{red}%s -> commentaire trop long | taille max = %d\n", name, COMMENT_LENGTH));
+			return (ft_printf("{red}%s -> Commentaire trop long | taille max = %d\n", name, COMMENT_LENGTH));
+		else if (reed.reedsize == -4)
+			return (ft_printf("{red}%s -> Premier octet du programme a 0\n", name));
 		reed.buf = 0;
 		reed.status++;
 	}
