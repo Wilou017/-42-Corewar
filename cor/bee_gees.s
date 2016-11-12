@@ -1,6 +1,6 @@
 .name "stayin' alive"
 .comment "Ha, Ha, Ha, stayiiiiin' aliiiiiiiiiive"
-
+	
 sti	r1, %:live, %1			;change live by the right value
 sti	r1, %:live2, %1			;change live by the right value
 ld	%1, r3
@@ -22,6 +22,7 @@ ld	%0, r4			;carry = 1
 live:
 live %4
 zjmp %:live
+<<<<<<< HEAD
 
 ;0b 68          01        00 45                 00 01
 ;0b 68          01        00 22                 00 01
@@ -37,3 +38,5 @@ zjmp %:live
 ;02 90          00 00 00 00             04
 ;01                     00 00 00 04
 ;09                     ff fb   //Zjump to live;
+=======
+>>>>>>> 30d26a99da1a56c5563db2903ee422ac083b7585
