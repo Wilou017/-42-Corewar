@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:16:46 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/12 18:21:39 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/12 18:36:26 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ typedef char	t_arg_type;
 # define T_LAB					8
 
 
-# define PROG_NAME_LENGTH		(128)
-# define COMMENT_LENGTH			(2048)
+# define PROG_NAME_LENGTH		(128) // TAILLE DU NOM
+# define COMMENT_LENGTH			(2048) // TAILLE DU COMMENTAIRE
 # define COREWAR_EXEC_MAGIC		0xea83f3
 
 typedef struct			s_instnode
