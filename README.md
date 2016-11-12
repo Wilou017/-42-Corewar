@@ -5,25 +5,25 @@
 ## Gestion d'erreur parsing:
 ### Nom du champion:
 
-http://img15.hostingpics.net/pics/176868ScreenShot20161112at63029PM.png
-<img src="http://img15.hostingpics.net/pics/176868ScreenShot20161112at63029PM.png"/>
+http://aymericdev.fr/img/GITHUB_COREWAR_05.png
+<img src="http://aymericdev.fr/img/GITHUB_COREWAR_05.png"/>
 
 ### Commentaire du champion:
-http://img15.hostingpics.net/pics/582750ScreenShot20161112at62924PM.png
-<img src="http://img15.hostingpics.net/pics/582750ScreenShot20161112at62924PM.png"/>
+http://aymericdev.fr/img/GITHUB_COREWAR_04.png
+<img src="http://aymericdev.fr/img/GITHUB_COREWAR_04.png"/>
 
 ## Parsing champion v2:
-http://img15.hostingpics.net/pics/209360ScreenShot20161112at62206PM.png
-<img src="http://img15.hostingpics.net/pics/209360ScreenShot20161112at62206PM.png"/>
+http://aymericdev.fr/img/GITHUB_COREWAR_03.png
+<img src="http://aymericdev.fr/img/GITHUB_COREWAR_03.png"/>
 
 Parsing champion:
-http://img15.hostingpics.net/pics/312402ScreenShot20161110at63011PM.png
-<img src="http://img15.hostingpics.net/pics/312402ScreenShot20161110at63011PM.png"/>
+http://aymericdev.fr/img/GITHUB_COREWAR_02.png
+<img src="http://aymericdev.fr/img/GITHUB_COREWAR_02.png"/>
 
 ## Parsing:
-http://img15.hostingpics.net/pics/615186ScreenShot20161029at65034PM.png
-<img src="http://img15.hostingpics.net/pics/615186ScreenShot20161029at65034PM.png"/>
+http://aymericdev.fr/img/GITHUB_COREWAR_01.png
+<img src="http://aymericdev.fr/img/GITHUB_COREWAR_01.png"/>
 
 ## Gestion d'erreur:
-http://img15.hostingpics.net/pics/492237Screen.png
-<img src="http://img15.hostingpics.net/pics/492237Screen.png"/>
+http://aymericdev.fr/img/GITHUB_COREWAR_00.png
+<img src="http://aymericdev.fr/img/GITHUB_COREWAR_00.png"/>
