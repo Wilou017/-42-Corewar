@@ -16,7 +16,7 @@ http://aymericdev.fr/img/GITHUB_COREWAR_04.png
 http://aymericdev.fr/img/GITHUB_COREWAR_03.png
 <img src="http://aymericdev.fr/img/GITHUB_COREWAR_03.png"/>
 
-Parsing champion:
+## Parsing champion:
 http://aymericdev.fr/img/GITHUB_COREWAR_02.png
 <img src="http://aymericdev.fr/img/GITHUB_COREWAR_02.png"/>
 
