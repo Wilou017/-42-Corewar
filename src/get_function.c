@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:24:41 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/12 18:21:31 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/13 16:39:05 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static int		distrib_data(t_reedstruct *reed, t_header2 *champion)
 	{
 		if (reed->buf != 0)
 			return (-1);
-if (DEBUG_PARSINGCOR)
+		if (DEBUG_PARSINGCOR)
 			ft_printf("%04d Padding1 -> {lred}%.8X{eoc}\n", reed->status, reed->buf);
 		reed->status += 3;
 		return(sizeof(int));
@@ -162,7 +162,7 @@ static int		reed_champion(char *name, t_header2 *champion)
 
 	// ft_showtabint(reed.inst_tab, reed.inst_size, "inst_tab", 0); // Affiche le tableau du programme en int decimal
 
-	// cw_createnode(champion, reed.inst_tab, reed.inst_size); // emvoye le tableau a la fonction de paring de dave
+	cw_createnode(champion, reed.inst_tab, reed.inst_size); // emvoye le tableau a la fonction de paring de dave
 
 	return (0);
 }
