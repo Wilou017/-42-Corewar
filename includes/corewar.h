@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:16:46 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/12 18:36:26 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/15 19:29:41 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,9 @@ void					cw_lastoption(t_cwdata *data, int i);
 void					cw_freeall(t_cwdata *data);
 void					cw_pushback_inst(t_header2 *champion, t_instnode *new);
 void					cw_createnode(t_header2 *champion, int *tab, int size);
+int						cw_distrib_name(t_reedstruct *reed, t_header2 *champion);
+int						cw_distrib_comment(t_reedstruct *reed, t_header2 *champion);
+int						cw_distrib_program(t_reedstruct *reed, t_header2 *champion);
+int						cw_distrib_progsize(t_reedstruct *reed);
 
 #endif

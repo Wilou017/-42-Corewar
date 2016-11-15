@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:24:41 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/13 16:39:05 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/15 19:30:04 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,7 @@ static int		distrib_data(t_reedstruct *reed, t_header2 *champion)
 		reed->status += 3;
 	}
 	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic))									// reed char
-	{
-		if (DEBUG_PARSINGCOR && reed->buf)
-			ft_printf("%04d Nom ? -> {lred}%.2X{eoc} -> %c\n", reed->status, reed->buf, reed->buf);
-		champion->prog_name = ft_strjoin(champion->prog_name, ft_chartostr(reed->buf, 1), 3);
-		if(reed->status == PROG_NAME_LENGTH + (int)sizeof(champion->magic) - 1)
-			return(sizeof(int));
-	}
+		return (cw_distrib_name(reed, champion));
 	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 4)								// reed int
 	{
 		if (reed->buf != 0)
@@ -87,24 +81,9 @@ static int		distrib_data(t_reedstruct *reed, t_header2 *champion)
 		return(sizeof(int));
 	}
 	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 4 + 4)							// reed int
-	{
-		if (reed->buf == 0)
-			return (-2);
-		if (DEBUG_PARSINGCOR)
-			ft_printf("%04d Progsize ? -> {lred}%.8X{eoc} -> {lgreen}%d{eoc}\n", reed->status, reed->buf, reed->buf);
-		reed->inst_tab = ft_inttabnew(reed->buf);
-		reed->inst_size = reed->buf;
-		reed->inst_index = 0;
-		reed->status += 3;
-	}
+		return (cw_distrib_progsize(reed));
 	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 4 + 4 + COMMENT_LENGTH)			// reed char
-	{
-		if (DEBUG_PARSINGCOR && reed->buf)
-			ft_printf("%04d Comment ? -> {lred}%.2X{eoc} -> %c\n", reed->status, reed->buf, reed->buf);
-		champion->comment = ft_strjoin(champion->comment, ft_chartostr(reed->buf, 1), 3);
-		if(reed->status == PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 4 + 4 + COMMENT_LENGTH - 1)
-			return(sizeof(int));
-	}
+		return (cw_distrib_comment(reed, champion));
 	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 8 + COMMENT_LENGTH + 4)			// reed int
 	{
 		if (reed->buf != 0)
@@ -114,14 +93,7 @@ static int		distrib_data(t_reedstruct *reed, t_header2 *champion)
 		reed->status += 3;
 	}
 	else
-	{
-		if (reed->status == PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 8 + COMMENT_LENGTH + 4 && reed->buf == 0)
-			return (-4);
-		reed->inst_tab[reed->inst_index] = reed->buf;
-		reed->inst_index++;
-		if (DEBUG_PARSINGCOR)
-			ft_printf("%04d Programme -> {lred}%.2X{eoc} -> {lblue}%.2b{eoc} -> {lgreen}%03d{eoc}\n", reed->status, reed->buf, reed->buf, reed->buf);
-	}
+		return (cw_distrib_program(reed, champion));
 	return (1);
 }
 
@@ -150,7 +122,7 @@ static int		reed_champion(char *name, t_header2 *champion)
 		reed.buf = 0;
 		reed.status++;
 	}
-	if (champion->magic != 0xea83f3)
+	if (champion->magic != COREWAR_EXEC_MAGIC)
 		return (ft_printf("{red}Magic invalide\n"));
 
 
