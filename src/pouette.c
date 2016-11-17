@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:17:46 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/17 17:44:27 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/17 17:45:53 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	cw_printmemory(int *tab, int size)
 		if (i % 10 == 0)
 			ft_putchar('\n');
 	}
+	ft_putchar('\n');
 }
 
 int		cw_pouette(t_reedstruct reed, t_header2 *champion)
