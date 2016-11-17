@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:24:41 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/15 19:30:04 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/17 17:15:13 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,33 +68,19 @@ static int		distrib_data(t_reedstruct *reed, t_header2 *champion)
 	{
 		champion->magic = reed->buf;
 		reed->status += 3;
+		return (1);
 	}
 	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic))									// reed char
 		return (cw_distrib_name(reed, champion));
 	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 4)								// reed int
-	{
-		if (reed->buf != 0)
-			return (-1);
-		if (DEBUG_PARSINGCOR)
-			ft_printf("%04d Padding1 -> {lred}%.8X{eoc}\n", reed->status, reed->buf);
-		reed->status += 3;
-		return(sizeof(int));
-	}
+		return (cw_distrib_padding(reed, -1));
 	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 4 + 4)							// reed int
 		return (cw_distrib_progsize(reed));
 	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 4 + 4 + COMMENT_LENGTH)			// reed char
 		return (cw_distrib_comment(reed, champion));
 	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 8 + COMMENT_LENGTH + 4)			// reed int
-	{
-		if (reed->buf != 0)
-			return (-3);
-		if (DEBUG_PARSINGCOR)
-			ft_printf("%04d Padding2 -> {lred}%.8X{eoc}\n", reed->status, reed->buf);
-		reed->status += 3;
-	}
-	else
-		return (cw_distrib_program(reed, champion));
-	return (1);
+		return (cw_distrib_padding(reed, -3));
+	return (cw_distrib_program(reed, champion));
 }
 
 static int		reed_champion(char *name, t_header2 *champion)

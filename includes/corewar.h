@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:16:46 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/15 19:29:41 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/17 17:10:58 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,5 +128,6 @@ int						cw_distrib_name(t_reedstruct *reed, t_header2 *champion);
 int						cw_distrib_comment(t_reedstruct *reed, t_header2 *champion);
 int						cw_distrib_program(t_reedstruct *reed, t_header2 *champion);
 int						cw_distrib_progsize(t_reedstruct *reed);
+int						cw_distrib_padding(t_reedstruct *reed, int ret);
 
 #endif
