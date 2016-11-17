@@ -6,7 +6,7 @@
 #    By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 12:19:31 by amaitre           #+#    #+#              #
-#    Updated: 2016/11/15 19:20:05 by amaitre          ###   ########.fr        #
+#    Updated: 2016/11/17 17:21:53 by amaitre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC			+=	src/get_function.c
 SRC			+=	src/lst_function.c
 SRC			+=	src/fill_instructions.c
 SRC			+=	src/distrib_function.c
+SRC			+=	src/pouette.c
 
 SRCO		=	$(SRC:.c=.o)
 HEADERSLIB	=	libftprintf/includes
