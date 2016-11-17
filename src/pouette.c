@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:17:46 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/17 17:40:16 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/17 17:44:27 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	cw_printmemory(int *tab, int size)
 	i = 0;
 	while (i < size)
 	{
-		ft_printf("%.2X ", tab[i]);
+		ft_printf("%.2X ", (tab[i] == -1) ? 0 : tab[i]);
 		i++;
 		if (i % 10 == 0)
 			ft_putchar('\n');
