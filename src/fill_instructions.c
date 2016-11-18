@@ -71,7 +71,7 @@ void		cw_createnode(t_header2 *champion, int *tab, int size)
 	{
 		j = 2;
 		end = 0;
-		ft_printf("tab[%d] = %.2X -> %.2b -> %d\n", i, tab[i], tab[i], tab[i]);
+		//ft_printf("tab[%d] = %.2X -> %.2b -> %d\n", i, tab[i], tab[i], tab[i]);
 		new = (t_instnode*)malloc(sizeof(t_instnode));
 		end = endof_instructions(tab[i], tab[i + 1]);
 		new->inst = ft_inttabnew(end + 2);
@@ -88,7 +88,6 @@ void		cw_createnode(t_header2 *champion, int *tab, int size)
 			j++;
 		}
 		cw_pushback_inst(champion, new);
-		ft_showtabint(new->inst, end + 2, "inst_tab", 0);
-		ft_printf("encodage = %d, size = %d\n", new->encodage, new->size);
+		//ft_showtabint(new->inst, end + 2, "inst_tab", 0);
 	}
 }

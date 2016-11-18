@@ -88,6 +88,7 @@ int				cw_get_champion(t_cwdata *data, int i)
 	champion = cw_add_champ_to_lst(data);
 	champion->id = (data->lastdata) ? ft_atoi(data->lastdata) :\
 	data->nb_champion * -1;
+	champion->process.reg[0] = champion->id;
 	champion->inst.start = NULL;
 	champion->inst.end = NULL;
 

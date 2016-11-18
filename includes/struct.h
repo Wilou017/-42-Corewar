@@ -29,6 +29,13 @@ typedef struct			s_instdata
 	t_instnode			*end;
 }						t_instdata;
 
+typedef struct			s_process
+{
+	int					pc;
+	int					carry;
+	int					*reg;
+}						t_process;
+
 typedef struct			s_header2
 {
 	unsigned int		id;
@@ -36,15 +43,21 @@ typedef struct			s_header2
 	char				*prog_name;
 	unsigned int		prog_size;
 	char				*comment;
+	int					*prog;
 	t_instdata			inst;
+	t_process			process;
 }						t_header2;
 
 typedef	struct			s_cwdata
 {
+	int					*mem;
 	int					dumpcycles;
 	int					lastoption;
 	char				*lastdata;
 	int					nb_champion;
+	int					begin_champ2;
+	int					begin_champ3;
+	int					begin_champ4;
 	t_tab				v;
 	int					c;
 	t_list				*beginlist;

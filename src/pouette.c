@@ -36,6 +36,9 @@ int		cw_pouette(t_reedstruct reed, t_header2 *champion)
 	// ft_showtabint(reed.inst_tab, reed.inst_size, "inst_tab", 0); // Affiche le tableau du programme en int decimal
 
 	cw_createnode(champion, reed.inst_tab, reed.inst_size); // emvoye le tableau a la fonction de paring de dave
+	champion->prog = ft_inttabnew(reed.inst_size);
+	champion->prog = reed.inst_tab;
+	champion->prog_size = reed.inst_size;
 	cw_printmemory(reed.inst_tab, reed.inst_size);
 	return (0);
 }

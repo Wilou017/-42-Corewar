@@ -16,9 +16,15 @@ t_header2	*cw_add_champ_to_lst(t_cwdata *data)
 {
 	t_header2	new_node;
 	t_list		*champion_node;
+	int			i;
 
+	i = 0;
 	new_node.prog_name = ft_strnew(0);
 	new_node.comment = ft_strnew(0);
+	new_node.prog_size = 0;
+	new_node.process.pc = 0;
+	new_node.process.carry = 0;
+	new_node.process.reg = ft_inttabnew(REG_NUMBER);
 	champion_node = ft_lstnew((void *)&new_node, sizeof(new_node));
 	ft_lstadd_push_back(&data->beginlist, champion_node);
 	return ((t_header2*)champion_node->content);

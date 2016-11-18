@@ -57,4 +57,6 @@ int			cw_distrib_padding(t_reedstruct *reed, int ret);
 
 int			cw_pouette(t_reedstruct reed, t_header2 *champion);
 
+void		create_map(t_cwdata *data);
+
 #endif

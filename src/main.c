@@ -21,6 +21,7 @@ int	main(int argc, t_tab argv)
 		data.v = argv;
 		data.c = argc - 1;
 		cw_init(&data);
+		create_map(&data);
 		cw_freeall(&data);
 	}
 	else

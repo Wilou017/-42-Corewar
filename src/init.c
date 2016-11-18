@@ -14,10 +14,14 @@
 
 static void	init_data_default(t_cwdata *data)
 {
+	data->mem = ft_inttabnew(MEM_SIZE);
 	data->dumpcycles = -1;
 	data->nb_champion = 0;
 	data->beginlist = NULL;
 	data->lastdata = NULL;
+	data->begin_champ2 = 0;
+	data->begin_champ3 = 0;
+	data->begin_champ4 = 0;
 }
 
 void		cw_lastoption(t_cwdata *data, int i)
