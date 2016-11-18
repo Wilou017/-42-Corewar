@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 18:59:41 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/17 17:41:33 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/18 20:02:49 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		cw_distrib_progsize(t_reedstruct *reed)
 	if (DEBUG_PARSINGCOR)
 		ft_printf("%04d Progsize ? -> {lred}%.8X{eoc} -> \
 {lgreen}%d{eoc}\n", reed->status, reed->buf, reed->buf);
-	reed->inst_tab = ft_inttabnew(reed->buf);
+	reed->inst_tab = ft_inttabnew(reed->buf, -1);
 	reed->inst_size = reed->buf;
 	reed->inst_index = 0;
 	reed->status += 3;

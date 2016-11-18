@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/19 21:47:54 by amaitre           #+#    #+#             */
-/*   Updated: 2016/09/20 16:51:59 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/18 20:04:45 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	*ft_inttabjoin(int *tab1, int size1, int *tab2, int size2)
 
 	i = 0;
 	j = 0;
-	ret = ft_inttabnew(size1 + size2);
+	ret = ft_inttabnew(size1 + size2, -1);
 	while (i < size1)
 	{
 		ret[i] = tab1[i];
