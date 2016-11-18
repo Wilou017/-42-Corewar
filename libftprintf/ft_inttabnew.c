@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int		*ft_inttabnew(size_t size)
+int		*ft_inttabnew(size_t size, int value)
 {
 	int *dst;
 	int i;
@@ -22,7 +22,7 @@ int		*ft_inttabnew(size_t size)
 	{
 		i = size + 1;
 		while (--i >= 0)
-			dst[i] = -1;
+			dst[i] = value;
 		return (dst);
 	}
 	return (NULL);

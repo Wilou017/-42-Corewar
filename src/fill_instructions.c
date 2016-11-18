@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 21:35:50 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/09 22:23:04 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/18 20:02:31 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void		cw_createnode(t_header2 *champion, int *tab, int size)
 		ft_printf("tab[%d] = %.2X -> %.2b -> %d\n", i, tab[i], tab[i], tab[i]);
 		new = (t_instnode*)malloc(sizeof(t_instnode));
 		end = endof_instructions(tab[i], tab[i + 1]);
-		new->inst = ft_inttabnew(end + 2);
+		new->inst = ft_inttabnew(end + 2, -1);
 		new->inst[0] = tab[i];
 		if (if_encodage(tab[i]))
 			new->encodage = tab[i + 1];

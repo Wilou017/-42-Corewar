@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 13:41:56 by amaitre           #+#    #+#             */
-/*   Updated: 2016/09/12 12:21:16 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/18 20:05:36 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	pf_fill(char const *s, va_list ap, t_ret *retval, t_pf_data *data)
 {
 	data->i = 0;
 	data->adjusting = 0;
-	retval->posbs = ft_inttabnew(ft_countchar(s, '%'));
+	retval->posbs = ft_inttabnew(ft_countchar(s, '%'), -1);
 	while (s[data->i] != '\0')
 	{
 		if (s[data->i] == '%')
