@@ -14,7 +14,7 @@
 
 static void	init_data_default(t_cwdata *data)
 {
-	data->mem = ft_inttabnew(MEM_SIZE);
+	data->mem = ft_inttabnew(MEM_SIZE, 0);
 	data->dumpcycles = -1;
 	data->nb_champion = 0;
 	data->beginlist = NULL;
