@@ -44,7 +44,8 @@ typedef struct			s_header
 	unsigned int		prog_size;
 	char				*comment;
 	int					*prog;
-	int					live;
+	int					if_live;
+	int					nb_live;
 	t_instdata			inst;
 	t_process			process;
 }						t_header;
