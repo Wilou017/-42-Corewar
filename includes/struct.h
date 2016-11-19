@@ -44,6 +44,7 @@ typedef struct			s_header
 	unsigned int		prog_size;
 	char				*comment;
 	int					*prog;
+	int					live;
 	t_instdata			inst;
 	t_process			process;
 }						t_header;
@@ -51,6 +52,8 @@ typedef struct			s_header
 typedef	struct			s_cwdata
 {
 	int					*mem;
+	int					cur_cycle;
+	int					cycle_to_die;
 	int					dumpcycles;
 	int					lastoption;
 	char				*lastdata;
