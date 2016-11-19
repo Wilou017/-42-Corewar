@@ -12,7 +12,7 @@
 
 #include <corewar.h>
 
-int		cw_distrib_name(t_reedstruct *reed, t_header2 *champion)
+int		cw_distrib_name(t_reedstruct *reed, t_header *champion)
 {
 	if (DEBUG_PARSINGCOR && reed->buf)
 		ft_printf("%04d Nom ? -> {lred}%.2X{eoc} -> %c\n", reed->status,
@@ -24,7 +24,7 @@ int		cw_distrib_name(t_reedstruct *reed, t_header2 *champion)
 	return (1);
 }
 
-int		cw_distrib_comment(t_reedstruct *reed, t_header2 *champion)
+int		cw_distrib_comment(t_reedstruct *reed, t_header *champion)
 {
 	if (DEBUG_PARSINGCOR && reed->buf)
 		ft_printf("%04d Comment ? -> {lred}%.2X{eoc} -> %c\n", reed->status,
@@ -37,7 +37,7 @@ int		cw_distrib_comment(t_reedstruct *reed, t_header2 *champion)
 	return (1);
 }
 
-int		cw_distrib_program(t_reedstruct *reed, t_header2 *champion)
+int		cw_distrib_program(t_reedstruct *reed, t_header *champion)
 {
 	if (reed->status == PROG_NAME_LENGTH + (int)sizeof(champion->magic)
 	+ 3 * sizeof(int) + COMMENT_LENGTH && reed->buf == 0)

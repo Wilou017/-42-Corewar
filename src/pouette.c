@@ -6,14 +6,14 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:17:46 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/19 15:41:53 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/19 16:05:42 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include <corewar.h>
 
-int		cw_pouette(t_reedstruct reed, t_header2 *champion)
+int		cw_pouette(t_reedstruct reed, t_header *champion)
 {
 	ft_printf("\n\nNom     = %s\n", champion->prog_name);
 	ft_printf("Comment = %s\n", champion->comment);

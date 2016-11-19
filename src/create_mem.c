@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 15:29:21 by dmathe            #+#    #+#             */
-/*   Updated: 2016/11/19 15:49:59 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/19 16:12:18 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ void		fill_map(t_cwdata *data)
 {
 	int i;
 	t_list		*tmp;
-	t_header2	*champ;
+	t_header	*champ;
 
 	tmp = data->beginlist;
 	i = 1;
 	fill_len_champ(data);
 	while (tmp)
 	{
-		champ = (t_header2*)tmp->content;
+		champ = (t_header*)tmp->content;
 		if (i == 1)
 			write_in_int(data, champ->prog, 0, champ->prog_size);
 		else if (i == 2)
@@ -111,15 +111,15 @@ void		create_map(t_cwdata *data)
 	fill_map_zero(data);
 	while (i < MEM_SIZE)
 	{
-		if (i % 32 == 0 && i)
+		if (i % 64 == 0 && i)
 			ft_printf("\n");
-		//ft_printf("\nj = %d, size = %d, i = %d, begin = %d\n", j, ((t_header2 *)tmp->content)->prog_size, i, begin_champ(data, x));
-		if (j < ((t_header2 *)tmp->content)->prog_size && i >= begin_champ(data, x))
+		//ft_printf("\nj = %d, size = %d, i = %d, begin = %d\n", j, ((t_header *)tmp->content)->prog_size, i, begin_champ(data, x));
+		if (j < ((t_header *)tmp->content)->prog_size && i >= begin_champ(data, x))
 		{
-			ft_printf("{red}%.2X{eoc}", data->mem[i]);
+			ft_printf("{%s}%.2X{eoc}", data->color[x], data->mem[i]);
 			j++;
 		}
-		else if (j == ((t_header2 *)tmp->content)->prog_size && tmp->next)
+		else if (j == ((t_header *)tmp->content)->prog_size && tmp->next)
 		{
 			ft_printf("%.2X", data->mem[i]);
 			tmp = tmp->next;

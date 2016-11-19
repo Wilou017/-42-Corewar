@@ -12,9 +12,9 @@
 
 #include <corewar.h>
 
-t_header2	*cw_add_champ_to_lst(t_cwdata *data)
+t_header	*cw_add_champ_to_lst(t_cwdata *data)
 {
-	t_header2	new_node;
+	t_header	new_node;
 	t_list		*champion_node;
 	int			i;
 
@@ -27,7 +27,7 @@ t_header2	*cw_add_champ_to_lst(t_cwdata *data)
 	new_node.process.reg = ft_inttabnew(REG_NUMBER, 0);
 	champion_node = ft_lstnew((void *)&new_node, sizeof(new_node));
 	ft_lstadd_push_back(&data->beginlist, champion_node);
-	return ((t_header2*)champion_node->content);
+	return ((t_header*)champion_node->content);
 }
 
 void		cw_freeall(t_cwdata *data)
@@ -38,8 +38,8 @@ void		cw_freeall(t_cwdata *data)
 	tmp = data->beginlist;
 	while (tmp)
 	{
-		free(((t_header2*)tmp->content)->prog_name);
-		free(((t_header2*)tmp->content)->comment);
+		free(((t_header*)tmp->content)->prog_name);
+		free(((t_header*)tmp->content)->comment);
 		free(tmp->content);
 		tmp2 = tmp;
 		tmp = tmp->next;
@@ -47,7 +47,7 @@ void		cw_freeall(t_cwdata *data)
 	}
 }
 
-void		cw_pushback_inst(t_header2 *champion, t_instnode *new)
+void		cw_pushback_inst(t_header *champion, t_instnode *new)
 {
 	new->prev = champion->inst.end;
 	new->next = NULL;

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:24:41 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/17 17:40:28 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/19 16:05:48 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int				cw_get_option(t_cwdata *data, int *i)
 	return (0);
 }
 
-static int		distrib_data(t_reedstruct *reed, t_header2 *champion)
+static int		distrib_data(t_reedstruct *reed, t_header *champion)
 {
 	if (reed->status == 0)
 	{
@@ -51,7 +51,7 @@ static int		distrib_data(t_reedstruct *reed, t_header2 *champion)
 	return (cw_distrib_program(reed, champion));
 }
 
-static int		reed_champion(char *name, t_header2 *champion)
+static int		reed_champion(char *name, t_header *champion)
 {
 	t_reedstruct reed;
 
@@ -82,7 +82,7 @@ static int		reed_champion(char *name, t_header2 *champion)
 
 int				cw_get_champion(t_cwdata *data, int i)
 {
-	t_header2	*champion;
+	t_header	*champion;
 
 	data->nb_champion++;
 	champion = cw_add_champ_to_lst(data);
@@ -90,6 +90,7 @@ int				cw_get_champion(t_cwdata *data, int i)
 	data->nb_champion * -1;
 	champion->process.reg[0] = champion->id;
 	champion->inst.start = NULL;
+	champion->inst.end = NULL;
 	champion->inst.end = NULL;
 
 	ft_printf("\nid -> %d\n", champion->id);

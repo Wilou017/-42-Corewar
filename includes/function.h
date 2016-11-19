@@ -31,23 +31,23 @@ int			cw_get_champion(t_cwdata *data, int i);
 ** src/lst_function.c
 */
 
-t_header2	*cw_add_champ_to_lst(t_cwdata *data);
+t_header	*cw_add_champ_to_lst(t_cwdata *data);
 void		cw_freeall(t_cwdata *data);
-void		cw_pushback_inst(t_header2 *champion, t_instnode *new);
+void		cw_pushback_inst(t_header *champion, t_instnode *new);
 
 /*
 ** src/fill_instruction.c
 */
 
-void		cw_createnode(t_header2 *champion, int *tab, int size);
+void		cw_createnode(t_header *champion, int *tab, int size);
 
 /*
 ** src/distrib_function.c
 */
 
-int			cw_distrib_name(t_reedstruct *reed, t_header2 *champion);
-int			cw_distrib_comment(t_reedstruct *reed, t_header2 *champion);
-int			cw_distrib_program(t_reedstruct *reed, t_header2 *champion);
+int			cw_distrib_name(t_reedstruct *reed, t_header *champion);
+int			cw_distrib_comment(t_reedstruct *reed, t_header *champion);
+int			cw_distrib_program(t_reedstruct *reed, t_header *champion);
 int			cw_distrib_progsize(t_reedstruct *reed);
 int			cw_distrib_padding(t_reedstruct *reed, int ret);
 
@@ -55,7 +55,7 @@ int			cw_distrib_padding(t_reedstruct *reed, int ret);
 ** src/pouette.c
 */
 
-int			cw_pouette(t_reedstruct reed, t_header2 *champion);
+int			cw_pouette(t_reedstruct reed, t_header *champion);
 
 /*
 ** src/creat_mem.c

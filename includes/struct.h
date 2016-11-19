@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/19 15:49:59 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/19 16:09:34 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct			s_process
 	int					*reg;
 }						t_process;
 
-typedef struct			s_header2
+typedef struct			s_header
 {
 	unsigned int		id;
 	unsigned int		magic;
@@ -46,7 +46,7 @@ typedef struct			s_header2
 	int					*prog;
 	t_instdata			inst;
 	t_process			process;
-}						t_header2;
+}						t_header;
 
 typedef	struct			s_cwdata
 {
@@ -54,6 +54,7 @@ typedef	struct			s_cwdata
 	int					dumpcycles;
 	int					lastoption;
 	char				*lastdata;
+	char				**color;
 	int					nb_champion;
 	int					*begin_champ;
 	t_tab				v;

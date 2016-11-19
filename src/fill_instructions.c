@@ -59,7 +59,7 @@ int			endof_instructions(int inst, int encod)
 	return (size);
 }
 
-void		cw_createnode(t_header2 *champion, int *tab, int size)
+void		cw_createnode(t_header *champion, int *tab, int size)
 {
 	t_instnode	*new;
 	int			i;
