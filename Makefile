@@ -6,7 +6,7 @@
 #    By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 12:19:31 by amaitre           #+#    #+#              #
-#    Updated: 2016/11/19 17:41:05 by amaitre          ###   ########.fr        #
+#    Updated: 2016/11/19 18:58:11 by amaitre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ logo:
 
 re: logo fclean all
 
-%.o: %.c $(HEADERS)/$(NAME).h
+%.o: %.c $(HEADERS)/$(NAME).h $(HEADERS)/struct.h $(HEADERS)/function.h $(HEADERS)/define.h
 	@echo "\033[32mCorewar :\033[0m [Compilation:\033[33m $@\033[0m]"
 	@$(CC) -o $@ -c $< $(CFLAGS) -I $(HEADERSLIB) -I $(HEADERS)
 
