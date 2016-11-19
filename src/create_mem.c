@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 15:29:21 by dmathe            #+#    #+#             */
-/*   Updated: 2016/11/19 17:39:37 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/19 17:42:38 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,5 @@ void		print_map(t_cwdata *data)
 void		create_map(t_cwdata *data)
 {
 	fill_map(data);
-	print_map(data);
+	cw_loop(data);
 }

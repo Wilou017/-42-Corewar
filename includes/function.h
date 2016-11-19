@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/19 15:49:55 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/19 17:43:14 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,13 @@ int			cw_pouette(t_reedstruct reed, t_header *champion);
 ** src/creat_mem.c
 */
 
+void		print_map(t_cwdata *data);
 void		create_map(t_cwdata *data);
+
+/*
+** src/vm_loop.c
+*/
+
+void		cw_loop(t_cwdata *data);
 
 #endif
