@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:28:37 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/19 16:11:50 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/19 16:14:45 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	init_data_default(t_cwdata *data)
 	data->beginlist = NULL;
 	data->lastdata = NULL;
 	data->begin_champ = ft_inttabnew(3, 0);
-	data->color = ft_strsplit("lred lblue lgreen lpink lyellow", ' ');
+	data->color = ft_strsplit("lpink lred lblue lgreen lyellow", ' ');
 }
 
 void		cw_lastoption(t_cwdata *data, int i)
