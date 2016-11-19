@@ -6,14 +6,14 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/18 15:26:05 by amaitre           #+#    #+#             */
-/*   Updated: 2016/09/12 12:15:37 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/19 17:47:29 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef NEWLIBFT_H
 # define NEWLIBFT_H
 
-# include <ft_printf.h>
+# include <ft_termcaps.h>
 
 int	ft_min(int nbarg, ...);
 

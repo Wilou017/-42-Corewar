@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 15:29:21 by dmathe            #+#    #+#             */
-/*   Updated: 2016/11/19 17:42:38 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/19 17:46:56 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void		print_map(t_cwdata *data)
 	x = 1;
 	while (i < MEM_SIZE)
 	{
-		if (i % 64 == 0 && i)
+		if (i % NB_OCT_LINE == 0 && i)
 			ft_printf("\n");
 		if (j < ((t_header *)tmp->content)->prog_size && i >= begin_champ(data, x))
 		{
