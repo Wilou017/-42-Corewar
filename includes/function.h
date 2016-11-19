@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/18 20:01:11 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/19 15:49:55 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** src/init.c
 */
 
-void		cw_init(t_cwdata *data);
+int			cw_init(t_cwdata *data);
 void		cw_lastoption(t_cwdata *data, int i);
 
 /*
@@ -56,6 +56,10 @@ int			cw_distrib_padding(t_reedstruct *reed, int ret);
 */
 
 int			cw_pouette(t_reedstruct reed, t_header2 *champion);
+
+/*
+** src/creat_mem.c
+*/
 
 void		create_map(t_cwdata *data);
 

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:28:37 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/17 17:40:36 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/19 15:51:08 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ static void	init_data_default(t_cwdata *data)
 	data->nb_champion = 0;
 	data->beginlist = NULL;
 	data->lastdata = NULL;
-	data->begin_champ2 = 0;
-	data->begin_champ3 = 0;
-	data->begin_champ4 = 0;
+	data->begin_champ = ft_inttabnew(3, 0);
 }
 
 void		cw_lastoption(t_cwdata *data, int i)
@@ -34,7 +32,7 @@ void		cw_lastoption(t_cwdata *data, int i)
 		data->lastoption = ERROR;
 }
 
-void		cw_init(t_cwdata *data)
+int			cw_init(t_cwdata *data)
 {
 	int	i;
 
@@ -44,13 +42,12 @@ void		cw_init(t_cwdata *data)
 	{
 		data->lastoption = -1;
 		if (data->v[i][0] != '-' && cw_get_champion(data, i))
-			return ;
+			return (1);
 		if (data->v[i][0] == '-' && cw_get_option(data, &i))
-			return ;
+			return (1);
 		i++;
 	}
-	if (data->nb_champion < 1)
-	{
-		ft_printf("{red}Aucun champion n'a été spécifié{eoc}\n");
-	}
+	if (data->nb_champion < 1 || data->nb_champion > 4)
+		return (ft_printf("{red}Nombre de champion invalide{eoc}\n"));
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/17 17:38:24 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/19 15:49:59 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,7 @@ typedef	struct			s_cwdata
 	int					lastoption;
 	char				*lastdata;
 	int					nb_champion;
-	int					begin_champ2;
-	int					begin_champ3;
-	int					begin_champ4;
+	int					*begin_champ;
 	t_tab				v;
 	int					c;
 	t_list				*beginlist;

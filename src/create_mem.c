@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_mem.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmathe <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 15:29:21 by dmathe            #+#    #+#             */
-/*   Updated: 2016/11/16 15:29:23 by dmathe           ###   ########.fr       */
+/*   Updated: 2016/11/19 15:49:59 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,38 +31,40 @@ int			write_in_int(t_cwdata *data, int *src, int len, int size)
 void		fill_len_champ(t_cwdata *data)
 {
 	if (data->nb_champion == 2)
-		data->begin_champ2 = (MEM_SIZE / 2);
+		data->begin_champ[0] = (MEM_SIZE / 2);
 	else if (data->nb_champion == 3)
 	{
-		data->begin_champ2 = (MEM_SIZE / 3);
-		data->begin_champ3 = (MEM_SIZE / 3 * 2);
+		data->begin_champ[0] = (MEM_SIZE / 3);
+		data->begin_champ[1] = (MEM_SIZE / 3 * 2);
 	}
 	else if (data->nb_champion == 4)
 	{
-		data->begin_champ2 = (MEM_SIZE / 4);
-		data->begin_champ3 = (MEM_SIZE / 2);
-		data->begin_champ4 = (MEM_SIZE / 4 * 3);
+		data->begin_champ[0] = (MEM_SIZE / 4);
+		data->begin_champ[1] = (MEM_SIZE / 2);
+		data->begin_champ[2] = (MEM_SIZE / 4 * 3);
 	}
 }
 
 void		fill_map(t_cwdata *data)
 {
 	int i;
-	t_list *tmp;
+	t_list		*tmp;
+	t_header2	*champ;
 
 	tmp = data->beginlist;
 	i = 1;
 	fill_len_champ(data);
 	while (tmp)
 	{
+		champ = (t_header2*)tmp->content;
 		if (i == 1)
-			write_in_int(data, ((t_header2*)tmp->content)->prog, 0, ((t_header2*)tmp->content)->prog_size);
+			write_in_int(data, champ->prog, 0, champ->prog_size);
 		else if (i == 2)
-			write_in_int(data, ((t_header2*)tmp->content)->prog, data->begin_champ2, ((t_header2*)tmp->content)->prog_size);
+			write_in_int(data, champ->prog, data->begin_champ[0], champ->prog_size);
 		else if (i == 3)
-			write_in_int(data, ((t_header2*)tmp->content)->prog, data->begin_champ3, ((t_header2*)tmp->content)->prog_size);
+			write_in_int(data, champ->prog, data->begin_champ[1], champ->prog_size);
 		else if (i == 4)
-			write_in_int(data, ((t_header2*)tmp->content)->prog, data->begin_champ4, ((t_header2*)tmp->content)->prog_size);
+			write_in_int(data, champ->prog, data->begin_champ[2], champ->prog_size);
 		tmp = tmp->next;
 		i++;
 	}
@@ -86,11 +88,11 @@ unsigned int			begin_champ(t_cwdata *data, int x)
 	if (x == 1)
 		return (0);
 	if (x == 2)
-		return (data->begin_champ2);
+		return (data->begin_champ[0]);
 	if (x == 3)
-		return (data->begin_champ3);
+		return (data->begin_champ[1]);
 	if (x == 4)
-		return (data->begin_champ4);
+		return (data->begin_champ[2]);
 	return (-1);
 }
 

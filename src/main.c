@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:15:30 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/17 17:40:14 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/19 15:52:23 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	main(int argc, t_tab argv)
 	{
 		data.v = argv;
 		data.c = argc - 1;
-		cw_init(&data);
+		if (cw_init(&data))
+			return (1);
 		create_map(&data);
 		cw_freeall(&data);
 	}
