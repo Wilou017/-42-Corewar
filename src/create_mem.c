@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 15:29:21 by dmathe            #+#    #+#             */
-/*   Updated: 2016/11/19 16:12:18 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/19 17:39:37 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,19 +70,6 @@ void		fill_map(t_cwdata *data)
 	}
 }
 
-void		fill_map_zero(t_cwdata *data)
-{
-	int		i;
-
-	i = 0;
-	while (i < MEM_SIZE)
-	{
-		if (data->mem[i] == -1)
-			data->mem[i] = 0;
-		i++;
-	}
-}
-
 unsigned int			begin_champ(t_cwdata *data, int x)
 {
 	if (x == 1)
@@ -96,7 +83,7 @@ unsigned int			begin_champ(t_cwdata *data, int x)
 	return (-1);
 }
 
-void		create_map(t_cwdata *data)
+void		print_map(t_cwdata *data)
 {
 	unsigned int		i;
 	unsigned int		j;
@@ -107,13 +94,10 @@ void		create_map(t_cwdata *data)
 	i = 0;
 	j = 0;
 	x = 1;
-	fill_map(data);
-	fill_map_zero(data);
 	while (i < MEM_SIZE)
 	{
 		if (i % 64 == 0 && i)
 			ft_printf("\n");
-		//ft_printf("\nj = %d, size = %d, i = %d, begin = %d\n", j, ((t_header *)tmp->content)->prog_size, i, begin_champ(data, x));
 		if (j < ((t_header *)tmp->content)->prog_size && i >= begin_champ(data, x))
 		{
 			ft_printf("{%s}%.2X{eoc}", data->color[x], data->mem[i]);
@@ -133,4 +117,10 @@ void		create_map(t_cwdata *data)
 		i++;
 	}
 	ft_printf("\n");
+}
+
+void		create_map(t_cwdata *data)
+{
+	fill_map(data);
+	print_map(data);
 }
