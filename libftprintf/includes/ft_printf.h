@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 19:15:52 by amaitre           #+#    #+#             */
-/*   Updated: 2016/05/10 16:00:57 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/21 15:58:46 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct	s_ret
 }				t_ret;
 
 int				ft_printf(char const *s, ...);
+char			*ft_sprintf(char const *s, ...);
 char			*ft_pf_nb_precision(t_pf_data *data, char **a);
 char			*ft_pf_b_selector(t_pf_data *data, va_list ap);
 char			*ft_pf_r_selector(t_pf_data *data, va_list ap);
@@ -79,5 +80,7 @@ int				pf_check_specifieur(char spe);
 char			*ft_pf_str_conscrtuct(t_pf_data *data, char *a);
 void			pf_initdata_sizefin(t_pf_data *data);
 void			pf_initpreset(t_pf_data *data, va_list ap);
+size_t			pf_specifier(char const *s);
+void			pf_fill(char const *s, va_list ap, t_ret *retval, t_pf_data *data);
 
 #endif

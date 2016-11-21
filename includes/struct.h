@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/19 18:19:54 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/21 17:35:35 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,11 @@ typedef	struct			s_reedstruct
 	int					inst_size;
 	int					*inst_tab;
 }						t_reedstruct;
+
+typedef struct			s_vm_data
+{
+	int					check;
+}						t_vm_data;
 
 typedef enum			e_opt
 {

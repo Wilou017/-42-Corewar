@@ -6,7 +6,7 @@
 #    By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 12:19:31 by amaitre           #+#    #+#              #
-#    Updated: 2016/09/19 21:52:40 by amaitre          ###   ########.fr        #
+#    Updated: 2016/11/21 15:58:12 by amaitre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRC		=	ft_atoi.c \
 			ft_nbword.c \
 			ft_nreplace.c \
 			ft_nwstrtostr.c \
+			ft_pf_base.c \
 			ft_pf_color.c \
 			ft_pf_cons_pres.c \
 			ft_pf_initdata.c \
@@ -92,6 +93,7 @@ SRC		=	ft_atoi.c \
 			ft_return_bytes.c \
 			ft_show_tab.c \
 			ft_showtabint.c \
+			ft_sprintf.c \
 			ft_sqrt.c \
 			ft_strcat.c \
 			ft_strchr.c \

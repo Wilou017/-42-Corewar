@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 15:29:21 by dmathe            #+#    #+#             */
-/*   Updated: 2016/11/19 17:55:33 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/21 17:15:41 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,17 +87,23 @@ void		print_map(t_cwdata *data)
 {
 	unsigned int		i;
 	unsigned int		j;
+	unsigned int		k;
 	unsigned int		x;
 	t_list	*tmp;
 
 	tmp = data->beginlist;
 	i = 0;
 	j = 0;
+	k = 3;
 	x = 1;
+	ft_termcaps_poscurs(3, 4);
 	while (i < MEM_SIZE)
 	{
 		if (i % NB_OCT_LINE == 0 && i)
-			ft_printf("\n");
+		{
+			k++;
+			ft_termcaps_poscurs(k, 4);
+		}
 		if (j < ((t_header *)tmp->content)->prog_size && i >= begin_champ(data, x))
 		{
 			ft_printf("{%s}%.2X{eoc}", data->color[x], data->mem[i]);

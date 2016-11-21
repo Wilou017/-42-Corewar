@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_sprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/26 13:41:56 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/21 15:55:27 by amaitre          ###   ########.fr       */
+/*   Created: 2016/11/21 15:54:07 by amaitre           #+#    #+#             */
+/*   Updated: 2016/11/21 15:57:11 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include <ft_printf.h>
 
-void	ft_putstrerror(t_ret *retval)
+void	ft_trasstrerror(t_ret *retval)
 {
 	int pos;
 	int j;
@@ -24,16 +25,14 @@ void	ft_putstrerror(t_ret *retval)
 		if (retval->posbs[pos] == j)
 		{
 			pos++;
-			ft_putchar('\0');
+			retval->finalstr[j] = '\0';
 		}
-		else
-			ft_putchar(retval->finalstr[j]);
 		j++;
 	}
 	retval->return_val = ft_strlen(retval->finalstr);
 }
 
-int		ft_printf(char const *s, ...)
+char	*ft_sprintf(char const *s, ...)
 {
 	va_list		ap;
 	t_pf_data	data;
@@ -48,10 +47,7 @@ int		ft_printf(char const *s, ...)
 	va_end(ap);
 	pf_color(&(retval.finalstr));
 	if (retval.posbs[0] > -1)
-		ft_putstrerror(&retval);
-	else
-		retval.return_val = ft_putstr(retval.finalstr);
-	ft_strdel(&retval.finalstr);
+		ft_trasstrerror(&retval);
 	free(retval.posbs);
-	return (retval.return_val);
+	return (retval.finalstr);
 }
