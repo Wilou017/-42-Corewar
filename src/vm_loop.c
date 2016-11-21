@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/21 17:36:10 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/21 17:58:28 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	cw_check_live(t_cwdata *data, t_vm_data *vm_data)
 	{
 		champ = (t_header*)tmp->content;
 
-		if (i != 1 && (i != 2 || vm_data->check > 2) && champ->nb_live == 0)
+		if (i != 1 && (i != 2 || vm_data->check > 2) && (i != 3 || vm_data->check > 3) && champ->nb_live == 0)
 			champ->if_live = 0;
 		else if (champ->nb_live == NBR_LIVE)
 			cw_decrement(data, vm_data);
@@ -79,10 +79,10 @@ static void	cw_map_init()
 
 	i = MEM_SIZE/NB_OCT_LINE + 2;
 	ft_termcaps_screenclear();
-	ft_printf("{bglblack}%250s{eoc}\n", " ");
+	ft_printf("{bglblack}%*s{eoc}\n", COLONE_TEXT + 51, " ");
 	while (i-- > 0)
-		ft_printf("{bglblack}%s{eoc}%195s{bglblack}%s{eoc}%52s{bglblack}%s{eoc}\n", " ", " ", " ", " ", " ");
-	ft_printf("{bglblack}%250s{eoc}\n", " ");
+		ft_printf("{bglblack}%s{eoc}%*s{bglblack}%s{eoc}%52s{bglblack}%s{eoc}\n", " ", NB_OCT_LINE * 3 + 3, " ", " ", " ", " ");
+	ft_printf("{bglblack}%*s{eoc}\n", COLONE_TEXT + 51, " ");
 	ft_termcaps_upline(MEM_SIZE/NB_OCT_LINE + 2);
 }
 void	cw_loop(t_cwdata *data)
@@ -91,7 +91,7 @@ void	cw_loop(t_cwdata *data)
 
 	vm_data.check = 0;
 	cw_map_init();
-	while (cw_champ_alive(data) > 0 && data->cycle_to_die > 0)
+	while (cw_champ_alive(data) > 1 && data->cycle_to_die > 0)
 	{
 		data->cur_cycle++;
 		if (data->cur_cycle % data->cycle_to_die == 0)
