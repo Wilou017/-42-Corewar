@@ -14,6 +14,8 @@ NAME		=	corewar
 
 SRC			=	src/main.c
 SRC			+=	src/init.c
+SRC			+=	src/corewar.c
+SRC			+=	src/encodage.c
 SRC			+=	src/get_function.c
 SRC			+=	src/lst_function.c
 SRC			+=	src/fill_instructions.c

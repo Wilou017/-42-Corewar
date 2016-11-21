@@ -23,10 +23,11 @@ t_header	*cw_add_champ_to_lst(t_cwdata *data)
 	new_node.comment = ft_strnew(0);
 	new_node.prog_size = 0;
 	new_node.process.pc = 0;
+	new_node.process.loca = 0;
 	new_node.process.carry = 0;
 	new_node.process.reg = ft_inttabnew(REG_NUMBER, 0);
 	champion_node = ft_lstnew((void *)&new_node, sizeof(new_node));
-	ft_lstadd_push_back(&data->beginlist, champion_node);
+	ft_lstadd(&data->beginlist, champion_node);
 	return ((t_header*)champion_node->content);
 }
 

@@ -19,7 +19,7 @@ static void	init_data_default(t_cwdata *data)
 	data->nb_champion = 0;
 	data->beginlist = NULL;
 	data->lastdata = NULL;
-	data->begin_champ = ft_inttabnew(3, 0);
+	data->begin_champ = ft_inttabnew(4, 0);
 	data->cur_cycle = 0;
 	data->cycle_to_die = CYCLE_TO_DIE;
 	data->color = ft_strsplit("lpink lred lblue lgreen lyellow", ' ');

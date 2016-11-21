@@ -12,25 +12,6 @@
 
 #include <corewar.h>
 
-int			check_encodage(int opcode)
-{
-	if (opcode == 1 || opcode == 2 || opcode == 6 || \
-		opcode == 7 || opcode == 8 || opcode == 13)
-		return (4);
-	else if (opcode == 9 || opcode == 10 || opcode == 11 || opcode == 12 || \
-		opcode == 14 || opcode == 15)
-		return (2);
-	return (0);
-}
-
-int			if_encodage(int opcode)
-{
-	if (opcode == 1 || opcode == 9 || opcode == 12 || opcode == 15)
-		return (0);
-	else
-		return (1);
-}
-
 int			endof_instructions(int inst, int encod)
 {
 	char	*bin;
@@ -43,7 +24,7 @@ int			endof_instructions(int inst, int encod)
 	bin = ft_strjoin(ft_chartostr('0', 8 - ft_strlen(bin)), bin, 3);
 	if (!ft_countchar(bin, '1') || !ft_countchar(bin, '0'))
 	{
-		size += check_encodage(inst);
+		size += check_opcode(inst);
 		return (size - 1);
 	}
 	while (i < 8)
@@ -53,7 +34,7 @@ int			endof_instructions(int inst, int encod)
 		else if (bin[i] == '1' && bin[i + 1] == '1')
 			size += 2;
 		else if (bin[i] == '1' && bin[i + 1] == '0')
-			size += check_encodage(inst);
+			size += check_opcode(inst);
 		i += 2;
 	}
 	return (size);

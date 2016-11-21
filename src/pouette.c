@@ -15,8 +15,8 @@
 
 int		cw_pouette(t_reedstruct reed, t_header *champion)
 {
-	ft_printf("\n\nNom     = %s\n", champion->prog_name);
-	ft_printf("Comment = %s\n", champion->comment);
+	//ft_printf("\n\nNom     = %s\n", champion->prog_name);
+	//ft_printf("Comment = %s\n", champion->comment);
 
 	cw_createnode(champion, reed.inst_tab, reed.inst_size);
 	champion->prog = reed.inst_tab;

@@ -31,17 +31,17 @@ int			write_in_int(t_cwdata *data, int *src, int len, int size)
 void		fill_len_champ(t_cwdata *data)
 {
 	if (data->nb_champion == 2)
-		data->begin_champ[0] = (MEM_SIZE / 2);
+		data->begin_champ[1] = (MEM_SIZE / 2);
 	else if (data->nb_champion == 3)
 	{
-		data->begin_champ[0] = (MEM_SIZE / 3);
-		data->begin_champ[1] = (MEM_SIZE / 3 * 2);
+		data->begin_champ[1] = (MEM_SIZE / 3);
+		data->begin_champ[2] = (MEM_SIZE / 3 * 2);
 	}
 	else if (data->nb_champion == 4)
 	{
-		data->begin_champ[0] = (MEM_SIZE / 4);
-		data->begin_champ[1] = (MEM_SIZE / 2);
-		data->begin_champ[2] = (MEM_SIZE / 4 * 3);
+		data->begin_champ[1] = (MEM_SIZE / 4);
+		data->begin_champ[2] = (MEM_SIZE / 2);
+		data->begin_champ[3] = (MEM_SIZE / 4 * 3);
 	}
 }
 
@@ -60,11 +60,11 @@ void		fill_map(t_cwdata *data)
 		if (i == 1)
 			write_in_int(data, champ->prog, 0, champ->prog_size);
 		else if (i == 2)
-			write_in_int(data, champ->prog, data->begin_champ[0], champ->prog_size);
-		else if (i == 3)
 			write_in_int(data, champ->prog, data->begin_champ[1], champ->prog_size);
-		else if (i == 4)
+		else if (i == 3)
 			write_in_int(data, champ->prog, data->begin_champ[2], champ->prog_size);
+		else if (i == 4)
+			write_in_int(data, champ->prog, data->begin_champ[3], champ->prog_size);
 		tmp = tmp->next;
 		i++;
 	}
@@ -73,13 +73,13 @@ void		fill_map(t_cwdata *data)
 unsigned int			begin_champ(t_cwdata *data, int x)
 {
 	if (x == 1)
-		return (0);
-	if (x == 2)
 		return (data->begin_champ[0]);
-	if (x == 3)
+	if (x == 2)
 		return (data->begin_champ[1]);
-	if (x == 4)
+	if (x == 3)
 		return (data->begin_champ[2]);
+	if (x == 4)
+		return (data->begin_champ[3]);
 	return (-1);
 }
 
@@ -128,5 +128,6 @@ void		print_map(t_cwdata *data)
 void		create_map(t_cwdata *data)
 {
 	fill_map(data);
+	print_map(data);
 	cw_loop(data);
 }

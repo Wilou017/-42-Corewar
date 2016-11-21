@@ -70,4 +70,18 @@ void		create_map(t_cwdata *data);
 
 void		cw_loop(t_cwdata *data);
 
+/*
+** src/corewar.c
+*/
+
+int			corewar(t_cwdata *data);
+
+/*
+** src/encodage.c
+*/
+
+int			encod(t_header *champion, t_cwdata *data);
+int			if_encodage(int opcode);
+int			check_opcode(int opcode);
+
 #endif

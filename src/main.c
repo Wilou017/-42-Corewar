@@ -23,6 +23,7 @@ int	main(int argc, t_tab argv)
 		if (cw_init(&data))
 			return (1);
 		create_map(&data);
+		//corewar(&data);
 		cw_freeall(&data);
 	}
 	else

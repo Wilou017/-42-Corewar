@@ -32,6 +32,7 @@ typedef struct			s_instdata
 typedef struct			s_process
 {
 	int					pc;
+	int					loca;
 	int					carry;
 	int					*reg;
 }						t_process;
