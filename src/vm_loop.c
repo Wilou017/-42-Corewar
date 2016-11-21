@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/21 17:58:28 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/21 19:15:50 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	cw_loop(t_cwdata *data)
 		ft_termcaps_poscurs(3, COLONE_TEXT);
 		ft_printf("Cycle courant = %d", data->cur_cycle);
 		print_map(data);
-		ft_termcaps_downline(10);
+		ft_termcaps_downline(2);
 		// ft_termcaps_upline(MEM_SIZE/NB_OCT_LINE + 1);
 	}
 }
