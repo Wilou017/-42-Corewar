@@ -4,3 +4,5 @@ zjump -> data
 	-> loca + 1
 	-> loca + 2
 	jump a ladresse recupg
+
+Sujet to C
