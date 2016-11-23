@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   encodage.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmathe <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/20 17:18:51 by dmathe            #+#    #+#             */
-/*   Updated: 2016/11/20 17:18:52 by dmathe           ###   ########.fr       */
+/*   Updated: 2016/11/23 15:22:54 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int			encod(t_header *champion, t_cwdata *data)
 	int		i;
 	t_process	*proc;
 
-	proc = &champion->process;
+	proc = ((t_process *)(champion->processlist->content));
 	i = 0;
 	size = 0;
 	bin = ft_itoa(data->mem[proc->loca + 1], 2);

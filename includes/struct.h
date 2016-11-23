@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/21 17:35:35 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/23 15:05:22 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct			s_header
 	int					if_live;
 	int					nb_live;
 	t_instdata			inst;
-	t_process			process;
+	t_list				*processlist;
 }						t_header;
 
 typedef	struct			s_cwdata

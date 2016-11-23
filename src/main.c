@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:15:30 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/19 17:36:03 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/23 15:25:33 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, t_tab argv)
 		if (cw_init(&data))
 			return (1);
 		create_map(&data);
-		//corewar(&data);
+		corewar(&data);
 		cw_freeall(&data);
 	}
 	else
