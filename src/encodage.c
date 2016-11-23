@@ -40,24 +40,33 @@ int			encod(t_header *champion, t_cwdata *data)
 
 	proc = ((t_process *)(champion->processlist->content));
 	i = 0;
-	size = 0;
+	size = size_encod(proc->pc);
 	bin = ft_itoa(data->mem[proc->loca + 1], 2);
 	bin = ft_strjoin(ft_chartostr('0', 8 - ft_strlen(bin)), bin, 3);
-	while (i < 8)
+	while (i < size)
 	{
 		if (bin[i] == '0' && bin[i + 1] == '1')
 		{
-
-		}
-		else if (bin[i] == '1' && bin[i + 1] == '1')
-		{
-
+			if (!check_param(proc->pc, i, REG_CODE))
+				return (0);
 		}
 		else if (bin[i] == '1' && bin[i + 1] == '0')
 		{
-
+			if (!check_param(proc->pc, i, DIR_CODE))
+				return (0);
+		}
+		else if (bin[i] == '1' && bin[i + 1] == '1')
+		{
+			if (!check_param(proc->pc, i, IND_CODE))
+				return (0);
 		}
 		i += 2;
 	}
-	return (0);
+	while (size < 8)
+	{
+		if (bin[size] != '0')
+			return (0);
+		size++;
+	}
+	return (endof_instructions(proc->pc, data->mem[proc->loca + 1]));
 }

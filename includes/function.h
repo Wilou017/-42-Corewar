@@ -40,6 +40,7 @@ t_process	*cw_add_process_to_lst(t_header *champ);
 ** src/fill_instruction.c
 */
 
+int			endof_instructions(int inst, int encod);
 void		cw_createnode(t_header *champion, int *tab, int size);
 
 /*
@@ -76,6 +77,36 @@ void		cw_loop(t_cwdata *data);
 */
 
 int			corewar(t_cwdata *data);
+int			init_process(t_cwdata *data);
+
+/*
+** src/encodage.c
+*/
+
+int			check_param(int opcode, int param, int name);
+
+/*
+** src/opcode.c
+*/
+
+int			size_without_encod(int opcode);
+int			size_encod(int opcode);
+int			param_live(int param, int name);
+int			param_ld(int param, int name);
+int			param_st(int param, int name);
+int			param_add(int param, int name);
+int			param_sub(int param, int name);
+int			param_and(int param, int name);
+int			param_or(int param, int name);
+int			param_xor(int param, int name);
+int			param_zjmp(int param, int name);
+int			param_ldi(int param, int name);
+int			param_sti(int param, int name);
+int			param_fork(int param, int name);
+int			param_lld(int param, int name);
+int			param_lldi(int param, int name);
+int			param_lfork(int param, int name);
+int			param_aff(int param, int name);
 
 /*
 ** src/encodage.c

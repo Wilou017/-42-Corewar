@@ -22,11 +22,6 @@ int			endof_instructions(int inst, int encod)
 	size = 0;
 	bin = ft_itoa(encod, 2);
 	bin = ft_strjoin(ft_chartostr('0', 8 - ft_strlen(bin)), bin, 3);
-	if (!ft_countchar(bin, '1') || !ft_countchar(bin, '0'))
-	{
-		size += check_opcode(inst);
-		return (size - 1);
-	}
 	while (i < 8)
 	{
 		if (bin[i] == '0' && bin[i + 1] == '1')
@@ -37,7 +32,10 @@ int			endof_instructions(int inst, int encod)
 			size += check_opcode(inst);
 		i += 2;
 	}
-	return (size);
+	if (size == 0)
+		return (size);
+	else
+		return (size + 2);
 }
 
 void		cw_createnode(t_header *champion, int *tab, int size)
