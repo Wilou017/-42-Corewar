@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/23 15:24:54 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/25 16:06:49 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int			cw_get_champion(t_cwdata *data, int i);
 t_header	*cw_add_champ_to_lst(t_cwdata *data);
 void		cw_freeall(t_cwdata *data);
 void		cw_pushback_inst(t_header *champion, t_instnode *new);
-t_process	*cw_add_process_to_lst(t_header *champ);
+t_process	*cw_add_process_to_lst(t_cwdata *data, t_header *champ);
 
 /*
 ** src/fill_instruction.c
@@ -112,7 +112,7 @@ int			param_aff(int param, int name);
 ** src/encodage.c
 */
 
-int			encod(t_header *champion, t_cwdata *data);
+int			encod(t_process	*proc, t_cwdata *data);
 int			if_encodage(int opcode);
 int			check_opcode(int opcode);
 

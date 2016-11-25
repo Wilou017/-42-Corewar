@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/23 15:05:22 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/25 16:00:23 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct			s_instdata
 
 typedef struct			s_process
 {
+	int					id_champ;
 	int					pc;
 	int					loca;
 	int					carry;
@@ -48,7 +49,6 @@ typedef struct			s_header
 	int					if_live;
 	int					nb_live;
 	t_instdata			inst;
-	t_list				*processlist;
 }						t_header;
 
 typedef	struct			s_cwdata
@@ -65,6 +65,7 @@ typedef	struct			s_cwdata
 	t_tab				v;
 	int					c;
 	t_list				*beginlist;
+	t_list				*processlist;
 }						t_cwdata;
 
 typedef	struct			s_reedstruct

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/20 17:18:51 by dmathe            #+#    #+#             */
-/*   Updated: 2016/11/23 15:22:54 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/25 16:03:26 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,12 @@ int			if_encodage(int opcode)
 		return (1);
 }
 
-int			encod(t_header *champion, t_cwdata *data)
+int			encod(t_process	*proc, t_cwdata *data)
 {
 	char	*bin;
 	int		size;
 	int		i;
-	t_process	*proc;
 
-	proc = ((t_process *)(champion->processlist->content));
 	i = 0;
 	size = size_encod(proc->pc);
 	bin = ft_itoa(data->mem[proc->loca + 1], 2);
