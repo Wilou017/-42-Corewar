@@ -51,10 +51,10 @@ int				corewar(t_cwdata *data)
 	while (tmp)
 	{
 		proc = ((t_process *)(tmp->content));
+		ft_printf("name = %d, pc = %.2X\n", proc->id_champ, proc->pc);
+		corewar_start(proc, data);
 		if (proc->loca == MEM_SIZE)
 			break;
-		ft_printf("name = %s, pc = %.2X\n", proc->id_champ, proc->pc);
-		corewar_start(proc, data);
 		if (tmp->next)
 		 	tmp = tmp->next;
 		else

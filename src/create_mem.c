@@ -129,5 +129,5 @@ void		create_map(t_cwdata *data)
 {
 	fill_map(data);
 	print_map(data);
-	cw_loop(data);
+	//cw_loop(data);
 }
