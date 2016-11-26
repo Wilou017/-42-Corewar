@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/26 16:39:40 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/26 17:34:18 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,15 @@ int			param_aff(int param, int name);
 ** src/encodage.c
 */
 
-int			encod(t_process	*proc, t_cwdata *data);
 int			if_encodage(int opcode);
 int			check_opcode(int opcode);
+
+int			encod(t_process	*proc, t_cwdata *data);
+
+/*
+** src/redirect_function.c
+*/
+
+void		redirect_function(t_cwdata *data, t_func func, t_process *proc);
 
 #endif

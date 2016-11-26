@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 18:16:34 by dmathe            #+#    #+#             */
-/*   Updated: 2016/11/26 17:26:03 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/26 18:13:41 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,23 @@ int				corewar_start(t_process	*proc, t_cwdata *data)
 	int			size;
 
 	size = 0;
+	redirect_function(data, proc->pc, proc);
 	if (if_encodage(proc->pc))
 	{
-		redirect_function(data, , proc);
 		ft_printf("pc = %.2X, loca = %.2X\n", proc->pc, data->mem[proc->loca + 1]);
-		if ((size = encod(proc, data)))
-		{
+
+		// if ((size = encod(proc, data)))
+		// {
 			proc->loca += size;
 			proc->pc = data->mem[proc->loca];
 			return(ft_printf("Encodage correct, size = %d\n", size));
-		}
-		else
-		{
-			proc->loca += 1;
-			proc->pc = data->mem[proc->loca];
-			return(ft_printf("Encodage incorrect, size = %d\n", size));
-		}
+		// }
+		// else
+		// {
+		// 	proc->loca += 1;
+		// 	proc->pc = data->mem[proc->loca];
+		// 	return(ft_printf("Encodage incorrect, size = %d\n", size));
+		// }
 	}
 	else
 	{
