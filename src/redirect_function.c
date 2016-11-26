@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   redirect_function.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/28 16:15:30 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/26 16:41:29 by amaitre          ###   ########.fr       */
+/*   Created: 2016/11/26 16:57:33 by amaitre           #+#    #+#             */
+/*   Updated: 2016/11/26 17:13:49 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar.h>
 
-int	main(int argc, t_tab argv)
+void		redirect_function(t_cwdata *data, t_func func, t_process *proc)
 {
-	t_cwdata	data;
-
-	if (argc > 1)
-	{
-		data.v = argv;
-		data.c = argc - 1;
-		if (cw_init(&data))
-			return (1);
-		fill_map(&data);
-		cw_loop(&data);
-		init_process(&data);
-		corewar(&data);
-		corewar(&data);
-		cw_freeall(&data);
-	}
-	else
-		ft_printf("{lgreen}use: ./corewar [-dump nbr_cycles] [[-n number] champ\
-ion1.cor] ...{eoc}\n");
-	return (0);
+	if (func == LIVE)
+		cw_fc_live(data, proc);
+	else if (func == LD)
+		cw_fc_ld(data, proc);
 }

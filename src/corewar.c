@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 18:16:34 by dmathe            #+#    #+#             */
-/*   Updated: 2016/11/25 16:06:16 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/26 17:26:03 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int				corewar_start(t_process	*proc, t_cwdata *data)
 	size = 0;
 	if (if_encodage(proc->pc))
 	{
+		redirect_function(data, , proc);
 		ft_printf("pc = %.2X, loca = %.2X\n", proc->pc, data->mem[proc->loca + 1]);
 		if ((size = encod(proc, data)))
 		{
@@ -51,18 +52,18 @@ int				corewar(t_cwdata *data)
 	while (tmp)
 	{
 		proc = ((t_process *)(tmp->content));
+		if (!proc->if_live)
+		{
+			tmp = tmp->next;
+			continue ;
+		}
 		ft_printf("name = %d, pc = %.2X\n", proc->id_champ, proc->pc);
 		corewar_start(proc, data);
 		if (proc->loca == MEM_SIZE)
 			break;
-		if (tmp->next)
-		 	tmp = tmp->next;
-		else
-		{
-			ft_printf("\n------------------------\n");
-			tmp = data->processlist;
-		}
+		tmp = tmp->next;
 	}
+	ft_printf("------------------\n");
 	return (0);
 }
 
@@ -77,7 +78,6 @@ int				init_process(t_cwdata *data)
 	while (tmp)
 	{
 		proc = ((t_process *)(tmp->content));
-		proc->reg[0] = proc->id_champ;
 		proc->loca = data->begin_champ[i];
 		proc->pc = data->mem[data->begin_champ[i]];
 		tmp = tmp->next;

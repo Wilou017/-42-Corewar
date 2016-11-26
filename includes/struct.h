@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/25 16:00:23 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/26 17:08:43 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct			s_instdata
 typedef struct			s_process
 {
 	int					id_champ;
+	int					if_live;
 	int					pc;
 	int					loca;
 	int					carry;
@@ -91,5 +92,26 @@ typedef enum			e_opt
 	DUMP,
 	N
 }						t_opt;
+
+typedef enum			e_func
+{
+	RIEN,
+	LIVE,
+	LD,
+	ST,
+	ADD,
+	SUB,
+	AND,
+	OR,
+	XOR,
+	ZJUMP,
+	LDI,
+	STI,
+	FORK,
+	LLD,
+	LLDI,
+	LFORK,
+	AFF
+}						t_func;
 
 #endif

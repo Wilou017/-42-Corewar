@@ -6,14 +6,14 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:34:08 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/21 19:17:08 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/26 17:09:44 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINE_H
 # define DEFINE_H
 
-# define DEBUG_PARSINGCOR		0
+# define DEBUG_PARSINGCOR		1
 
 # define IND_SIZE				2
 # define REG_SIZE				4
