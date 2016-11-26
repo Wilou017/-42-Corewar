@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 18:16:34 by dmathe            #+#    #+#             */
-/*   Updated: 2016/11/26 18:13:41 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/26 19:42:00 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int				corewar_start(t_process	*proc, t_cwdata *data)
 	{
 		ft_printf("pc = %.2X, loca = %.2X\n", proc->pc, data->mem[proc->loca + 1]);
 
+		size = endof_instructions(proc->pc, data->mem[proc->loca + 1]);
 		// if ((size = encod(proc, data)))
 		// {
 			proc->loca += size;
