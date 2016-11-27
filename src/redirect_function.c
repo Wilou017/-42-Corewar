@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 16:57:33 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/26 19:06:47 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/27 18:28:08 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,13 @@ void		redirect_function2(t_cwdata *data, t_func func, t_process *proc)
 		ft_printf("LFORK !\n");
 	else if (func == AFF)
 		ft_printf("AFF !\n");
+	else
+		ft_printf("\n");
 }
 
 void		redirect_function(t_cwdata *data, t_func func, t_process *proc)
 {
+	ft_termcaps_rightcurs(COLONE_TEXT);
 	if (func == LIVE)
 		ft_printf("LIVE !\n");
 	else if (func == LD)

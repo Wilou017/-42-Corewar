@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/26 17:08:43 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/27 17:07:52 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ typedef struct			s_instdata
 
 typedef struct			s_process
 {
+	int					id;
 	int					id_champ;
 	int					if_live;
+	int					nb_live;
 	int					pc;
 	int					loca;
 	int					carry;
@@ -62,6 +64,8 @@ typedef	struct			s_cwdata
 	char				*lastdata;
 	char				**color;
 	int					nb_champion;
+	int					nb_process;
+	int					nb_live;
 	int					*begin_champ;
 	t_tab				v;
 	int					c;
@@ -84,6 +88,7 @@ typedef	struct			s_reedstruct
 typedef struct			s_vm_data
 {
 	int					check;
+	int					cur_cycle;
 }						t_vm_data;
 
 typedef enum			e_opt

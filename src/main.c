@@ -24,9 +24,6 @@ int	main(int argc, t_tab argv)
 			return (1);
 		fill_map(&data);
 		cw_loop(&data);
-		init_process(&data);
-		corewar(&data);
-		corewar(&data);
 		cw_freeall(&data);
 	}
 	else
