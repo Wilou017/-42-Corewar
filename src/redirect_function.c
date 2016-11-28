@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 16:57:33 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/27 18:28:08 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/28 17:50:47 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ void		redirect_function(t_cwdata *data, t_func func, t_process *proc)
 	else if (func == XOR)
 		ft_printf("XOR !\n");
 	else if (func == ZJUMP)
+	{
 		ft_printf("ZJUMP !\n");
+		cw_zjump(data, proc);
+	}
 	else if (func == LDI)
 		ft_printf("LDI !\n");
 	else

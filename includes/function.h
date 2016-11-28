@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/26 17:34:18 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/28 17:48:09 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 
 int			cw_init(t_cwdata *data);
 void		cw_lastoption(t_cwdata *data, int i);
+
+/*
+** src/functionlst.c
+*/
+
+void		cw_zjump(t_cwdata *data, t_process *proc);
 
 /*
 ** src/get_function.c

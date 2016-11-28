@@ -29,6 +29,7 @@ SRC			+=	src/pouette.c
 SRC			+=	src/create_mem.c
 SRC			+=	src/vm_loop.c
 SRC			+=	src/redirect_function.c
+SRC			+=	src/functionlst.c
 
 SRCO		=	$(SRC:.c=.o)
 HEADERSLIB	=	libftprintf/includes

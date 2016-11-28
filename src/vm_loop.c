@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/27 18:29:39 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/11/28 17:27:27 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,13 @@ void	cw_loop(t_cwdata *data)
 	init_process(data);
 	while (data->nb_process > 1 && data->cycle_to_die > 0)
 	{
-		if (data->cur_cycle % 5000 == 0)
-		{
+		// if (data->cur_cycle % 5000 == 0)
+		// {
 			ft_termcaps_poscurs(16, COLONE_TEXT);
 			i++;
 			ft_printf("Nombre d'affichage de la map = %d", i);
 			print_map(data);
-		}
-		// ft_termcaps_poscurs(MEM_SIZE/NB_OCT_LINE + 7, 0);
+		// }
 		corewar(data);
 		data->cur_cycle++;
 		vm_data.cur_cycle++;
