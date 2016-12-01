@@ -12,11 +12,25 @@
 
 #include <corewar.h>
 
+int				not_opcode(t_process *proc, t_cwdata *data)
+{
+	if (proc->pc < 1 || proc->pc > 16)
+	{
+		proc->loca += 1;
+		proc->pc = data->mem[proc->loca];
+		return (0);
+	}
+	else
+		return (1);
+}
+
 int				corewar_start(t_process	*proc, t_cwdata *data)
 {
 	int			size;
 
 	size = 0;
+	if (!not_opcode(proc, data))
+		return (0);
 	redirect_function(data, proc->pc, proc);
 	if (if_encodage(proc->pc))
 	{
@@ -24,26 +38,17 @@ int				corewar_start(t_process	*proc, t_cwdata *data)
 		ft_printf("pc = %.2X, loca = %.2X\n", proc->pc, data->mem[proc->loca + 1]);
 
 		size = endof_instructions(proc->pc, data->mem[proc->loca + 1]);
-		// if ((size = encod(proc, data)))
-		// {
-			proc->loca += size;
-			proc->pc = data->mem[proc->loca];
-			ft_termcaps_rightcurs(COLONE_TEXT);
-			return(ft_printf("Encodage correct, size = %d\n", size));
-		// }
-		// else
-		// {
-		// 	proc->loca += 1;
-		// 	proc->pc = data->mem[proc->loca];
-		// 	return(ft_printf("Encodage incorrect, size = %d\n", size));
-		// }
+		proc->loca += size;
+		proc->pc = data->mem[proc->loca];
+		ft_termcaps_rightcurs(COLONE_TEXT);
+		return(ft_printf("Encodage correct, size = %d\n", size));
 	}
 	else
 	{
 		proc->loca += size_without_encod(proc->pc);
 		proc->pc = data->mem[proc->loca];
 		ft_termcaps_rightcurs(COLONE_TEXT);
-		return(ft_printf("Pas d'encodage          \n"));
+		return(ft_printf("Pas d'encodage\n"));
 	}
 	return (0);
 }

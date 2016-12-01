@@ -26,6 +26,6 @@ void	cw_zjump(t_cwdata *data, t_process *proc)
 		proc->loca %= MEM_SIZE;
 	proc->pc = data->mem[proc->loca];
 	ft_termcaps_rightcurs(COLONE_TEXT);
-	ft_printf("proc->loca = %d\n", proc->loca);
+	ft_printf("proc->loca = %d, proc->pc = %d, proc->pc+1 = %d\n", proc->loca, proc->pc, data->mem[proc->loca + 1]);
 	ft_termcaps_restorecurs();
 }
