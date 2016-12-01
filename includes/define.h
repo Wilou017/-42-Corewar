@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:34:08 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/28 17:43:39 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/12/01 20:19:57 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 
 # define REG_NUMBER				16
 
-# define CYCLE_TO_DIE			1536
+# define CYCLE_TO_DIE			(1536/10)
 # define CYCLE_DELTA			50
 # define NBR_LIVE				21
 # define MAX_CHECKS				10

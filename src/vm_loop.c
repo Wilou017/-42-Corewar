@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/28 17:27:27 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/12/01 18:06:57 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static int	cw_check_live(t_cwdata *data, t_vm_data *vm_data)
 			cw_decrement(data, vm_data);
 
 		ft_termcaps_poscurs(7 + (i++), COLONE_TEXT);
-		ft_printf("%d (%d) -> %s", proc->id, proc->id_champ, (proc->if_live) ? "VIE" : "MORT");
+		ft_printf("%d (%d) -> %s (live %d)", proc->id, proc->id_champ, (proc->if_live) ? "VIE" : "MORT", proc->nb_live);
+		proc->nb_live = 0;
 		tmp = tmp->next;
 	}
 	return (1);
@@ -83,13 +84,13 @@ void	cw_loop(t_cwdata *data)
 	init_process(data);
 	while (data->nb_process > 1 && data->cycle_to_die > 0)
 	{
-		// if (data->cur_cycle % 5000 == 0)
-		// {
+		if (data->cur_cycle % 5000 == 0)
+		{
 			ft_termcaps_poscurs(16, COLONE_TEXT);
 			i++;
 			ft_printf("Nombre d'affichage de la map = %d", i);
 			print_map(data);
-		// }
+		}
 		corewar(data);
 		data->cur_cycle++;
 		vm_data.cur_cycle++;
@@ -98,6 +99,6 @@ void	cw_loop(t_cwdata *data)
 		ft_termcaps_poscurs(3, COLONE_TEXT);
 		ft_printf("Cycle courant = %d", data->cur_cycle);
 		ft_termcaps_poscurs(MEM_SIZE/NB_OCT_LINE + 7, 0);
-		sleep(1);
+		// sleep(1);
 	}
 }
