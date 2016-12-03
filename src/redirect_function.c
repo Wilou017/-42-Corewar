@@ -41,7 +41,10 @@ void		redirect_function(t_cwdata *data, t_func func, t_process *proc)
 		cw_live(data, proc);
 	}
 	else if (func == LD)
+	{
 		ft_printf("LD       !\n");
+		cw_ld(data, proc);
+	}
 	else if (func == ST)
 		ft_printf("ST       !\n");
 	else if (func == ADD)

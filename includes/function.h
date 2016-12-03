@@ -47,7 +47,6 @@ t_process	*cw_add_process_to_lst(t_cwdata *data, t_header *champ);
 ** src/fill_instruction.c
 */
 
-int			endof_instructions(int inst, int encod);
 void		cw_createnode(t_header *champion, int *tab, int size);
 
 /*
@@ -87,7 +86,7 @@ int			corewar(t_cwdata *data);
 int			init_process(t_cwdata *data);
 
 /*
-** src/encodage.c
+** src/check_param.c
 */
 
 int			check_param(int opcode, int param, int name);
@@ -119,15 +118,28 @@ int			param_aff(int param, int name);
 ** src/encodage.c
 */
 
+int			endof_instructions(int inst, int encod);
 int			if_encodage(int opcode);
 int			check_opcode(int opcode);
 
-int			encod(t_process	*proc, t_cwdata *data);
+int			check_encod(t_process *proc, t_cwdata *data, int ok);
 
 /*
 ** src/redirect_function.c
 */
 
 void		redirect_function(t_cwdata *data, t_func func, t_process *proc);
+
+/*
+**	src/offset.c
+*/
+
+int			bin_offset(t_process *proc, t_cwdata *data, char *bin, int param);
+
+/*
+**	src/list_instruction.c
+*/
+
+void			cw_ld(t_cwdata *data, t_process *proc);
 
 #endif

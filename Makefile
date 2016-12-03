@@ -30,6 +30,8 @@ SRC			+=	src/create_mem.c
 SRC			+=	src/vm_loop.c
 SRC			+=	src/redirect_function.c
 SRC			+=	src/functionlst.c
+SRC			+=	src/offset.c
+SRC			+=	src/list_instructions.c
 
 SRCO		=	$(SRC:.c=.o)
 HEADERSLIB	=	libftprintf/includes

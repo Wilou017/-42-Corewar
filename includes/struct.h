@@ -37,6 +37,7 @@ typedef struct			s_process
 	int					nb_live;
 	int					pc;
 	int					loca;
+	int					encod;
 	int					carry;
 	int					*reg;
 }						t_process;

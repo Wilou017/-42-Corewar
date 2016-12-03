@@ -38,6 +38,7 @@ t_process	*cw_add_process_to_lst(t_cwdata *data, t_header *champ)
 	t_process	new_node;
 	t_list		*process_node;
 
+	new_node.encod = 0;
 	new_node.carry = 0;
 	new_node.id = data->nb_process;
 	new_node.if_live = 1;

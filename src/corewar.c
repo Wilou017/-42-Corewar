@@ -27,31 +27,35 @@ int				not_opcode(t_process *proc, t_cwdata *data)
 int				corewar_start(t_process	*proc, t_cwdata *data)
 {
 	int			size;
+	int			ok;
 
+	ok = 0;
 	size = 0;
 	if (!not_opcode(proc, data))
 		return (0);
 
 		ft_termcaps_rightcurs(COLONE_TEXT);
 		ft_printf("PROS PC %.2X\n", proc->pc);
-	redirect_function(data, proc->pc, proc);
 	if (if_encodage(proc->pc))
 	{
 		ft_termcaps_rightcurs(COLONE_TEXT);
 		ft_printf("pc = %.2X, loca = %.2X\n", proc->pc, data->mem[proc->loca + 1]);
 
-		size = endof_instructions(proc->pc, data->mem[proc->loca + 1]);
+		size = check_encod(proc, data, ok);
+		if (!ok)
+			redirect_function(data, proc->pc, proc);
 		proc->loca += size;
 		proc->pc = data->mem[proc->loca];
 		ft_termcaps_rightcurs(COLONE_TEXT);
-		return(ft_printf("Encodage correct, size = %d\n", size));
+		return (1);
 	}
 	else
 	{
+		redirect_function(data, proc->pc, proc);
 		proc->loca += size_without_encod(proc->pc);
 		proc->pc = data->mem[proc->loca];
 		ft_termcaps_rightcurs(COLONE_TEXT);
-		return(ft_printf("Pas d'encodage\n"));
+		return (1);
 	}
 	return (0);
 }
