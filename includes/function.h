@@ -17,6 +17,7 @@
 ** src/init.c
 */
 
+void		init_inst(t_inst *inst);
 int			cw_init(t_cwdata *data);
 void		cw_lastoption(t_cwdata *data, int i);
 
@@ -121,7 +122,7 @@ int			param_aff(int param, int name);
 int			endof_instructions(int inst, int encod);
 int			if_encodage(int opcode);
 int			check_opcode(int opcode);
-
+int			if_registre(t_cwdata *data, t_process *proc, t_inst inst);
 int			check_encod(t_process *proc, t_cwdata *data, int ok);
 
 /*
@@ -134,12 +135,19 @@ void		redirect_function(t_cwdata *data, t_func func, t_process *proc);
 **	src/offset.c
 */
 
-int			bin_offset(t_process *proc, t_cwdata *data, char *bin, int param);
+void	change_carry(t_process *proc);
+int		bin_offset(t_process *proc, t_cwdata *data, int param, t_inst inst);
 
 /*
 **	src/list_instruction.c
 */
 
+void			cw_xor(t_cwdata *data, t_process *proc);
+void			cw_or(t_cwdata *data, t_process *proc);
+void			cw_and(t_cwdata *data, t_process *proc);
+void			cw_sub(t_cwdata *data, t_process *proc);
+void			cw_add(t_cwdata *data, t_process *proc);
+void			cw_st(t_cwdata *data, t_process *proc);
 void			cw_ld(t_cwdata *data, t_process *proc);
 
 #endif

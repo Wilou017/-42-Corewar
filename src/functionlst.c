@@ -28,7 +28,7 @@ void	cw_zjump(t_cwdata *data, t_process *proc)
 	ft_termcaps_savecurs();
 	ft_termcaps_poscurs(50, COLONE_TEXT);
 	ft_printf("proc->loca = %d -- %.2X %.2X\n", proc->loca, data->mem[proc->loca], data->mem[proc->loca + 1]);
-	proc->loca = (proc->loca + param) % IDX_MOD % MEM_SIZE;
+	proc->loca = (param % IDX_MOD) % MEM_SIZE;
 	proc->pc = data->mem[proc->loca];
 	ft_termcaps_rightcurs(COLONE_TEXT);
 	ft_printf("proc->loca = %d -- %.2X %.2X %.2X %.2X %.2X\n", proc->loca, data->mem[proc->loca], data->mem[proc->loca + 1], data->mem[proc->loca + 2], data->mem[proc->loca + 3], data->mem[proc->loca + 4]);

@@ -55,6 +55,14 @@ typedef struct			s_header
 	t_instdata			inst;
 }						t_header;
 
+typedef struct			s_inst
+{
+	int					param;
+	char				*bin;
+	int					label_size;
+	int					size;
+}						t_inst;
+
 typedef	struct			s_cwdata
 {
 	int					*mem;

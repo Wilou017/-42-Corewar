@@ -32,6 +32,7 @@ SRC			+=	src/redirect_function.c
 SRC			+=	src/functionlst.c
 SRC			+=	src/offset.c
 SRC			+=	src/list_instructions.c
+SRC			+=	src/list_instructions2.c
 
 SRCO		=	$(SRC:.c=.o)
 HEADERSLIB	=	libftprintf/includes

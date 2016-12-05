@@ -46,17 +46,35 @@ void		redirect_function(t_cwdata *data, t_func func, t_process *proc)
 		cw_ld(data, proc);
 	}
 	else if (func == ST)
+	{
 		ft_printf("ST       !\n");
+		cw_st(data, proc);
+	}
 	else if (func == ADD)
+	{
 		ft_printf("ADD      !\n");
+		cw_add(data, proc);
+	}
 	else if (func == SUB)
+	{
 		ft_printf("SUB      !\n");
+		cw_sub(data, proc);
+	}
 	else if (func == AND)
+	{
 		ft_printf("AND      !\n");
+		cw_and(data, proc);
+	}
 	else if (func == OR)
+	{
 		ft_printf("OR       !\n");
+		cw_or(data, proc);
+	}
 	else if (func == XOR)
+	{
 		ft_printf("XOR      !\n");
+		cw_xor(data, proc);
+	}
 	else if (func == ZJUMP)
 	{
 		ft_printf("ZJUMP    !\n");

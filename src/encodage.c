@@ -12,6 +12,34 @@
 
 #include <corewar.h>
 
+int			if_registre(t_cwdata *data, t_process *proc, t_inst inst)
+{
+	int		size;
+	int		i;
+	int		len;
+
+	len = size_encod(proc->pc);
+	i = 0;
+	size = 0;
+	while (i < len)
+	{
+		if (inst.bin[i] == '0' && inst.bin[i + 1] == '1')
+		{
+			ft_termcaps_poscurs(60, COLONE_TEXT);
+				ft_printf("reg = %d = %.2X\n", data->mem[proc->loca + 2 + size], data->mem[proc->loca + 2 + size]);
+			if (data->mem[proc->loca + 2 + size] < 1 || data->mem[proc->loca + 2 + size] > 16)
+				return (0);
+			size += 1;
+		}
+		else if (inst.bin[i] == '1' && inst.bin[i + 1] == '1')
+			size += 2;
+		else if (inst.bin[i] == '1' && inst.bin[i + 1] == '0')
+			size += check_opcode(proc->pc);
+		i += 2;
+	}
+	return (1);
+}
+
 int			endof_instructions(int inst, int encod)
 {
 	char	*bin;

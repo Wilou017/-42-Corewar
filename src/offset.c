@@ -12,22 +12,40 @@
 
 #include <corewar.h>
 
-int			bin_offset(t_process *proc, t_cwdata *data, char *bin, int param)
+void	change_carry(t_process *proc)
 {
-	int		label_size;
+	if (!proc->carry)
+		proc->carry = 1;
+	else
+		proc->carry = 0;
+}
 
-	label_size = check_opcode(proc->pc);
-	if (label_size == 2 || (bin[param] == '1' && bin[param + 1] == '1'))
+int		bin_offset(t_process *proc, t_cwdata *data, int param, t_inst inst)
+{
+	int	value;
+
+	if (inst.label_size == 4 && inst.bin[param] == '1' && inst.bin[param + 1] == '0')
 	{
-		param = (data->mem[proc->loca + 2] << 8) + data->mem[proc->loca + 3];
-		return (param);
+		inst.param = DIR_CODE;
+		value = (data->mem[proc->loca + 2 + inst.size] << 8) + data->mem[proc->loca + 3 + inst.size];
+		value = (value << 8) + data->mem[proc->loca + 4 + inst.size];
+		value = (value << 8) + data->mem[proc->loca + 5 + inst.size];
+		inst.size += inst.label_size;
+		return (value);
 	}
-	else if (label_size == 4 && bin[param] == '1' && bin[param + 1] == '0')
+	else if (inst.bin[param] == '0' && inst.bin[param + 1] == '1')
 	{
-		param = (data->mem[proc->loca + 2] << 8) + data->mem[proc->loca + 3];
-		param = (param << 8) + data->mem[proc->loca + 4];
-		param = (param << 8) + data->mem[proc->loca + 5];
-		return (param);
+		inst.param = REG_CODE;
+		return (data->mem[proc->loca + 2 + inst.size]);
 	}
-	return (-2);
+	else
+	{
+		if (inst.bin[param] == '1' && inst.bin[param + 1] == '0')
+			inst.param = DIR_CODE;
+		else
+			inst.param = IND_CODE;
+		value = (data->mem[proc->loca + 2 + inst.size] << 8) + data->mem[proc->loca + 3 + inst.size];
+		inst.size += inst.label_size;
+		return (value);
+	}
 }

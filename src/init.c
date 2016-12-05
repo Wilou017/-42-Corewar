@@ -37,10 +37,17 @@ void		cw_lastoption(t_cwdata *data, int i)
 		data->lastoption = ERROR;
 }
 
+void		init_inst(t_inst *inst)
+{
+	inst->label_size = 0;
+	inst->size = 0;
+	inst->param = 0;
+}
+
 int			cw_init(t_cwdata *data)
 {
 	int	i;
-
+	
 	init_data_default(data);
 	i = 1;
 	while (data->c >= i)
