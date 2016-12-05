@@ -6,7 +6,7 @@
 #    By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 12:19:31 by amaitre           #+#    #+#              #
-#    Updated: 2016/11/26 17:22:36 by amaitre          ###   ########.fr        #
+#    Updated: 2016/12/05 21:30:32 by amaitre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,10 @@ SRC			+=	src/pouette.c
 SRC			+=	src/create_mem.c
 SRC			+=	src/vm_loop.c
 SRC			+=	src/redirect_function.c
-SRC			+=	src/functionlst.c
 SRC			+=	src/offset.c
 SRC			+=	src/list_instructions.c
 SRC			+=	src/list_instructions2.c
+SRC			+=	src/list_instructions3.c
 
 SRCO		=	$(SRC:.c=.o)
 HEADERSLIB	=	libftprintf/includes

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_instructions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmathe <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 17:49:12 by dmathe            #+#    #+#             */
-/*   Updated: 2016/11/28 17:49:14 by dmathe           ###   ########.fr       */
+/*   Updated: 2016/12/05 22:15:31 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,15 @@ void			cw_st(t_cwdata *data, t_process *proc)
 
 void			cw_ld(t_cwdata *data, t_process *proc)
 {
-	//static int	x = 0;
 	t_inst		inst;
 	int			param;
 	int			reg;
-	//if (!x)
+
+	if (!proc->wait_cicle)
 		proc->encod = data->mem[proc->loca + 1];
-	//x++;
-	// if (x == 5)
-	// {
+	proc->wait_cicle++;
+	if (proc->wait_cicle == WAIT_LD)
+	{
 		init_inst(&inst);
 		inst.label_size = check_opcode(proc->pc);
 		inst.bin = ft_itoa(proc->encod, 2);
@@ -97,7 +97,10 @@ void			cw_ld(t_cwdata *data, t_process *proc)
 		ft_termcaps_poscurs(55, COLONE_TEXT);
 		ft_printf("param = %d, mem[loca + 2] = %.2X, mem[loca + 3] = %.2X\n", param, data->mem[proc->loca + 2], data->mem[proc->loca + 3]);
 		ft_termcaps_poscurs(56, COLONE_TEXT);
-		ft_printf("mem[loca + 4] = %.2X, mem[loca + 5] = %.2X\n", data->mem[proc->loca + 4], data->mem[proc->loca + 5]);
-		//sleep(2);
-	//}
+		ft_printf("mem[loca +a 4] = %.2X, mem[loca + 5] = %.2X\n", data->mem[proc->loca + 4], data->mem[proc->loca + 5]);
+		proc->wait_cicle = 0;
+		// sleep(2);
+	}
+	else
+		proc->move = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2016/12/01 18:05:15 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/12/05 21:31:51 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ int			cw_init(t_cwdata *data);
 void		cw_lastoption(t_cwdata *data, int i);
 
 /*
-** src/functionlst.c
+** src/list_instruction3.c
 */
 
 void		cw_zjump(t_cwdata *data, t_process *proc);
 void		cw_live(t_cwdata *data, t_process *proc);
+void		cw_fork(t_cwdata *data, t_process *proc);
 
 /*
 ** src/get_function.c
@@ -42,7 +43,7 @@ int			cw_get_champion(t_cwdata *data, int i);
 t_header	*cw_add_champ_to_lst(t_cwdata *data);
 void		cw_freeall(t_cwdata *data);
 void		cw_pushback_inst(t_header *champion, t_instnode *new);
-t_process	*cw_add_process_to_lst(t_cwdata *data, t_header *champ);
+t_process	*cw_add_process_to_lst(t_cwdata *data, int id);
 
 /*
 ** src/fill_instruction.c

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:28:37 by amaitre           #+#    #+#             */
-/*   Updated: 2016/12/05 20:08:51 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/12/05 20:12:27 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	init_data_default(t_cwdata *data)
 	data->cur_cycle = 0;
 	data->nb_live_per_cycle = 0;
 	data->cycle_to_die = CYCLE_TO_DIE;
-	data->color = ft_strsplit("lpink lred lblue lgreen lyellow", ' ');
+	data->color = ft_strsplit(CHAMP_COLOR, ' ');
 }
 
 void		cw_lastoption(t_cwdata *data, int i)

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 18:16:34 by dmathe            #+#    #+#             */
-/*   Updated: 2016/12/01 20:38:55 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/12/05 21:33:34 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,24 @@ int				corewar_start(t_process	*proc, t_cwdata *data)
 		size = check_encod(proc, data, ok);
 		if (!ok)
 			redirect_function(data, proc->pc, proc);
-		proc->loca += size;
-		proc->pc = data->mem[proc->loca];
+		if (proc->move)
+		{
+			proc->loca += size;
+			proc->pc = data->mem[proc->loca];
+		}
+		proc->move = 1;
 		ft_termcaps_rightcurs(COLONE_TEXT);
 		return (1);
 	}
 	else
 	{
 		redirect_function(data, proc->pc, proc);
-		proc->loca += size_without_encod(proc->pc);
-		proc->pc = data->mem[proc->loca];
+		if (proc->move)
+		{
+			proc->loca += size_without_encod(proc->pc);
+			proc->pc = data->mem[proc->loca];
+		}
+		proc->move = 1;
 		ft_termcaps_rightcurs(COLONE_TEXT);
 		return (1);
 	}
@@ -72,7 +80,7 @@ int				corewar(t_cwdata *data)
 		i+=5;
 		proc = ((t_process *)(tmp->content));
 		ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 4);
-		usleep(100000);
+		usleep(70000);
 		if (!proc->if_live)
 		{
 			tmp = tmp->next;

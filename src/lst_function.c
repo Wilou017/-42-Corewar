@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:03:17 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/27 16:37:06 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/12/05 22:15:34 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ t_header	*cw_add_champ_to_lst(t_cwdata *data)
 	new_node.inst.start = NULL;
 	new_node.inst.end = NULL;
 	new_node.inst.end = NULL;
-	cw_add_process_to_lst(data, &new_node);
+	cw_add_process_to_lst(data, new_node.id);
 	champion_node = ft_lstnew((void *)&new_node, sizeof(new_node));
 	ft_lstadd(&data->beginlist, champion_node);
 	return ((t_header*)champion_node->content);
 }
 
-t_process	*cw_add_process_to_lst(t_cwdata *data, t_header *champ)
+t_process	*cw_add_process_to_lst(t_cwdata *data, int id)
 {
 	t_process	new_node;
 	t_list		*process_node;
@@ -43,10 +43,12 @@ t_process	*cw_add_process_to_lst(t_cwdata *data, t_header *champ)
 	new_node.id = data->nb_process;
 	new_node.if_live = 1;
 	new_node.nb_live = 0;
+	new_node.wait_cicle = 0;
+	new_node.move = 1;
 	data->nb_process++;
-	new_node.id_champ = champ->id;
+	new_node.id_champ = id;
 	new_node.reg = ft_inttabnew(REG_NUMBER, 0);
-	new_node.reg[0] = champ->id;
+	new_node.reg[0] = id;
 	process_node = ft_lstnew((void *)&new_node, sizeof(new_node));
 	ft_lstadd(&data->processlist, process_node);
 	return ((t_process*)process_node->content);

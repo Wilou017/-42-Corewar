@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/20 17:18:51 by dmathe            #+#    #+#             */
-/*   Updated: 2016/11/26 19:41:48 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/12/05 20:12:49 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int			endof_instructions(int inst, int encod)
 	}
 	free(bin);
 	if (size == 0)
-		return (size);
+		return (size + 1);
 	else
 		return (size + 2);
 }

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 16:57:33 by amaitre           #+#    #+#             */
-/*   Updated: 2016/12/01 20:22:47 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/12/05 22:09:41 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void		redirect_function2(t_cwdata *data, t_func func, t_process *proc)
 	if (func == STI)
 		ft_printf("STI      !\n");
 	else if (func == FORK)
+	{
 		ft_printf("FORK     !\n");
+		cw_fork(data, proc);
+	}
 	else if (func == LLD)
 		ft_printf("LLD      !\n");
 	else if (func == LLDI)

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2016/12/05 20:08:33 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/12/05 21:40:00 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	cw_check_live(t_cwdata *data, t_vm_data *vm_data)
 			proc->if_live = 0;
 			data->nb_process--;
 		}
-		else if (data->nb_live_per_cycle == NBR_LIVE)
+		else if (data->nb_live_per_cycle >= NBR_LIVE)
 			cw_decrement(data, vm_data);
 
 		ft_termcaps_poscurs(7 + (i++), COLONE_TEXT);
@@ -84,7 +84,7 @@ void	cw_loop(t_cwdata *data)
 	init_process(data);
 	while (data->nb_process > 1 && data->cycle_to_die > 0)
 	{
-		if (data->cur_cycle % 5000 == 0)
+		if (data->cur_cycle % 50 == 0)
 		{
 			ft_termcaps_poscurs(16, COLONE_TEXT);
 			i++;

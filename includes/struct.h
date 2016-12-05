@@ -6,12 +6,40 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2016/12/05 20:08:45 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/12/05 21:31:45 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+typedef enum			e_opt
+{
+	ERROR,
+	DUMP,
+	N
+}						t_opt;
+
+typedef enum			e_func
+{
+	RIEN,
+	LIVE,
+	LD,
+	ST,
+	ADD,
+	SUB,
+	AND,
+	OR,
+	XOR,
+	ZJUMP,
+	LDI,
+	STI,
+	FORK,
+	LLD,
+	LLDI,
+	LFORK,
+	AFF
+}						t_func;
 
 typedef struct			s_instnode
 {
@@ -40,6 +68,8 @@ typedef struct			s_process
 	int					encod;
 	int					carry;
 	int					*reg;
+	int					move;
+	int					wait_cicle;
 }						t_process;
 
 typedef struct			s_header
@@ -99,33 +129,5 @@ typedef struct			s_vm_data
 	int					check;
 	int					cur_cycle;
 }						t_vm_data;
-
-typedef enum			e_opt
-{
-	ERROR,
-	DUMP,
-	N
-}						t_opt;
-
-typedef enum			e_func
-{
-	RIEN,
-	LIVE,
-	LD,
-	ST,
-	ADD,
-	SUB,
-	AND,
-	OR,
-	XOR,
-	ZJUMP,
-	LDI,
-	STI,
-	FORK,
-	LLD,
-	LLDI,
-	LFORK,
-	AFF
-}						t_func;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:34:08 by amaitre           #+#    #+#             */
-/*   Updated: 2016/12/01 20:19:57 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/12/05 22:19:29 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define NBR_LIVE				21
 # define MAX_CHECKS				10
 # define NB_OCT_LINE			64
+# define CHAMP_COLOR			"Color: lred lblue lgreen lyellow"
 
 typedef char	t_arg_type;
 
@@ -53,6 +54,23 @@ typedef char	t_arg_type;
 # define T_DIR					2
 # define T_IND					4
 # define T_LAB					8
+
+# define WAIT_LIVE				10
+# define WAIT_LD				5
+# define WAIT_ST				5
+# define WAIT_ADD				10
+# define WAIT_SUB				10
+# define WAIT_AND				6
+# define WAIT_OR				6
+# define WAIT_XOR				6
+# define WAIT_ZJUMP				20
+# define WAIT_LDI				25
+# define WAIT_STI				25
+# define WAIT_FORK				800
+# define WAIT_LLD				10
+# define WAIT_LLDI				50
+# define WAIT_LFORK				1000
+# define WAIT_AF				2
 
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
