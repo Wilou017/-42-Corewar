@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/27 17:07:52 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/12/05 20:08:45 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef	struct			s_cwdata
 	char				**color;
 	int					nb_champion;
 	int					nb_process;
-	int					nb_live;
+	int					nb_live_per_cycle;
 	int					*begin_champ;
 	t_tab				v;
 	int					c;

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:28:37 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/27 16:58:47 by amaitre          ###   ########.fr       */
+/*   Updated: 2016/12/05 20:08:51 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	init_data_default(t_cwdata *data)
 	data->lastdata = NULL;
 	data->begin_champ = ft_inttabnew(4, 0);
 	data->cur_cycle = 0;
+	data->nb_live_per_cycle = 0;
 	data->cycle_to_die = CYCLE_TO_DIE;
 	data->color = ft_strsplit("lpink lred lblue lgreen lyellow", ' ');
 }
@@ -47,7 +48,7 @@ void		init_inst(t_inst *inst)
 int			cw_init(t_cwdata *data)
 {
 	int	i;
-	
+
 	init_data_default(data);
 	i = 1;
 	while (data->c >= i)
