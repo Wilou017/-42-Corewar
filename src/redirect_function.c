@@ -28,7 +28,10 @@ void		redirect_function2(t_cwdata *data, t_func func, t_process *proc)
 	else if (func == LLDI)
 		ft_printf("LLDI     !\n");
 	else if (func == LFORK)
+	{
 		ft_printf("LFORK    !\n");
+		cw_lfork(data, proc);
+	}
 	else if (func == AFF)
 		ft_printf("AFF      !\n");
 	else
@@ -38,9 +41,16 @@ void		redirect_function2(t_cwdata *data, t_func func, t_process *proc)
 void		redirect_function(t_cwdata *data, t_func func, t_process *proc)
 {
 	ft_termcaps_rightcurs(COLONE_TEXT);
+	ft_printf("%.2X %.2X %.2X %.2X %.2X %.2X \n", data->mem[(proc->loca) % MEM_SIZE],
+	data->mem[(proc->loca + 1) % MEM_SIZE],
+	data->mem[(proc->loca + 2) % MEM_SIZE],
+	data->mem[(proc->loca + 3) % MEM_SIZE],
+	data->mem[(proc->loca + 4) % MEM_SIZE],
+	data->mem[(proc->loca + 5) % MEM_SIZE]);
+	ft_termcaps_rightcurs(COLONE_TEXT);
 	if (func == LIVE)
 	{
-		ft_printf("LIVE     !\n");\
+		ft_printf("LIVE     !\n");
 		cw_live(data, proc);
 	}
 	else if (func == LD)

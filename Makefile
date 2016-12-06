@@ -12,33 +12,33 @@
 
 NAME		=	corewar
 
-SRC			=	src/main.c
-SRC			+=	src/init.c
-SRC			+=	src/corewar.c
-SRC			+=	src/encodage.c
-SRC			+=	src/opcode.c
-SRC			+=	src/opcode2.c
-SRC			+=	src/opcode3.c
-SRC			+=	src/opcode4.c
-SRC			+=	src/check_param_op.c
-SRC			+=	src/get_function.c
-SRC			+=	src/lst_function.c
-SRC			+=	src/fill_instructions.c
-SRC			+=	src/distrib_function.c
-SRC			+=	src/pouette.c
-SRC			+=	src/create_mem.c
-SRC			+=	src/vm_loop.c
-SRC			+=	src/redirect_function.c
-SRC			+=	src/offset.c
-SRC			+=	src/list_instructions.c
-SRC			+=	src/list_instructions2.c
-SRC			+=	src/list_instructions3.c
+SRC					=	src/main.c
+SRC					+=	src/init.c
+SRC					+=	src/corewar.c
+SRC					+=	src/encodage.c
+SRC					+=	src/opcode.c
+SRC					+=	src/opcode2.c
+SRC					+=	src/opcode3.c
+SRC					+=	src/opcode4.c
+SRC					+=	src/check_param_op.c
+SRC					+=	src/get_function.c
+SRC					+=	src/lst_function.c
+SRC					+=	src/fill_instructions.c
+SRC					+=	src/distrib_function.c
+SRC					+=	src/norme_func.c
+SRC					+=	src/create_mem.c
+SRC					+=	src/vm_loop.c
+SRC					+=	src/redirect_function.c
+SRC					+=	src/offset.c
+SRC					+=	src/list_instructions.c
+SRC					+=	src/list_instructions2.c
+SRC					+=	src/list_instructions3.c
 
-SRCO		=	$(SRC:.c=.o)
+SRCO				=	$(addprefix obj/,$(notdir $(SRC:.c=.o)))
 HEADERSLIB	=	libftprintf/includes
-HEADERS		=	includes
-CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror
+HEADERS			=	includes
+CC					=	gcc
+CFLAGS			=	-Wall -Wextra -Werror
 
 all: logo $(NAME)
 
@@ -55,7 +55,7 @@ logo:
 
 re: logo fclean all
 
-%.o: %.c $(HEADERS)/$(NAME).h $(HEADERS)/struct.h $(HEADERS)/function.h $(HEADERS)/define.h
+obj/%.o: src/%.c $(HEADERS)/$(NAME).h $(HEADERS)/struct.h $(HEADERS)/function.h $(HEADERS)/define.h
 	@echo "\033[32mCorewar :\033[0m [Compilation:\033[33m $@\033[0m]"
 	@$(CC) -o $@ -c $< $(CFLAGS) -I $(HEADERSLIB) -I $(HEADERS)
 

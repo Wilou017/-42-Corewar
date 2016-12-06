@@ -13,7 +13,7 @@
 
 #include <corewar.h>
 
-int		cw_pouette(t_reedstruct reed, t_header *champion)
+int		cw_norme1(t_reedstruct reed, t_header *champion)
 {
 	//ft_printf("\n\nNom     = %s\n", champion->prog_name);
 	//ft_printf("Comment = %s\n", champion->comment);

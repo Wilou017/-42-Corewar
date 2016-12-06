@@ -19,7 +19,7 @@
 // 	int		param2;
 // 	int		param3;
 
-// 	proc->encod = data->mem[proc->loca + 1];
+// 	proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 
 // 	init_inst(&inst);
 // 	inst.label_size = check_opcode(proc->pc);
@@ -34,7 +34,7 @@
 // 	if (inst.param == REG_CODE)
 // 		param2 = proc->reg[param2 - 1];
 // 	param3 = bin_offset(data, proc, 4, inst);
-	
+
 // }
 
 void		cw_xor(t_cwdata *data, t_process *proc)
@@ -44,7 +44,7 @@ void		cw_xor(t_cwdata *data, t_process *proc)
 	int		param2;
 	int		param3;
 
-	proc->encod = data->mem[proc->loca + 1];
+	proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 
 	init_inst(&inst);
 	inst.label_size = check_opcode(proc->pc);
@@ -71,7 +71,7 @@ void		cw_or(t_cwdata *data, t_process *proc)
 	int		param2;
 	int		param3;
 
-	proc->encod = data->mem[proc->loca + 1];
+	proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 
 	init_inst(&inst);
 	inst.label_size = check_opcode(proc->pc);
@@ -98,7 +98,7 @@ void		cw_and(t_cwdata *data, t_process *proc)
 	int		param2;
 	int		param3;
 
-	proc->encod = data->mem[proc->loca + 1];
+	proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 
 	init_inst(&inst);
 	inst.label_size = check_opcode(proc->pc);

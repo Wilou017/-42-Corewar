@@ -12,6 +12,30 @@
 
 #include <corewar.h>
 
+int				cw_get_new_loca(t_cwdata *data, int loca)
+{
+	int	param;
+	int	tmp_param1;
+	int	tmp_param2;
+	int	new_loca;
+
+	param = 0;
+	if (data->mem[(loca + 1) % MEM_SIZE] > 0x7F)
+	{
+		tmp_param1 = 0xFF - data->mem[loca + 1];
+		tmp_param2 = 0xFF - data->mem[loca + 2];
+		param = ((tmp_param1 << 8) + tmp_param2) + 1;
+		new_loca = loca - param;
+		new_loca = (new_loca < 0) ? new_loca + MEM_SIZE : new_loca;
+	}
+	else
+	{
+		param = (data->mem[(loca + 1) % MEM_SIZE] << 8) + data->mem[(loca + 2) % MEM_SIZE];
+		new_loca = (loca + param) % MEM_SIZE;
+	}
+	return (new_loca);
+}
+
 int				cw_get_option(t_cwdata *data, int *i)
 {
 	cw_lastoption(data, *i);
@@ -77,7 +101,7 @@ static int		reed_champion(char *name, t_header *champion)
 		reed.buf = 0;
 		reed.status++;
 	}
-	return (cw_pouette(reed, champion));
+	return (cw_norme1(reed, champion));
 }
 
 int				cw_get_champion(t_cwdata *data, int i)

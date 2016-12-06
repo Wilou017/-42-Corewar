@@ -26,8 +26,8 @@ int			if_registre(t_cwdata *data, t_process *proc, t_inst inst)
 		if (inst.bin[i] == '0' && inst.bin[i + 1] == '1')
 		{
 			ft_termcaps_poscurs(60, COLONE_TEXT);
-				ft_printf("reg = %d = %.2X\n", data->mem[proc->loca + 2 + size], data->mem[proc->loca + 2 + size]);
-			if (data->mem[proc->loca + 2 + size] < 1 || data->mem[proc->loca + 2 + size] > 16)
+				ft_printf("reg = %d = %.2X\n", data->mem[(proc->loca + 2 + size) % MEM_SIZE], data->mem[(proc->loca + 2 + size) % MEM_SIZE]);
+			if (data->mem[(proc->loca + 2 + size) % MEM_SIZE] < 1 || data->mem[(proc->loca + 2 + size) % MEM_SIZE] > 16)
 				return (0);
 			size += 1;
 		}
@@ -93,10 +93,10 @@ int			check_encod(t_process *proc, t_cwdata *data, int ok)
 	char	*bin;
 	int		size;
 	int		i;
-
+	
 	i = 0;
 	size = size_encod(proc->pc);
-	bin = ft_itoa(data->mem[proc->loca + 1], 2);
+	bin = ft_itoa(data->mem[(proc->loca + 1) % MEM_SIZE], 2);
 	bin = ft_strjoin(ft_chartostr('0', 8 - ft_strlen(bin)), bin, 3);
 	while (i < size)
 	{
@@ -120,5 +120,5 @@ int			check_encod(t_process *proc, t_cwdata *data, int ok)
 		i += 2;
 	}
 	free(bin);
-	return (endof_instructions(proc->pc, data->mem[proc->loca + 1]));
+	return (endof_instructions(proc->pc, data->mem[(proc->loca + 1) % MEM_SIZE]));
 }

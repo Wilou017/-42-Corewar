@@ -17,6 +17,7 @@ int				not_opcode(t_process *proc, t_cwdata *data)
 	if (proc->pc < 1 || proc->pc > 16)
 	{
 		proc->loca += 1;
+		proc->loca %= MEM_SIZE;
 		proc->pc = data->mem[proc->loca];
 		return (0);
 	}
@@ -39,7 +40,7 @@ int				corewar_start(t_process	*proc, t_cwdata *data)
 	if (if_encodage(proc->pc))
 	{
 		ft_termcaps_rightcurs(COLONE_TEXT);
-		ft_printf("pc = %.2X, loca = %.2X\n", proc->pc, data->mem[proc->loca + 1]);
+		ft_printf("pc = %.2X, loca = %.2X\n", proc->pc, data->mem[(proc->loca + 1) % MEM_SIZE]);
 
 		size = check_encod(proc, data, ok);
 		if (!ok)
@@ -47,6 +48,7 @@ int				corewar_start(t_process	*proc, t_cwdata *data)
 		if (proc->move)
 		{
 			proc->loca += size;
+			proc->loca %= MEM_SIZE;
 			proc->pc = data->mem[proc->loca];
 		}
 		proc->move = 1;
@@ -59,6 +61,7 @@ int				corewar_start(t_process	*proc, t_cwdata *data)
 		if (proc->move)
 		{
 			proc->loca += size_without_encod(proc->pc);
+			proc->loca %= MEM_SIZE;
 			proc->pc = data->mem[proc->loca];
 		}
 		proc->move = 1;
@@ -77,20 +80,18 @@ int				corewar(t_cwdata *data)
 	tmp = data->processlist;
 	while (tmp)
 	{
-		i+=5;
+		i+=8;
 		proc = ((t_process *)(tmp->content));
-		ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 4);
-		usleep(70000);
 		if (!proc->if_live)
 		{
 			tmp = tmp->next;
 			continue ;
 		}
+		ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 4);
+		usleep(20000);
 		ft_termcaps_poscurs(20 + i, COLONE_TEXT);
 		ft_printf("name = %d, pc = %.2X\n", proc->id_champ, proc->pc);
 		corewar_start(proc, data);
-		if (proc->loca == MEM_SIZE)
-			break;
 		tmp = tmp->next;
 	}
 	return (0);

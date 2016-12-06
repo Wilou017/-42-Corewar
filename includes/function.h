@@ -28,6 +28,7 @@ void		cw_lastoption(t_cwdata *data, int i);
 void		cw_zjump(t_cwdata *data, t_process *proc);
 void		cw_live(t_cwdata *data, t_process *proc);
 void		cw_fork(t_cwdata *data, t_process *proc);
+void		cw_lfork(t_cwdata *data, t_process *proc);
 
 /*
 ** src/get_function.c
@@ -35,6 +36,7 @@ void		cw_fork(t_cwdata *data, t_process *proc);
 
 int			cw_get_option(t_cwdata *data, int *i);
 int			cw_get_champion(t_cwdata *data, int i);
+int			cw_get_new_loca(t_cwdata *data, int loca);
 
 /*
 ** src/lst_function.c
@@ -62,10 +64,10 @@ int			cw_distrib_progsize(t_reedstruct *reed);
 int			cw_distrib_padding(t_reedstruct *reed, int ret);
 
 /*
-** src/pouette.c
+** src/norme_func.c
 */
 
-int			cw_pouette(t_reedstruct reed, t_header *champion);
+int			cw_norme1(t_reedstruct reed, t_header *champion);
 
 /*
 ** src/creat_mem.c
