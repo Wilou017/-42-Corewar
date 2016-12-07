@@ -34,15 +34,12 @@ int				corewar_start(t_process	*proc, t_cwdata *data)
 	size = 0;
 	if (!not_opcode(proc, data))
 		return (0);
-
-		ft_termcaps_rightcurs(COLONE_TEXT);
-		ft_printf("PROS PC %.2X\n", proc->pc);
 	if (if_encodage(proc->pc))
 	{
 		ft_termcaps_rightcurs(COLONE_TEXT);
 		ft_printf("pc = %.2X, loca = %.2X\n", proc->pc, data->mem[(proc->loca + 1) % MEM_SIZE]);
 
-		size = check_encod(proc, data, ok);
+		size = check_encod(proc, data, &ok);
 		if (!ok)
 			redirect_function(data, proc->pc, proc);
 		if (proc->move)

@@ -17,5 +17,6 @@
 # include <define.h>
 # include <struct.h>
 # include <function.h>
+# include <limits.h>
 
 #endif

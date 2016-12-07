@@ -41,12 +41,15 @@ void		redirect_function2(t_cwdata *data, t_func func, t_process *proc)
 void		redirect_function(t_cwdata *data, t_func func, t_process *proc)
 {
 	ft_termcaps_rightcurs(COLONE_TEXT);
-	ft_printf("%.2X %.2X %.2X %.2X %.2X %.2X \n", data->mem[(proc->loca) % MEM_SIZE],
+	ft_printf("%.2X %.2X %.2X %.2X %.2X %.2X %.2X %.2X \n", data->mem[(proc->loca) % MEM_SIZE],
 	data->mem[(proc->loca + 1) % MEM_SIZE],
 	data->mem[(proc->loca + 2) % MEM_SIZE],
 	data->mem[(proc->loca + 3) % MEM_SIZE],
 	data->mem[(proc->loca + 4) % MEM_SIZE],
-	data->mem[(proc->loca + 5) % MEM_SIZE]);
+	data->mem[(proc->loca + 5) % MEM_SIZE],
+	data->mem[(proc->loca + 6) % MEM_SIZE],
+	data->mem[(proc->loca + 7) % MEM_SIZE],
+	data->mem[(proc->loca + 8) % MEM_SIZE]);
 	ft_termcaps_rightcurs(COLONE_TEXT);
 	if (func == LIVE)
 	{

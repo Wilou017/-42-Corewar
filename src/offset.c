@@ -20,33 +20,33 @@ void	change_carry(t_process *proc)
 		proc->carry = 0;
 }
 
-int		bin_offset(t_process *proc, t_cwdata *data, int param, t_inst inst)
+int		bin_offset(t_process *proc, t_cwdata *data, int param, t_inst *inst)
 {
 	int	value;
 
-	if (inst.label_size == 4 && inst.bin[param] == '1' && inst.bin[param + 1] == '0')
+	if (inst->label_size == 4 && inst->bin[param] == '1' && inst->bin[param + 1] == '0')
 	{
-		inst.param = DIR_CODE;
-		value = (data->mem[(proc->loca + 2 + inst.size) % MEM_SIZE] << 8) + data->mem[(proc->loca + 3 + inst.size) % MEM_SIZE];
-		value = (value << 8) + data->mem[(proc->loca + 4 + inst.size) % MEM_SIZE];
-		value = (value << 8) + data->mem[(proc->loca + 5 + inst.size) % MEM_SIZE];
-		inst.size += inst.label_size;
+		inst->param = DIR_CODE;
+		value = (data->mem[(proc->loca + 2 + inst->size) % MEM_SIZE] << 8) + data->mem[(proc->loca + 3 + inst->size) % MEM_SIZE];
+		value = (value << 8) + data->mem[(proc->loca + 4 + inst->size) % MEM_SIZE];
+		value = (value << 8) + data->mem[(proc->loca + 5 + inst->size) % MEM_SIZE];
+		inst->size += inst->label_size;
 		return (value);
 	}
-	else if (inst.bin[param] == '0' && inst.bin[param + 1] == '1')
+	else if (inst->bin[param] == '0' && inst->bin[param + 1] == '1')
 	{
-		inst.param = REG_CODE;
-		inst.size += 1;
-		return (data->mem[(proc->loca + 2 + inst.size) % MEM_SIZE]);
+		inst->param = REG_CODE;
+		inst->size += 1;
+		return (data->mem[(proc->loca + inst->size + 1) % MEM_SIZE]);
 	}
 	else
 	{
-		if (inst.bin[param] == '1' && inst.bin[param + 1] == '0')
-			inst.param = DIR_CODE;
+		if (inst->bin[param] == '1' && inst->bin[param + 1] == '0')
+			inst->param = DIR_CODE;
 		else
-			inst.param = IND_CODE;
-		value = (data->mem[(proc->loca + 2 + inst.size) % MEM_SIZE] << 8) + data->mem[(proc->loca + 3 + inst.size) % MEM_SIZE];
-		inst.size += inst.label_size;
+			inst->param = IND_CODE;
+		value = (data->mem[(proc->loca + 2 + inst->size) % MEM_SIZE] << 8) + data->mem[(proc->loca + 3 + inst->size) % MEM_SIZE];
+		inst->size += inst->label_size;
 		return (value);
 	}
 }

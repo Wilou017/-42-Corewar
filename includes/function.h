@@ -126,7 +126,7 @@ int			endof_instructions(int inst, int encod);
 int			if_encodage(int opcode);
 int			check_opcode(int opcode);
 int			if_registre(t_cwdata *data, t_process *proc, t_inst inst);
-int			check_encod(t_process *proc, t_cwdata *data, int ok);
+int			check_encod(t_process *proc, t_cwdata *data, int *ok);
 
 /*
 ** src/redirect_function.c
@@ -139,7 +139,7 @@ void		redirect_function(t_cwdata *data, t_func func, t_process *proc);
 */
 
 void	change_carry(t_process *proc);
-int		bin_offset(t_process *proc, t_cwdata *data, int param, t_inst inst);
+int		bin_offset(t_process *proc, t_cwdata *data, int param, t_inst *inst);
 
 /*
 **	src/list_instruction.c
