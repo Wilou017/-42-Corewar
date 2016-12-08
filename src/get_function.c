@@ -41,12 +41,14 @@ int				cw_get_option(t_cwdata *data, int *i)
 	cw_lastoption(data, *i);
 	if (data->lastoption && data->c > *i)
 	{
-		if (!ft_strisdigit(data->v[(*i) + 1]))
+		if ((data->lastoption == N || data->lastoption == DUMP)
+			&& !ft_strisdigit(data->v[(*i) + 1]))
 			return (ft_printf("{red}%s doit être un nomdre\n", data->v[*i]));
 		if (data->lastoption == DUMP)
 			data->dumpcycles = ft_atoi(data->v[(*i) + 1]);
-		else
+		else if (data->lastoption == N)
 			data->lastdata = ft_strdup(data->v[(*i) + 1]);
+		if (data->lastoption != VM && data->lastoption != V)
 		*i = (*i) + 1;
 	}
 	else if (data->lastoption == 0)

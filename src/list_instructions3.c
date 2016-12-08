@@ -15,7 +15,6 @@
 void	cw_live(t_cwdata *data, t_process *proc)
 {
 	proc->wait_cicle++;
-	ft_termcaps_poscurs(35, COLONE_TEXT);
 	if (proc->wait_cicle == WAIT_LIVE)
 	{
 		proc->nb_live++;
@@ -31,7 +30,6 @@ void	cw_fork(t_cwdata *data, t_process *proc)
 	t_process	*new;
 
 	proc->wait_cicle++;
-	ft_termcaps_poscurs(36, COLONE_TEXT);
 	if (proc->wait_cicle == WAIT_FORK)
 	{
 		new = cw_add_process_to_lst(data, proc->id_champ);
@@ -48,7 +46,6 @@ void	cw_lfork(t_cwdata *data, t_process *proc)
 	t_process	*new;
 
 	proc->wait_cicle++;
-	ft_termcaps_poscurs(36, COLONE_TEXT);
 	if (proc->wait_cicle == WAIT_LFORK)
 	{
 		new = cw_add_process_to_lst(data, proc->id_champ);

@@ -13,7 +13,9 @@
 #ifndef DEFINE_H
 # define DEFINE_H
 
-# define DEBUG_PARSINGCOR		1
+# define DEBUG_PARSINGCOR		0
+# define DEBUG_VERBOSE      data->verbose
+# define SHOW_VM            data->show_vm
 
 # define IND_SIZE				2
 # define REG_SIZE				4

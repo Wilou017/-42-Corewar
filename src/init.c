@@ -24,6 +24,8 @@ static void	init_data_default(t_cwdata *data)
 	data->begin_champ = ft_inttabnew(4, 0);
 	data->cur_cycle = 0;
 	data->nb_live_per_cycle = 0;
+	data->show_vm = 0;
+	data->verbose = 0;
 	data->cycle_to_die = CYCLE_TO_DIE;
 	data->color = ft_strsplit(CHAMP_COLOR, ' ');
 }
@@ -34,6 +36,19 @@ void		cw_lastoption(t_cwdata *data, int i)
 		data->lastoption = DUMP;
 	else if (!ft_strcmp(data->v[i], "-n"))
 		data->lastoption = N;
+	else if (!ft_strcmp(data->v[i], "-v"))
+	{
+		if (data->show_vm == 0)
+			data->verbose = 1;
+			ft_printf("dftgh -> %d\n", 	data->verbose);
+		data->lastoption = V;
+	}
+	else if (!ft_strcmp(data->v[i], "-vm"))
+	{
+		if (data->verbose == 0)
+			data->show_vm = 1;
+		data->lastoption = VM;
+	}
 	else
 		data->lastoption = ERROR;
 }

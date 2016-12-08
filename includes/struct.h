@@ -17,7 +17,9 @@ typedef enum			e_opt
 {
 	ERROR,
 	DUMP,
-	N
+	N,
+	V,
+	VM
 }						t_opt;
 
 typedef enum			e_func
@@ -103,6 +105,8 @@ typedef	struct			s_cwdata
 	char				*lastdata;
 	char				**color;
 	int					nb_champion;
+	int					show_vm;
+	int					verbose;
 	int					nb_process;
 	int					nb_live_per_cycle;
 	int					*begin_champ;

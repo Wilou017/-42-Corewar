@@ -63,21 +63,21 @@ void			cw_st(t_cwdata *data, t_process *proc)
 		inst.size = 1;
 		param = bin_offset(proc, data, 2, &inst);
 		regsrc = data->mem[(proc->loca + 2) % MEM_SIZE] - 1;
-		ft_termcaps_poscurs(55, COLONE_TEXT);
-		ft_printf("param = %d %.2X, regsrc = %d %.2X reg = %d %.2X\n", param, param, regsrc, regsrc, proc->reg[regsrc], proc->reg[regsrc]);
+		if (DEBUG_VERBOSE)
+			ft_printf("param = %d %.2X, regsrc = %d %.2X reg = %d %.2X\n", param, param, regsrc, regsrc, proc->reg[regsrc], proc->reg[regsrc]);
 		if (inst.param == REG_CODE)
 		{
 			regdest = data->mem[(proc->loca + inst.size + 2) % MEM_SIZE] - 1;
 			proc->reg[regdest] = proc->reg[regsrc];
-			ft_termcaps_poscurs(56, COLONE_TEXT);
-			ft_printf("regdest = %d %.2X \n", regdest, regdest);
+			if (DEBUG_VERBOSE)
+				ft_printf("regdest = %d %.2X \n", regdest, regdest);
 		}
 		else if (inst.param == IND_CODE)
 		{
 			dest = (proc->loca + (param % IDX_MOD)) % MEM_SIZE;
 			data->mem[dest] = proc->reg[regsrc];
-			ft_termcaps_poscurs(57, COLONE_TEXT);
-			ft_printf("mem[dest] = %d %.2X \n", data->mem[dest], data->mem[dest]);
+			if (DEBUG_VERBOSE)
+				ft_printf("mem[dest] = %d %.2X \n", data->mem[dest], data->mem[dest]);
 		}
 		proc->wait_cicle = 0;
 				//sleep(2);
@@ -105,12 +105,10 @@ void			cw_ld(t_cwdata *data, t_process *proc)
 			return ;
 		param = bin_offset(proc, data, 0, &inst);
 		reg = data->mem[(proc->loca + inst.label_size + 2) % MEM_SIZE];
-		ft_termcaps_poscurs(62, COLONE_TEXT);
-		ft_printf("reg = %d %.2X, param = %d \n", reg, reg, param);
+		if (DEBUG_VERBOSE)
+			ft_printf("reg = %d %.2X, param = %d \n", reg, reg, param);
 		proc->reg[reg - 1] = param;
 		change_carry(proc);
-		// ft_termcaps_poscurs(55, COLONE_TEXT);
-		// ft_printf("param = %d %.2X, reg = %d %.2X \n", param, param, reg, reg);
 		proc->wait_cicle = 0;
 			//	sleep(5);
 	}
