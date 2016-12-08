@@ -15,7 +15,7 @@
 void	cw_live(t_cwdata *data, t_process *proc)
 {
 	proc->wait_cicle++;
-	if (proc->wait_cicle == WAIT_LIVE)
+	if (proc->wait_cicle == WAIT_LIVE + 1)
 	{
 		proc->nb_live++;
 		data->nb_live_per_cycle++;
@@ -30,7 +30,7 @@ void	cw_fork(t_cwdata *data, t_process *proc)
 	t_process	*new;
 
 	proc->wait_cicle++;
-	if (proc->wait_cicle == WAIT_FORK)
+	if (proc->wait_cicle == WAIT_FORK + 1)
 	{
 		new = cw_add_process_to_lst(data, proc->id_champ);
 		new->loca = cw_get_new_loca(data, proc->loca);
@@ -46,7 +46,7 @@ void	cw_lfork(t_cwdata *data, t_process *proc)
 	t_process	*new;
 
 	proc->wait_cicle++;
-	if (proc->wait_cicle == WAIT_LFORK)
+	if (proc->wait_cicle == WAIT_LFORK + 1)
 	{
 		new = cw_add_process_to_lst(data, proc->id_champ);
 		new->loca = cw_get_new_loca(data, proc->loca);

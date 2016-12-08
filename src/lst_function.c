@@ -22,6 +22,7 @@ t_header	*cw_add_champ_to_lst(t_cwdata *data)
 	new_node.prog_size = 0;
 	new_node.id = (data->lastdata) ? ft_atoi(data->lastdata) :\
 	data->nb_champion;
+	new_node.id = -(new_node.id);
 	new_node.nb_live = 0;
 	new_node.if_live = 1;
 	new_node.inst.start = NULL;

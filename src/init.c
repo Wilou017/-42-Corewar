@@ -40,7 +40,6 @@ void		cw_lastoption(t_cwdata *data, int i)
 	{
 		if (data->show_vm == 0)
 			data->verbose = 1;
-			ft_printf("dftgh -> %d\n", 	data->verbose);
 		data->lastoption = V;
 	}
 	else if (!ft_strcmp(data->v[i], "-vm"))

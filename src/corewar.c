@@ -36,9 +36,8 @@ int				corewar_start(t_process	*proc, t_cwdata *data)
 		return (0);
 	if (if_encodage(proc->pc))
 	{
-		if (DEBUG_VERBOSE)
-			ft_printf("pc = %.2X, loca = %.2X\n", proc->pc, data->mem[(proc->loca + 1) % MEM_SIZE]);
-
+		// if (data->verbose)
+		// 	ft_printf("pc = %.2X, loca = %.2X\n", proc->pc, data->mem[(proc->loca + 1) % MEM_SIZE]);
 		size = check_encod(proc, data, &ok);
 		if (!ok)
 			redirect_function(data, proc->pc, proc);
@@ -82,13 +81,13 @@ int				corewar(t_cwdata *data)
 			tmp = tmp->next;
 			continue ;
 		}
-		if (SHOW_VM)
+		if (data->show_vm)
 		{
 			ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 4);
 			usleep(20000);
 		}
-		if (DEBUG_VERBOSE)
-			ft_printf("name = %d, pc = %.2X\n", proc->id_champ, proc->pc);
+		// if (data->verbose)
+		// 	ft_printf("name = %d, pc = %.2X\n", proc->id_champ, proc->pc);
 		corewar_start(proc, data);
 		tmp = tmp->next;
 	}

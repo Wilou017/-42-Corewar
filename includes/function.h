@@ -14,6 +14,12 @@
 # define FUNCTION_H
 
 /*
+** src/fill_map.c
+*/
+
+void		write_map(t_cwdata *data, t_process *proc, int dest, int src);
+
+/*
 ** src/init.c
 */
 

@@ -16,109 +16,108 @@ void		redirect_function2(t_cwdata *data, t_func func, t_process *proc)
 {
 	if (func == STI)
 	{
-		if (DEBUG_VERBOSE)
-			ft_printf("STI      !\n");
+		if (data->verbose)
+			;
 	}
 	else if (func == FORK)
 	{
-		if (DEBUG_VERBOSE)
-			ft_printf("FORK     !\n");
+		if (data->verbose)
+			;
 		cw_fork(data, proc);
 	}
 	else if (func == LLD)
 	{
-		if (DEBUG_VERBOSE)
-		ft_printf("LLD      !\n");
+		if (data->verbose)
+			;
 	}
 	else if (func == LLDI)
 	{
-		if (DEBUG_VERBOSE)
-			ft_printf("LLDI     !\n");
+		if (data->verbose)
+			;
 	}
 	else if (func == LFORK)
 	{
-		if (DEBUG_VERBOSE)
-			ft_printf("LFORK    !\n");
+		if (data->verbose)
+			;
 		cw_lfork(data, proc);
 	}
 	else if (func == AFF)
 	{
-		if (DEBUG_VERBOSE)
-			ft_printf("AFF      !\n");
+		if (data->verbose)
+			;
 	}
 }
 
 void		redirect_function(t_cwdata *data, t_func func, t_process *proc)
 {
-	if (DEBUG_VERBOSE)
-		ft_printf("%.2X %.2X %.2X %.2X %.2X %.2X %.2X %.2X \n", data->mem[(proc->loca) % MEM_SIZE],
-	data->mem[(proc->loca + 1) % MEM_SIZE],
-	data->mem[(proc->loca + 2) % MEM_SIZE],
-	data->mem[(proc->loca + 3) % MEM_SIZE],
-	data->mem[(proc->loca + 4) % MEM_SIZE],
-	data->mem[(proc->loca + 5) % MEM_SIZE],
-	data->mem[(proc->loca + 6) % MEM_SIZE],
-	data->mem[(proc->loca + 7) % MEM_SIZE],
-	data->mem[(proc->loca + 8) % MEM_SIZE]);
+	// if (data->verbose)
+	// 	ft_printf("%.2X %.2X %.2X %.2X %.2X %.2X %.2X %.2X \n", data->mem[(proc->loca) % MEM_SIZE],
+	// data->mem[(proc->loca + 1) % MEM_SIZE],
+	// data->mem[(proc->loca + 2) % MEM_SIZE],
+	// data->mem[(proc->loca + 3) % MEM_SIZE],
+	// data->mem[(proc->loca + 4) % MEM_SIZE],
+	// data->mem[(proc->loca + 5) % MEM_SIZE],
+	// data->mem[(proc->loca + 6) % MEM_SIZE],
+	// data->mem[(proc->loca + 7) % MEM_SIZE],
+	// data->mem[(proc->loca + 8) % MEM_SIZE]);
 	if (func == LIVE)
 	{
-		if (DEBUG_VERBOSE)
-			ft_printf("LIVE     !\n");
+		if (data->verbose)
+			;
 		cw_live(data, proc);
 	}
 	else if (func == LD)
 	{
-		if (DEBUG_VERBOSE)
-			ft_printf("LD       !\n");
+		if (data->verbose)
+			;
 		cw_ld(data, proc);
 	}
 	else if (func == ST)
 	{
-		if (DEBUG_VERBOSE)
-		if (DEBUG_VERBOSE)
-			ft_printf("ST       !\n");
+		if (data->verbose)
+			;
 		cw_st(data, proc);
 	}
 	else if (func == ADD)
 	{
-		if (DEBUG_VERBOSE)
-			ft_printf("ADD      !\n");
+		if (data->verbose)
+			;
 		cw_add(data, proc);
 	}
 	else if (func == SUB)
 	{
-		if (DEBUG_VERBOSE)
-			ft_printf("SUB      !\n");
+		if (data->verbose)
+			;
 		cw_sub(data, proc);
 	}
 	else if (func == AND)
 	{
-		if (DEBUG_VERBOSE)
-			ft_printf("AND      !\n");
+		if (data->verbose)
+			;
 		cw_and(data, proc);
 	}
 	else if (func == OR)
 	{
-		if (DEBUG_VERBOSE)
-			ft_printf("OR       !\n");
+		if (data->verbose)
+			;
 		cw_or(data, proc);
 	}
 	else if (func == XOR)
 	{
-		if (DEBUG_VERBOSE)
-			ft_printf("XOR      !\n");
+		if (data->verbose)
+			;
 		cw_xor(data, proc);
 	}
 	else if (func == ZJUMP)
 	{
-		if (DEBUG_VERBOSE)
-			ft_printf("ZJUMP    !\n");
+		if (data->verbose)
+			;
 		cw_zjump(data, proc);
 	}
 	else if (func == LDI)
 	{
-		if (DEBUG_VERBOSE)
-			ft_printf("LDI      !\n");
+		if (data->verbose)
+			;
 	}
 	else
 		redirect_function2(data, func, proc);
