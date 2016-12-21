@@ -47,7 +47,7 @@ static int	cw_check_live(t_cwdata *data, t_vm_data *vm_data)
 		proc->nb_live = 0;
 		tmp = tmp->next;
 	}
-	ft_putendl("----------------");
+	ft_putendl("");
 	return (1);
 }
 
@@ -109,7 +109,6 @@ void	cw_loop(t_cwdata *data)
 		if (data->show_vm)
 			ft_termcaps_poscurs(3, COLONE_TEXT);
 		if (data->show_vm || data->verbose)
-			ft_printf("Cycle courant = %d\n", data->cur_cycle);
-		// sleep(1);
+			ft_printf("> > > End of cycle {red}%d{eoc} < < <\n", data->cur_cycle);
 	}
 }

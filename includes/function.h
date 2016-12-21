@@ -14,6 +14,12 @@
 # define FUNCTION_H
 
 /*
+** src/verbose.c
+*/
+
+void		print_verbose(t_cwdata *data, int param, int end, t_inst inst);
+
+/*
 ** src/fill_map.c
 */
 
@@ -23,7 +29,7 @@ void		write_map(t_cwdata *data, t_process *proc, int dest, int src);
 ** src/init.c
 */
 
-void		init_inst(t_inst *inst);
+void		init_inst(t_inst *inst, t_process *proc);
 int			cw_init(t_cwdata *data);
 void		cw_lastoption(t_cwdata *data, int i);
 
@@ -42,7 +48,7 @@ void		cw_lfork(t_cwdata *data, t_process *proc);
 
 int			cw_get_option(t_cwdata *data, int *i);
 int			cw_get_champion(t_cwdata *data, int i);
-int			cw_get_new_loca(t_cwdata *data, int loca);
+int			cw_get_new_loca(t_cwdata *data, int loca, int lfork);
 
 /*
 ** src/lst_function.c
@@ -141,16 +147,30 @@ int			check_encod(t_process *proc, t_cwdata *data, int *ok);
 void		redirect_function(t_cwdata *data, t_func func, t_process *proc);
 
 /*
+**	src/utils.c
+*/
+
+void	check_reg_carry(t_process *proc, int reg);
+void	change_carry(t_process *proc);
+void	good_cicle(t_process *proc, int limit);
+int		return_size_reg(t_cwdata *data, t_process *proc, int adresse, int lldi);
+
+
+/*
 **	src/offset.c
 */
 
-void	change_carry(t_process *proc);
 int		bin_offset(t_process *proc, t_cwdata *data, int param, t_inst *inst);
 
 /*
 **	src/list_instruction.c
 */
 
+void			cw_aff(t_cwdata *data, t_process *proc);
+void			cw_lldi(t_cwdata *data, t_process *proc);
+void			cw_lld(t_cwdata *data, t_process *proc);
+void			cw_sti(t_cwdata *data, t_process *proc);
+void			cw_ldi(t_cwdata *data, t_process *proc);
 void			cw_xor(t_cwdata *data, t_process *proc);
 void			cw_or(t_cwdata *data, t_process *proc);
 void			cw_and(t_cwdata *data, t_process *proc);

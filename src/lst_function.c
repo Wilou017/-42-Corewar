@@ -36,10 +36,14 @@ t_header	*cw_add_champ_to_lst(t_cwdata *data)
 
 t_process	*cw_add_process_to_lst(t_cwdata *data, int id)
 {
+	static		int		i = 1;
 	t_process	new_node;
 	t_list		*process_node;
 
+	new_node.name = i;
+	i++;
 	new_node.encod = 0;
+	new_node.size = 0;
 	new_node.carry = 0;
 	new_node.id = data->nb_process;
 	new_node.if_live = 1;
@@ -48,6 +52,7 @@ t_process	*cw_add_process_to_lst(t_cwdata *data, int id)
 	new_node.move = 1;
 	data->nb_process++;
 	new_node.id_champ = id;
+	new_node.good_cicle = 0;
 	new_node.reg = ft_inttabnew(REG_NUMBER, 0);
 	new_node.reg[0] = id;
 	process_node = ft_lstnew((void *)&new_node, sizeof(new_node));

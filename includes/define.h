@@ -70,7 +70,7 @@ typedef char	t_arg_type;
 # define WAIT_LLD				10
 # define WAIT_LLDI				50
 # define WAIT_LFORK				1000
-# define WAIT_AF				2
+# define WAIT_AFF				2
 
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)

@@ -6,8 +6,10 @@
 
 entry:
 	fork	%:coregeni
-	st		r1, 6
+	st		r1, -15
 	live	%42
+	ldi		-8, r2, r4
+	ldi		8, r3, r5
 	fork	%:torpgeni
 	st		r1, 6
 	live	%42

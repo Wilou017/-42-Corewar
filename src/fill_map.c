@@ -18,8 +18,6 @@ void		write_map(t_cwdata *data, t_process *proc, int dest, int src)
 	int		octet;
 	int		value;
 
-	(void)dest;
-	(void)data;
 	size = sizeof(proc->reg[src]) - 1;
 	value = proc->reg[src];
 	while (size >= 0)

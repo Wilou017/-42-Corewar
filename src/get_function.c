@@ -12,7 +12,7 @@
 
 #include <corewar.h>
 
-int				cw_get_new_loca(t_cwdata *data, int loca)
+int				cw_get_new_loca(t_cwdata *data, int loca, int lfork)
 {
 	int	param;
 	int	tmp_param1;
@@ -22,16 +22,26 @@ int				cw_get_new_loca(t_cwdata *data, int loca)
 	param = 0;
 	if (data->mem[(loca + 1) % MEM_SIZE] > 0x7F)
 	{
-		tmp_param1 = 0xFF - data->mem[loca + 1];
-		tmp_param2 = 0xFF - data->mem[loca + 2];
+		tmp_param1 = 0xFF - data->mem[(loca + 1) % MEM_SIZE];
+		tmp_param2 = 0xFF - data->mem[(loca + 2) % MEM_SIZE];
 		param = ((tmp_param1 << 8) + tmp_param2) + 1;
-		new_loca = loca - param;
+		if (lfork)
+			new_loca = loca - param;
+		else
+			new_loca = loca - (param % IDX_MOD);
 		new_loca = (new_loca < 0) ? new_loca + MEM_SIZE : new_loca;
+		if (data->verbose)
+			ft_printf("%d\n", -param);
 	}
 	else
 	{
 		param = (data->mem[(loca + 1) % MEM_SIZE] << 8) + data->mem[(loca + 2) % MEM_SIZE];
-		new_loca = (loca + param) % MEM_SIZE;
+		if (lfork)
+			new_loca = (loca + param) % MEM_SIZE;
+		else
+			new_loca = (loca + (param % IDX_MOD)) % MEM_SIZE;
+		if (data->verbose)
+			ft_printf(" %d\n", param);
 	}
 	return (new_loca);
 }

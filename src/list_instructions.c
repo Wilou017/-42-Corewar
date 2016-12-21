@@ -16,15 +16,30 @@ void			cw_sub(t_cwdata *data, t_process *proc)
 {
 	t_inst		inst;
 
-	init_inst(&inst);
-	inst.bin = ft_itoa(proc->encod, 2);
-	inst.bin = ft_strjoin(ft_chartostr('0', 8 - ft_strlen(inst.bin)), inst.bin, 3);
-	if (!if_registre(data, proc, inst))
-		return ;
-	proc->reg[data->mem[(proc->loca + 4) % MEM_SIZE] - 1] = \
-	proc->reg[data->mem[(proc->loca + 2) % MEM_SIZE] - 1] - \
-	proc->reg[data->mem[(proc->loca + 3) % MEM_SIZE] - 1];
-	change_carry(proc);
+	if (!proc->wait_cicle)
+		proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
+	proc->wait_cicle++;
+	good_cicle(proc, WAIT_SUB);
+	if (proc->wait_cicle == WAIT_SUB)
+	{
+		init_inst(&inst, proc);
+		inst.bin = ft_itoa(proc->encod, 2);
+		inst.bin = ft_strjoin(ft_chartostr('0', 8 - ft_strlen(inst.bin)), inst.bin, 3);
+		if (!if_registre(data, proc, inst))
+			return ;
+		proc->reg[data->mem[(proc->loca + 4) % MEM_SIZE] - 1] = \
+		proc->reg[data->mem[(proc->loca + 2) % MEM_SIZE] - 1] - \
+		proc->reg[data->mem[(proc->loca + 3) % MEM_SIZE] - 1];
+		change_carry(proc);
+		check_reg_carry(proc, proc->reg[data->mem[(proc->loca + 4) % MEM_SIZE] - 1]);
+		proc->wait_cicle = 0;
+		if (data->verbose)
+			ft_printf(" r%d r%d r%d\n", data->mem[(proc->loca + 2) % MEM_SIZE]\
+			, data->mem[(proc->loca + 3) % MEM_SIZE]\
+			, data->mem[(proc->loca + 4) % MEM_SIZE]);
+	}
+	else
+		proc->move = 0;
 }
 
 void			cw_add(t_cwdata *data, t_process *proc)
@@ -34,9 +49,10 @@ void			cw_add(t_cwdata *data, t_process *proc)
 	if (!proc->wait_cicle)
 		proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 	proc->wait_cicle++;
-	if (proc->wait_cicle == WAIT_ADD + 1)
+	good_cicle(proc, WAIT_ADD);
+	if (proc->wait_cicle == WAIT_ADD)
 	{
-		init_inst(&inst);
+		init_inst(&inst, proc);
 		inst.bin = ft_itoa(proc->encod, 2);
 		inst.bin = ft_strjoin(ft_chartostr('0', 8 - ft_strlen(inst.bin)), inst.bin, 3);
 		if (!if_registre(data, proc, inst))
@@ -45,7 +61,12 @@ void			cw_add(t_cwdata *data, t_process *proc)
 		proc->reg[data->mem[(proc->loca + 2) % MEM_SIZE] - 1] + \
 		proc->reg[data->mem[(proc->loca + 3) % MEM_SIZE] - 1];
 		change_carry(proc);
+		check_reg_carry(proc, proc->reg[data->mem[(proc->loca + 4) % MEM_SIZE] - 1]);
 		proc->wait_cicle = 0;
+		if (data->verbose)
+			ft_printf(" r%d r%d r%d\n", data->mem[(proc->loca + 2) % MEM_SIZE]\
+			, data->mem[(proc->loca + 3) % MEM_SIZE]\
+			, data->mem[(proc->loca + 4) % MEM_SIZE]);
 	}
 	else
 		proc->move = 0;
@@ -56,37 +77,34 @@ void			cw_st(t_cwdata *data, t_process *proc)
 	t_inst		inst;
 	int			regsrc;
 	int			regdest;
-	int			param;
 	int			dest;
 
 	if (!proc->wait_cicle)
 		proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 	proc->wait_cicle++;
-	if (proc->wait_cicle == WAIT_ST + 1)
+	good_cicle(proc, WAIT_ST);
+	if (proc->wait_cicle == WAIT_ST)
 	{
-		init_inst(&inst);
+		init_inst(&inst, proc);
 		inst.bin = ft_itoa(proc->encod, 2);
 		inst.bin = ft_strjoin(ft_chartostr('0', 8 - ft_strlen(inst.bin)), inst.bin, 3);
 		if (!if_registre(data, proc, inst))
 			return ;
-		inst.size = 1;
-		param = bin_offset(proc, data, 2, &inst);
-		regsrc = data->mem[(proc->loca + 2) % MEM_SIZE] - 1;
-		if (data->verbose)
-			ft_printf("param = %d %.2X, regsrc = %d %.2X reg = %d %.2X\n", param, param, regsrc, regsrc, proc->reg[regsrc], proc->reg[regsrc]);
+		regsrc = bin_offset(proc, data, 0, &inst) - 1;
+		bin_offset(proc, data, 2, &inst);
 		if (inst.param == REG_CODE)
 		{
 			regdest = data->mem[(proc->loca + inst.size + 2) % MEM_SIZE] - 1;
 			proc->reg[regdest] = proc->reg[regsrc];
 			if (data->verbose)
-				ft_printf("regdest = %d %.2X \n", regdest, regdest);
+				ft_printf(" r%d r%d\n", regsrc + 1, regdest);
 		}
 		else if (inst.param == IND_CODE)
 		{
-			dest = (proc->loca + (param % IDX_MOD)) % MEM_SIZE;
-			write_map(data, proc, dest, regsrc);
 			if (data->verbose)
-				ft_printf("mem[dest] = %d %.2X \n", data->mem[dest], data->mem[dest]);
+				ft_printf(" r%d", regsrc + 1);
+			dest = cw_get_new_loca(data, proc->loca + 2, 0) - 2;
+			write_map(data, proc, dest, regsrc);
 		}
 		proc->wait_cicle = 0;
 	}
@@ -103,20 +121,22 @@ void			cw_ld(t_cwdata *data, t_process *proc)
 	if (!proc->wait_cicle)
 		proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 	proc->wait_cicle++;
-	if (proc->wait_cicle == WAIT_LD + 1)
+	good_cicle(proc, WAIT_LD);
+	if (proc->wait_cicle == WAIT_LD)
 	{
-		init_inst(&inst);
+		init_inst(&inst, proc);
 		inst.label_size = check_opcode(proc->pc);
 		inst.bin = ft_itoa(proc->encod, 2);
 		inst.bin = ft_strjoin(ft_chartostr('0', 8 - ft_strlen(inst.bin)), inst.bin, 3);
 		if (!if_registre(data, proc, inst))
 			return ;
 		param = bin_offset(proc, data, 0, &inst);
-		reg = data->mem[(proc->loca + inst.label_size + 2) % MEM_SIZE];
+		reg = bin_offset(proc, data, 2, &inst);
 		if (data->verbose)
-			ft_printf("reg = %d %.2X, param = %d \n", reg, reg, param);
+			ft_printf(" %d r%d\n", param, reg);
 		proc->reg[reg - 1] = param;
 		change_carry(proc);
+		check_reg_carry(proc, proc->reg[reg - 1]);
 		proc->wait_cicle = 0;
 	}
 	else

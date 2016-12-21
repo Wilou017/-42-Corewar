@@ -61,6 +61,7 @@ typedef struct			s_instdata
 
 typedef struct			s_process
 {
+	int					name;
 	int					id;
 	int					id_champ;
 	int					if_live;
@@ -68,10 +69,12 @@ typedef struct			s_process
 	int					pc;
 	int					loca;
 	int					encod;
+	int					size;
 	int					carry;
 	int					*reg;
 	int					move;
 	int					wait_cicle;
+	int					good_cicle;
 }						t_process;
 
 typedef struct			s_header
