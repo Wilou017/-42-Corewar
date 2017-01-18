@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:07:07 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/18 20:01:30 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/18 21:02:24 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# define ABS(x) (x < 0) ? -x : x
+# define ABS(x) ((x < 0) ? -x : x)
 # define LEN(x) ft_strlen(x)
 # define DUP(x) ft_strdup(x)
 # define JOIN(x, y, z) ft_strjoin(x, y, z)

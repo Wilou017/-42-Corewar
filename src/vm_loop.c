@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2016/12/05 21:40:00 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/18 20:49:43 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	cw_check_cycle(t_cwdata *data, t_vm_data *vm_data)
 }
 
 
-static void	cw_map_init()
+static void	cw_map_init(t_cwdata *data)
 {
 	int i;
 
@@ -88,26 +88,27 @@ static void	cw_map_init()
 		ft_termcaps_poscurs(i, 0);
 	}
 	ft_printf("{bglblack}%*s{eoc}\n", COLONE_TEXT + 51, " ");
+	ft_termcaps_poscurs(16, COLONE_TEXT);
+	print_map(data);
 }
 void	cw_loop(t_cwdata *data)
 {
 	t_vm_data	vm_data;
-	int i = 0;
 
 	vm_data.check = 0;
 	vm_data.cur_cycle = 0;
 	if (data->show_vm)
-		cw_map_init();
+		cw_map_init(data);
 	init_process(data);
 	while (data->nb_process > 1 && data->cycle_to_die > 0)
 	{
-		if (data->show_vm && vm_data.cur_cycle % 50 == 0)
-		{
-			ft_termcaps_poscurs(16, COLONE_TEXT);
-			i++;
-			ft_printf("Nombre d'affichage de la map = %d", i);
-			print_map(data);
-		}
+		// if (data->show_vm && vm_data.cur_cycle % 50 == 0)
+		// {
+		//
+		// 	i++;
+		// 	ft_printf("Nombre d'affichage de la map = %d", i);
+		// 	print_map(data);
+		// }
 		corewar(data);
 		data->cur_cycle++;
 		vm_data.cur_cycle++;

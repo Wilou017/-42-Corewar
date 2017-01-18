@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmathe <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 19:30:07 by dmathe            #+#    #+#             */
-/*   Updated: 2016/12/08 19:30:24 by dmathe           ###   ########.fr       */
+/*   Updated: 2017/01/18 21:06:28 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ void		write_map(t_cwdata *data, t_process *proc, int dest, int src)
 	int		size;
 	int		octet;
 	int		value;
+	int		start_write;
 
 	size = sizeof(proc->reg[src]) - 1;
 	value = proc->reg[src];
+	start_write = dest % MEM_SIZE;
 	while (size >= 0)
 	{
 		octet = value & 0xFF;
@@ -27,4 +29,5 @@ void		write_map(t_cwdata *data, t_process *proc, int dest, int src)
 		data->mem[(dest + size) % MEM_SIZE] = octet;
 		size--;
 	}
+	vm_print(data, proc, start_write);
 }

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2016/12/05 21:31:51 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/18 20:57:56 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int			cw_distrib_padding(t_reedstruct *reed, int ret);
 */
 
 int			cw_norme1(t_reedstruct reed, t_header *champion);
+void		vm_print(t_cwdata *data, t_process *proc, int loca);
 
 /*
 ** src/creat_mem.c
