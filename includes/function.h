@@ -56,8 +56,7 @@ int			cw_get_new_loca(t_cwdata *data, int loca, int lfork);
 
 t_header	*cw_add_champ_to_lst(t_cwdata *data);
 void		cw_freeall(t_cwdata *data);
-void		cw_pushback_inst(t_header *champion, t_instnode *new);
-t_process	*cw_add_process_to_lst(t_cwdata *data, int id);
+t_process	*cw_add_process_to_lst(t_cwdata *data, int id, t_process *proc, int fork);
 
 /*
 ** src/fill_instruction.c
@@ -150,6 +149,7 @@ void		redirect_function(t_cwdata *data, t_func func, t_process *proc);
 **	src/utils.c
 */
 
+void	init_param(t_param *param);
 void	check_reg_carry(t_process *proc, int reg);
 void	change_carry(t_process *proc);
 void	good_cicle(t_process *proc, int limit);

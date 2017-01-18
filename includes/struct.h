@@ -43,21 +43,12 @@ typedef enum			e_func
 	AFF
 }						t_func;
 
-typedef struct			s_instnode
+typedef struct 			s_param
 {
-	int					*inst;
-	int					size;
-	int					encodage;
-	struct s_instnode	*next;
-	struct s_instnode	*prev;
-}						t_instnode;
-
-typedef struct			s_instdata
-{
-	int					size;
-	t_instnode			*start;
-	t_instnode			*end;
-}						t_instdata;
+	int					param1;
+	int					param2;
+	int					param3;
+}						t_param;
 
 typedef struct			s_process
 {
@@ -75,6 +66,7 @@ typedef struct			s_process
 	int					move;
 	int					wait_cicle;
 	int					good_cicle;
+	int					dont_move;
 }						t_process;
 
 typedef struct			s_header
@@ -87,7 +79,6 @@ typedef struct			s_header
 	int					*prog;
 	int					if_live;
 	int					nb_live;
-	t_instdata			inst;
 }						t_header;
 
 typedef struct			s_inst

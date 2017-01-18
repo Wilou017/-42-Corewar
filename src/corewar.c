@@ -53,12 +53,13 @@ int				corewar_start(t_process	*proc, t_cwdata *data)
 	{
 		redirect_function(data, proc->pc, proc);
 		proc->size = size_without_encod(proc->pc);
-		if (proc->move)
+		if (proc->move && !proc->dont_move)
 		{
 			proc->loca += size_without_encod(proc->pc);
 			proc->loca %= MEM_SIZE;
 			proc->pc = data->mem[proc->loca];
 		}
+		proc->dont_move = 0;
 		proc->move = 1;
 		return (1);
 	}

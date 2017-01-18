@@ -69,7 +69,7 @@ void		redirect_function(t_cwdata *data, t_func func, t_process *proc)
 	i = 0;
 	if (data->verbose && proc->good_cicle)
 	{
-		ft_printf("Size -%d- (%.4p -> %.4p) ", proc->size, proc->loca, proc->loca + proc->size);
+		ft_printf("Size -%d- (%.4p %d -> %.4p) ", proc->size, proc->loca, proc->loca, proc->loca + proc->size);
 		while (i < proc->size)
 		{
 			ft_printf("%.2X ", data->mem[(proc->loca + i) % MEM_SIZE]);
@@ -81,7 +81,7 @@ void		redirect_function(t_cwdata *data, t_func func, t_process *proc)
 	{
 		if (data->verbose && proc->good_cicle)
 		{
-			ft_printf("Joueur %d Process %d   |  live\n", -proc->id_champ, proc->name);
+			ft_printf("Joueur %d Process %d   |  live", -proc->id_champ, proc->name);
 		}
 		cw_live(data, proc);
 	}
@@ -145,7 +145,7 @@ void		redirect_function(t_cwdata *data, t_func func, t_process *proc)
 	{
 		if (data->verbose && proc->good_cicle)
 		{
-			ft_printf("Joueur %d Process %d   |  zjump\n", -proc->id_champ, proc->name);
+			ft_printf("Joueur %d Process %d   |  zjump", -proc->id_champ, proc->name);
 		}
 		cw_zjump(data, proc);
 	}

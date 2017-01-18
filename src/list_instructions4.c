@@ -53,7 +53,7 @@ void		cw_lldi(t_cwdata *data, t_process *proc)
 			param2 = proc->reg[param2 - 1];
 		param3 = bin_offset(proc, data, 4, &inst);
 		proc->reg[param3 - 1] = return_size_reg(data, proc, param1 + param2, 1);
-		change_carry(proc);
+		//change_carry(proc);
 		check_reg_carry(proc, proc->reg[param3 - 1]);
 		proc->wait_cicle = 0;
 	}
@@ -84,7 +84,7 @@ void			cw_lld(t_cwdata *data, t_process *proc)
 		if (data->verbose)
 			ft_printf("reg = %d %.2X, param = %d \n", reg, reg, param);
 		proc->reg[reg - 1] = param;
-		change_carry(proc);
+		//change_carry(proc);
 		check_reg_carry(proc, proc->reg[reg - 1]);
 		proc->wait_cicle = 0;
 	}

@@ -31,7 +31,7 @@ int				cw_get_new_loca(t_cwdata *data, int loca, int lfork)
 			new_loca = loca - (param % IDX_MOD);
 		new_loca = (new_loca < 0) ? new_loca + MEM_SIZE : new_loca;
 		if (data->verbose)
-			ft_printf("%d\n", -param);
+			ft_printf(" %d\n", -param);
 	}
 	else
 	{

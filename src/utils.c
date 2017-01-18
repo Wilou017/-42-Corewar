@@ -12,12 +12,17 @@
 
 #include <corewar.h>
 
+void	init_param(t_param *param)
+{
+	param->param1 = 0;
+	param->param2 = 0;
+	param->param3 = 0;
+}
+
 void	check_reg_carry(t_process *proc, int reg)
 {
 	if (reg == 0)
 		proc->carry = 1;
-	else
-		proc->carry = 0;
 }
 
 void	change_carry(t_process *proc)
@@ -52,12 +57,6 @@ int		return_size_reg(t_cwdata *data, t_process *proc, int adresse, int lldi)
 	value = (value << 8) + data->mem[(new_loca + 2) % MEM_SIZE];
 	value = (value << 8) + data->mem[(new_loca + 3) % MEM_SIZE];
 	if (data->verbose)
-	{	
-		ft_printf("loca = %d, new_loca = %d, value = %p\n", proc->loca, new_loca, value);
-		ft_printf("mem = %.2X %.2X %.2X %.2X\n", data->mem[(new_loca) % MEM_SIZE]\
-		, data->mem[(new_loca + 1) % MEM_SIZE]\
-		, data->mem[(new_loca + 2) % MEM_SIZE]\
-		, data->mem[(new_loca + 3) % MEM_SIZE]);
-	}
+		ft_printf(" %d", value);
 	return(value);
 }

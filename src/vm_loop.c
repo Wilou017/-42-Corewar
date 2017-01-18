@@ -14,10 +14,11 @@
 
 static void	cw_decrement(t_cwdata *data, t_vm_data *vm_data)
 {
-	if (data->verbose)
-		ft_printf("Decrement du cycle_to_die\n");
 	data->cycle_to_die -= CYCLE_DELTA;
+	if (data->verbose)
+		ft_printf("Decrement du cycle_to_die -> %d\n", data->cycle_to_die);
 	vm_data->check = 0;
+	data->nb_live_per_cycle = 0;
 }
 
 static int	cw_check_live(t_cwdata *data, t_vm_data *vm_data)
@@ -31,7 +32,11 @@ static int	cw_check_live(t_cwdata *data, t_vm_data *vm_data)
 	while (tmp)
 	{
 		proc = (t_process*)tmp->content;
-
+		if (proc->if_live == 0)
+		{
+			tmp = tmp->next;
+			continue ;
+		}
 		if (proc->nb_live == 0)
 		{
 			proc->if_live = 0;
@@ -39,27 +44,29 @@ static int	cw_check_live(t_cwdata *data, t_vm_data *vm_data)
 		}
 		else if (data->nb_live_per_cycle >= NBR_LIVE)
 			cw_decrement(data, vm_data);
+
 		if (data->show_vm)
 		{
 			ft_termcaps_poscurs(7 + (i++), COLONE_TEXT);
+			ft_printf("%d (%d) -> %s (live %d)\n", proc->id, proc->id_champ, (proc->if_live) ? "VIE" : "MORT", proc->nb_live);
 		}
-		ft_printf("%d (%d) -> %s (live %d)\n", proc->id, proc->id_champ, (proc->if_live) ? "VIE" : "MORT", proc->nb_live);
 		proc->nb_live = 0;
 		tmp = tmp->next;
 	}
-	ft_putendl("");
+	if (data->cycle_to_die > 0 && data->show_vm)
+		ft_putendl("");
 	return (1);
 }
 
 static void	cw_check_cycle(t_cwdata *data, t_vm_data *vm_data)
 {
-	cw_check_live(data, vm_data);
 	vm_data->check++;
 	if (vm_data->check == MAX_CHECKS)
 		cw_decrement(data, vm_data);
+	cw_check_live(data, vm_data);
 	data->nb_live_per_cycle = 0;
-	if (data->verbose)
-		ft_printf("cycle_to_die %d, Check %d -> Cycle %d\n", data->cycle_to_die, vm_data->check, data->cur_cycle);
+	// if (data->verbose)
+	// 	ft_printf("cycle_to_die %d, Check %d -> Cycle %d\n", data->cycle_to_die, vm_data->check, data->cur_cycle);
 	vm_data->cur_cycle = 0;
 }
 
@@ -106,6 +113,8 @@ void	cw_loop(t_cwdata *data)
 		vm_data.cur_cycle++;
 		if (vm_data.cur_cycle == data->cycle_to_die)
 			cw_check_cycle(data, &vm_data);
+		if (data->cycle_to_die < 1)
+			break ;
 		if (data->show_vm)
 			ft_termcaps_poscurs(3, COLONE_TEXT);
 		if (data->show_vm || data->verbose)
