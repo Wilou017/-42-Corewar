@@ -31,4 +31,5 @@ void	vm_print(t_cwdata *data, t_process *proc, int loca)
 		ft_termcaps_poscurs((loca + i) / NB_OCT_LINE + 3, ((loca + i) % NB_OCT_LINE) * 3 + 4);
 		ft_printf("%.2X ", data->mem[loca + i]);
 	}
+	ft_putstr("\033[0m");
 }

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 18:16:34 by dmathe            #+#    #+#             */
-/*   Updated: 2016/12/05 21:33:34 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/20 19:06:41 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int				corewar(t_cwdata *data)
 		if (data->show_vm)
 		{
 			ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 4);
-			usleep(5000);
+			// usleep(5000);
 		}
 		// if (data->verbose)
 		// 	ft_printf("name = %d, pc = %.2X\n", proc->id_champ, proc->pc);

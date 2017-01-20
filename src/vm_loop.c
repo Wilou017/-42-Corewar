@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2017/01/18 20:49:43 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/20 20:08:02 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,11 @@ void	cw_loop(t_cwdata *data)
 			ft_termcaps_poscurs(3, COLONE_TEXT);
 		if (data->show_vm || data->verbose)
 			ft_printf("> > > End of cycle {red}%d{eoc} < < <\n", data->cur_cycle);
+		if (data->show_vm)
+			ft_termcaps_poscurs(5, COLONE_TEXT);
+		if (data->show_vm || data->verbose)
+			ft_printf("> > > NB process {green}%d{eoc} < < <\n", data->nb_process);
 	}
+	ft_termcaps_poscurs(MEM_SIZE/NB_OCT_LINE + 5, 0);
+
 }
