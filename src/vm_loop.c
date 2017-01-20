@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2017/01/20 20:08:02 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/20 20:24:17 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ static int	cw_check_live(t_cwdata *data, t_vm_data *vm_data)
 		else if (data->nb_live_per_cycle >= NBR_LIVE)
 			cw_decrement(data, vm_data);
 
-		if (data->show_vm)
-		{
-			ft_termcaps_poscurs(7 + (i++), COLONE_TEXT);
-			ft_printf("%d (%d) -> %s (live %d)\n", proc->id, proc->id_champ, (proc->if_live) ? "VIE" : "MORT", proc->nb_live);
-		}
+		// if (data->show_vm)
+		// {
+		// 	ft_termcaps_poscurs(7 + (i++), COLONE_TEXT);
+		// 	ft_printf("%d (%d) -> %s (live %d)\n", proc->id, proc->id_champ, (proc->if_live) ? "VIE" : "MORT", proc->nb_live);
+		// }
 		proc->nb_live = 0;
 		tmp = tmp->next;
 	}
@@ -123,7 +123,7 @@ void	cw_loop(t_cwdata *data)
 		if (data->show_vm)
 			ft_termcaps_poscurs(5, COLONE_TEXT);
 		if (data->show_vm || data->verbose)
-			ft_printf("> > > NB process {green}%d{eoc} < < <\n", data->nb_process);
+			ft_printf("> > > NB process {green}%d/%d{eoc} < < <\n", data->nb_process, data->nb_process_total);
 	}
 	ft_termcaps_poscurs(MEM_SIZE/NB_OCT_LINE + 5, 0);
 

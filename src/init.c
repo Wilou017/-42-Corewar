@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:28:37 by amaitre           #+#    #+#             */
-/*   Updated: 2016/12/05 20:12:27 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/20 20:21:23 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	init_data_default(t_cwdata *data)
 	data->beginlist = NULL;
 	data->processlist = NULL;
 	data->nb_process = 0;
+	data->nb_process_total = 0;
 	data->lastdata = NULL;
 	data->begin_champ = ft_inttabnew(4, 0);
 	data->cur_cycle = 0;
