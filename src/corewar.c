@@ -87,8 +87,6 @@ int				corewar(t_cwdata *data)
 			ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 4);
 			// usleep(5000);
 		}
-		// if (data->verbose)
-		// 	ft_printf("name = %d, pc = %.2X\n", proc->id_champ, proc->pc);
 		corewar_start(proc, data);
 		tmp = tmp->next;
 	}

@@ -30,7 +30,6 @@ void			cw_sub(t_cwdata *data, t_process *proc)
 		proc->reg[data->mem[(proc->loca + 4) % MEM_SIZE] - 1] = \
 		proc->reg[data->mem[(proc->loca + 2) % MEM_SIZE] - 1] - \
 		proc->reg[data->mem[(proc->loca + 3) % MEM_SIZE] - 1];
-		//change_carry(proc);
 		check_reg_carry(proc, proc->reg[data->mem[(proc->loca + 4) % MEM_SIZE] - 1]);
 		proc->wait_cicle = 0;
 		if (data->verbose)
@@ -60,7 +59,6 @@ void			cw_add(t_cwdata *data, t_process *proc)
 		proc->reg[data->mem[(proc->loca + 4) % MEM_SIZE] - 1] = \
 		proc->reg[data->mem[(proc->loca + 2) % MEM_SIZE] - 1] + \
 		proc->reg[data->mem[(proc->loca + 3) % MEM_SIZE] - 1];
-		//change_carry(proc);
 		check_reg_carry(proc, proc->reg[data->mem[(proc->loca + 4) % MEM_SIZE] - 1]);
 		proc->wait_cicle = 0;
 		if (data->verbose)

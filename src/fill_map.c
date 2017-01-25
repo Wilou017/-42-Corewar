@@ -29,5 +29,6 @@ void		write_map(t_cwdata *data, t_process *proc, int dest, int src)
 		data->mem[(dest + size) % MEM_SIZE] = octet;
 		size--;
 	}
-	vm_print(data, proc, start_write);
+	if (data->show_vm)
+		vm_print(data, proc, start_write);
 }

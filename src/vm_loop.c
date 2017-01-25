@@ -45,11 +45,11 @@ static int	cw_check_live(t_cwdata *data, t_vm_data *vm_data)
 		else if (data->nb_live_per_cycle >= NBR_LIVE)
 			cw_decrement(data, vm_data);
 
-		if (data->show_vm)
-		{
-			ft_termcaps_poscurs(7 + (i++), COLONE_TEXT);
-			ft_printf("%d (%d) -> %s (live %d)\n", proc->id, proc->id_champ, (proc->if_live) ? "VIE" : "MORT", proc->nb_live);
-		}
+		// if (data->show_vm)
+		// {
+		// 	ft_termcaps_poscurs(7 + (i++), COLONE_TEXT);
+		// 	ft_printf("%d (%d) -> %s (live %d)\n", proc->id, proc->id_champ, (proc->if_live) ? "VIE" : "MORT", proc->nb_live);
+		// }
 		proc->nb_live = 0;
 		tmp = tmp->next;
 	}
@@ -114,8 +114,8 @@ void	cw_loop(t_cwdata *data)
 		vm_data.cur_cycle++;
 		if (vm_data.cur_cycle == data->cycle_to_die)
 			cw_check_cycle(data, &vm_data);
-		if (data->cycle_to_die < 1)
-			break ;
+		// if (data->cycle_to_die < 1)
+		// 	break ;
 		if (data->show_vm)
 			ft_termcaps_poscurs(3, COLONE_TEXT);
 		if (data->show_vm || data->verbose)

@@ -22,7 +22,9 @@ void	init_param(t_param *param)
 void	check_reg_carry(t_process *proc, int reg)
 {
 	if (reg == 0)
-		proc->carry = 1;
+	 	proc->carry = 1;
+	 else
+	 	proc->carry = 0;
 }
 
 void	change_carry(t_process *proc)
