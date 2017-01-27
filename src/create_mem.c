@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 15:29:21 by dmathe            #+#    #+#             */
-/*   Updated: 2017/01/18 21:03:06 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/27 18:45:02 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void		print_map(t_cwdata *data)
 	k = 3;
 	x = 1;
 	ft_termcaps_poscurs(3, 4);
+	ft_printf("{lblack}");
 	while (i < MEM_SIZE)
 	{
 		if (i % NB_OCT_LINE == 0 && i)
@@ -106,7 +107,7 @@ void		print_map(t_cwdata *data)
 		}
 		if (j < ((t_header *)tmp->content)->prog_size && i >= begin_champ(data, x))
 		{
-			ft_printf("{%s}%.2X{eoc}", data->color[-1 * ABS(((t_header *)tmp->content)->id)], data->mem[i]);
+			ft_printf("{%s}%.2X{lblack}", data->color[-1 * ABS(((t_header *)tmp->content)->id)], data->mem[i]);
 			j++;
 		}
 		else if (j == ((t_header *)tmp->content)->prog_size && tmp->next)
@@ -122,4 +123,5 @@ void		print_map(t_cwdata *data)
 			ft_printf(" ");
 		i++;
 	}
+	ft_printf("{eoc}");
 }

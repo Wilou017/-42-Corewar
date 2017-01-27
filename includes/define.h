@@ -46,7 +46,7 @@
 # define NBR_LIVE				21
 # define MAX_CHECKS				10
 # define NB_OCT_LINE			64
-# define CHAMP_COLOR			"Color: lred lblue lgreen lyellow"
+# define CHAMP_COLOR			"Color: red blue green yellow"
 
 typedef char	t_arg_type;
 
