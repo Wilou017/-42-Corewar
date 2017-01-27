@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:03:17 by amaitre           #+#    #+#             */
-/*   Updated: 2016/12/05 22:15:34 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/27 18:27:06 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,21 +65,4 @@ t_process	*cw_add_process_to_lst(t_cwdata *data, int id, t_process *proc, int fo
 	process_node = ft_lstnew((void *)&new_node, sizeof(new_node));
 	ft_lstadd(&data->processlist, process_node);
 	return ((t_process*)process_node->content);
-}
-
-void		cw_freeall(t_cwdata *data)
-{
-	t_list		*tmp;
-	t_list		*tmp2;
-
-	tmp = data->beginlist;
-	while (tmp)
-	{
-		free(((t_header*)tmp->content)->prog_name);
-		free(((t_header*)tmp->content)->comment);
-		free(tmp->content);
-		tmp2 = tmp;
-		tmp = tmp->next;
-		free(tmp2);
-	}
 }
