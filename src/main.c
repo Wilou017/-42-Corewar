@@ -23,7 +23,7 @@ static void	cw_get_winner(t_cwdata *data)
 		champ = ((t_header*)tmp->content);
 		if (data->last_champ_live == (int)champ->id)
 		{
-			ft_printf("Le joueur %d (%s) a gagné\n", data->last_champ_live, champ->prog_name);
+			ft_printf("Le joueur %d (%s) a gagné !\n", data->last_champ_live, champ->prog_name);
 			break;
 		}
 		tmp = tmp->next;
