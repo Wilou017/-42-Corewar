@@ -51,6 +51,7 @@ t_process	*cw_add_process_to_lst(t_cwdata *data, int id, t_process *proc, int fo
 	new_node.move = 1;
 	new_node.dont_move = 0;
 	data->nb_process++;
+	data->nb_process_total++;
 	if (!fork)
 		new_node.id_champ = id;
 	else
