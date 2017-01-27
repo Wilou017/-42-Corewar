@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2017/01/20 20:24:17 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/27 21:22:35 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	cw_decrement(t_cwdata *data, t_vm_data *vm_data)
 {
 	data->cycle_to_die -= CYCLE_DELTA;
-	// if (data->verbose)
+	if (data->verbose)
 		ft_printf("Decrement du cycle_to_die -> %d\n", data->cycle_to_die);
 	vm_data->check = 0;
 	data->nb_live_per_cycle = 0;
