@@ -133,7 +133,6 @@ void			cw_ld(t_cwdata *data, t_process *proc)
 		if (data->verbose)
 			ft_printf(" %d r%d\n", param, reg);
 		proc->reg[reg - 1] = param;
-		//change_carry(proc);
 		check_reg_carry(proc, proc->reg[reg - 1]);
 		proc->wait_cicle = 0;
 	}

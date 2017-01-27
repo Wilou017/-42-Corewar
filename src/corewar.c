@@ -16,9 +16,23 @@ int				not_opcode(t_process *proc, t_cwdata *data)
 {
 	if (proc->pc < 1 || proc->pc > 16)
 	{
+		if(data->show_vm)
+		{
+			ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 3);
+			ft_printf("{bgblack} ", data->mem[proc->loca]);
+			ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 6);
+			ft_printf(" ", data->mem[proc->loca]);
+		}
 		proc->loca += 1;
 		proc->loca %= MEM_SIZE;
 		proc->pc = data->mem[proc->loca];
+		if(data->show_vm)
+		{
+			ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 3);
+			ft_printf("{bglwhite} ", data->mem[proc->loca]);
+			ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 6);
+			ft_printf(" {eoc}", data->mem[proc->loca]);
+		}
 		return (0);
 	}
 	else
@@ -42,9 +56,23 @@ int				corewar_start(t_process	*proc, t_cwdata *data)
 			redirect_function(data, proc->pc, proc);
 		if (proc->move)
 		{
+			if(data->show_vm)
+			{
+				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 3);
+				ft_printf("{bgblack} ", data->mem[proc->loca]);
+				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 6);
+				ft_printf(" ", data->mem[proc->loca]);
+			}
 			proc->loca += proc->size;
 			proc->loca %= MEM_SIZE;
 			proc->pc = data->mem[proc->loca];
+			if(data->show_vm)
+			{
+				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 3);
+				ft_printf("{bglwhite} ", data->mem[proc->loca]);
+				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 6);
+				ft_printf(" {eoc}", data->mem[proc->loca]);
+			}
 		}
 		proc->move = 1;
 		return (1);
@@ -55,9 +83,23 @@ int				corewar_start(t_process	*proc, t_cwdata *data)
 		proc->size = size_without_encod(proc->pc);
 		if (proc->move && !proc->dont_move)
 		{
+			if(data->show_vm)
+			{
+				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 3);
+				ft_printf("{bgblack} ", data->mem[proc->loca]);
+				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 6);
+				ft_printf(" ", data->mem[proc->loca]);
+			}
 			proc->loca += size_without_encod(proc->pc);
 			proc->loca %= MEM_SIZE;
 			proc->pc = data->mem[proc->loca];
+			if(data->show_vm)
+			{
+				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 3);
+				ft_printf("{bglwhite} ", data->mem[proc->loca]);
+				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 6);
+				ft_printf(" {eoc}", data->mem[proc->loca]);
+			}
 		}
 		proc->dont_move = 0;
 		proc->move = 1;
@@ -81,11 +123,6 @@ int				corewar(t_cwdata *data)
 		{
 			tmp = tmp->next;
 			continue ;
-		}
-		if (data->show_vm)
-		{
-			ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 4);
-			// usleep(5000);
 		}
 		corewar_start(proc, data);
 		tmp = tmp->next;

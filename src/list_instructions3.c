@@ -77,9 +77,23 @@ void	cw_zjump(t_cwdata *data, t_process *proc)
 	{
 		if (proc->carry)
 		{
+			if(data->show_vm)
+			{
+				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 3);
+				ft_printf("{bgblack} ", data->mem[proc->loca]);
+				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 6);
+				ft_printf(" ", data->mem[proc->loca]);
+			}
 			proc->loca = cw_get_new_loca(data, proc->loca, 0);
 			proc->pc = data->mem[proc->loca];
 			proc->dont_move = 1;
+			if(data->show_vm)
+			{
+				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 3);
+				ft_printf("{bglwhite} ", data->mem[proc->loca]);
+				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 6);
+				ft_printf(" {eoc}", data->mem[proc->loca]);
+			}
 		}
 		else if (data->verbose)
 			ft_printf(" FAILED\n");

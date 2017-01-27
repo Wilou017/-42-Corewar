@@ -83,7 +83,6 @@ void			cw_lld(t_cwdata *data, t_process *proc)
 		if (data->verbose)
 			ft_printf("reg = %d %.2X, param = %d \n", reg, reg, param);
 		proc->reg[reg - 1] = param;
-		//change_carry(proc);
 		check_reg_carry(proc, proc->reg[reg - 1]);
 		proc->wait_cicle = 0;
 	}
