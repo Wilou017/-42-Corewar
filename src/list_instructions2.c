@@ -143,7 +143,6 @@ void		cw_xor(t_cwdata *data, t_process *proc)
 		param3 = bin_offset(proc, data, 4, &inst);
 		print_verbose(data, param3, 1, inst);
 		proc->reg[param3 - 1] = param1 ^ param2;
-		//change_carry(proc);
 		check_reg_carry(proc, proc->reg[param3 - 1]);
 		proc->wait_cicle = 0;
 	}
@@ -183,7 +182,6 @@ void		cw_or(t_cwdata *data, t_process *proc)
 		param3 = bin_offset(proc, data, 4, &inst);
 		print_verbose(data, param3, 1, inst);
 		proc->reg[param3 - 1] = param1 | param2;
-		//change_carry(proc);
 		check_reg_carry(proc, proc->reg[param3 - 1]);
 		proc->wait_cicle = 0;
 	}
@@ -221,7 +219,6 @@ void		cw_and(t_cwdata *data, t_process *proc)
 		param3 = bin_offset(proc, data, 4, &inst);
 		print_verbose(data, param1, 1, inst);
 		proc->reg[param3 - 1] = param1 & param2;
-		//change_carry(proc);
 		check_reg_carry(proc, proc->reg[param3 - 1]);
 		proc->wait_cicle = 0;
 	}

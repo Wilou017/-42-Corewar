@@ -12,6 +12,34 @@
 
 #include <corewar.h>
 
+int		return_num_champ(t_process *proc, t_cwdata *data)
+{
+	int	tmp1;
+	int	tmp2;
+	int	tmp3;
+	int	tmp4;
+	int	value;
+
+	if (data->mem[(proc->loca + 1) % MEM_SIZE] > 0x7f)
+	{
+		tmp1 = 0xFF - data->mem[(proc->loca + 1) % MEM_SIZE];
+		tmp2 = 0xFF - data->mem[(proc->loca + 2) % MEM_SIZE];
+		tmp3 = 0xFF - data->mem[(proc->loca + 3) % MEM_SIZE];
+		tmp4 = 0xFF - data->mem[(proc->loca + 4) % MEM_SIZE];
+		value = ((tmp1 << 8) + tmp2);
+		value = ((value << 8) + tmp3);
+		value = ((value << 8) + tmp4) + 1;
+		value = -value;
+	}
+	else
+	{
+		value = (data->mem[(proc->loca + 1) % MEM_SIZE] << 8) + data->mem[(proc->loca + 2) % MEM_SIZE];
+		value = (value << 8) + data->mem[(proc->loca + 3) % MEM_SIZE];
+		value = (value << 8) + data->mem[(proc->loca + 4) % MEM_SIZE];
+	}
+	return (value);
+}
+
 int		bin_offset(t_process *proc, t_cwdata *data, int param, t_inst *inst)
 {
 	int	value;

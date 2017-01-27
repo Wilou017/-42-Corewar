@@ -53,7 +53,6 @@ void		cw_lldi(t_cwdata *data, t_process *proc)
 			param2 = proc->reg[param2 - 1];
 		param3 = bin_offset(proc, data, 4, &inst);
 		proc->reg[param3 - 1] = return_size_reg(data, proc, param1 + param2, 1);
-		//change_carry(proc);
 		check_reg_carry(proc, proc->reg[param3 - 1]);
 		proc->wait_cicle = 0;
 	}

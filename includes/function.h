@@ -161,6 +161,7 @@ int		return_size_reg(t_cwdata *data, t_process *proc, int adresse, int lldi);
 **	src/offset.c
 */
 
+int		return_num_champ(t_process *proc, t_cwdata *data);
 int		bin_offset(t_process *proc, t_cwdata *data, int param, t_inst *inst);
 
 /*

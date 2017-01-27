@@ -12,6 +12,24 @@
 
 #include <corewar.h>
 
+static void	cw_get_winner(t_cwdata *data)
+{
+	t_list		*tmp;
+	t_header	*champ;
+
+	tmp = data->beginlist;
+	while (tmp)
+	{
+		champ = ((t_header*)tmp->content);
+		if (data->last_champ_live == (int)champ->id)
+		{
+			ft_printf("Le joueur %d (%s) a gagné\n", data->last_champ_live, champ->prog_name);
+			break;
+		}
+		tmp = tmp->next;
+	}
+}
+
 int	main(int argc, t_tab argv)
 {
 	t_cwdata	data;
@@ -24,6 +42,7 @@ int	main(int argc, t_tab argv)
 			return (1);
 		fill_map(&data);
 		cw_loop(&data);
+		cw_get_winner(&data);
 		cw_freeall(&data);
 	}
 	else

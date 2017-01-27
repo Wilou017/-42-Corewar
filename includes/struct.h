@@ -91,6 +91,7 @@ typedef struct			s_inst
 
 typedef	struct			s_cwdata
 {
+	int					last_champ_live;
 	int					*mem;
 	int					cur_cycle;
 	int					cycle_to_die;

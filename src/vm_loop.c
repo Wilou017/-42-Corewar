@@ -102,20 +102,11 @@ void	cw_loop(t_cwdata *data)
 	init_process(data);
 	while (data->nb_process > 1 && data->cycle_to_die > 0)
 	{
-		// if (data->show_vm && vm_data.cur_cycle % 50 == 0)
-		// {
-		//
-		// 	i++;
-		// 	ft_printf("Nombre d'affichage de la map = %d", i);
-		// 	print_map(data);
-		// }
 		corewar(data);
 		data->cur_cycle++;
 		vm_data.cur_cycle++;
 		if (vm_data.cur_cycle == data->cycle_to_die)
 			cw_check_cycle(data, &vm_data);
-		// if (data->cycle_to_die < 1)
-		// 	break ;
 		if (data->show_vm)
 			ft_termcaps_poscurs(3, COLONE_TEXT);
 		if (data->show_vm || data->verbose)
@@ -125,6 +116,6 @@ void	cw_loop(t_cwdata *data)
 		if (data->show_vm || data->verbose)
 			ft_printf("> > > NB process {green}%d{eoc} < < <\n", data->nb_process);
 	}
-	ft_termcaps_poscurs(MEM_SIZE/NB_OCT_LINE + 5, 0);
-
+	if (data->show_vm)
+		ft_termcaps_poscurs(MEM_SIZE/NB_OCT_LINE + 5, 0);
 }

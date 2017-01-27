@@ -14,15 +14,22 @@
 
 void	cw_live(t_cwdata *data, t_process *proc)
 {
+	int	num_champ;
+
 	proc->wait_cicle++;
 	good_cicle(proc, WAIT_LIVE);
 	if (proc->wait_cicle == WAIT_LIVE)
 	{
+		num_champ = return_num_champ(proc, data);
 		proc->nb_live++;
 		data->nb_live_per_cycle++;
 		proc->wait_cicle = 0;
 		if (data->verbose)
+		{
 			ft_printf(" %d\n", proc->id_champ);
+			ft_printf("Un processus dit que le joueur %d est en vie", num_champ);
+		}
+		data->last_champ_live = num_champ;
 	}
 	else
 		proc->move = 0;
