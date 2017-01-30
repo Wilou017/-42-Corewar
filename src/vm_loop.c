@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2017/01/27 21:22:35 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/30 16:53:46 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ static int	cw_check_live(t_cwdata *data, t_vm_data *vm_data)
 {
 	t_list		*tmp;
 	t_process	*proc;
-	int			i;
 
 	tmp = data->processlist;
-	i = 1;
 	while (tmp)
 	{
 		proc = (t_process*)tmp->content;

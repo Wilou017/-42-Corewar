@@ -6,7 +6,7 @@
 #    By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 12:19:31 by amaitre           #+#    #+#              #
-#    Updated: 2016/12/05 21:30:32 by amaitre          ###   ########.fr        #
+#    Updated: 2017/01/30 16:50:31 by amaitre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ SRC					+=	src/opcode4.c
 SRC					+=	src/check_param_op.c
 SRC					+=	src/get_function.c
 SRC					+=	src/lst_function.c
-SRC					+=	src/fill_instructions.c
 SRC					+=	src/distrib_function.c
 SRC					+=	src/norme_func.c
 SRC					+=	src/create_mem.c

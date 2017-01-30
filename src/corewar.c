@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 18:16:34 by dmathe            #+#    #+#             */
-/*   Updated: 2017/01/20 19:06:41 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/30 16:49:25 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,9 @@ int				not_opcode(t_process *proc, t_cwdata *data)
 
 int				corewar_start(t_process	*proc, t_cwdata *data)
 {
-	int			size;
 	int			ok;
 
 	ok = 0;
-	size = 0;
 	if (!not_opcode(proc, data))
 		return (0);
 	if (if_encodage(proc->pc))
