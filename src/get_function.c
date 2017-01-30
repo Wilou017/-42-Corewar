@@ -121,8 +121,9 @@ int				cw_get_champion(t_cwdata *data, int i)
 	t_header	*champion;
 
 	data->nb_champion++;
+	data->init = 1;
 	champion = cw_add_champ_to_lst(data);
-
+	data->init = 0;
 	//ft_printf("\nid -> %d\n", champion->id);
 	ft_strdel(&data->lastdata);
 

@@ -43,7 +43,7 @@ t_process	*cw_add_process_to_lst(t_cwdata *data, int id, t_process *proc, int fo
 	i++;
 	new_node.encod = 0;
 	new_node.size = 0;
-	new_node.carry = 0;
+	new_node.carry = 1;
 	new_node.id = data->nb_process;
 	new_node.if_live = 1;
 	new_node.nb_live = 0;
@@ -60,7 +60,7 @@ t_process	*cw_add_process_to_lst(t_cwdata *data, int id, t_process *proc, int fo
 	new_node.reg = ft_inttabnew(REG_NUMBER, 0);
 	if (!fork)
 		new_node.reg[0] = id;
-	else
+	else if (!data->init)
 		new_node.reg = ft_inttabdup(proc->reg, REG_NUMBER);
 	process_node = ft_lstnew((void *)&new_node, sizeof(new_node));
 	ft_lstadd(&data->processlist, process_node);

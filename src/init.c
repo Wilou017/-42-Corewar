@@ -14,6 +14,7 @@
 
 static void	init_data_default(t_cwdata *data)
 {
+	data->init = 0;
 	data->last_champ_live = 0;
 	data->mem = ft_inttabnew(MEM_SIZE, 0);
 	data->dumpcycles = -1;

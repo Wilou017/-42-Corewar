@@ -26,8 +26,8 @@ void	cw_live(t_cwdata *data, t_process *proc)
 		proc->wait_cicle = 0;
 		if (data->verbose)
 		{
-			ft_printf(" %d\n", proc->id_champ);
-			ft_printf("Un processus dit que le joueur %d est en vie", num_champ);
+			ft_printf(" %d\n", num_champ);
+			ft_printf("Un processus dit que le joueur %d est en vie\n", num_champ);
 		}
 		data->last_champ_live = num_champ;
 	}
@@ -44,7 +44,9 @@ void	cw_fork(t_cwdata *data, t_process *proc)
 	if (proc->wait_cicle == WAIT_FORK)
 	{
 		new = cw_add_process_to_lst(data, proc->id_champ, proc, 1);
+		ft_printf("proc->loca = %d\n", proc->loca);
 		new->loca = cw_get_new_loca(data, proc->loca, 0);
+		ft_printf("new->loca = %d\n", new->loca);
 		new->pc = data->mem[new->loca];
 		proc->wait_cicle = 0;
 	}

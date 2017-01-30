@@ -58,7 +58,5 @@ int		return_size_reg(t_cwdata *data, t_process *proc, int adresse, int lldi)
 	value = (data->mem[new_loca] << 8) + data->mem[(new_loca + 1) % MEM_SIZE];
 	value = (value << 8) + data->mem[(new_loca + 2) % MEM_SIZE];
 	value = (value << 8) + data->mem[(new_loca + 3) % MEM_SIZE];
-	if (data->verbose)
-		ft_printf(" %d", value);
 	return(value);
 }

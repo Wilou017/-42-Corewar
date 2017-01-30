@@ -15,7 +15,7 @@
 static void	cw_decrement(t_cwdata *data, t_vm_data *vm_data)
 {
 	data->cycle_to_die -= CYCLE_DELTA;
-	// if (data->verbose)
+	if (data->verbose)
 		ft_printf("Decrement du cycle_to_die -> %d\n", data->cycle_to_die);
 	vm_data->check = 0;
 	data->nb_live_per_cycle = 0;
@@ -114,8 +114,8 @@ void	cw_loop(t_cwdata *data)
 		if (data->show_vm)
 			ft_termcaps_poscurs(5, COLONE_TEXT);
 		// if (data->show_vm || data->verbose)
-			ft_printf("> > > NB process {green}%d/%d{eoc} < < <\n", data->nb_process, data->nb_process_total);
-		//usleep(100000);
+		//	ft_printf("> > > NB process {green}%d/%d{eoc} < < <\n", data->nb_process, data->nb_process_total);
+		// usleep(100000);
 	}
 	if (data->show_vm)
 		ft_termcaps_poscurs(MEM_SIZE/NB_OCT_LINE + 5, 0);

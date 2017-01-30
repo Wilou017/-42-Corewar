@@ -84,10 +84,12 @@ void		cw_ldi(t_cwdata *data, t_process *proc)
 			param1 = proc->reg[param1 - 1];
 			param.param1 = param1;
 			inst.param = 0;
-			print_verbose(data, param1, 0, inst);
 		}
+		else if (inst.param == DIR_CODE)
+			param.param1 = param1;
 		else
 			param.param1 = return_size_reg(data, proc, param1, 0);
+		print_verbose(data, param.param1, 0, inst);
 		param2 = bin_offset(proc, data, 2, &inst);
 		if (inst.param == REG_CODE)
 		{
@@ -101,10 +103,10 @@ void		cw_ldi(t_cwdata *data, t_process *proc)
 		param3 = bin_offset(proc, data, 4, &inst);
 		print_verbose(data, param3, 1, inst);
 		if (data->verbose)
-			ft_printf("              | -> load from %d + %d =", param.param1, param.param2);
-		proc->reg[param3 - 1] = return_size_reg(data, proc, param1 + param2, 0);
+			ft_printf("              | -> load from %d + %d = %d\n", param.param1, param.param2, param.param1 + param.param2);
+		proc->reg[param3 - 1] = return_size_reg(data, proc, param.param1 + param.param2, 0);
 		if (data->verbose)
-			ft_printf("\n");
+			ft_printf("return_reg = %d\n", proc->reg[param3 - 1]);
 		proc->wait_cicle = 0;
 	}
 	else
