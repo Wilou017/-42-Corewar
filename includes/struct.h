@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2017/01/20 20:19:36 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/30 16:52:58 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct			s_process
 
 typedef struct			s_header
 {
-	unsigned int		id;
+	int					id;
 	unsigned int		magic;
 	char				*prog_name;
 	unsigned int		prog_size;

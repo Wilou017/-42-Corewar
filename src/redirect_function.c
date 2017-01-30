@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 16:57:33 by amaitre           #+#    #+#             */
-/*   Updated: 2016/12/05 22:09:41 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/30 16:54:49 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void		redirect_function2(t_cwdata *data, t_func func, t_process *proc)
 	}
 	else if (func == LFORK)
 	{
-		if (data->verbose)
-			;
+		if (data->verbose && proc->good_cicle)
+			ft_printf("Joueur %d Process %d   |  lfork\n", -proc->id_champ, proc->name);
 		cw_lfork(data, proc);
 	}
 	else if (func == AFF)
