@@ -116,7 +116,8 @@ int				cw_get_champion(t_cwdata *data, int i)
 
 	data->nb_champion++;
 	data->init = 1;
-	champion = cw_add_champ_to_lst(data);
+	if (!(champion = cw_add_champ_to_lst(data)))
+		return (ft_printf("{red}Error\n"));
 	data->init = 0;
 	ft_strdel(&data->lastdata);
 	if (ft_strlen(data->v[i]) < 5 ||

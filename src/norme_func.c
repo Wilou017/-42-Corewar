@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:17:46 by amaitre           #+#    #+#             */
-/*   Updated: 2017/01/31 19:08:36 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/31 19:22:24 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,14 @@ int		cw_id_champ_valid(t_cwdata *data, int id)
 char	*right_color(t_cwdata *data, int id_champ)
 {
 	return data->color[(ABS(id_champ) % 5)];
+}
+
+int		cw_get_valid_champ_id(t_cwdata *data)
+{
+	int	id;
+
+	id = (data->lastdata) ? ft_atoi(data->lastdata) : -(data->nb_champion);
+	while (cw_id_champ_valid(data, id))
+		id = (id > 0) ? (id + 1) : (id - 1);
+	return (id);
 }
