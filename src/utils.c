@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/13 20:17:02 by dmathe            #+#    #+#             */
-/*   Updated: 2017/01/31 16:10:44 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/31 17:26:04 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_param(t_param *param)
 
 void	check_reg_carry(t_process *proc, int reg)
 {
-	if (reg == 0 || 1)
+	if (reg == 0)
 	 	proc->carry = 1;
 	 else
 	 	proc->carry = 0;

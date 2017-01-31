@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:24:41 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/25 16:00:43 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/31 17:55:31 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ int				cw_get_new_loca(t_cwdata *data, int loca, int lfork)
 		tmp_param1 = 0xFF - data->mem[(loca + 1) % MEM_SIZE];
 		tmp_param2 = 0xFF - data->mem[(loca + 2) % MEM_SIZE];
 		param = ((tmp_param1 << 8) + tmp_param2) + 1;
-		if (lfork)
-			new_loca = loca - param;
-		else
-			new_loca = loca - (param % IDX_MOD);
+		new_loca = (lfork) ? (loca - param) : (loca - (param % IDX_MOD));
 		new_loca = (new_loca < 0) ? new_loca + MEM_SIZE : new_loca;
 		if (data->verbose)
 			ft_printf(" %d\n", -param);
@@ -36,10 +33,7 @@ int				cw_get_new_loca(t_cwdata *data, int loca, int lfork)
 	else
 	{
 		param = (data->mem[(loca + 1) % MEM_SIZE] << 8) + data->mem[(loca + 2) % MEM_SIZE];
-		if (lfork)
-			new_loca = (loca + param) % MEM_SIZE;
-		else
-			new_loca = (loca + (param % IDX_MOD)) % MEM_SIZE;
+		new_loca = (lfork) ? ((loca + param) % MEM_SIZE) : ((loca + (param % IDX_MOD)) % MEM_SIZE);
 		if (data->verbose)
 			ft_printf(" %d\n", param);
 	}

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:03:17 by amaitre           #+#    #+#             */
-/*   Updated: 2017/01/31 15:44:54 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/31 17:39:25 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,7 @@ t_process	*cw_add_process_to_lst(t_cwdata *data, int id, t_process *proc, int fo
 	new_node.dont_move = 0;
 	data->nb_process++;
 	data->nb_process_total++;
-	if (!fork)
-		new_node.id_champ = id;
-	else
-		new_node.id_champ = proc->id_champ;
+	new_node.id_champ = id;
 	new_node.good_cicle = 0;
 	new_node.reg = ft_inttabnew(REG_NUMBER, 0);
 	if (!fork)
