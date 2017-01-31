@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 17:32:27 by amaitre           #+#    #+#             */
-/*   Updated: 2016/12/05 22:11:59 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/31 15:59:12 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	cw_fork(t_cwdata *data, t_process *proc)
 	if (proc->wait_cicle == WAIT_FORK)
 	{
 		new = cw_add_process_to_lst(data, proc->id_champ, proc, 1);
-		ft_printf("proc->loca = %d\n", proc->loca);
+		// ft_printf("proc->loca = %d\n", proc->loca);
 		new->loca = cw_get_new_loca(data, proc->loca, 0);
-		ft_printf("new->loca = %d\n", new->loca);
+		// ft_printf("new->loca = %d\n", new->loca);
 		new->pc = data->mem[new->loca];
 		proc->wait_cicle = 0;
 	}

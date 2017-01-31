@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmathe <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/13 20:17:02 by dmathe            #+#    #+#             */
-/*   Updated: 2016/12/13 20:17:03 by dmathe           ###   ########.fr       */
+/*   Updated: 2017/01/31 16:10:44 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_param(t_param *param)
 
 void	check_reg_carry(t_process *proc, int reg)
 {
-	if (reg == 0)
+	if (reg == 0 || 1)
 	 	proc->carry = 1;
 	 else
 	 	proc->carry = 0;

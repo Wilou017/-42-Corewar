@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:15:30 by amaitre           #+#    #+#             */
-/*   Updated: 2016/11/26 16:41:29 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/31 16:12:41 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void	cw_get_winner(t_cwdata *data)
 	while (tmp)
 	{
 		champ = ((t_header*)tmp->content);
-		if (data->last_champ_live == (int)champ->id)
+		if (data->last_champ_live == champ->id)
 		{
-			ft_printf("Le joueur %d (%s) a gagné !\n", data->last_champ_live, champ->prog_name);
+			ft_printf("Le joueur %d (%s) a gagné !\n", ABS(data->last_champ_live), champ->prog_name);
 			break;
 		}
 		tmp = tmp->next;

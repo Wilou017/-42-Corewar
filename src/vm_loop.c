@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2017/01/30 16:53:46 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/31 16:13:03 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,24 @@ static void	cw_decrement(t_cwdata *data, t_vm_data *vm_data)
 static int	cw_check_live(t_cwdata *data, t_vm_data *vm_data)
 {
 	t_list		*tmp;
+	t_list		*prev_tmp;
 	t_process	*proc;
 
 	tmp = data->processlist;
+	prev_tmp = NULL;
 	while (tmp)
 	{
 		proc = (t_process*)tmp->content;
 		if (proc->if_live == 0)
 		{
+			if(data->show_vm)
+			{
+				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 3);
+				ft_printf("{bgblack} ", data->mem[proc->loca]);
+				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 6);
+				ft_printf(" ", data->mem[proc->loca]);
+			}
+			// cw_del_process_to_lst(data, prev_tmp, tmp);
 			tmp = tmp->next;
 			continue ;
 		}
@@ -43,12 +53,8 @@ static int	cw_check_live(t_cwdata *data, t_vm_data *vm_data)
 		else if (data->nb_live_per_cycle >= NBR_LIVE)
 			cw_decrement(data, vm_data);
 
-		// if (data->show_vm)
-		// {
-		// 	ft_termcaps_poscurs(7 + (i++), COLONE_TEXT);
-		// 	ft_printf("%d (%d) -> %s (live %d)\n", proc->id, proc->id_champ, (proc->if_live) ? "VIE" : "MORT", proc->nb_live);
-		// }
 		proc->nb_live = 0;
+		prev_tmp = tmp;
 		tmp = tmp->next;
 	}
 	if (data->cycle_to_die > 0 && data->show_vm)
@@ -63,8 +69,6 @@ static void	cw_check_cycle(t_cwdata *data, t_vm_data *vm_data)
 		cw_decrement(data, vm_data);
 	cw_check_live(data, vm_data);
 	data->nb_live_per_cycle = 0;
-	// if (data->verbose)
-	// 	ft_printf("cycle_to_die %d, Check %d -> Cycle %d\n", data->cycle_to_die, vm_data->check, data->cur_cycle);
 	vm_data->cur_cycle = 0;
 }
 
@@ -89,6 +93,43 @@ static void	cw_map_init(t_cwdata *data)
 	ft_termcaps_poscurs(16, COLONE_TEXT);
 	print_map(data);
 }
+
+static void	cw_data_print(t_cwdata *data)
+{
+	t_list		*tmp;
+	t_header	*champ;
+	int			i;
+
+	if (data->show_vm)
+	{
+		ft_termcaps_poscurs(5, COLONE_TEXT);
+		ft_printf("> > > NB process {green}%d/%d{eoc}", data->nb_process, data->nb_process_total);
+		ft_termcaps_poscurs(6, COLONE_TEXT);
+		ft_printf("> > > CYCLE TO DIE %d", data->cycle_to_die);
+
+		ft_termcaps_poscurs(7, COLONE_TEXT);
+		ft_printf("------------------------", data->nb_process, data->nb_process_total);
+
+		tmp = data->beginlist;
+		i = 0;
+		while (tmp)
+		{
+			ft_termcaps_poscurs(9 + i, COLONE_TEXT);
+			champ = ((t_header*)tmp->content);
+
+			ft_printf("{%s}%s{eoc} %s", data->color[ABS(champ->id)], champ->prog_name, (champ->id == data->last_champ_live) ? "*" : " ");
+
+			tmp = tmp->next;
+			i += 5;
+		}
+
+		ft_termcaps_poscurs(3, COLONE_TEXT);
+	}
+
+	if (data->show_vm || data->verbose)
+		ft_printf("> > > End of cycle {red}%d{eoc} < < <\n", data->cur_cycle);
+}
+
 void	cw_loop(t_cwdata *data)
 {
 	t_vm_data	vm_data;
@@ -105,15 +146,7 @@ void	cw_loop(t_cwdata *data)
 		vm_data.cur_cycle++;
 		if (vm_data.cur_cycle == data->cycle_to_die)
 			cw_check_cycle(data, &vm_data);
-		if (data->show_vm)
-			ft_termcaps_poscurs(3, COLONE_TEXT);
-		if (data->show_vm || data->verbose)
-			ft_printf("> > > End of cycle {red}%d{eoc} < < <\n", data->cur_cycle);
-		if (data->show_vm)
-			ft_termcaps_poscurs(5, COLONE_TEXT);
-		// if (data->show_vm || data->verbose)
-		//	ft_printf("> > > NB process {green}%d/%d{eoc} < < <\n", data->nb_process, data->nb_process_total);
-		// usleep(100000);
+		cw_data_print(data);
 	}
 	if (data->show_vm)
 		ft_termcaps_poscurs(MEM_SIZE/NB_OCT_LINE + 5, 0);
