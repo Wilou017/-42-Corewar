@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 17:32:27 by amaitre           #+#    #+#             */
-/*   Updated: 2017/01/31 19:00:54 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/31 19:08:21 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	cw_live(t_cwdata *data, t_process *proc)
 		proc->wait_cicle = 0;
 		if (data->verbose)
 			ft_printf("Un processus dit que le joueur %d est en vie\n", num_champ);
-		data->last_champ_live = (cw_id_champ_valid(data, num_champ)) ? data->last_champ_live : num_champ;
+		data->last_champ_live = (cw_id_champ_valid(data, num_champ)) ? num_champ :  data->last_champ_live;
 	}
 	else
 		proc->move = 0;

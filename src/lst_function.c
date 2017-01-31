@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:03:17 by amaitre           #+#    #+#             */
-/*   Updated: 2017/01/31 17:59:37 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/31 19:04:26 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ t_header	*cw_add_champ_to_lst(t_cwdata *data)
 	new_node.prog_name = ft_strnew(0);
 	new_node.comment = ft_strnew(0);
 	new_node.prog_size = 0;
-	new_node.id = (data->lastdata) ? ft_atoi(data->lastdata) :\
-	data->nb_champion;
-	new_node.id = -(new_node.id);
+	new_node.id = (data->lastdata) ? ft_atoi(data->lastdata) : -(data->nb_champion);
 	new_node.nb_live = 0;
 	new_node.if_live = 1;
 	cw_add_process_to_lst(data, new_node.id, proc, 0);

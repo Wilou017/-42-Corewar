@@ -118,15 +118,10 @@ int				cw_get_champion(t_cwdata *data, int i)
 	data->init = 1;
 	champion = cw_add_champ_to_lst(data);
 	data->init = 0;
-	//ft_printf("\nid -> %d\n", champion->id);
 	ft_strdel(&data->lastdata);
-
 	if (ft_strlen(data->v[i]) < 5 ||
 		ft_strcmp(&data->v[i][ft_strlen(data->v[i]) - 4], ".cor"))
 		return (ft_printf("{red}les champions doivent etre des fichier .cor\n"));
-
-	//ft_printf("Champion -> %s\n", data->v[i]);
-
 	if (reed_champion(data->v[i], champion))
 		return (1);
 	return (0);
