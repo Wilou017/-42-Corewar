@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2017/01/31 19:12:28 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/31 19:25:53 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	cw_check_live(t_cwdata *data, t_vm_data *vm_data)
 				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 6);
 				ft_printf(" ", data->mem[proc->loca]);
 			}
-			// cw_del_process_to_lst(data, prev_tmp, tmp);
+			cw_del_process_to_lst(data, prev_tmp, tmp);
 			tmp = tmp->next;
 			continue ;
 		}
