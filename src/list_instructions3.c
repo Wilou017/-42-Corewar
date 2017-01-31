@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 17:32:27 by amaitre           #+#    #+#             */
-/*   Updated: 2017/01/31 17:42:28 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/31 19:00:54 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,8 @@ void	cw_live(t_cwdata *data, t_process *proc)
 		data->nb_live_per_cycle++;
 		proc->wait_cicle = 0;
 		if (data->verbose)
-		{
-			ft_printf(" %d\n", num_champ);
 			ft_printf("Un processus dit que le joueur %d est en vie\n", num_champ);
-		}
-		data->last_champ_live = num_champ;
+		data->last_champ_live = (cw_id_champ_valid(data, num_champ)) ? data->last_champ_live : num_champ;
 	}
 	else
 		proc->move = 0;
@@ -90,7 +87,7 @@ void	cw_zjump(t_cwdata *data, t_process *proc)
 			if(data->show_vm)
 			{
 				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 3);
-				ft_printf("{bg%s} ", data->color[ABS(proc->id_champ)]);
+				ft_printf("{bg%s} ", right_color(data, proc->id_champ));
 				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 6);
 				ft_printf(" {eoc}");
 			}

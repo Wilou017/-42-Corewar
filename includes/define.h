@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:34:08 by amaitre           #+#    #+#             */
-/*   Updated: 2017/01/18 20:57:55 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/31 18:59:04 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # define NBR_LIVE				21
 # define MAX_CHECKS				10
 # define NB_OCT_LINE			64
-# define CHAMP_COLOR			"Color: red blue green yellow"
+# define CHAMP_COLOR			"pink red blue green yellow"
 
 typedef char	t_arg_type;
 

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 18:16:34 by dmathe            #+#    #+#             */
-/*   Updated: 2017/01/31 17:41:48 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/31 19:00:24 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int				not_opcode(t_process *proc, t_cwdata *data)
 		if(data->show_vm)
 		{
 			ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 3);
-			ft_printf("{bg%s} ", data->color[ABS(proc->id_champ)]);
+			ft_printf("{bg%s} ", right_color(data, proc->id_champ));
 			ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 6);
 			ft_printf(" {eoc}");
 		}
@@ -67,7 +67,7 @@ int				corewar_start(t_process	*proc, t_cwdata *data)
 			if(data->show_vm)
 			{
 				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 3);
-				ft_printf("{bg%s} ", data->color[ABS(proc->id_champ)]);
+				ft_printf("{bg%s} ", right_color(data, proc->id_champ));
 				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 6);
 				ft_printf(" {eoc}");
 			}
@@ -94,7 +94,7 @@ int				corewar_start(t_process	*proc, t_cwdata *data)
 			if(data->show_vm)
 			{
 				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 3);
-				ft_printf("{bg%s} ", data->color[ABS(proc->id_champ)]);
+				ft_printf("{bg%s} ", right_color(data, proc->id_champ));
 				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 6);
 				ft_printf(" {eoc}");
 			}

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:03:17 by amaitre           #+#    #+#             */
-/*   Updated: 2017/01/31 17:39:25 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/31 17:59:37 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_process	*cw_add_process_to_lst(t_cwdata *data, int id, t_process *proc, int fo
 	i++;
 	new_node.encod = 0;
 	new_node.size = 0;
-	new_node.carry = 1;
+	new_node.carry = (proc) ? proc->carry : 0;
 	new_node.id = data->nb_process;
 	new_node.if_live = 1;
 	new_node.nb_live = 0;

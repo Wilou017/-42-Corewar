@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2017/01/31 17:38:17 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/01/31 19:00:46 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ static void	cw_data_print(t_cwdata *data)
 			ft_termcaps_poscurs(10 + i, COLONE_TEXT);
 			champ = ((t_header*)tmp->content);
 
-			ft_printf("{%s}%s{eoc} %s", data->color[ABS(champ->id)], champ->prog_name, (champ->id == data->last_champ_live) ? "*" : "-");
+			ft_printf("{%s}%s{eoc} %s", right_color(data, champ->id), champ->prog_name, (champ->id == data->last_champ_live) ? "*" : "-");
 
 			tmp = tmp->next;
 			i += 5;
