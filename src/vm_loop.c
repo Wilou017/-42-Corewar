@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/01 19:15:12 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/01 19:23:29 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ static void	cw_data_print(t_cwdata *data)
 	}
 	if (data->show_vm)
 		ft_printf("> > > End of cycle {red}%d{eoc} < < <\n", data->cur_cycle);
+}
 
 void	cw_dump_mem(t_cwdata *data)
 {

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 17:32:27 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/01 19:22:12 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/01 19:22:38 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	cw_fork(t_cwdata *data, t_process *proc)
 
 	proc->wait_cicle++;
 	good_cicle(proc, WAIT_FORK);
+	ft_printf("coucou");
 	if (proc->wait_cicle >= WAIT_FORK)
 	{
 		new = cw_add_process_to_lst(data, proc->id_champ, proc);
