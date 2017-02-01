@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 17:32:27 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/01 19:49:22 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/01 20:36:23 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	cw_live(t_cwdata *data, t_process *proc)
 	int	num_champ;
 
 	proc->wait_cicle++;
-	if (data->verbose)
+	if (data->verbose && proc->wait_cicle != WAIT_LIVE)
 		ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_LIVE);
 	good_cicle(proc, WAIT_LIVE);
 	if (proc->wait_cicle == WAIT_LIVE)
@@ -39,7 +39,7 @@ void	cw_fork(t_cwdata *data, t_process *proc)
 	t_process	*new;
 
 	proc->wait_cicle++;
-	if (data->verbose)
+	if (data->verbose && proc->wait_cicle != WAIT_FORK)
 		ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_FORK);
 	good_cicle(proc, WAIT_FORK);
 	if (proc->wait_cicle >= WAIT_FORK)
@@ -58,7 +58,7 @@ void	cw_lfork(t_cwdata *data, t_process *proc)
 	t_process	*new;
 
 	proc->wait_cicle++;
-	if (data->verbose)
+	if (data->verbose && proc->wait_cicle != WAIT_LFORK)
 		ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_LFORK);
 	good_cicle(proc, WAIT_LFORK);
 	if (proc->wait_cicle == WAIT_LFORK)
@@ -75,7 +75,7 @@ void	cw_lfork(t_cwdata *data, t_process *proc)
 void	cw_zjump(t_cwdata *data, t_process *proc)
 {
 	proc->wait_cicle++;
-	if (data->verbose)
+	if (data->verbose && proc->wait_cicle != WAIT_ZJUMP)
 		ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_ZJUMP);
 	good_cicle(proc, WAIT_ZJUMP);
 	if (proc->wait_cicle == WAIT_ZJUMP)
