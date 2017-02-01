@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/01 19:47:29 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/01 19:58:28 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static int	cw_check_live(t_cwdata *data, t_vm_data *vm_data)
 	}
 	if (data->nb_live_per_cycle >= NBR_LIVE)
 			cw_decrement(data, vm_data);
-	if (data->cycle_to_die > 0 && data->show_vm)
-		ft_putendl("");
+	// if (data->cycle_to_die > 0 && data->show_vm)
+	// 	ft_putendl("");
 	return (1);
 }
 
