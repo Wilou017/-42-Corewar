@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2017/01/31 19:28:05 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/01 18:34:55 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,8 @@ static int	cw_check_live(t_cwdata *data, t_vm_data *vm_data)
 		if (proc->if_live == 0)
 		{
 			if(data->show_vm)
-			{
-				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 3);
-				ft_printf("{bgblack} ", data->mem[proc->loca]);
-				ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 6);
-				ft_printf(" ", data->mem[proc->loca]);
-			}
+				show_hide_proc(data, proc, 0);
+			ft_printf("Process %d die\n", proc->name);
 			cw_del_process_to_lst(data, prev_tmp, tmp);
 			tmp = tmp->next;
 			continue ;
@@ -52,7 +48,6 @@ static int	cw_check_live(t_cwdata *data, t_vm_data *vm_data)
 		}
 		else if (data->nb_live_per_cycle >= NBR_LIVE)
 			cw_decrement(data, vm_data);
-
 		proc->nb_live = 0;
 		prev_tmp = tmp;
 		tmp = tmp->next;
@@ -103,31 +98,44 @@ static void	cw_data_print(t_cwdata *data)
 	if (data->show_vm)
 	{
 		ft_termcaps_poscurs(5, COLONE_TEXT);
-		ft_printf("> > > NB process {green}%010d/%010d{eoc}", data->nb_process, data->nb_process_total);
+		ft_printf("> > > NB process {green}%10d/%10d{eoc}", data->nb_process, data->nb_process_total);
 		ft_termcaps_poscurs(6, COLONE_TEXT);
-		ft_printf("> > > CYCLE TO DIE %010d", data->cycle_to_die);
-
+		ft_printf("> > > CYCLE TO DIE %20d", data->cycle_to_die);
 		ft_termcaps_poscurs(8, COLONE_TEXT);
 		ft_printf("------------------------", data->nb_process, data->nb_process_total);
-
 		tmp = data->beginlist;
 		i = 0;
 		while (tmp)
 		{
 			ft_termcaps_poscurs(10 + i, COLONE_TEXT);
 			champ = ((t_header*)tmp->content);
-
 			ft_printf("{%s}%s{eoc} %s", right_color(data, champ->id), champ->prog_name, (champ->id == data->last_champ_live) ? "*" : "-");
-
 			tmp = tmp->next;
 			i += 5;
 		}
-
 		ft_termcaps_poscurs(3, COLONE_TEXT);
 	}
-
-	if (data->show_vm || data->verbose)
+	if (data->show_vm)
 		ft_printf("> > > End of cycle {red}%d{eoc} < < <\n", data->cur_cycle);
+	// if (data->verbose)
+		// ft_printf(" -- End of cycle %d\n --\n", data->cur_cycle);
+}
+
+void	cw_dump_mem(t_cwdata *data)
+{
+	int i;
+	int size;
+
+	i = 0;
+	size = (data->d) ? 64 : 32;
+	while (i < MEM_SIZE)
+	{
+		if (i % size == 0)
+			ft_printf("%#0.4x : ", i);
+		ft_printf("%0.2X ", data->mem[i++]);
+		if (i % size == 0)
+			ft_putchar('\n');
+	}
 }
 
 void	cw_loop(t_cwdata *data)
@@ -139,15 +147,18 @@ void	cw_loop(t_cwdata *data)
 	if (data->show_vm)
 		cw_map_init(data);
 	init_process(data);
-	while (data->nb_process > 1 && data->cycle_to_die > 0)
+	while (data->nb_process > 0 && data->cycle_to_die > 0)
 	{
-		corewar(data);
 		data->cur_cycle++;
 		vm_data.cur_cycle++;
+		if (data->verbose)
+			ft_printf("\n -- Start of cycle %d --\n", data->cur_cycle);
+		corewar(data);
+		if (data->dumpcycles > -1 && data->dumpcycles >= data->cur_cycle)
+			return(cw_dump_mem(data));
 		if (vm_data.cur_cycle == data->cycle_to_die)
 			cw_check_cycle(data, &vm_data);
 		cw_data_print(data);
+		// usleep(50000);
 	}
-	if (data->show_vm)
-		ft_termcaps_poscurs(MEM_SIZE/NB_OCT_LINE + 5, 0);
 }

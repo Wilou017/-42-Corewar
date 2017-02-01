@@ -6,7 +6,7 @@
 #    By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 12:19:31 by amaitre           #+#    #+#              #
-#    Updated: 2017/01/30 16:50:31 by amaitre          ###   ########.fr        #
+#    Updated: 2017/02/01 16:14:06 by amaitre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC					+=	src/get_function.c
 SRC					+=	src/lst_function.c
 SRC					+=	src/distrib_function.c
 SRC					+=	src/norme_func.c
+SRC					+=	src/norme_func2.c
 SRC					+=	src/create_mem.c
 SRC					+=	src/vm_loop.c
 SRC					+=	src/redirect_function.c
@@ -69,7 +70,12 @@ $(NAME): $(SRCO)
 	@echo "[\033[32m--------------------------\033[0m]"
 	@echo "[\033[36m------ OK - Corewar ------\033[0m]"
 	@echo "[\033[32m--------------------------\033[0m]"
-	@echo "\033[32muse: ./$(NAME) [-dump nbr_cycles] [[-n number] champion1.cor] ... \033[0m"
+	@echo "\033[32muse: ./$(NAME) [[-n number] champion1.cor] ... \033[0m"
+	@echo "\033[32mOptions:\033[0m"
+	@echo "\033[32m	[-v]              : Verbose\033[0m"
+	@echo "\033[32m	[-vm]             : Affichage de la loop\033[0m"
+	@echo "\033[32m	[-h]              : Cache les octets de -vm\033[0m"
+	@echo "\033[32m	[-dump nbr_cycles]: Affiche la memoire au cycle nbr_cycles\033[0m"
 
 libft: logo
 	@make -C libftprintf/

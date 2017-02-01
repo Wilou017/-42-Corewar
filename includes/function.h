@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2017/01/31 19:22:03 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/01 18:53:32 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int			cw_get_new_loca(t_cwdata *data, int loca, int lfork);
 */
 
 t_header	*cw_add_champ_to_lst(t_cwdata *data);
-t_process	*cw_add_process_to_lst(t_cwdata *data, int id, t_process *proc, int fork);
+t_process	*cw_add_process_to_lst(t_cwdata *data, int id, t_process *proc);
 void		cw_del_process_to_lst(t_cwdata *data, t_list *prev_proc, t_list *del_proc);
 
 /*
@@ -80,6 +80,7 @@ int			cw_distrib_program(t_reedstruct *reed, t_header *champion);
 int			cw_distrib_progsize(t_reedstruct *reed);
 int			cw_distrib_padding(t_reedstruct *reed, int ret);
 
+
 /*
 ** src/norme_func.c
 */
@@ -89,6 +90,12 @@ void		vm_print(t_cwdata *data, t_process *proc, int loca);
 int			cw_id_champ_valid(t_cwdata *data, int id);
 char		*right_color(t_cwdata *data, int id_champ);
 int			cw_get_valid_champ_id(t_cwdata *data);
+
+/*
+** src/norme_func2.c
+*/
+
+void	show_hide_proc(t_cwdata *data, t_process *proc, int force);
 
 /*
 ** src/creat_mem.c
@@ -138,6 +145,12 @@ int			param_lld(int param, int name);
 int			param_lldi(int param, int name);
 int			param_lfork(int param, int name);
 int			param_aff(int param, int name);
+
+/*
+** src/main.c
+*/
+
+void		cw_dump_mem(t_cwdata *data);
 
 /*
 ** src/encodage.c

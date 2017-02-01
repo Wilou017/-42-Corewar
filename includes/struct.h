@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2017/01/30 16:52:58 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/01 17:00:20 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ typedef enum			e_opt
 	DUMP,
 	N,
 	V,
-	VM
+	VM,
+	H
 }						t_opt;
 
 typedef enum			e_func
@@ -103,6 +104,8 @@ typedef	struct			s_cwdata
 	int					nb_champion;
 	int					show_vm;
 	int					verbose;
+	int					d;
+	int					hide;
 	int					nb_process;
 	int					nb_process_total;
 	int					nb_live_per_cycle;

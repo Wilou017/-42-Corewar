@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_map.c                                         :+:      :+:    :+:   */
+/*   norme_func2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 19:30:07 by dmathe            #+#    #+#             */
-/*   Updated: 2017/02/01 16:00:46 by amaitre          ###   ########.fr       */
+/*   Created: 2017/02/01 13:57:58 by amaitre           #+#    #+#             */
+/*   Updated: 2017/02/01 14:20:51 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar.h>
 
-void		write_map(t_cwdata *data, t_process *proc, int dest, int src)
+void	show_hide_proc(t_cwdata *data, t_process *proc, int force)
 {
-	int		size;
-	int		octet;
-	int		value;
-	int		start_write;
+	int boolean;
 
-	size = sizeof(proc->reg[src]) - 1;
-	value = proc->reg[src];
-	start_write = dest % MEM_SIZE;
-	while (size >= 0)
-	{
-		octet = value & 0xFF;
-		value >>= 8;
-		data->mem[(dest + size) % MEM_SIZE] = octet;
-		size--;
-	}
-	if (data->show_vm)
-		vm_print(data, proc, start_write);
+	boolean = (force == 0) ? force : 1;
+	ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 3);
+	ft_printf("{bg%s} ", (boolean) ? right_color(data, proc->id_champ) : "black");
+	ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 6);
+	ft_printf(" {eoc}");
 }
