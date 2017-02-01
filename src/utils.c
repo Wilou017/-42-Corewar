@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/13 20:17:02 by dmathe            #+#    #+#             */
-/*   Updated: 2017/01/31 17:26:04 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/01 19:26:51 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	change_carry(t_process *proc)
 
 void	good_cicle(t_process *proc, int limit)
 {
-	if (proc->wait_cicle == limit - 1)
+	if (proc->wait_cicle >= limit - 1)
 		proc->good_cicle = 1;
 	else
 		proc->good_cicle = 0;

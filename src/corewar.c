@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 18:16:34 by dmathe            #+#    #+#             */
-/*   Updated: 2017/02/01 19:10:47 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/01 19:42:15 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,13 @@ int				corewar(t_cwdata *data)
 	{
 		i+=8;
 		proc = ((t_process *)(tmp->content));
-		if (data->verbose)
-			ft_printf("\n> Process %d | loca = %d | Octet %0.2X\n", proc->name, proc->loca, data->mem[proc->loca]);
 		if (!proc->if_live)
 		{
 			tmp = tmp->next;
 			continue ;
 		}
+		if (data->verbose)
+			ft_printf("\n> Process %d | loca = %d | Octet %0.2X\n", proc->name, proc->loca, proc->pc);
 		corewar_start(proc, data);
 		tmp = tmp->next;
 	}

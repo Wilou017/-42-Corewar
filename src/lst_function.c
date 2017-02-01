@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:03:17 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/01 19:08:25 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/01 19:46:20 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ void	cw_del_process_to_lst(t_cwdata *data, t_list *prev_proc, t_list *del_proc)
 			prev_proc->next = next_proc;
 		else
 			data->processlist = next_proc;
+		data->nb_process--;
 	}
 }

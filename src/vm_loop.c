@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/01 19:23:29 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/01 19:47:29 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,22 @@ static int	cw_check_live(t_cwdata *data, t_vm_data *vm_data)
 	while (tmp)
 	{
 		proc = (t_process*)tmp->content;
-		if (proc->if_live == 0)
+		if (proc->nb_live == 0)
 		{
 			if(data->show_vm)
 				show_hide_proc(data, proc, 0);
-			ft_printf("Process %d die\n", proc->name);
+			if(data->verbose)
+				ft_printf("\nProcess %d die\n", proc->name);
 			cw_del_process_to_lst(data, prev_tmp, tmp);
 			tmp = tmp->next;
 			continue ;
 		}
-		if (proc->nb_live == 0)
-		{
-			proc->if_live = 0;
-			data->nb_process--;
-		}
-		else if (data->nb_live_per_cycle >= NBR_LIVE)
-			cw_decrement(data, vm_data);
 		proc->nb_live = 0;
 		prev_tmp = tmp;
 		tmp = tmp->next;
 	}
+	if (data->nb_live_per_cycle >= NBR_LIVE)
+			cw_decrement(data, vm_data);
 	if (data->cycle_to_die > 0 && data->show_vm)
 		ft_putendl("");
 	return (1);
