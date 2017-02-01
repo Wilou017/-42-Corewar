@@ -117,9 +117,6 @@ static void	cw_data_print(t_cwdata *data)
 	}
 	if (data->show_vm)
 		ft_printf("> > > End of cycle {red}%d{eoc} < < <\n", data->cur_cycle);
-	// if (data->verbose)
-		// ft_printf(" -- End of cycle %d\n --\n", data->cur_cycle);
-}
 
 void	cw_dump_mem(t_cwdata *data)
 {
@@ -159,6 +156,5 @@ void	cw_loop(t_cwdata *data)
 		if (vm_data.cur_cycle == data->cycle_to_die)
 			cw_check_cycle(data, &vm_data);
 		cw_data_print(data);
-		// usleep(50000);
 	}
 }
