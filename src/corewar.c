@@ -85,8 +85,8 @@ int				corewar(t_cwdata *data)
 	while (tmp)
 	{
 		proc = ((t_process *)(tmp->content));
-		if (data->verbose)
-			ft_printf("\n> Process %d | loca = %d | Octet %0.2X\n", proc->name, proc->loca, proc->pc);
+		// if (data->verbose)
+		// 	ft_printf("\n> Process %d | loca = %d | Octet %0.2X\n", proc->name, proc->loca, proc->pc);
 		corewar_start(proc, data);
 		tmp = tmp->next;
 	}

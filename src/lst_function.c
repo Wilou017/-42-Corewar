@@ -64,7 +64,7 @@ t_process	*cw_add_process_to_lst(t_cwdata *data, int id, t_process *proc)
 		ft_printf("\nProcess %d is born", new_node.name);
 	if (data->verbose && proc)
 		ft_printf(" in %d +", proc->loca);
-	else
+	else if (data->verbose)
 		ft_putchar('\n');
 	if (proc == NULL)
 		new_node.reg[0] = id;

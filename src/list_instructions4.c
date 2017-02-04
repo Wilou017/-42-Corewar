@@ -17,8 +17,8 @@ void		cw_aff(t_cwdata *data, t_process *proc)
 	if (!proc->wait_cicle)
 		proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 	proc->wait_cicle++;
-	if (data->verbose && proc->wait_cicle != WAIT_AFF)
-		ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_AFF);
+	// if (data->verbose && proc->wait_cicle != WAIT_AFF)
+	// 	ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_AFF);
 	good_cicle(proc, WAIT_AFF);
 	if (proc->wait_cicle == WAIT_AFF)
 	{
@@ -38,8 +38,8 @@ void		cw_lldi(t_cwdata *data, t_process *proc)
 	if (!proc->wait_cicle)
 		proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 	proc->wait_cicle++;
-	if (data->verbose && proc->wait_cicle != WAIT_LLDI)
-		ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_LLDI);
+	// if (data->verbose && proc->wait_cicle != WAIT_LLDI)
+	// 	ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_LLDI);
 	good_cicle(proc, WAIT_LLDI);
 	if (proc->wait_cicle == WAIT_LLDI)
 	{
@@ -73,8 +73,8 @@ void			cw_lld(t_cwdata *data, t_process *proc)
 	if (!proc->wait_cicle)
 		proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 	proc->wait_cicle++;
-	if (data->verbose && proc->wait_cicle != WAIT_LLD)
-		ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_LLD);
+	// if (data->verbose && proc->wait_cicle != WAIT_LLD)
+	// 	ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_LLD);
 	good_cicle(proc, WAIT_LLD);
 	if (proc->wait_cicle == WAIT_LLD)
 	{

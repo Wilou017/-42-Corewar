@@ -24,8 +24,8 @@ void		cw_sti(t_cwdata *data, t_process *proc)
 	if (!proc->wait_cicle)
 		proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 	proc->wait_cicle++;
-	if (data->verbose && proc->wait_cicle != WAIT_STI)
-		ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_STI);
+	// if (data->verbose && proc->wait_cicle != WAIT_STI)
+	// 	ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_STI);
 	good_cicle(proc, WAIT_STI);
 	if (proc->wait_cicle == WAIT_STI)
 	{
@@ -71,8 +71,8 @@ void		cw_ldi(t_cwdata *data, t_process *proc)
 	if (!proc->wait_cicle)
 		proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 	proc->wait_cicle++;
-	if (data->verbose && proc->wait_cicle != WAIT_LDI)
-		ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_LDI);
+	// if (data->verbose && proc->wait_cicle != WAIT_LDI)
+	// 	ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_LDI);
 	good_cicle(proc, WAIT_LDI);
 	if (proc->wait_cicle == WAIT_LDI)
 	{
@@ -127,8 +127,8 @@ void		cw_xor(t_cwdata *data, t_process *proc)
 	if (!proc->wait_cicle)
 		proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 	proc->wait_cicle++;
-	if (data->verbose && proc->wait_cicle != WAIT_XOR)
-		ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_XOR);
+	// if (data->verbose && proc->wait_cicle != WAIT_XOR)
+	// 	ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_XOR);
 	good_cicle(proc, WAIT_XOR);
 	if (proc->wait_cicle == WAIT_XOR)
 	{
@@ -168,8 +168,8 @@ void		cw_or(t_cwdata *data, t_process *proc)
 	if (!proc->wait_cicle)
 		proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 	proc->wait_cicle++;
-	if (data->verbose && proc->wait_cicle != WAIT_OR)
-		ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_OR);
+	// if (data->verbose && proc->wait_cicle != WAIT_OR)
+	// 	ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_OR);
 	good_cicle(proc, WAIT_OR);
 	if (proc->wait_cicle == WAIT_OR)
 	{
@@ -209,8 +209,8 @@ void		cw_and(t_cwdata *data, t_process *proc)
 	if (!proc->wait_cicle)
 		proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 	proc->wait_cicle++;
-	if (data->verbose && proc->wait_cicle != WAIT_AND)
-		ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_AND);
+	// if (data->verbose && proc->wait_cicle != WAIT_AND)
+	// 	ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_AND);
 	good_cicle(proc, WAIT_AND);
 	if (proc->wait_cicle == WAIT_AND)
 	{

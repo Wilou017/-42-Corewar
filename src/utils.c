@@ -27,17 +27,9 @@ void	check_reg_carry(t_process *proc, int reg)
 	 	proc->carry = 0;
 }
 
-void	change_carry(t_process *proc)
-{
-	if (!proc->carry)
-		proc->carry = 1;
-	else
-		proc->carry = 0;
-}
-
 void	good_cicle(t_process *proc, int limit)
 {
-	if (proc->wait_cicle >= limit - 1)
+	if (proc->wait_cicle == limit - 1)
 		proc->good_cicle = 1;
 	else
 		proc->good_cicle = 0;
