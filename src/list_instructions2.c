@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 13:17:10 by dmathe            #+#    #+#             */
-/*   Updated: 2017/02/01 20:36:22 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/07 13:47:53 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,19 +93,19 @@ void		cw_ldi(t_cwdata *data, t_process *proc)
 			param.param1 = param1;
 		else
 			param.param1 = return_size_reg(data, proc, param1, 0);
-		print_verbose(data, param.param1, 0, inst);
+		//print_verbose(data, param.param1, 0, inst);
 		param2 = bin_offset(proc, data, 2, &inst);
 		if (inst.param == REG_CODE)
 		{
 			param2 = proc->reg[param2 - 1];
 			param.param2 = param2;
 			inst.param = 0;
-			print_verbose(data, param2, 0, inst);
+			//print_verbose(data, param2, 0, inst);
 		}
 		else
 			param.param2 = return_size_reg(data, proc, param2, 0);
 		param3 = bin_offset(proc, data, 4, &inst);
-		print_verbose(data, param3, 1, inst);
+		//print_verbose(data, param3, 1, inst);
 		if (data->verbose)
 			ft_printf("              | -> load from %d + %d = %d\n", param.param1, param.param2, param.param1 + param.param2);
 		proc->reg[param3 - 1] = return_size_reg(data, proc, param.param1 + param.param2, 0);
@@ -142,14 +142,14 @@ void		cw_xor(t_cwdata *data, t_process *proc)
 		if (inst.param == REG_CODE)
 			param1 = proc->reg[param1 - 1];
 		inst.param = 0;
-		print_verbose(data, param1, 0, inst);
+		//print_verbose(data, param1, 0, inst);
 		param2 = bin_offset(proc, data, 2, &inst);
 		if (inst.param == REG_CODE)
 			param2 = proc->reg[param2 - 1];
 		inst.param = 0;
-		print_verbose(data, param2, 0, inst);
+		//print_verbose(data, param2, 0, inst);
 		param3 = bin_offset(proc, data, 4, &inst);
-		print_verbose(data, param3, 1, inst);
+		//print_verbose(data, param3, 1, inst);
 		proc->reg[param3 - 1] = param1 ^ param2;
 		check_reg_carry(proc, proc->reg[param3 - 1]);
 		proc->wait_cicle = 0;
@@ -183,14 +183,14 @@ void		cw_or(t_cwdata *data, t_process *proc)
 		if (inst.param == REG_CODE)
 			param1 = proc->reg[param1 - 1];
 		inst.param = 0;
-		print_verbose(data, param1, 0, inst);
+		//print_verbose(data, param1, 0, inst);
 		param2 = bin_offset(proc, data, 2, &inst);
 		if (inst.param == REG_CODE)
 			param2 = proc->reg[param2 - 1];
 		inst.param = 0;
-		print_verbose(data, param2, 0, inst);
+		//print_verbose(data, param2, 0, inst);
 		param3 = bin_offset(proc, data, 4, &inst);
-		print_verbose(data, param3, 1, inst);
+		//print_verbose(data, param3, 1, inst);
 		proc->reg[param3 - 1] = param1 | param2;
 		check_reg_carry(proc, proc->reg[param3 - 1]);
 		proc->wait_cicle = 0;
@@ -221,15 +221,15 @@ void		cw_and(t_cwdata *data, t_process *proc)
 		if (!if_registre(data, proc, inst))
 			return ;
 		param1 = bin_offset(proc, data, 0, &inst);
-		print_verbose(data, param1, 0, inst);
+		//print_verbose(data, param1, 0, inst);
 		if (inst.param == REG_CODE)
 			param1 = proc->reg[param1 - 1];
 		param2 = bin_offset(proc, data, 2, &inst);
-		print_verbose(data, param2, 0, inst);
+		//print_verbose(data, param2, 0, inst);
 		if (inst.param == REG_CODE)
 			param2 = proc->reg[param2 - 1];
 		param3 = bin_offset(proc, data, 4, &inst);
-		print_verbose(data, param1, 1, inst);
+		//print_verbose(data, param1, 1, inst);
 		proc->reg[param3 - 1] = param1 & param2;
 		check_reg_carry(proc, proc->reg[param3 - 1]);
 		proc->wait_cicle = 0;

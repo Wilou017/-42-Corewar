@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/01 18:53:32 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/07 13:44:11 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int			cw_distrib_padding(t_reedstruct *reed, int ret);
 
 int			cw_norme1(t_reedstruct reed, t_header *champion);
 void		vm_print(t_cwdata *data, t_process *proc, int loca);
-int			cw_id_champ_valid(t_cwdata *data, int id);
+t_header	*cw_id_champ_valid(t_cwdata *data, int id);
 char		*right_color(t_cwdata *data, int id_champ);
 int			cw_get_valid_champ_id(t_cwdata *data);
 

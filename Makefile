@@ -6,7 +6,7 @@
 #    By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 12:19:31 by amaitre           #+#    #+#              #
-#    Updated: 2017/02/01 16:14:06 by amaitre          ###   ########.fr        #
+#    Updated: 2017/02/07 13:42:29 by amaitre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,6 @@ SRC					+=	src/list_instructions2.c
 SRC					+=	src/list_instructions3.c
 SRC					+=	src/list_instructions4.c
 SRC					+=	src/fill_map.c
-SRC					+=	src/verbose.c
 SRC					+=	src/utils.c
 SRC					+=	src/cw_free.c
 

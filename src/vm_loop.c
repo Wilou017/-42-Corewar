@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/01 20:05:19 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/07 13:41:59 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,18 +92,23 @@ static void	cw_data_print(t_cwdata *data)
 	if (data->show_vm)
 	{
 		ft_termcaps_poscurs(5, COLONE_TEXT);
-		ft_printf("> > > NB process {green}%10d/%10d{eoc}", data->nb_process, data->nb_process_total);
+		ft_printf("> > > NB process {green}%10d/%10d{eoc}", data->nb_process,
+			data->nb_process_total);
 		ft_termcaps_poscurs(6, COLONE_TEXT);
 		ft_printf("> > > CYCLE TO DIE %20d", data->cycle_to_die);
 		ft_termcaps_poscurs(8, COLONE_TEXT);
-		ft_printf("------------------------", data->nb_process, data->nb_process_total);
+		ft_printf("------------------------");
 		tmp = data->beginlist;
 		i = 0;
 		while (tmp)
 		{
-			ft_termcaps_poscurs(10 + i, COLONE_TEXT);
 			champ = ((t_header*)tmp->content);
-			ft_printf("{%s}%s{eoc} %s", right_color(data, champ->id), champ->prog_name, (champ->id == data->last_champ_live) ? "*" : "-");
+			ft_termcaps_poscurs(10 + i, COLONE_TEXT);
+			ft_printf("{%s}%s{eoc} %s", right_color(data, champ->id),
+				champ->prog_name,
+				(champ->id == data->last_champ_live) ? "*" : "-");
+			ft_termcaps_poscurs(12 + i, COLONE_TEXT);
+			ft_printf("LAST CICLE LIVE: %d", champ->last_clive);
 			tmp = tmp->next;
 			i += 5;
 		}

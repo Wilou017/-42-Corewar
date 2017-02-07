@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/01 17:00:20 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/07 13:30:07 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct			s_header
 	int					*prog;
 	int					if_live;
 	int					nb_live;
+	int					last_clive;
 }						t_header;
 
 typedef struct			s_inst

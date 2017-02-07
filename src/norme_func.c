@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:17:46 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/01 16:03:26 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/07 13:36:51 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	vm_print(t_cwdata *data, t_process *proc, int loca)
 	ft_putstr("\033[0m");
 }
 
-int		cw_id_champ_valid(t_cwdata *data, int id)
+t_header	*cw_id_champ_valid(t_cwdata *data, int id)
 {
 	t_list		*tmp;
 	t_header	*champ;
@@ -55,10 +55,10 @@ int		cw_id_champ_valid(t_cwdata *data, int id)
 	{
 		champ = ((t_header*)tmp->content);
 		if (id == champ->id)
-			return (1);
+			return (champ);
 		tmp = tmp->next;
 	}
-	return (0);
+	return (NULL);
 }
 
 char	*right_color(t_cwdata *data, int id_champ)
