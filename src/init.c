@@ -24,7 +24,7 @@ static void	init_data_default(t_cwdata *data)
 	data->nb_process = 0;
 	data->nb_process_total = 0;
 	data->lastdata = NULL;
-	data->begin_champ = ft_inttabnew(4, 0);
+	data->begin_champ = ft_inttabnew(4, -1);
 	data->cur_cycle = 0;
 	data->nb_live_per_cycle = 0;
 	data->show_vm = 0;

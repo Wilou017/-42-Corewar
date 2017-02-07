@@ -45,83 +45,84 @@ void		fill_len_champ(t_cwdata *data)
 	}
 }
 
+// void		fill_map(t_cwdata *data)
+// {
+// 	int i;
+// 	t_list		*tmp;
+// 	t_header	*champ;
+
+// 	tmp = data->beginlist;
+// 	i = 1;
+// 	fill_len_champ(data);
+// 	while (tmp)
+// 	{
+// 		champ = (t_header*)tmp->content;
+// 		if (i == 1)
+// 			write_in_int(data, champ->prog, 0, champ->prog_size);
+// 		else if (i == 2)
+// 			write_in_int(data, champ->prog, data->begin_champ[1], champ->prog_size);
+// 		else if (i == 3)
+// 			write_in_int(data, champ->prog, data->begin_champ[2], champ->prog_size);
+// 		else if (i == 4)
+// 			write_in_int(data, champ->prog, data->begin_champ[3], champ->prog_size);
+// 		tmp = tmp->next;
+// 		i++;
+// 	}
+// }
 void		fill_map(t_cwdata *data)
 {
-	int i;
 	t_list		*tmp;
-	t_header	*champ;
+ 	t_header	*champ;
+ 	int 		champ_field;
+ 	int 		index;
+ 	int 		i;
 
-	tmp = data->beginlist;
-	i = 1;
-	fill_len_champ(data);
-	while (tmp)
-	{
-		champ = (t_header*)tmp->content;
-		if (i == 1)
-			write_in_int(data, champ->prog, 0, champ->prog_size);
-		else if (i == 2)
-			write_in_int(data, champ->prog, data->begin_champ[1], champ->prog_size);
-		else if (i == 3)
-			write_in_int(data, champ->prog, data->begin_champ[2], champ->prog_size);
-		else if (i == 4)
-			write_in_int(data, champ->prog, data->begin_champ[3], champ->prog_size);
-		tmp = tmp->next;
-		i++;
-	}
-}
-
-unsigned int			begin_champ(t_cwdata *data, int x)
-{
-	if (x == 1)
-		return (data->begin_champ[0]);
-	if (x == 2)
-		return (data->begin_champ[1]);
-	if (x == 3)
-		return (data->begin_champ[2]);
-	if (x == 4)
-		return (data->begin_champ[3]);
-	return (-1);
+ 	tmp = data->beginlist;
+ 	index = MEM_SIZE;
+ 	i = 0;
+ 	champ_field = MEM_SIZE / data->nb_champion;
+ 	while (tmp)
+ 	{
+ 		index -= champ_field;
+ 		champ = (t_header*)tmp->content;
+ 		data->begin_champ[i] = index;
+		write_in_int(data, champ->prog, index, champ->prog_size);
+ 		tmp = tmp->next;
+ 		i++;
+ 	}
 }
 
 void		print_map(t_cwdata *data)
 {
-	unsigned int		i;
-	unsigned int		j;
 	unsigned int		k;
-	unsigned int		x;
+	int		i;
+	int		j;
 	t_list	*tmp;
+ 	t_header	*champ;
 
 	tmp = data->beginlist;
-	i = 0;
-	j = 0;
 	k = 3;
-	x = 1;
-	ft_termcaps_poscurs(3, 4);
-	ft_printf("{lblack}");
-	while (i < MEM_SIZE)
+	i = -1;
+	while (++i < MEM_SIZE / NB_OCT_LINE)
 	{
-		if (i % NB_OCT_LINE == 0 && i)
+		j = -1;
+		ft_termcaps_poscurs(k++, 4);
+		while (++j < NB_OCT_LINE)
+			ft_printf("{lblack}%.2X {eoc}", (data->hide) ? 255 : 0);
+	}
+	k = 0;
+	ft_termcaps_poscurs(3, 4);
+	while (tmp)
+	{
+		i = -1;
+		champ = (t_header*)tmp->content;
+		while (++i <= (int)champ->prog_size)
 		{
-			k++;
-			ft_termcaps_poscurs(k, 4);
+			ft_termcaps_poscurs((i + data->begin_champ[k]) / NB_OCT_LINE + 3, ((i + data->begin_champ[k]) % NB_OCT_LINE) * 3 + 4);
+			ft_printf("{%s}%.2X ", right_color(data, champ->id),  (data->hide) ? 255 : data->mem[(i + data->begin_champ[k])]);
 		}
-		if (j < ((t_header *)tmp->content)->prog_size && i >= begin_champ(data, x))
-		{
-			ft_printf("{%s}%.2X{lblack}",right_color(data, (((t_header *)tmp->content)->id)), (data->hide) ? 255 : data->mem[i]);
-			j++;
-		}
-		else if (j == ((t_header *)tmp->content)->prog_size && tmp->next)
-		{
-			ft_printf("%.2X", data->mem[i]);
-			tmp = tmp->next;
-			j = 0;
-			x++;
-		}
-		else if (i != begin_champ(data, x))
-			ft_printf("%.2X", data->mem[i]);
-		if (i != MEM_SIZE - 1)
-			ft_printf(" ");
-		i++;
+		tmp = tmp->next;
+		k++;
 	}
 	ft_printf("{eoc}");
 }
