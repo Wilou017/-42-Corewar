@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/07 13:41:59 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/07 13:53:47 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,13 @@ static void	cw_data_print(t_cwdata *data)
 
 	if (data->show_vm)
 	{
+		ft_termcaps_poscurs(3, COLONE_TEXT);
+		ft_printf("> > > CURENT CYCLE {red}%21d{eoc}", data->cur_cycle);
 		ft_termcaps_poscurs(5, COLONE_TEXT);
-		ft_printf("> > > NB process {green}%10d/%10d{eoc}", data->nb_process,
+		ft_printf("> > > NB PROCESS   {green}%10d/%10d{eoc}", data->nb_process,
 			data->nb_process_total);
 		ft_termcaps_poscurs(6, COLONE_TEXT);
-		ft_printf("> > > CYCLE TO DIE %20d", data->cycle_to_die);
+		ft_printf("> > > CYCLE TO DIE %21d", data->cycle_to_die);
 		ft_termcaps_poscurs(8, COLONE_TEXT);
 		ft_printf("------------------------");
 		tmp = data->beginlist;
