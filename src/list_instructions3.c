@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 17:32:27 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/07 14:18:32 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/07 15:00:19 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	cw_zjump(t_cwdata *data, t_process *proc)
 				show_hide_proc(data, proc, 0);
 			proc->loca = cw_get_new_loca(data, proc->loca, 0);
 			proc->pc = data->mem[proc->loca];
-			proc->dont_move = 1;
+			proc->move = 0;
 			if(data->show_vm)
 				show_hide_proc(data, proc, 1);
 		}

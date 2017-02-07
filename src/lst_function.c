@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:03:17 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/07 13:36:44 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/07 15:01:27 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ t_process	cw_init_proc_data(t_cwdata *data, int id, t_process *proc)
 	new_node.nb_live = (proc) ? proc->nb_live : 0;
 	new_node.wait_cicle = 0;
 	new_node.move = 1;
-	new_node.dont_move = 0;
 	new_node.id_champ = id;
 	new_node.good_cicle = 0;
 	new_node.reg = ft_inttabnew(REG_NUMBER, 0);

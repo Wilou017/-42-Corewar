@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 18:16:34 by dmathe            #+#    #+#             */
-/*   Updated: 2017/02/01 19:53:00 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/07 15:02:02 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int				not_opcode(t_process *proc, t_cwdata *data)
 	if (proc->pc < 1 || proc->pc > 16)
 	{
 		if(data->show_vm)
-			show_hide_proc(data, proc, 0); 
+			show_hide_proc(data, proc, 0);
 		proc->loca += 1;
 		proc->loca %= MEM_SIZE;
 		proc->pc = data->mem[proc->loca];
@@ -59,7 +59,7 @@ int				corewar_start(t_process	*proc, t_cwdata *data)
 	{
 		redirect_function(data, proc->pc, proc);
 		proc->size = size_without_encod(proc->pc);
-		if (proc->move && !proc->dont_move)
+		if (proc->move)
 		{
 			if(data->show_vm)
 				show_hide_proc(data, proc, 0);
@@ -69,7 +69,6 @@ int				corewar_start(t_process	*proc, t_cwdata *data)
 			if(data->show_vm)
 				show_hide_proc(data, proc, 1);
 		}
-		proc->dont_move = 0;
 		proc->move = 1;
 		return (1);
 	}
