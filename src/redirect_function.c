@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 16:57:33 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/07 13:29:39 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/07 14:16:20 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,10 @@ void		redirect_function(t_cwdata *data, t_func func, t_process *proc)
 	{
 		ft_printf("Size -%d- (%.4p %d -> %.4p) ", proc->size, proc->loca, proc->loca, proc->loca + proc->size);
 		while (i < proc->size)
+		{
 			ft_printf("%.2X ", data->mem[(proc->loca + i) % MEM_SIZE]);
 			i++;
+		}
 		ft_printf("\n");
 	}
 	if (func == LIVE)
