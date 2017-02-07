@@ -12,7 +12,7 @@
 
 #include <corewar.h>
 
-static void	init_data_default(t_cwdata *data)
+static void	init_data_default(t_cwdata *data) 
 {
 	data->init = 0;
 	data->last_champ_live = 0;

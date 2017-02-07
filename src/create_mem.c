@@ -12,7 +12,7 @@
 
 #include <corewar.h>
 
-int			write_in_int(t_cwdata *data, int *src, int len, int size)
+int			write_in_int(t_cwdata *data, int *src, int len, int size) 
 {
 	int		i;
 

@@ -17,5 +17,5 @@ function that modifie carry --> -ld
 								-or
 								-xor
 								-lld
-								-lldi
+								-lldi 
 

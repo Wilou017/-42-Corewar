@@ -17,7 +17,7 @@ int				not_opcode(t_process *proc, t_cwdata *data)
 	if (proc->pc < 1 || proc->pc > 16)
 	{
 		if(data->show_vm)
-			show_hide_proc(data, proc, 0);
+			show_hide_proc(data, proc, 0); 
 		proc->loca += 1;
 		proc->loca %= MEM_SIZE;
 		proc->pc = data->mem[proc->loca];

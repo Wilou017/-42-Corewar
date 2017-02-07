@@ -71,7 +71,7 @@ void			cw_add(t_cwdata *data, t_process *proc)
 			, data->mem[(proc->loca + 4) % MEM_SIZE]);
 	}
 	else
-		proc->move = 0;
+		proc->move = 0; 
 }
 
 void			cw_st(t_cwdata *data, t_process *proc)
