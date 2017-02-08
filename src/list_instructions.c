@@ -41,7 +41,8 @@ void			cw_sub(t_cwdata *data, t_process *proc)
 	}
 	else if (proc->wait_cicle == WAIT_SUB && proc->bad_encodage)
 	{
-		ft_printf("FAIL\n");
+		if (data->verbose)
+			ft_printf(" FAIL\n");
 		proc->wait_cicle = 0;
 		proc->bad_encodage = 0;
 	}
@@ -78,7 +79,8 @@ void			cw_add(t_cwdata *data, t_process *proc)
 	}
 	else if (proc->wait_cicle == WAIT_ADD && proc->bad_encodage)
 	{
-		ft_printf("FAIL\n");
+		if (data->verbose)
+			ft_printf(" FAIL\n");
 		proc->wait_cicle = 0;
 		proc->bad_encodage = 0;
 	}
@@ -126,7 +128,8 @@ void			cw_st(t_cwdata *data, t_process *proc)
 	}
 	else if (proc->wait_cicle == WAIT_ST && proc->bad_encodage)
 	{
-		ft_printf("FAIL\n");
+		if (data->verbose)
+			ft_printf(" FAIL\n");
 		proc->wait_cicle = 0;
 		proc->bad_encodage = 0;
 	}
@@ -164,7 +167,8 @@ void			cw_ld(t_cwdata *data, t_process *proc)
 	}
 	else if (proc->wait_cicle == WAIT_LD && proc->bad_encodage)
 	{
-		ft_printf("FAIL\n");
+		if (data->verbose)
+			ft_printf(" FAIL\n");
 		proc->wait_cicle = 0;
 		proc->bad_encodage = 0;
 	}
