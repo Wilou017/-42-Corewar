@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:24:41 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/01 16:56:06 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/08 16:35:06 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,20 @@ int				cw_get_option(t_cwdata *data, int *i)
 	cw_lastoption(data, *i);
 	if (data->lastoption && data->c > *i)
 	{
-		if ((data->lastoption == N || data->lastoption == DUMP)
-			&& !ft_strisdigit(data->v[(*i) + 1]))
+		if ((data->lastoption == N || data->lastoption == DUMP
+			|| data->lastoption == R) && !ft_strisdigit(data->v[(*i) + 1]))
 			return (ft_printf("{red}%s doit être un nomdre\n", data->v[*i]));
-		if (data->lastoption == DUMP && data->show_vm == 0 && data->verbose == 0)
+		if (data->lastoption == DUMP && data->show_vm == 0
+			&& data->verbose == 0)
 			data->dumpcycles = ft_atoi(data->v[(*i) + 1]);
+		else if (data->lastoption == R)
+			data->slow = ft_atoi(data->v[(*i) + 1]);
 		else if (data->lastoption == N)
 			data->lastdata = ft_strdup(data->v[(*i) + 1]);
 		else if (data->lastoption == H)
 			data->hide = 1;
-		if (data->lastoption != VM && data->lastoption != V && data->lastoption != H)
+		if (data->lastoption != VM && data->lastoption != V
+			&& data->lastoption != H)
 			*i = (*i) + 1;
 	}
 	else if (data->lastoption == 0)

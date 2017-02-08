@@ -6,13 +6,13 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:28:37 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/01 17:02:58 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/08 16:37:36 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar.h>
 
-static void	init_data_default(t_cwdata *data) 
+static void	init_data_default(t_cwdata *data)
 {
 	data->init = 0;
 	data->last_champ_live = 0;
@@ -28,6 +28,7 @@ static void	init_data_default(t_cwdata *data)
 	data->cur_cycle = 0;
 	data->nb_live_per_cycle = 0;
 	data->show_vm = 0;
+	data->slow = -1;
 	data->verbose = 0;
 	data->hide = 0;
 	data->cycle_to_die = CYCLE_TO_DIE;
@@ -43,6 +44,8 @@ void		cw_lastoption(t_cwdata *data, int i)
 	}
 	else if (!ft_strcmp(data->v[i], "-n"))
 		data->lastoption = N;
+	else if (!ft_strcmp(data->v[i], "-r"))
+		data->lastoption = R;
 	else if (!ft_strcmp(data->v[i], "-v"))
 	{
 		if (data->show_vm == 0 && data->dumpcycles == -1)

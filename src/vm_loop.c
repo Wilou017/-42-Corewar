@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/07 13:53:47 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/08 16:38:26 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,5 +156,6 @@ void	cw_loop(t_cwdata *data)
 		if (vm_data.cur_cycle == data->cycle_to_die)
 			cw_check_cycle(data, &vm_data);
 		cw_data_print(data);
+		if (data->slow >= 0 && data->cur_cycle >= data->slow) sleep(1);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/07 04:56:12 by dmathe           ###   ########.fr       */
+/*   Updated: 2017/02/08 16:37:48 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ typedef enum			e_opt
 	N,
 	V,
 	VM,
-	H
+	H,
+	R
 }						t_opt;
 
 typedef enum			e_func
@@ -104,6 +105,7 @@ typedef	struct			s_cwdata
 	char				**color;
 	int					nb_champion;
 	int					show_vm;
+	int					slow;
 	int					verbose;
 	int					d;
 	int					hide;
