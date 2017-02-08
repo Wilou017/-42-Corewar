@@ -149,7 +149,7 @@ void	cw_loop(t_cwdata *data)
 		data->cur_cycle++;
 		vm_data.cur_cycle++;
 		if (data->verbose)
-			ft_printf("\n\n -- Start of cycle %d --\n", data->cur_cycle);
+			ft_printf("-- Start of cycle %d --\n", data->cur_cycle);
 		corewar(data);
 		if (data->dumpcycles > -1 && data->dumpcycles >= data->cur_cycle)
 			return(cw_dump_mem(data));
