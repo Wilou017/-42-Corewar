@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:03:17 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/07 15:01:27 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/07 04:56:52 by dmathe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_process	cw_init_proc_data(t_cwdata *data, int id, t_process *proc)
 	static		int		i = 1;
 	t_process	new_node;
 
+	new_node.bad_encodage = 0;
 	new_node.name = i;
 	i++;
 	new_node.encod = 0;

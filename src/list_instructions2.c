@@ -27,7 +27,7 @@ void		cw_sti(t_cwdata *data, t_process *proc)
 	// if (data->verbose && proc->wait_cicle != WAIT_STI)
 	// 	ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_STI);
 	good_cicle(proc, WAIT_STI);
-	if (proc->wait_cicle == WAIT_STI)
+	if (proc->wait_cicle == WAIT_STI && !proc->bad_encodage)
 	{
 		init_inst(&inst, proc);
 		inst.bin = ft_itoa(proc->encod, 2);
@@ -55,6 +55,11 @@ void		cw_sti(t_cwdata *data, t_process *proc)
 			ft_printf("            | -> store to %d + %d = %d (with pc and mod %d)\n", param2, param3, param2 + param3, new_loca);
 		}
 	}
+	else if (proc->wait_cicle == WAIT_STI && proc->bad_encodage)
+	{
+		proc->wait_cicle = 0;
+		proc->bad_encodage = 0;
+	}
 	else
 		proc->move = 0;
 }
@@ -74,7 +79,7 @@ void		cw_ldi(t_cwdata *data, t_process *proc)
 	// if (data->verbose && proc->wait_cicle != WAIT_LDI)
 	// 	ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_LDI);
 	good_cicle(proc, WAIT_LDI);
-	if (proc->wait_cicle == WAIT_LDI)
+	if (proc->wait_cicle == WAIT_LDI && !proc->bad_encodage)
 	{
 		init_inst(&inst, proc);
 		inst.label_size = check_opcode(proc->pc);
@@ -113,6 +118,11 @@ void		cw_ldi(t_cwdata *data, t_process *proc)
 			ft_printf("return_reg = %d\n", proc->reg[param3 - 1]);
 		proc->wait_cicle = 0;
 	}
+	else if (proc->wait_cicle == WAIT_LDI && proc->bad_encodage)
+	{
+		proc->wait_cicle = 0;
+		proc->bad_encodage = 0;
+	}
 	else
 		proc->move = 0;
 }
@@ -130,7 +140,7 @@ void		cw_xor(t_cwdata *data, t_process *proc)
 	// if (data->verbose && proc->wait_cicle != WAIT_XOR)
 	// 	ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_XOR);
 	good_cicle(proc, WAIT_XOR);
-	if (proc->wait_cicle == WAIT_XOR)
+	if (proc->wait_cicle == WAIT_XOR && !proc->bad_encodage)
 	{
 		init_inst(&inst, proc);
 		inst.label_size = check_opcode(proc->pc);
@@ -154,6 +164,11 @@ void		cw_xor(t_cwdata *data, t_process *proc)
 		check_reg_carry(proc, proc->reg[param3 - 1]);
 		proc->wait_cicle = 0;
 	}
+	else if (proc->wait_cicle == WAIT_XOR && proc->bad_encodage)
+	{
+		proc->wait_cicle = 0;
+		proc->bad_encodage = 0;
+	}
 	else
 		proc->move = 0;
 }
@@ -171,7 +186,7 @@ void		cw_or(t_cwdata *data, t_process *proc)
 	// if (data->verbose && proc->wait_cicle != WAIT_OR)
 	// 	ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_OR);
 	good_cicle(proc, WAIT_OR);
-	if (proc->wait_cicle == WAIT_OR)
+	if (proc->wait_cicle == WAIT_OR && !proc->bad_encodage)
 	{
 		init_inst(&inst, proc);
 		inst.label_size = check_opcode(proc->pc);
@@ -195,6 +210,11 @@ void		cw_or(t_cwdata *data, t_process *proc)
 		check_reg_carry(proc, proc->reg[param3 - 1]);
 		proc->wait_cicle = 0;
 	}
+	else if (proc->wait_cicle == WAIT_OR && proc->bad_encodage)
+	{
+		proc->wait_cicle = 0;
+		proc->bad_encodage = 0;
+	}
 	else
 		proc->move = 0;
 }
@@ -212,7 +232,7 @@ void		cw_and(t_cwdata *data, t_process *proc)
 	// if (data->verbose && proc->wait_cicle != WAIT_AND)
 	// 	ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_AND);
 	good_cicle(proc, WAIT_AND);
-	if (proc->wait_cicle == WAIT_AND)
+	if (proc->wait_cicle == WAIT_AND && !proc->bad_encodage)
 	{
 		init_inst(&inst, proc);
 		inst.label_size = check_opcode(proc->pc);
@@ -233,6 +253,11 @@ void		cw_and(t_cwdata *data, t_process *proc)
 		proc->reg[param3 - 1] = param1 & param2;
 		check_reg_carry(proc, proc->reg[param3 - 1]);
 		proc->wait_cicle = 0;
+	}
+	else if (proc->wait_cicle == WAIT_AND && proc->bad_encodage)
+	{
+		proc->wait_cicle = 0;
+		proc->bad_encodage = 0;
 	}
 	else
 		proc->move = 0;

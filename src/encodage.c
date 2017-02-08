@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/20 17:18:51 by dmathe            #+#    #+#             */
-/*   Updated: 2016/12/05 20:12:49 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/07 04:57:11 by dmathe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,7 @@ int			endof_instructions(int inst, int encod)
 		i += 2;
 	}
 	free(bin);
-	if (size == 0)
-		return (size + 1);
-	else
-		return (size + 2);
+	return (size + 2);
 }
 
 int			check_opcode(int opcode)
@@ -114,7 +111,7 @@ int			check_encod(t_process *proc, t_cwdata *data, int *ok)
 				*ok = 1;
 		}
 		else
-			*ok = 1;
+			proc->bad_encodage = 1;
 		i += 2;
 	}
 	free(bin);
