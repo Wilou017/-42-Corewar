@@ -90,6 +90,7 @@ int			check_encod(t_process *proc, t_cwdata *data, int *ok)
 	int		i;
 	
 	i = 0;
+	(void)*ok;
 	size = size_encod(proc->pc);
 	bin = ft_itoa(data->mem[(proc->loca + 1) % MEM_SIZE], 2);
 	bin = ft_strjoin(ft_chartostr('0', 8 - ft_strlen(bin)), bin, 3);
@@ -98,17 +99,17 @@ int			check_encod(t_process *proc, t_cwdata *data, int *ok)
 		if (bin[i] == '0' && bin[i + 1] == '1')
 		{
 			if (!check_param(proc->pc, i, REG_CODE))
-				*ok = 1;
+				proc->bad_encodage = 1;
 		}
 		else if (bin[i] == '1' && bin[i + 1] == '0')
 		{
 			if (!check_param(proc->pc, i, DIR_CODE))
-				*ok = 1;
+				proc->bad_encodage = 1;
 		}
 		else if (bin[i] == '1' && bin[i + 1] == '1')
 		{
 			if (!check_param(proc->pc, i, IND_CODE))
-				*ok = 1;
+				proc->bad_encodage = 1;
 		}
 		else
 			proc->bad_encodage = 1;
