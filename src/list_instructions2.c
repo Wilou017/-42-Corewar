@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 13:17:10 by dmathe            #+#    #+#             */
-/*   Updated: 2017/02/07 13:47:53 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/08 20:08:59 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void		cw_sti(t_cwdata *data, t_process *proc)
 		if (data->verbose)
 		{
 			ft_printf(" r%d %d %d\n", param1 + 1, param2, param3);
-			ft_printf("            | -> store to %d + %d = %d (with pc and mod %d)\n", param2, param3, param2 + param3, new_loca);
+			ft_printf("       | -> store to %d + %d = %d (with pc and mod %d)\n", param2, param3, param2 + param3, new_loca);
 		}
 	}
 	else if (proc->wait_cicle == WAIT_STI && proc->bad_encodage)

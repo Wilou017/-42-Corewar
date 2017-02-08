@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/08 16:37:48 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/08 18:06:26 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct			s_process
 	int					name;
 	int					id;
 	int					id_champ;
-	int					if_live;
+	int					last_clive;
 	int					nb_live;
 	int					pc;
 	int					loca;
@@ -99,6 +99,7 @@ typedef	struct			s_cwdata
 	int					*mem;
 	int					cur_cycle;
 	int					cycle_to_die;
+	int					lastopfail;
 	int					dumpcycles;
 	int					lastoption;
 	char				*lastdata;

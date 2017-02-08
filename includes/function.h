@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/07 13:44:11 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/08 18:41:11 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int			cw_get_valid_champ_id(t_cwdata *data);
 */
 
 void	show_hide_proc(t_cwdata *data, t_process *proc, int force);
+void	adv_print(t_cwdata *data, int procsize, int procloca, int good_cicle);
 
 /*
 ** src/creat_mem.c
