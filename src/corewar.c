@@ -40,8 +40,7 @@ int				corewar_start(t_process	*proc, t_cwdata *data)
 	{
 		if (!proc->wait_cicle)
 			proc->size = check_encod(proc, data, &ok);
-		if (!ok)
-			redirect_function(data, proc->pc, proc);
+		redirect_function(data, proc->pc, proc);
 		if (proc->move)
 		{
 			if(data->show_vm)

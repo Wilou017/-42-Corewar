@@ -26,6 +26,7 @@ void		cw_aff(t_cwdata *data, t_process *proc)
 	}
 	else if (proc->wait_cicle == WAIT_AFF && proc->bad_encodage)
 	{
+		ft_printf("FAIL\n");
 		proc->wait_cicle = 0;
 		proc->bad_encodage = 0;
 	}
@@ -67,6 +68,7 @@ void		cw_lldi(t_cwdata *data, t_process *proc)
 	}
 	else if (proc->wait_cicle == WAIT_LLDI && proc->bad_encodage)
 	{
+		ft_printf("FAIL\n");
 		proc->wait_cicle = 0;
 		proc->bad_encodage = 0;
 	}
@@ -104,6 +106,7 @@ void			cw_lld(t_cwdata *data, t_process *proc)
 	}
 	else if (proc->wait_cicle == WAIT_LLD && proc->bad_encodage)
 	{
+		ft_printf("FAIL\n");
 		proc->wait_cicle = 0;
 		proc->bad_encodage = 0;
 	}
