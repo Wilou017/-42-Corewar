@@ -21,6 +21,7 @@ int				not_opcode(t_process *proc, t_cwdata *data)
 		proc->loca += 1;
 		proc->loca %= MEM_SIZE;
 		proc->pc = data->mem[proc->loca];
+		proc->wait_cicle = 0;
 		if(data->show_vm)
 			show_hide_proc(data, proc, 1);
 		return (0);
@@ -34,6 +35,8 @@ int				corewar_start(t_process	*proc, t_cwdata *data)
 	int			ok;
 
 	ok = 0;
+	// if (data->verbose)
+	// 	ft_printf("pc = %d, id = %d\n", proc->pc, proc->id);
 	if (!not_opcode(proc, data))
 		return (0);
 	if (if_encodage(proc->pc))
