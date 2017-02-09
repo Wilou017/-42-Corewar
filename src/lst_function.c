@@ -35,6 +35,7 @@ t_process	cw_init_proc_data(t_cwdata *data, int id, t_process *proc)
 	static		int		i = 1;
 	t_process	new_node;
 
+	new_node.fail = 0;
 	new_node.bad_encodage = 0;
 	new_node.name = i;
 	i++;

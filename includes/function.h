@@ -95,6 +95,7 @@ int			cw_get_valid_champ_id(t_cwdata *data);
 ** src/norme_func2.c
 */
 
+void	adv_print(t_cwdata *data, int procsize, int procloca, int good_cicle);
 void	show_hide_proc(t_cwdata *data, t_process *proc, int force);
 
 /*
@@ -127,8 +128,8 @@ int			check_param(int opcode, int param, int name);
 ** src/opcode.c
 */
 
-int			size_without_encod(int opcode);
-int			size_encod(int opcode);
+int			size_without_encod(t_func opcode);
+int			size_encod(t_func opcode);
 int			param_live(int param, int name);
 int			param_ld(int param, int name);
 int			param_st(int param, int name);

@@ -16,7 +16,7 @@ static void	cw_decrement(t_cwdata *data, t_vm_data *vm_data)
 {
 	data->cycle_to_die -= CYCLE_DELTA;
 	if (data->verbose)
-		ft_printf("Decrement du cycle_to_die -> %d\n", data->cycle_to_die);
+		ft_printf("Cycle to die is now %d\n", data->cycle_to_die);
 	vm_data->check = 0;
 	data->nb_live_per_cycle = 0;
 }

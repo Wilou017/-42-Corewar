@@ -19,23 +19,23 @@ int			param_live(int param, int name)
 	return (0);
 }
 
-int			size_without_encod(int opcode)
+int			size_without_encod(t_func opcode)
 {
-	if (opcode == 1)
+	if (opcode == LIVE)
 		return (5);
-	else if (opcode == 9 || opcode == 12 || opcode == 15)
+	else if (opcode == ZJUMP || opcode == FORK || opcode == LFORK)
 		return (3);
 	return (0);
 }
 
-int			size_encod(int opcode)
+int			size_encod(t_func opcode)
 {
-	if (opcode == 16)
+	if (opcode == AFF)
 		return (2);
-	else if (opcode == 2 || opcode == 3 || opcode == 13)
+	else if (opcode == LD || opcode == ST || opcode == LLD)
 		return (4);
-	else if (opcode == 4 || opcode == 5 || opcode == 6 || opcode == 7 \
-		|| opcode == 8 || opcode == 10 || opcode == 11 || opcode == 14)
+	else if (opcode == ADD || opcode == SUB || opcode == AND || opcode == OR \
+		|| opcode == XOR || opcode == LDI || opcode == STI || opcode == LLDI)
 		return (6);
 	return (0);
 }

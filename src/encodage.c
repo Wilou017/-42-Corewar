@@ -21,11 +21,13 @@ int			if_registre(t_cwdata *data, t_process *proc, t_inst inst)
 	len = size_encod(proc->pc);
 	i = 0;
 	size = 0;
+	(void)data;
 	while (i < len)
 	{
 		if (inst.bin[i] == '0' && inst.bin[i + 1] == '1')
 		{
-			if (data->mem[(proc->loca + 2 + size) % MEM_SIZE] < 1 || data->mem[(proc->loca + 2 + size) % MEM_SIZE] > REG_NUMBER)
+			if (data->mem[(proc->loca + 2 + size) % MEM_SIZE] < 1 ||
+				data->mem[(proc->loca + 2 + size) % MEM_SIZE] > REG_NUMBER)
 				return (0);
 			size += 1;
 		}
@@ -66,8 +68,9 @@ int			endof_instructions(int inst, int encod)
 
 int			check_opcode(int opcode)
 {
-	if (opcode == 1 || opcode == 2 || opcode == 6 || \
-		opcode == 7 || opcode == 8 || opcode == 13)
+	if (opcode == 1 || opcode == 2 || opcode == 3 || opcode == 4 || \
+		opcode == 5 || opcode == 6 || opcode == 7 || opcode == 8 || \
+		opcode == 13)
 		return (4);
 	else if (opcode == 9 || opcode == 10 || opcode == 11 || opcode == 12 || \
 		opcode == 14 || opcode == 15)
