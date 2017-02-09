@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:24:41 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/08 16:35:06 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/08 19:42:21 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ int				cw_get_new_loca(t_cwdata *data, int loca, int lfork)
 		new_loca = (lfork) ? (loca - param) : (loca - (param % IDX_MOD));
 		new_loca = (new_loca < 0) ? new_loca + MEM_SIZE : new_loca;
 		if (data->verbose)
-			ft_printf(" %d\n", -param);
+			ft_printf(" %d", -param);
 	}
 	else
 	{
 		param = (data->mem[(loca + 1) % MEM_SIZE] << 8) + data->mem[(loca + 2) % MEM_SIZE];
 		new_loca = (lfork) ? ((loca + param) % MEM_SIZE) : ((loca + (param % IDX_MOD)) % MEM_SIZE);
 		if (data->verbose)
-			ft_printf(" %d\n", param);
+			ft_printf(" %d", param);
 	}
 	return (new_loca);
 }

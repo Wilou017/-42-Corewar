@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:03:17 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/08 16:34:50 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/08 18:51:13 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_process	cw_init_proc_data(t_cwdata *data, int id, t_process *proc)
 	new_node.size = 0;
 	new_node.carry = (proc) ? proc->carry : 0;
 	new_node.id = data->nb_process;
-	new_node.if_live = 1;
+	new_node.last_clive = 0;
 	new_node.nb_live = (proc) ? proc->nb_live : 0;
 	new_node.wait_cicle = 0;
 	new_node.move = 1;
@@ -61,12 +61,6 @@ t_process	*cw_add_process_to_lst(t_cwdata *data, int id, t_process *proc)
 	new_node = cw_init_proc_data(data, id, proc);
 	data->nb_process++;
 	data->nb_process_total++;
-	if (data->verbose)
-		ft_printf("\nProcess %d is born", new_node.name);
-	if (data->verbose && proc)
-		ft_printf(" in %d +", proc->loca);
-	else if (data->verbose)
-		ft_putchar('\n');
 	if (proc == NULL)
 		new_node.reg[0] = id;
 	else if (!data->init)
@@ -78,13 +72,19 @@ t_process	*cw_add_process_to_lst(t_cwdata *data, int id, t_process *proc)
 
 void	cw_del_process_to_lst(t_cwdata *data, t_list *prev_proc, t_list *del_proc)
 {
-	t_list *next_proc;
+	t_list		*next_proc;
+	t_process	*proc;
 
 	if (del_proc)
 	{
+		proc = ((t_process*)(del_proc->content));
+		if(data->show_vm)
+			show_hide_proc(data, proc, 0);
+		if(data->verbose)
+			ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n", proc->name, data->cur_cycle - proc->last_clive, data->cycle_to_die);
 		next_proc = del_proc->next;
-		free(((t_process*)(del_proc->content))->reg);
-		free(((t_process*)(del_proc->content)));
+		free(proc->reg);
+		free(proc);
 		free(del_proc);
 		if (prev_proc)
 			prev_proc->next = next_proc;

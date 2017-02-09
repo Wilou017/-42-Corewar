@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 17:49:12 by dmathe            #+#    #+#             */
-/*   Updated: 2017/02/07 04:06:04 by dmathe           ###   ########.fr       */
+/*   Updated: 2017/02/08 19:47:01 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void			cw_add(t_cwdata *data, t_process *proc)
 		proc->bad_encodage = 0;
 	}
 	else
-		proc->move = 0; 
+		proc->move = 0;
 }
 
 void			cw_st(t_cwdata *data, t_process *proc)
@@ -122,6 +122,8 @@ void			cw_st(t_cwdata *data, t_process *proc)
 			if (data->verbose)
 				ft_printf(" r%d", regsrc + 1);
 			dest = cw_get_new_loca(data, proc->loca + 2, 0) - 2;
+			if (data->verbose)
+				ft_putchar('\n');
 			write_map(data, proc, dest, regsrc);
 		}
 		proc->wait_cicle = 0;
