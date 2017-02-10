@@ -28,47 +28,6 @@ int			write_in_int(t_cwdata *data, int *src, int len, int size)
 	return (1);
 }
 
-void		fill_len_champ(t_cwdata *data)
-{
-	if (data->nb_champion == 2)
-		data->begin_champ[1] = (MEM_SIZE / 2);
-	else if (data->nb_champion == 3)
-	{
-		data->begin_champ[1] = (MEM_SIZE / 3);
-		data->begin_champ[2] = (MEM_SIZE / 3 * 2);
-	}
-	else if (data->nb_champion == 4)
-	{
-		data->begin_champ[1] = (MEM_SIZE / 4);
-		data->begin_champ[2] = (MEM_SIZE / 2);
-		data->begin_champ[3] = (MEM_SIZE / 4 * 3);
-	}
-}
-
-// void		fill_map(t_cwdata *data)
-// {
-// 	int i;
-// 	t_list		*tmp;
-// 	t_header	*champ;
-
-// 	tmp = data->beginlist;
-// 	i = 1;
-// 	fill_len_champ(data);
-// 	while (tmp)
-// 	{
-// 		champ = (t_header*)tmp->content;
-// 		if (i == 1)
-// 			write_in_int(data, champ->prog, 0, champ->prog_size);
-// 		else if (i == 2)
-// 			write_in_int(data, champ->prog, data->begin_champ[1], champ->prog_size);
-// 		else if (i == 3)
-// 			write_in_int(data, champ->prog, data->begin_champ[2], champ->prog_size);
-// 		else if (i == 4)
-// 			write_in_int(data, champ->prog, data->begin_champ[3], champ->prog_size);
-// 		tmp = tmp->next;
-// 		i++;
-// 	}
-// }
 void		fill_map(t_cwdata *data)
 {
 	t_list		*tmp;

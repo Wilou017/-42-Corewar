@@ -69,6 +69,7 @@ typedef struct			s_process
 	int					wait_cicle;
 	int					good_cicle;
 	int					bad_encodage;
+	int					fail;
 }						t_process;
 
 typedef struct			s_header
@@ -94,6 +95,7 @@ typedef struct			s_inst
 
 typedef	struct			s_cwdata
 {
+	int					lastopfail;
 	int					init;
 	int					last_champ_live;
 	int					*mem;

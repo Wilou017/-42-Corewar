@@ -41,7 +41,7 @@ int				corewar_start(t_process	*proc, t_cwdata *data)
 		return (0);
 	if (if_encodage(proc->pc))
 	{
-		if (!proc->wait_cicle)
+		//if (!proc->wait_cicle)
 			proc->size = check_encod(proc, data, &ok);
 		redirect_function(data, proc->pc, proc);
 		if (proc->move)
