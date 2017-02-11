@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/08 18:06:26 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/11 04:17:29 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ typedef	struct			s_cwdata
 	int					*mem;
 	int					cur_cycle;
 	int					cycle_to_die;
-	int					lastopfail;
 	int					dumpcycles;
 	int					lastoption;
 	char				*lastdata;

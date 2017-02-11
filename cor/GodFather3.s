@@ -107,7 +107,7 @@ forkeur3:
 
 init1:
 	ld      %150994955, r2
-	ld      %288, r3
+	ld      %388, r3
 	ld		%0, r15
 	zjmp    %:print
 
@@ -117,27 +117,27 @@ forkeur4:
 
 init2:
 	ld      %1409421059, r2
-	ld      %292, r3
+	ld      %392, r3
 	ld		%0, r15
 	zjmp    %:print
 
 init3:
 	#		33554431
-	ld      %33554431, r2
-	ld      %296, r3
+	ld      %0, r2
+	ld      %396, r3
 	ld		%0, r15
 	zjmp    %:print
 
 init4:
-	# ld      %590105, r2
-	ld      %4278780185, r2
-	ld      %300, r3
+	#		4278780185
+	ld      %590205, r2
+	ld      %400, r3
 	ld		%0, r15
 	zjmp    %:print
 
 print:
 	sti		r2, r15, r3
-	zjmp	%286
+	zjmp	%386
 
 wall2:
 	live	%2863311530
@@ -145,7 +145,7 @@ wall2:
 	live	%2863311530
 	fork	%:wall2
 	live	%2863311530
-	ld		%655358, r13
+	ld			%655358, r13
 	sti		r13, %:end, %4
 	sti		r13, %:end, %8
 	sti		r13, %:end, %12
