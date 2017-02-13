@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   argv_checker.c                                     :+:      :+:    :+:   */
+/*   is_comment.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/12 11:17:12 by dgalide           #+#    #+#             */
-/*   Updated: 2017/01/12 11:17:17 by dgalide          ###   ########.fr       */
+/*   Created: 2017/01/12 11:20:15 by dgalide           #+#    #+#             */
+/*   Updated: 2017/01/12 11:20:16 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-void			check_argv(char *av, t_asm_data *asm_data)
+int				is_comment(char *buff)
 {
-	int			fd;
 	char		*tmp;
+	int			bol;
 
-	tmp = ft_strsub(av, ft_strlen(av) - 2, 2);
-	if (!ft_strequ(tmp, ".s"))
+	tmp = NULL;
+	bol = 0;
+	if (ft_strlen(buff) > 8)
 	{
-		exit_failure(" - Only \".s\" extension", asm_data);
-		asm_data->error = 1;
+		tmp = ft_strsub(buff, 0, 8);
+		if (ft_strequ(tmp, COMMENT_CMD_STRING))
+			bol = 1;
+		ft_memdel((void **)&tmp);
 	}
-	if ((fd = open(av, O_RDONLY)) == -1)
-	{
-		exit_failure(" - File not found", asm_data);
-		asm_data->error = 1;
-	}
-	ft_memdel((void **)&tmp);
+	return (bol);
 }

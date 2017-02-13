@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils1.c                                           :+:      :+:    :+:   */
+/*   fill_op4.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmathe <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/12 15:56:11 by dgalide           #+#    #+#             */
-/*   Updated: 2017/01/12 15:56:12 by dgalide          ###   ########.fr       */
+/*   Created: 2016/09/20 16:18:27 by dmathe            #+#    #+#             */
+/*   Updated: 2016/09/20 16:18:31 by dmathe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-void		exit_failure(char *error, t_asm_data *asm_data)
+void		fill_aff(t_optab_info *data)
 {
-	ft_putendl_fd(error, 2);
-	data_delete(asm_data);
-	exit(1);
+	data->nbr_args = 1;
+	data->opcode = 16;
+	data->nbr_cycles = 2;
+	data->if_codage = 1;
+	data->if_carry = 0;
+	data->label_size = 0;
 }

@@ -1,0 +1,90 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   if.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/01/12 11:20:53 by dgalide           #+#    #+#             */
+/*   Updated: 2017/01/12 11:20:55 by dgalide          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <asm.h>
+
+int			if_dir(char *s, t_label *label, int last_arg)
+{
+	char *str;
+
+	str = s;
+	if (str[ft_strlen(str) - 1] == ',')
+	{
+		if (last_arg)
+			return (0);
+		str[ft_strlen(str) - 1] = '\0';
+	}
+	if (str[0] == DIRECT_CHAR)
+	{
+		if (str[1] == LABEL_CHAR)
+		{
+			if (!ind_label(str, label))
+				return (0);
+		}
+		else if (str[1] == '\0')
+			return (0);
+		else if (!dir_value(str))
+			return (0);
+		return (1);
+	}
+	return (0);
+}
+
+int			if_ind(char *s, t_label *label, int last_arg)
+{
+	int		i;
+	char	*str;
+
+	str = ft_strdup(s);
+	i = 0;
+	if (str[ft_strlen(str) - 1] == ',')
+	{
+		if (last_arg)
+			return (0);
+		str[ft_strlen(str) - 1] = '\0';
+	}
+	if (str[0] == LABEL_CHAR)
+		if (!ind_label(str, label))
+			return (0);
+	if (str[i] == '-')
+		i++;
+	while (str[i])
+	{
+		if (str[i] < 48 || str[i] > 57)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int			if_reg(char *s, int last_arg)
+{
+	int		x;
+	char	*str;
+
+	last_arg = 0;
+	if (!s || ((x = ft_strlen(s)) > 3 || x < 2))
+		return (0);
+	str = ft_strdup(s);
+	if (str[0] != 'r')
+	{
+		ft_memdel((void **)&str);
+		return (0);
+	}
+	str[0] = ' ';
+	x = ft_atoi(str);
+	ft_memdel((void **)&str);
+	if (x >= 1 && x <= REG_NUMBER)
+		return (1);
+	else
+		return (0);
+}

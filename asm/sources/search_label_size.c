@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   argv_checker.c                                     :+:      :+:    :+:   */
+/*   search_label_size.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/12 11:17:12 by dgalide           #+#    #+#             */
-/*   Updated: 2017/01/12 11:17:17 by dgalide          ###   ########.fr       */
+/*   Created: 2017/01/12 11:19:19 by dgalide           #+#    #+#             */
+/*   Updated: 2017/01/12 11:19:20 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-void			check_argv(char *av, t_asm_data *asm_data)
+int					search_label_size(t_asm_data *data, int opcode)
 {
-	int			fd;
-	char		*tmp;
+	t_optab_info	*tmp;
 
-	tmp = ft_strsub(av, ft_strlen(av) - 2, 2);
-	if (!ft_strequ(tmp, ".s"))
-	{
-		exit_failure(" - Only \".s\" extension", asm_data);
-		asm_data->error = 1;
-	}
-	if ((fd = open(av, O_RDONLY)) == -1)
-	{
-		exit_failure(" - File not found", asm_data);
-		asm_data->error = 1;
-	}
-	ft_memdel((void **)&tmp);
+	tmp = data->info_op;
+	while (opcode != tmp->opcode)
+		tmp = tmp->next;
+	return (tmp->label_size);
 }

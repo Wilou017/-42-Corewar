@@ -1,80 +1,105 @@
-NAME = asm
-LIB = libft/libft.a 
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2015/11/25 12:19:31 by amaitre           #+#    #+#              #
+#    Updated: 2017/02/07 13:42:29 by amaitre          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SRC = 	sources/main.c 												\
-		sources/argv_checker.c 										\
-		sources/exit_failure.c 										\
-																	\
-		sources/data/init_data.c									\
-		sources/data/data_delete.c 									\
-																	\
-		sources/optab_info/op_tab.c									\
-		sources/optab_info/init_op.c								\
-		sources/optab_info/fill_op.c								\
-		sources/optab_info/fill_op2.c								\
-		sources/optab_info/fill_op3.c								\
-		sources/optab_info/fill_op4.c								\
-																	\
-		sources/parse/parse.c 										\
-		sources/parse/read_clean.c 									\
-		sources/parse/parse_label.c 								\
-		sources/parse/parse_instructions.c 							\
-		sources/parse/fill_header.c									\
-		sources/parse/is_name.c 									\
-		sources/parse/is_comment.c 									\
-		sources/parse/check_instructions/check_args.c 				\
-		sources/parse/check_instructions/check_args1.c 				\
-		sources/parse/check_instructions/check_args2.c 				\
-		sources/parse/check_instructions/check_args3.c 				\
-		sources/parse/check_instructions/check_args4.c 				\
-																	\
-		sources/process_data/process_data.c 						\
-		sources/process_data/set_byte_encoding.c 					\
-		sources/process_data/fill_token.c 							\
-		sources/process_data/set_size.c 							\
-		sources/process_data/set_index.c 							\
-		sources/process_data/set_label_value.c 						\
-		sources/process_data/search_label_size.c 					\
-																	\
-		sources/bytecode_generator/bytecode_generator.c 			\
-		sources/bytecode_generator/write_bytecode.c 				\
-		sources/bytecode_generator/write_arg.c 						\
-																	\
-		sources/utils/utils0.c 										\
-		sources/utils/utils1.c 										\
-		sources/utils/if.c 											\
+NAME		=	asm
 
-OBJ = $(SRC:.c=.o)
-FLAG = -Wall -Werror -Wextra
-CG = \033[92m
-CY =  \033[93m
-CE = \033[0m
-CB = \033[34m
+SRC					=	sources/main.c
+SRC					+=	sources/argv_checker.c
+SRC					+=	sources/exit_failure.c
+SRC					+=	sources/init_data.c
+SRC					+=	sources/data_delete.c
+SRC					+=	sources/op_tab.c
+SRC					+=	sources/init_op.c
+SRC					+=	sources/fill_op.c
+SRC					+=	sources/fill_op2.c
+SRC					+=	sources/fill_op3.c
+SRC					+=	sources/fill_op4.c
+SRC					+=	sources/parse.c
+SRC					+=	sources/read_clean.c
+SRC					+=	sources/parse_label.c
+SRC					+=	sources/parse_instructions.c
+SRC					+=	sources/fill_header.c
+SRC					+=	sources/is_name.c
+SRC					+=	sources/is_comment.c
+SRC					+=	sources/check_args.c
+SRC					+=	sources/check_args1.c
+SRC					+=	sources/check_args2.c
+SRC					+=	sources/check_args3.c
+SRC					+=	sources/check_args4.c
+SRC					+=	sources/process_data.c
+SRC					+=	sources/set_byte_encoding.c
+SRC					+=	sources/fill_token.c
+SRC					+=	sources/set_size.c
+SRC					+=	sources/set_index.c
+SRC					+=	sources/set_label_value.c
+SRC					+=	sources/search_label_size.c
+SRC					+=	sources/bytecode_generator.c
+SRC					+=	sources/write_bytecode.c
+SRC					+=	sources/write_arg.c
+SRC					+=	sources/utils0.c
+SRC					+=	sources/utils1.c
+SRC					+=	sources/if.c
 
-all: $(NAME)
+SRCO				=	$(addprefix obj/,$(notdir $(SRC:.c=.o)))
+HEADERSLIB	=	libft/includes
+HEADERS			=	includes
+CC					=	gcc
+CFLAGS			=	-Wall -Wextra -Werror
 
-$(NAME): $(OBJ)
-	@echo "\033[K$(CY)[ASM] :$(CE) $(CG)Creating Library$(CE)\033[1A";
-	-@make -C libft
-	@echo "\033[K$(CY)[ASM] :$(CE) $(CG)Compiling ASM ...$(CE)";
-	@gcc -o $(NAME) $(FLAG) $(SRC) $(LIB)
+all: logo $(NAME)
 
-%.o: %.c
-	@echo "\033[K$(CY)[ASM] :$(CE) $(CG)Compiling $<$(CE) \033[1A";
-	@gcc $(FLAG) -c $< -o $@
+logo:
+	@echo "\033[36m\n\
+			        :::      ::::::::\n\
+			       :+:      :+:    :+:\n\
+			     +:+ +:+         +:+\n\
+			   +#+  +:+       +#+\n\
+			 +#+#+#+#+#+   +#+\n\
+			      #+#    #+#\n\
+			     ###   ########.fr\n\
+			    			$(NAME) \033[0m"
 
-clean:
-	@echo "\033[K$(CY)[ASM] :$(CE) $(CG)Cleaning Library ...$(CE)\033[1A";
-	-@make clean -C libft
-	@echo "\033[K$(CY)[ASM] :$(CE) $(CG)Cleaning ASM objects$(CE)\033[1A";
-	@/bin/rm -rf $(OBJ)
+re: logo fclean all
 
-fclean: clean
-	@echo "\033[K$(CY)[ASM] :$(CE) $(CG)FCleaning Library ...$(CE)\033[1A";
-	@echo "\033[K$(CY)[ASM] :$(CE) $(CG)Cleaning ASM ...$(CE)\033[1A";
-	@/bin/rm -f $(NAME)
-	@/bin/rm -f $(LIB)
+obj/%.o: sources/%.c $(HEADERS)/$(NAME).h $(HEADERS)/op.h
+	@echo "\033[32mASM     :\033[0m [Compilation:\033[33m $@\033[0m]"
+	@$(CC) -o $@ -c $< $(CFLAGS) -I $(HEADERSLIB) -I $(HEADERS)
 
-re: fclean all
+$(NAME): $(SRCO)
+	@make -C libft/
+	@$(CC)  $(CFLAGS) -o $@ $^ libft/libft.a
+	@echo "[\033[32m--------------------------\033[0m]"
+	@echo "[\033[36m------   OK - ASM   ------\033[0m]"
+	@echo "[\033[32m--------------------------\033[0m]"
+	@echo "\033[32muse: ./$(NAME) [[-n number] champion1.cor] ... \033[0m"
+	@echo "\033[32mOptions:\033[0m"
+	@echo "\033[32m	[-v]              : Verbose\033[0m"
+	@echo "\033[32m	[-vm]             : Affichage de la loop\033[0m"
+	@echo "\033[32m	[-h]              : Cache les octets de -vm\033[0m"
+	@echo "\033[32m	[-dump nbr_cycles]: Affiche la memoire au cycle nbr_cycles\033[0m"
 
-.PHONY: all clean fclean re
+libft: logo
+	@make -C libft/
+
+clean: logo
+	@echo "\033[32mASM     :\033[0m [\033[31mSuppression des .o\033[0m]"
+	@make clean -C libft/
+	@rm -f $(SRCO)
+
+fclean: logo
+	@echo "\033[32mASM     :\033[0m [\033[31mSuppression des .o\033[0m]"
+	@rm -f $(SRCO)
+	@echo "\033[32mASM     :\033[0m [\033[31mSuppression de $(NAME)\033[0m]"
+	@make fclean -C libft/
+	@rm -f $(NAME)
+
+.PHONY: re clean fclean all libft logo

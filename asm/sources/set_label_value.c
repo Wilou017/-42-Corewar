@@ -1,32 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   argv_checker.c                                     :+:      :+:    :+:   */
+/*   set_label_value.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/12 11:17:12 by dgalide           #+#    #+#             */
-/*   Updated: 2017/01/12 11:17:17 by dgalide          ###   ########.fr       */
+/*   Created: 2017/01/12 11:19:29 by dgalide           #+#    #+#             */
+/*   Updated: 2017/01/12 11:19:31 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-void			check_argv(char *av, t_asm_data *asm_data)
+void			set_label_value(t_asm_data *data)
 {
-	int			fd;
-	char		*tmp;
+	int			i;
+	char		*name;
+	t_op_token	*tmp;
+	t_op_token	*t1;
+	t_label		*label;
 
-	tmp = ft_strsub(av, ft_strlen(av) - 2, 2);
-	if (!ft_strequ(tmp, ".s"))
+	i = -1;
+	tmp = data->token;
+	label = data->label;
+	name = NULL;
+	while (tmp)
 	{
-		exit_failure(" - Only \".s\" extension", asm_data);
-		asm_data->error = 1;
+		i = -1;
+		while (tmp->arg && tmp->arg[++i])
+		{
+			name = ft_strdup(tmp->arg[i]);
+			if (is_label(name))
+			{
+				t1 = tmp;
+				set_index(data, tmp, tmp->arg[i]);
+			}
+			ft_memdel((void **)&name);
+		}
+		tmp = tmp->next;
 	}
-	if ((fd = open(av, O_RDONLY)) == -1)
-	{
-		exit_failure(" - File not found", asm_data);
-		asm_data->error = 1;
-	}
-	ft_memdel((void **)&tmp);
 }

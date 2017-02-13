@@ -12,33 +12,22 @@
 
 NAME		=	corewar
 
-all: logo $(NAME)
+all: $(NAME)
 
-logo:
-	@echo "\033[36m\n\
-			        :::      ::::::::\n\
-			       :+:      :+:    :+:\n\
-			     +:+ +:+         +:+\n\
-			   +#+  +:+       +#+\n\
-			 +#+#+#+#+#+   +#+\n\
-			      #+#    #+#\n\
-			     ###   ########.fr\n\
-			    			$(NAME) \033[0m"
-
-re: logo fclean all
+re: fclean all
 
 $(NAME):
+	@make -C asm/
 	@make -C vm/
+
+asm:
 	@make -C asm/
 
-asm: logo
-	@make -C asm/
-
-clean: logo
+clean:
 	@make clean -C asm/
 	@make clean -C vm/
 
-fclean: logo
+fclean:
 	@make fclean -C asm/
 	@make fclean -C vm/
 

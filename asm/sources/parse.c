@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   argv_checker.c                                     :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/12 11:17:12 by dgalide           #+#    #+#             */
-/*   Updated: 2017/01/12 11:17:17 by dgalide          ###   ########.fr       */
+/*   Created: 2017/01/12 11:20:00 by dgalide           #+#    #+#             */
+/*   Updated: 2017/01/12 11:20:01 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-void			check_argv(char *av, t_asm_data *asm_data)
+void				parse(t_asm_data *data, char *av)
 {
-	int			fd;
-	char		*tmp;
+	int				i;
 
-	tmp = ft_strsub(av, ft_strlen(av) - 2, 2);
-	if (!ft_strequ(tmp, ".s"))
-	{
-		exit_failure(" - Only \".s\" extension", asm_data);
-		asm_data->error = 1;
-	}
-	if ((fd = open(av, O_RDONLY)) == -1)
-	{
-		exit_failure(" - File not found", asm_data);
-		asm_data->error = 1;
-	}
-	ft_memdel((void **)&tmp);
+	i = -1;
+	if (read_clean(data, av) == -1)
+		exit_failure(" -- Error While Reading File", data);
+	while ((data->file)[++i])
+		if (!parse_label(data, (data->file)[i]))
+			exit_failure(" -- Error Label Format", data);
+	i = -1;
+	while ((data->file)[++i])
+		parse_instructions(data, (data->file)[i]);
 }

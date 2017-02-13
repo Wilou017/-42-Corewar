@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   argv_checker.c                                     :+:      :+:    :+:   */
+/*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgalide <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/12 11:17:12 by dgalide           #+#    #+#             */
-/*   Updated: 2017/01/12 11:17:17 by dgalide          ###   ########.fr       */
+/*   Created: 2017/01/12 11:19:50 by dgalide           #+#    #+#             */
+/*   Updated: 2017/01/12 11:19:51 by dgalide          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <asm.h>
 
-void			check_argv(char *av, t_asm_data *asm_data)
+void				data_init(t_asm_data *asm_data)
 {
-	int			fd;
-	char		*tmp;
+	t_label			*label;
+	t_op_token		*token;
 
-	tmp = ft_strsub(av, ft_strlen(av) - 2, 2);
-	if (!ft_strequ(tmp, ".s"))
-	{
-		exit_failure(" - Only \".s\" extension", asm_data);
-		asm_data->error = 1;
-	}
-	if ((fd = open(av, O_RDONLY)) == -1)
-	{
-		exit_failure(" - File not found", asm_data);
-		asm_data->error = 1;
-	}
-	ft_memdel((void **)&tmp);
+	label = NULL;
+	token = NULL;
+	asm_data->file = NULL;
+	asm_data->name = NULL;
+	asm_data->comment_name = NULL;
+	asm_data->prog_size = 0;
+	asm_data->label = label;
+	asm_data->info_op = NULL;
+	asm_data->info_op = create_op_tab(asm_data->info_op);
+	asm_data->token = token;
+	asm_data->error = 0;
 }

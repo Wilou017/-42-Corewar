@@ -108,16 +108,21 @@ all: $(NAME)
 re: fclean all
 
 .c.o:
-	$(CC) $(CFLAGS) -o $@ -c $< -I $(INC)
+	@echo "\033[K\033[35mLIBFT  :\033[0m [Compilation:\033[33m $^\033[0m]\033[1A"
+	@$(CC) $(CFLAGS) -o $@ -c $< -I $(INC)
 
 $(NAME): $(SRCO)
-	ar rc $@ $^
-	ranlib $@
+	@echo "\033[K\033[35mLIBFT  :\033[0m [Compilation:\033[33m des .o\033[0m][\033[32mOK!\033[0m]"
+	@echo "\033[35mLIBFT  :\033[0m [Compilation:\033[33m $(NAME)\033[0m]"
+	@ar rc $@ $^
+	@ranlib $@
 
 clean:
-	rm -rf $(SRCO)
+	@echo "\033[32mASM     :\033[0m [\033[31mSuppression des .o\033[0m]"
+	@rm -rf $(SRCO)
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
+	@echo "\033[32mASM     :\033[0m [\033[31mSuppression de $(NAME)\033[0m]"
 
 .PHONY: all re clean fclean
