@@ -6,19 +6,15 @@
 #    By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 12:19:31 by amaitre           #+#    #+#              #
-#    Updated: 2017/02/13 17:09:07 by amaitre          ###   ########.fr        #
+#    Updated: 2017/02/13 17:19:55 by amaitre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	corewar
-
-all: $(NAME)
-
-re: fclean all
-
-$(NAME):
+all:
 	@make -C asmdir/
 	@make -C vm/
+
+re: fclean all
 
 asm:
 	@make -C asmdir/
