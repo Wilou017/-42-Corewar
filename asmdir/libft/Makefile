@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgalide <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 17:42:00 by dgalide           #+#    #+#              #
-#    Updated: 2016/10/05 10:50:03 by dgalide          ###   ########.fr        #
+#    Updated: 2017/02/13 21:41:21 by amaitre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,11 +118,11 @@ $(NAME): $(SRCO)
 	@ranlib $@
 
 clean:
-	@echo "\033[32mASM     :\033[0m [\033[31mSuppression des .o\033[0m]"
+	@echo "\033[35mLIBFT  :\033[0m[\033[31mSuppression des .o\033[0m]"
 	@rm -rf $(SRCO)
 
 fclean: clean
 	@rm -rf $(NAME)
-	@echo "\033[32mASM     :\033[0m [\033[31mSuppression de $(NAME)\033[0m]"
+	@echo "\033[35mLIBFT  :\033[0m[\033[31mSuppression de $(NAME)\033[0m]"
 
 .PHONY: all re clean fclean
