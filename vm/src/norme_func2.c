@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 13:57:58 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/13 20:23:41 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/13 20:58:13 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,26 @@ void	show_hide_proc(t_cwdata *data, t_process *proc, int force)
 	int boolean;
 
 	boolean = (force == 0) ? force : 1;
-	ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 3);
+	ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3,
+	(proc->loca % NB_OCT_LINE) * 3 + 3);
 	ft_printf("{bg%s} ", (boolean) ? right_color(data, proc->id_champ) : "black");
-	ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3, (proc->loca % NB_OCT_LINE) * 3 + 6);
+	ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3,
+		(proc->loca % NB_OCT_LINE) * 3 + 6);
 	ft_printf(" {eoc}");
 }
 
-void	adv_print(t_cwdata *data, int procsize, int procloca, int good_cicle)
+void	adv_print(t_cwdata *data, t_process saveproc)
 {
 	int		i;
 
 	i = -1;
-	if (data->verbose && good_cicle && (data->lastopfail || data->mem[procloca] != ZJUMP))
+	if (data->verbose && saveproc.good_cicle &&
+		(data->lastopfail || data->mem[saveproc.loca] != ZJUMP))
 	{
-		ft_printf("ADV %d (%.4p -> %.4p) ", procsize, procloca, procloca + procsize);
-		while (++i < procsize)
-			ft_printf("%.2x ", data->mem[(procloca + i) % MEM_SIZE]);
+		ft_printf("ADV %d (%.4p -> %.4p) ", saveproc.size, saveproc.loca,
+			saveproc.loca + saveproc.size);
+		while (++i < saveproc.size)
+			ft_printf("%.2x ", data->mem[(saveproc.loca + i) % MEM_SIZE]);
 		ft_printf("\n");
 	}
 }
@@ -45,7 +49,7 @@ void	cw_map_init(t_cwdata *data)
 	i = 0;
 	ft_termcaps_screenclear();
 	ft_printf("{bglblack}%*s{eoc}\n", COLONE_TEXT + 51, " ");
-	while (i++ <= MEM_SIZE/NB_OCT_LINE + 3)
+	while (i++ <= MEM_SIZE / NB_OCT_LINE + 3)
 	{
 		ft_printf("{bglblack} {eoc}");
 		ft_termcaps_rightcurs(NB_OCT_LINE * 3 + 3);
@@ -62,7 +66,7 @@ void	cw_map_init(t_cwdata *data)
 	get_next_line(0, &start);
 }
 
-void		cw_dump_mem(t_cwdata *data)
+void	cw_dump_mem(t_cwdata *data)
 {
 	int i;
 	int size;
@@ -79,7 +83,7 @@ void		cw_dump_mem(t_cwdata *data)
 	}
 }
 
-int				cw_get_new_loca(t_cwdata *data, int loca, int lfork)
+int		cw_get_new_loca(t_cwdata *data, int loca, int lfork)
 {
 	int	param;
 	int	tmp_param1;

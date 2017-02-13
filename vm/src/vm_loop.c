@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/13 20:15:20 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/13 21:00:55 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static int	init_process(t_cwdata *data)
 	}
 	return (0);
 }
-
 
 static void	cw_data_print_head(t_cwdata *data)
 {

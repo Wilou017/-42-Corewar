@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/13 20:15:40 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/13 20:58:35 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int			cw_get_valid_champ_id(t_cwdata *data);
 ** src/norme_func2.c
 */
 
-void	adv_print(t_cwdata *data, int procsize, int procloca, int good_cicle);
+void    adv_print(t_cwdata *data, t_process saveproc);
 void	show_hide_proc(t_cwdata *data, t_process *proc, int force);
 void	cw_map_init(t_cwdata *data);
 void	cw_dump_mem(t_cwdata *data);

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:28:37 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/08 16:37:36 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/13 20:57:11 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ static void	cw_prit_starter(t_cwdata *data)
 	while (tmp)
 	{
 		champ = ((t_header*)tmp->content);
-		ft_printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", (i++), champ->prog_size, champ->prog_name, champ->comment);
+		ft_printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", (i++),
+			champ->prog_size, champ->prog_name, champ->comment);
 		tmp = tmp->next;
 	}
 }

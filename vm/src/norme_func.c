@@ -6,21 +6,20 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:17:46 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/13 20:23:26 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/13 20:53:36 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include <corewar.h>
 
-int		cw_norme1(t_reedstruct reed, t_header *champion)
+int			cw_norme1(t_reedstruct reed, t_header *champion)
 {
 	champion->prog = reed.inst_tab;
 	champion->prog_size = reed.inst_size;
 	return (0);
 }
 
-void	vm_print(t_cwdata *data, t_process *proc, int loca)
+void		vm_print(t_cwdata *data, t_process *proc, int loca)
 {
 	int i;
 	int loci;
@@ -30,7 +29,8 @@ void	vm_print(t_cwdata *data, t_process *proc, int loca)
 	while (++i < 4)
 	{
 		loci = (loca + i) % MEM_SIZE;
-		ft_termcaps_poscurs(loci / NB_OCT_LINE + 3, (loci % NB_OCT_LINE) * 3 + 4);
+		ft_termcaps_poscurs(loci / NB_OCT_LINE + 3,
+			(loci % NB_OCT_LINE) * 3 + 4);
 		ft_printf("%.2X ", (data->hide) ? 255 : data->mem[loca + i]);
 	}
 	ft_putstr("\033[0m");
@@ -52,12 +52,12 @@ t_header	*cw_id_champ_valid(t_cwdata *data, int id)
 	return (NULL);
 }
 
-char	*right_color(t_cwdata *data, int id_champ)
+char		*right_color(t_cwdata *data, int id_champ)
 {
-	return data->color[(ABS(id_champ) % 5)];
+	return (data->color[(ABS(id_champ) % 5)]);
 }
 
-int		cw_get_valid_champ_id(t_cwdata *data)
+int			cw_get_valid_champ_id(t_cwdata *data)
 {
 	int	id;
 

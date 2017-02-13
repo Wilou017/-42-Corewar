@@ -6,34 +6,16 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:03:17 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/08 18:51:13 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/13 20:43:36 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar.h>
 
-t_header	*cw_add_champ_to_lst(t_cwdata *data)
+static t_process	cw_init_proc_data(t_cwdata *data, int id, t_process *proc)
 {
-	t_header	new_node;
-	t_list		*champion_node;
-
-	new_node.prog_name = ft_strnew(0);
-	new_node.comment = ft_strnew(0);
-	new_node.prog_size = 0;
-	new_node.id = cw_get_valid_champ_id(data);
-	new_node.nb_live = 0;
-	new_node.last_clive = 0;
-	new_node.if_live = 1;
-	cw_add_process_to_lst(data, new_node.id, NULL);
-	champion_node = ft_lstnew((void *)&new_node, sizeof(new_node));
-	ft_lstadd(&data->beginlist, champion_node);
-	return ((t_header*)champion_node->content);
-}
-
-t_process	cw_init_proc_data(t_cwdata *data, int id, t_process *proc)
-{
-	static		int		i = 1;
-	t_process	new_node;
+	static int		i = 1;
+	t_process		new_node;
 
 	new_node.fail = 0;
 	new_node.bad_encodage = 0;
@@ -53,9 +35,9 @@ t_process	cw_init_proc_data(t_cwdata *data, int id, t_process *proc)
 	return (new_node);
 }
 
-t_process	*cw_add_process_to_lst(t_cwdata *data, int id, t_process *proc)
+t_process			*cw_add_process_to_lst(t_cwdata *data, int id,
+	t_process *proc)
 {
-
 	t_process	new_node;
 	t_list		*process_node;
 
@@ -71,7 +53,26 @@ t_process	*cw_add_process_to_lst(t_cwdata *data, int id, t_process *proc)
 	return ((t_process*)process_node->content);
 }
 
-void	cw_del_process_to_lst(t_cwdata *data, t_list *prev_proc, t_list *del_proc)
+t_header			*cw_add_champ_to_lst(t_cwdata *data)
+{
+	t_header	new_node;
+	t_list		*champion_node;
+
+	new_node.prog_name = ft_strnew(0);
+	new_node.comment = ft_strnew(0);
+	new_node.prog_size = 0;
+	new_node.id = cw_get_valid_champ_id(data);
+	new_node.nb_live = 0;
+	new_node.last_clive = 0;
+	new_node.if_live = 1;
+	cw_add_process_to_lst(data, new_node.id, NULL);
+	champion_node = ft_lstnew((void *)&new_node, sizeof(new_node));
+	ft_lstadd(&data->beginlist, champion_node);
+	return ((t_header*)champion_node->content);
+}
+
+void				cw_del_process_to_lst(t_cwdata *data, t_list *prev_proc,
+	t_list *del_proc)
 {
 	t_list		*next_proc;
 	t_process	*proc;
@@ -79,10 +80,11 @@ void	cw_del_process_to_lst(t_cwdata *data, t_list *prev_proc, t_list *del_proc)
 	if (del_proc)
 	{
 		proc = ((t_process*)(del_proc->content));
-		if(data->show_vm)
+		if (data->show_vm)
 			show_hide_proc(data, proc, 0);
-		if(data->verbose)
-			ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n", proc->name, data->cur_cycle - proc->last_clive, data->cycle_to_die);
+		if (data->verbose)
+			ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
+			proc->name, data->cur_cycle - proc->last_clive, data->cycle_to_die);
 		next_proc = del_proc->next;
 		free(proc->reg);
 		free(proc);

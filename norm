@@ -1,30 +1,16 @@
 Norme: ./vm/src/check_cycle.c
 Norme: ./vm/src/check_param_op.c
-Norme: ./vm/src/corewar.c
 Norme: ./vm/src/cw_free.c
+Norme: ./vm/src/corewar.c
 Norme: ./vm/src/create_mem.c
-Norme: ./vm/src/fill_map.c
 Norme: ./vm/src/distrib_function.c
+Norme: ./vm/src/fill_map.c
+Norme: ./vm/src/init.c
 Norme: ./vm/src/encodage.c
 Error (line 89): function check_encod has 31 lines
 Error (line 121): line has 83 characters
-Norme: ./vm/src/init.c
-Error (line 87): line has 133 characters
 Norme: ./vm/src/get_function.c
 Norme: ./vm/src/list_instructions3.c
-Error (line 15): function cw_live has 26 lines
-Error (line 21): C++ comment
-Error (line 22): C++ comment
-Error (line 36): line has 101 characters
-Error (line 50): C++ comment
-Error (line 51): C++ comment
-Error (line 70): C++ comment
-Error (line 71): C++ comment
-Error (line 85): function cw_zjump has 27 lines
-Error (line 90): C++ comment
-Error (line 91): C++ comment
-Error (line 98, col 3): missing space after if
-Error (line 105, col 3): missing space after if
 Norme: ./vm/src/list_instructions4.c
 Error: global scope bad aligned
 Error (line 17): bad indentation
@@ -45,18 +31,6 @@ Error (line 90): C++ comment
 Error (line 91): C++ comment
 Error (line 99): line has 88 characters
 Norme: ./vm/src/lst_function.c
-Error: global scope bad aligned
-Error (line 33): declarations in cw_init_proc_data are bad aligned
-Error (line 56): declarations in cw_add_process_to_lst must be at the top of the function
-Error (line 74): line has 83 characters
-Error (line 82, col 2): missing space after if
-Error (line 84, col 2): missing space after if
-Error (line 85): line has 143 characters
-Norme: ./vm/src/main.c
-Error: global scope bad aligned
-Error (line 22, col 2): missing space after if
-Error (line 28, col 30): missing space around /
-Error (line 36): line has 87 characters
 Norme: ./vm/src/list_instructions.c
 Error (line 15): function cw_sub has 34 lines
 Error (line 19): C++ comment
@@ -85,24 +59,13 @@ Error (line 149): bad indentation
 Error (line 151): C++ comment
 Error (line 152): C++ comment
 Error (line 160): line has 88 characters
+Norme: ./vm/src/main.c
 Norme: ./vm/src/norme_func.c
-Error: global scope bad aligned
-Error: file must end with a single empty line
-Error (line 13): multiple empty lines
-Error (line 33): line has 83 characters
-Error (line 57, col 8): missing parentheses in return statement
-Error (line 68, col 0): no newline after block
 Norme: ./vm/src/norme_func3.c
 Error: file must end with a single empty line
 Error (line 15): multiple empty lines
 Norme: ./vm/src/norme_func2.c
-Error: global scope bad aligned
-Error (line 20): line has 91 characters
-Error (line 21): line has 83 characters
-Error (line 22): line has 91 characters
-Error (line 31): line has 91 characters
-Error (line 33): line has 86 characters
-Error (line 48, col 23): missing space around /
+Error (line 22): line has 83 characters
 Norme: ./vm/src/opcode.c
 Error: file must end with a single empty line
 Error (line 41, col 0): no newline after block
@@ -134,25 +97,7 @@ Error (line 53, col 1): missing space after return
 Error (line 54, col 0): no newline after block
 Norme: ./vm/src/verbose.c
 Norme: ./vm/src/redirect_function.c
-Error (line 15): function redirect_function2 has 40 lines
-Error (line 15): declarations must be followed by one empty line in redirect_function2
-Error (line 21): multiple empty lines
-Error (line 21): Empty line
-Error (line 32): must begin only by tabulations
-Error (line 47): must begin only by tabulations
-Error (line 56): Empty line
-Error (line 57, col 0): no empty line before block
-Error (line 59): function redirect_function has 57 lines
-Error (line 59): declarations must be followed by one empty line in redirect_function
-Error (line 65): multiple empty lines
-Error (line 65): Empty line
-Error (line 72): must begin only by tabulations
-Error (line 107): must begin only by tabulations
-Error (line 116, col 2): missing space after return
 Norme: ./vm/src/vm_loop.c
-Error (line 15): bad spacing after init_process
-Error (line 34): multiple empty lines
-Error (line 35): bad spacing before cw_data_print_head
 Norme: ./vm/src/list_instructions2.c
 Error (line 15): function cw_sti has 50 lines
 Error (line 15, col 0): cw_sti has 6 variables

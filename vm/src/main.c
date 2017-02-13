@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:15:30 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/13 19:58:56 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/13 20:54:30 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ static void	cw_endloop(t_cwdata *data)
 	tmp = data->processlist;
 	while (tmp)
 	{
-		if(data->show_vm)
+		if (data->show_vm)
 			show_hide_proc(data, (t_process*)tmp->content, 0);
 		cw_del_process_to_lst(data, NULL, tmp);
 		tmp = tmp->next;
 	}
 	if (data->show_vm)
-		ft_termcaps_poscurs(MEM_SIZE/NB_OCT_LINE + 5, 0);
+		ft_termcaps_poscurs(MEM_SIZE / NB_OCT_LINE + 5, 0);
 }
 
 static void	cw_get_winner(t_cwdata *data)
@@ -33,10 +33,11 @@ static void	cw_get_winner(t_cwdata *data)
 	t_header	*champ;
 
 	champ = cw_id_champ_valid(data, data->last_champ_live);
-	ft_printf("Contestant %d, \"%s\", has won !\n", ABS(champ->id), champ->prog_name);
+	ft_printf("Contestant %d, \"%s\", has won !\n",
+		ABS(champ->id), champ->prog_name);
 }
 
-int	main(int argc, t_tab argv)
+int			main(int argc, t_tab argv)
 {
 	t_cwdata	data;
 
