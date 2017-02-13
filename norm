@@ -1,14 +1,14 @@
 Norme: ./vm/src/check_cycle.c
 Norme: ./vm/src/check_param_op.c
 Norme: ./vm/src/cw_free.c
-Norme: ./vm/src/corewar.c
 Norme: ./vm/src/create_mem.c
-Norme: ./vm/src/distrib_function.c
+Norme: ./vm/src/corewar.c
 Norme: ./vm/src/fill_map.c
-Norme: ./vm/src/init.c
+Norme: ./vm/src/distrib_function.c
 Norme: ./vm/src/encodage.c
 Error (line 89): function check_encod has 31 lines
 Error (line 121): line has 83 characters
+Norme: ./vm/src/init.c
 Norme: ./vm/src/get_function.c
 Norme: ./vm/src/list_instructions3.c
 Norme: ./vm/src/list_instructions4.c
@@ -31,6 +31,8 @@ Error (line 90): C++ comment
 Error (line 91): C++ comment
 Error (line 99): line has 88 characters
 Norme: ./vm/src/lst_function.c
+Norme: ./vm/src/main.c
+Norme: ./vm/src/norme_func.c
 Norme: ./vm/src/list_instructions.c
 Error (line 15): function cw_sub has 34 lines
 Error (line 19): C++ comment
@@ -59,8 +61,6 @@ Error (line 149): bad indentation
 Error (line 151): C++ comment
 Error (line 152): C++ comment
 Error (line 160): line has 88 characters
-Norme: ./vm/src/main.c
-Norme: ./vm/src/norme_func.c
 Norme: ./vm/src/norme_func3.c
 Error: file must end with a single empty line
 Error (line 15): multiple empty lines
@@ -86,6 +86,7 @@ Error (line 89): line has 89 characters
 Error (line 96): line has 134 characters
 Error (line 97): line has 88 characters
 Error (line 98): line has 88 characters
+Norme: ./vm/src/redirect_function.c
 Norme: ./vm/src/utils.c
 Error: file must end with a single empty line
 Error (line 25): bad indentation
@@ -95,9 +96,6 @@ Error (line 27): bad indentation
 Error (line 27): must begin only by tabulations
 Error (line 53, col 1): missing space after return
 Error (line 54, col 0): no newline after block
-Norme: ./vm/src/verbose.c
-Norme: ./vm/src/redirect_function.c
-Norme: ./vm/src/vm_loop.c
 Norme: ./vm/src/list_instructions2.c
 Error (line 15): function cw_sti has 50 lines
 Error (line 15, col 0): cw_sti has 6 variables
@@ -134,3 +132,5 @@ Error (line 236): bad indentation
 Error (line 238): C++ comment
 Error (line 239): C++ comment
 Error (line 247): line has 88 characters
+Norme: ./vm/src/verbose.c
+Norme: ./vm/src/vm_loop.c

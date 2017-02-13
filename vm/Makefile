@@ -6,7 +6,7 @@
 #    By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 12:19:31 by amaitre           #+#    #+#              #
-#    Updated: 2017/02/13 17:07:43 by amaitre          ###   ########.fr        #
+#    Updated: 2017/02/13 21:36:27 by amaitre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,7 @@ $(NAME): $(SRCO)
 	@echo "\033[32m	[-vm]             : Affichage de la loop\033[0m"
 	@echo "\033[32m	[-h]              : Cache les octets de -vm\033[0m"
 	@echo "\033[32m	[-dump nbr_cycles]: Affiche la memoire au cycle nbr_cycles\033[0m"
+	@echo "\033[32m	[-r nbr_cycles]   : Relentit a nbr_cycles\033[0m"
 
 libft: logo
 	@make -C libftprintf/

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:24:41 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/13 20:25:42 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/13 21:34:41 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,11 @@ static int		get_error(t_reedstruct reed, char *name)
 	else if (reed.reedsize == -2)
 		return (ft_printf("{red}%s -> Progsize = 0\n", name));
 	else if (reed.reedsize == -3)
-		return (ft_printf("{red}%s -> Commentaire trop long | \
-taille max = %d\n", name, COMMENT_LENGTH));
+		return (ft_printf("{red}%s -> Commentaire trop (%d) long | \
+taille max = %d\n", name, reed.buf, COMMENT_LENGTH));
+	else if (reed.reedsize == -5)
+		return (ft_printf("{red}%s -> Champion trop long (%d) | \
+taille max = %d\n", name, reed.buf, CHAMP_MAX_SIZE));
 	else if (reed.reedsize == -4)
 		return (ft_printf("{red}%s -> Premier octet a 0\n", name));
 	return (0);

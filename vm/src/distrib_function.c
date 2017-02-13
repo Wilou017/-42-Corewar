@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 18:59:41 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/08 16:34:57 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/13 21:32:57 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int		cw_distrib_progsize(t_reedstruct *reed)
 {
 	if (reed->buf == 0)
 		return (-2);
+	if (reed->buf > CHAMP_MAX_SIZE)
+		return (-5);
 	if (DEBUG_PARSINGCOR)
 		ft_printf("%04d Progsize ? -> {lred}%.8X{eoc} -> \
 {lgreen}%d{eoc}\n", reed->status, reed->buf, reed->buf);
