@@ -80,12 +80,7 @@ $(NAME): $(SRCO)
 	@echo "[\033[32m--------------------------\033[0m]"
 	@echo "[\033[36m------   OK - ASM   ------\033[0m]"
 	@echo "[\033[32m--------------------------\033[0m]"
-	@echo "\033[32muse: ./$(NAME) [[-n number] champion1.cor] ... \033[0m"
-	@echo "\033[32mOptions:\033[0m"
-	@echo "\033[32m	[-v]              : Verbose\033[0m"
-	@echo "\033[32m	[-vm]             : Affichage de la loop\033[0m"
-	@echo "\033[32m	[-h]              : Cache les octets de -vm\033[0m"
-	@echo "\033[32m	[-dump nbr_cycles]: Affiche la memoire au cycle nbr_cycles\033[0m"
+	@echo "\033[32muse: ./$(NAME) [champion1.s] ... \033[0m"
 
 libft: logo
 	@make -C libft/

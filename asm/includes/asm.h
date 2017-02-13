@@ -13,7 +13,7 @@
 #ifndef ASM_H
 # define ASM_H
 
-# include "../libft/includes/libft.h" 
+# include "../libft/includes/libft.h"
 # include "op.h"
 
 typedef struct			s_op_token
@@ -126,8 +126,8 @@ void					set_label_value(t_asm_data *data);
 int						search_label_size(t_asm_data *data, int opcode);
 
 void					bytecode_generator(t_asm_data *data, char *argv);
-void					write_bytecode(unsigned int value, int size_value, int fd);
-void				write_bytecode1(unsigned int value, int size_value, int fd);
+void					write_bytecode(unsigned int value, int size, int fd);
+void					write_bytecode1(unsigned int value, int size, int fd);
 void					write_arg(int fd, t_op_token *tok, int i,
 	t_asm_data *data);
 

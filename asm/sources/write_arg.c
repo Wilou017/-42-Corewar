@@ -32,28 +32,16 @@ static void		write_dir(int fd, t_op_token *token,
 	label_size = search_label_size(data, token->opcode);
 	tmp = ft_strsub(token->arg[index], 1, ft_strlen(token->arg[index]) - 1);
 	value = ft_atoi(tmp);
-	//ft_printf("write_dir = s{%s} d{%d} label size = {%d}\n", tmp, value, label_size);
 	if (value < 0)
 	{
 		value *= -1;
 		if (label_size == 2)
-		{
 			write_bytecode1(65536 - value, 2, fd);
-			//bytecode = bytecode_translator(65535 - value, 2);
-			//write(fd, bytecode, 2);
-		}
 		else
-		{
 			write_bytecode1(4294967296 - value, 4, fd);
-			//bytecode = bytecode_translator(4294967295 - value, 4);
-			//write(fd, bytecode, 4);
-		}
 	}
 	else
 		write_bytecode(value, label_size, fd);
-	//ft_memdel((void **)&bytecode);
-	// free(tmp);
-	// write_bytecode(value, label_size, fd);
 }
 
 static void		write_label(int fd, t_op_token *token, t_asm_data *data)
@@ -64,26 +52,14 @@ static void		write_label(int fd, t_op_token *token, t_asm_data *data)
 	if (token->label_index < 0)
 	{
 		token->label_index *= -1;
-		//ft_printf("index = {%d}\n", token->label_index);
 		if (search_label_size(data, token->opcode) == 2)
-		{
 			write_bytecode1(65535 - token->label_index, 2, fd);
-			//bytecode = bytecode_translator(65535 - token->index, 2);
-			//write(fd, bytecode, 2);
-		}
 		else
-		{
 			write_bytecode1(4294967295 - token->label_index, 4, fd);
-			//bytecode = bytecode_translator(4294967295 - token->index, 4);
-			//write(fd, bytecode, 4);
-		}
-		//ft_memdel((void **)&bytecode);
-		// token->label_index *= -1;
-		// write_bytecode(255, 1, fd);
-		// write_bytecode((255 - token->label_index), 1, fd);
 	}
 	else
-		write_bytecode(token->label_index, search_label_size(data, token->opcode), fd);
+		write_bytecode(token->label_index,
+			search_label_size(data, token->opcode), fd);
 }
 
 static void		write_reg(int fd, char *arg)

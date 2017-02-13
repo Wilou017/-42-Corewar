@@ -28,7 +28,7 @@ static int			write_bytecode_ext(int i, char *tmp, int power)
 		return (tmp[i] - ((tmp[i] >= 97 && tmp[i] <= 122) ? 87 : 48));
 }
 
-unsigned char 		*new_bytecode(int size)
+unsigned char		*new_bytecode(int size)
 {
 	unsigned char	*new;
 
@@ -81,7 +81,6 @@ void				write_bytecode(unsigned int value, int size_value, int fd)
 	i = ft_strlen(tmp) - 1;
 	j = size_value - 1;
 	power = 0;
-//	ft_printf("value = {%u} str = {%s}\n", value, tmp);
 	while (i >= 0)
 	{
 		tmp1[j] = write_bytecode_ext(i, tmp, power);
@@ -95,4 +94,3 @@ void				write_bytecode(unsigned int value, int size_value, int fd)
 	write(fd, tmp1, size_value);
 	free(tmp1);
 }
-
