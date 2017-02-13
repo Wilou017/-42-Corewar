@@ -77,6 +77,7 @@ obj/%.o: sources/%.c $(HEADERS)/$(NAME).h $(HEADERS)/op.h
 $(NAME): $(SRCO)
 	@make -C libft/
 	@$(CC)  $(CFLAGS) -o $@ $^ libft/libft.a
+	@mv $(NAME) ../
 	@echo "[\033[32m--------------------------\033[0m]"
 	@echo "[\033[36m------   OK - ASM   ------\033[0m]"
 	@echo "[\033[32m--------------------------\033[0m]"
@@ -95,6 +96,6 @@ fclean: logo
 	@rm -f $(SRCO)
 	@echo "\033[32mASM     :\033[0m [\033[31mSuppression de $(NAME)\033[0m]"
 	@make fclean -C libft/
-	@rm -f $(NAME)
+	@rm -f ../$(NAME)
 
 .PHONY: re clean fclean all libft logo

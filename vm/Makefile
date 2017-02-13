@@ -6,11 +6,11 @@
 #    By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 12:19:31 by amaitre           #+#    #+#              #
-#    Updated: 2017/02/07 13:42:29 by amaitre          ###   ########.fr        #
+#    Updated: 2017/02/13 17:07:43 by amaitre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	corewar
+NAME				=	corewar
 
 SRC					=	src/main.c
 SRC					+=	src/init.c
@@ -26,6 +26,8 @@ SRC					+=	src/lst_function.c
 SRC					+=	src/distrib_function.c
 SRC					+=	src/norme_func.c
 SRC					+=	src/norme_func2.c
+SRC					+=	src/norme_func3.c
+SRC					+=	src/check_cycle.c
 SRC					+=	src/create_mem.c
 SRC					+=	src/vm_loop.c
 SRC					+=	src/redirect_function.c
@@ -40,10 +42,10 @@ SRC					+=	src/cw_free.c
 SRC					+=	src/verbose.c
 
 SRCO				=	$(addprefix obj/,$(notdir $(SRC:.c=.o)))
-HEADERSLIB	=	libftprintf/includes
-HEADERS			=	includes
+HEADERSLIB			=	libftprintf/includes
+HEADERS				=	includes
 CC					=	gcc
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS				=	-Wall -Wextra -Werror
 
 all: logo $(NAME)
 
@@ -67,6 +69,7 @@ obj/%.o: src/%.c $(HEADERS)/$(NAME).h $(HEADERS)/struct.h $(HEADERS)/function.h 
 $(NAME): $(SRCO)
 	@make -C libftprintf/
 	@$(CC)  $(CFLAGS) -o $@ $^ libftprintf/libftprintf.a
+	@mv $(NAME) ../
 	@echo "[\033[32m--------------------------\033[0m]"
 	@echo "[\033[36m------ OK - Corewar ------\033[0m]"
 	@echo "[\033[32m--------------------------\033[0m]"
@@ -90,6 +93,6 @@ fclean: logo
 	@rm -f $(SRCO)
 	@echo "\033[32mCorewar :\033[0m [\033[31mSuppression de $(NAME)\033[0m]"
 	@make fclean -C libftprintf/
-	@rm -f $(NAME)
+	@rm -f ../$(NAME)
 
 .PHONY: re clean fclean all libft logo

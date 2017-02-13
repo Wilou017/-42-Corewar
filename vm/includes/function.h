@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/08 18:41:11 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/13 17:01:52 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,11 @@ void		cw_freeall(t_cwdata *data);
 void		cw_createnode(t_header *champion, int *tab, int size);
 
 /*
+** src/check_cycle.c
+*/
+void	cw_check_cycle(t_cwdata *data, t_vm_data *vm_data);
+
+/*
 ** src/distrib_function.c
 */
 
@@ -97,7 +102,14 @@ int			cw_get_valid_champ_id(t_cwdata *data);
 
 void	adv_print(t_cwdata *data, int procsize, int procloca, int good_cicle);
 void	show_hide_proc(t_cwdata *data, t_process *proc, int force);
-void	adv_print(t_cwdata *data, int procsize, int procloca, int good_cicle);
+void	cw_map_init(t_cwdata *data);
+void	cw_dump_mem(t_cwdata *data);
+
+
+/*
+** src/norme_func3.c
+*/
+
 
 /*
 ** src/creat_mem.c
