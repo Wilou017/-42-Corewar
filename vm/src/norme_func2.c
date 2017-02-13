@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 13:57:58 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/13 16:40:50 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/13 20:23:41 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	adv_print(t_cwdata *data, int procsize, int procloca, int good_cicle)
 
 void	cw_map_init(t_cwdata *data)
 {
-	int i;
+	int		i;
+	char	*start;
 
 	i = 0;
 	ft_termcaps_screenclear();
@@ -56,6 +57,9 @@ void	cw_map_init(t_cwdata *data)
 	ft_printf("{bglblack}%*s{eoc}\n", COLONE_TEXT + 51, " ");
 	ft_termcaps_poscurs(16, COLONE_TEXT);
 	print_map(data);
+	ft_termcaps_poscurs(3, COLONE_TEXT);
+	printf("PRESS ENTER TO START\n");
+	get_next_line(0, &start);
 }
 
 void		cw_dump_mem(t_cwdata *data)
@@ -73,4 +77,32 @@ void		cw_dump_mem(t_cwdata *data)
 		if (i % size == 0)
 			ft_putchar('\n');
 	}
+}
+
+int				cw_get_new_loca(t_cwdata *data, int loca, int lfork)
+{
+	int	param;
+	int	tmp_param1;
+	int	tmp_param2;
+	int	new_loca;
+
+	param = 0;
+	if (data->mem[(loca + 1) % MEM_SIZE] > 0x7F)
+	{
+		tmp_param1 = 0xFF - data->mem[(loca + 1) % MEM_SIZE];
+		tmp_param2 = 0xFF - data->mem[(loca + 2) % MEM_SIZE];
+		param = ((tmp_param1 << 8) + tmp_param2) + 1;
+		new_loca = (lfork) ? (loca - param) : (loca - (param % IDX_MOD));
+		new_loca = (new_loca < 0) ? new_loca + MEM_SIZE : new_loca;
+		(data->verbose) ? ft_printf(" %d", -param) : 0;
+	}
+	else
+	{
+		param = (data->mem[(loca + 1) % MEM_SIZE] << 8) +
+		data->mem[(loca + 2) % MEM_SIZE];
+		new_loca = (lfork) ? ((loca + param) % MEM_SIZE) :
+		((loca + (param % IDX_MOD)) % MEM_SIZE);
+		(data->verbose) ? ft_printf(" %d", param) : 0;
+	}
+	return (new_loca);
 }

@@ -6,39 +6,11 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:24:41 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/08 19:42:21 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/13 20:25:42 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar.h>
-
-int				cw_get_new_loca(t_cwdata *data, int loca, int lfork)
-{
-	int	param;
-	int	tmp_param1;
-	int	tmp_param2;
-	int	new_loca;
-
-	param = 0;
-	if (data->mem[(loca + 1) % MEM_SIZE] > 0x7F)
-	{
-		tmp_param1 = 0xFF - data->mem[(loca + 1) % MEM_SIZE];
-		tmp_param2 = 0xFF - data->mem[(loca + 2) % MEM_SIZE];
-		param = ((tmp_param1 << 8) + tmp_param2) + 1;
-		new_loca = (lfork) ? (loca - param) : (loca - (param % IDX_MOD));
-		new_loca = (new_loca < 0) ? new_loca + MEM_SIZE : new_loca;
-		if (data->verbose)
-			ft_printf(" %d", -param);
-	}
-	else
-	{
-		param = (data->mem[(loca + 1) % MEM_SIZE] << 8) + data->mem[(loca + 2) % MEM_SIZE];
-		new_loca = (lfork) ? ((loca + param) % MEM_SIZE) : ((loca + (param % IDX_MOD)) % MEM_SIZE);
-		if (data->verbose)
-			ft_printf(" %d", param);
-	}
-	return (new_loca);
-}
 
 int				cw_get_option(t_cwdata *data, int *i)
 {
@@ -78,13 +50,32 @@ static int		distrib_data(t_reedstruct *reed, t_header *champion)
 		return (cw_distrib_name(reed, champion));
 	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 4)
 		return (cw_distrib_padding(reed, -1));
-	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 4 + 4)
+	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 8)
 		return (cw_distrib_progsize(reed));
-	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 4 + 4 + COMMENT_LENGTH)
+	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 8
+		+ COMMENT_LENGTH)
 		return (cw_distrib_comment(reed, champion));
-	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 8 + COMMENT_LENGTH + 4)
+	else if (reed->status < PROG_NAME_LENGTH + (int)sizeof(champion->magic) + 8
+		+ COMMENT_LENGTH + 4)
 		return (cw_distrib_padding(reed, -3));
 	return (cw_distrib_program(reed, champion));
+}
+
+static int		get_error(t_reedstruct reed, char *name)
+{
+	if (reed.reedsize == 0)
+		return (ft_printf("{red}Magic invalide\n"));
+	else if (reed.reedsize == -1)
+		return (ft_printf("{red}%s -> Nom trop long | taille max = %d\n",
+		name, PROG_NAME_LENGTH));
+	else if (reed.reedsize == -2)
+		return (ft_printf("{red}%s -> Progsize = 0\n", name));
+	else if (reed.reedsize == -3)
+		return (ft_printf("{red}%s -> Commentaire trop long | \
+taille max = %d\n", name, COMMENT_LENGTH));
+	else if (reed.reedsize == -4)
+		return (ft_printf("{red}%s -> Premier octet a 0\n", name));
+	return (0);
 }
 
 static int		reed_champion(char *name, t_header *champion)
@@ -100,16 +91,8 @@ static int		reed_champion(char *name, t_header *champion)
 			return (ft_printf("{red}Champion invalide\n"));
 		reed.buf = return_bytes(reed.buf, reed.ret);
 		reed.reedsize = distrib_data(&reed, champion);
-		if (reed.reedsize == 0)
-			return (ft_printf("{red}Magic invalide\n"));
-		else if (reed.reedsize == -1)
-			return (ft_printf("{red}%s -> Nom trop long | taille max = %d\n", name, PROG_NAME_LENGTH));
-		else if (reed.reedsize == -2)
-			return (ft_printf("{red}%s -> Progsize = 0\n",  name));
-		else if (reed.reedsize == -3)
-			return (ft_printf("{red}%s -> Commentaire trop long | taille max = %d\n", name, COMMENT_LENGTH));
-		else if (reed.reedsize == -4)
-			return (ft_printf("{red}%s -> Premier octet du programme a 0\n", name));
+		if (get_error(reed, name))
+			return (1);
 		reed.buf = 0;
 		reed.status++;
 	}
@@ -128,7 +111,7 @@ int				cw_get_champion(t_cwdata *data, int i)
 	ft_strdel(&data->lastdata);
 	if (ft_strlen(data->v[i]) < 5 ||
 		ft_strcmp(&data->v[i][ft_strlen(data->v[i]) - 4], ".cor"))
-		return (ft_printf("{red}les champions doivent etre des fichier .cor\n"));
+		return (ft_printf("{red}les champions doivent etre des .cor\n"));
 	if (reed_champion(data->v[i], champion))
 		return (1);
 	return (0);

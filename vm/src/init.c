@@ -71,6 +71,7 @@ void		init_inst(t_inst *inst, t_process *proc)
 	inst->param = 0;
 	proc->good_cicle = 0;
 }
+
 static void	cw_prit_starter(t_cwdata *data)
 {
 	int			i;

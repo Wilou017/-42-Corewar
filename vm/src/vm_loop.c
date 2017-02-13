@@ -6,11 +6,31 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/13 17:18:55 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/13 20:15:20 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar.h>
+
+static int	init_process(t_cwdata *data)
+{
+	t_list		*tmp;
+	t_process	*proc;
+	int			i;
+
+	i = 0;
+	tmp = data->processlist;
+	while (tmp)
+	{
+		proc = ((t_process *)(tmp->content));
+		proc->loca = data->begin_champ[i];
+		proc->pc = data->mem[data->begin_champ[i]];
+		tmp = tmp->next;
+		i++;
+	}
+	return (0);
+}
+
 
 static void	cw_data_print_head(t_cwdata *data)
 {
@@ -40,8 +60,8 @@ static void	cw_data_print(t_cwdata *data)
 		{
 			champ = ((t_header*)tmp->content);
 			ft_termcaps_poscurs(10 + i, COLONE_TEXT);
-			ft_printf("{%s}%s{eoc} %s", right_color(data, champ->id),
-				champ->prog_name,
+			ft_printf("{%s}%s{eoc} (%d) %s", right_color(data, champ->id),
+				champ->prog_name, ABS(champ->id),
 				(champ->id == data->last_champ_live) ? "*" : "-");
 			ft_termcaps_poscurs(12 + i, COLONE_TEXT);
 			ft_printf("LAST CICLE LIVE: %d", champ->last_clive);
@@ -74,6 +94,6 @@ void		cw_loop(t_cwdata *data)
 			cw_check_cycle(data, &vm_data);
 		cw_data_print(data);
 		if (data->slow >= 0 && data->cur_cycle >= data->slow)
-			usleep(5000000);
+			usleep(50000);
 	}
 }

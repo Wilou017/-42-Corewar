@@ -6,13 +6,13 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 15:29:21 by dmathe            #+#    #+#             */
-/*   Updated: 2017/02/01 16:56:04 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/13 19:54:12 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <corewar.h>
 
-int			write_in_int(t_cwdata *data, int *src, int len, int size) 
+int			write_in_int(t_cwdata *data, int *src, int len, int size)
 {
 	int		i;
 
@@ -31,35 +31,59 @@ int			write_in_int(t_cwdata *data, int *src, int len, int size)
 void		fill_map(t_cwdata *data)
 {
 	t_list		*tmp;
- 	t_header	*champ;
- 	int 		champ_field;
- 	int 		index;
- 	int 		i;
+	t_header	*champ;
+	int			champ_field;
+	int			index;
+	int			i;
 
- 	tmp = data->beginlist;
- 	index = MEM_SIZE;
- 	i = 0;
- 	champ_field = MEM_SIZE / data->nb_champion;
- 	while (tmp)
- 	{
- 		index -= champ_field;
- 		champ = (t_header*)tmp->content;
- 		data->begin_champ[i] = index;
+	tmp = data->beginlist;
+	index = MEM_SIZE;
+	i = 0;
+	champ_field = MEM_SIZE / data->nb_champion;
+	while (tmp)
+	{
+		index -= champ_field;
+		champ = (t_header*)tmp->content;
+		data->begin_champ[i] = index;
 		write_in_int(data, champ->prog, index, champ->prog_size);
- 		tmp = tmp->next;
- 		i++;
- 	}
+		tmp = tmp->next;
+		i++;
+	}
+}
+
+static void	print_map2(t_cwdata *data)
+{
+	unsigned int	k;
+	int				i;
+	t_list			*tmp;
+	t_header		*champ;
+
+	tmp = data->beginlist;
+	k = 0;
+	ft_termcaps_poscurs(3, 4);
+	while (tmp)
+	{
+		i = -1;
+		champ = (t_header*)tmp->content;
+		while (++i <= (int)champ->prog_size)
+		{
+			ft_termcaps_poscurs((i + data->begin_champ[k]) / NB_OCT_LINE + 3,
+				((i + data->begin_champ[k]) % NB_OCT_LINE) * 3 + 4);
+			ft_printf("{%s}%.2X ", right_color(data, champ->id), (data->hide) ?
+			255 : data->mem[(i + data->begin_champ[k])]);
+		}
+		tmp = tmp->next;
+		k++;
+	}
+	ft_printf("{eoc}");
 }
 
 void		print_map(t_cwdata *data)
 {
-	unsigned int		k;
-	int		i;
-	int		j;
-	t_list	*tmp;
- 	t_header	*champ;
+	unsigned int	k;
+	int				i;
+	int				j;
 
-	tmp = data->beginlist;
 	k = 3;
 	i = -1;
 	while (++i < MEM_SIZE / NB_OCT_LINE)
@@ -69,19 +93,5 @@ void		print_map(t_cwdata *data)
 		while (++j < NB_OCT_LINE)
 			ft_printf("{lblack}%.2X {eoc}", (data->hide) ? 255 : 0);
 	}
-	k = 0;
-	ft_termcaps_poscurs(3, 4);
-	while (tmp)
-	{
-		i = -1;
-		champ = (t_header*)tmp->content;
-		while (++i <= (int)champ->prog_size)
-		{
-			ft_termcaps_poscurs((i + data->begin_champ[k]) / NB_OCT_LINE + 3, ((i + data->begin_champ[k]) % NB_OCT_LINE) * 3 + 4);
-			ft_printf("{%s}%.2X ", right_color(data, champ->id),  (data->hide) ? 255 : data->mem[(i + data->begin_champ[k])]);
-		}
-		tmp = tmp->next;
-		k++;
-	}
-	ft_printf("{eoc}");
+	print_map2(data);
 }

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/13 17:01:52 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/13 20:15:40 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,7 @@ void		cw_loop(t_cwdata *data);
 ** src/corewar.c
 */
 
-int			corewar(t_cwdata *data);
-int			init_process(t_cwdata *data);
+void		corewar(t_cwdata *data);
 
 /*
 ** src/check_param.c
@@ -174,7 +173,7 @@ int			endof_instructions(int inst, int encod);
 int			if_encodage(int opcode);
 int			check_opcode(int opcode);
 int			if_registre(t_cwdata *data, t_process *proc, t_inst inst);
-int			check_encod(t_process *proc, t_cwdata *data, int *ok);
+int			check_encod(t_process *proc, t_cwdata *data);
 
 /*
 ** src/redirect_function.c

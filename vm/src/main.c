@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:15:30 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/08 18:11:25 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/13 19:58:56 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,16 @@ static void	cw_endloop(t_cwdata *data)
 		cw_del_process_to_lst(data, NULL, tmp);
 		tmp = tmp->next;
 	}
+	if (data->show_vm)
+		ft_termcaps_poscurs(MEM_SIZE/NB_OCT_LINE + 5, 0);
 }
 
 static void	cw_get_winner(t_cwdata *data)
 {
-	t_list		*tmp;
 	t_header	*champ;
 
-	tmp = data->beginlist;
-	while (tmp)
-	{
-		champ = ((t_header*)tmp->content);
-		if (data->last_champ_live == champ->id)
-		{
-			ft_printf("Contestant %d, \"%s\", has won !\n", ABS(data->last_champ_live), champ->prog_name);
-			break;
-		}
-		tmp = tmp->next;
-	}
+	champ = cw_id_champ_valid(data, data->last_champ_live);
+	ft_printf("Contestant %d, \"%s\", has won !\n", ABS(champ->id), champ->prog_name);
 }
 
 int	main(int argc, t_tab argv)
@@ -57,8 +49,6 @@ int	main(int argc, t_tab argv)
 		fill_map(&data);
 		cw_loop(&data);
 		cw_endloop(&data);
-		if (data.show_vm)
-			ft_termcaps_poscurs(MEM_SIZE/NB_OCT_LINE + 5, 0);
 		cw_get_winner(&data);
 		cw_freeall(&data);
 	}

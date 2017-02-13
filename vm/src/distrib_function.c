@@ -72,6 +72,6 @@ int		cw_distrib_padding(t_reedstruct *reed, int ret)
 		ft_printf("%04d Padding -> {lred}%.8X{eoc}\n", reed->status, reed->buf);
 	reed->status += 3;
 	if (ret == -1)
-		return(sizeof(int));
+		return (sizeof(int));
 	return (1);
 }

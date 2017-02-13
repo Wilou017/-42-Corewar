@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/13 17:02:15 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/13 19:50:47 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	cw_check_live(t_cwdata *data, t_vm_data *vm_data)
 	return (1);
 }
 
-void	cw_check_cycle(t_cwdata *data, t_vm_data *vm_data)
+void		cw_check_cycle(t_cwdata *data, t_vm_data *vm_data)
 {
 	vm_data->check++;
 	if (vm_data->check == MAX_CHECKS)

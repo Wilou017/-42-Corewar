@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/20 17:18:51 by dmathe            #+#    #+#             */
-/*   Updated: 2017/02/07 04:57:11 by dmathe           ###   ########.fr       */
+/*   Updated: 2017/02/13 20:11:21 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,13 @@ int			if_encodage(int opcode)
 		return (1);
 }
 
-int			check_encod(t_process *proc, t_cwdata *data, int *ok)
+int			check_encod(t_process *proc, t_cwdata *data)
 {
 	char	*bin;
 	int		size;
 	int		i;
-	
+
 	i = 0;
-	(void)*ok;
 	size = size_encod(proc->pc);
 	bin = ft_itoa(data->mem[(proc->loca + 1) % MEM_SIZE], 2);
 	bin = ft_strjoin(ft_chartostr('0', 8 - ft_strlen(bin)), bin, 3);
