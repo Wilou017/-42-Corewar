@@ -28,33 +28,38 @@ static int			write_bytecode_ext(int i, char *tmp, int power)
 		return (tmp[i] - ((tmp[i] >= 97 && tmp[i] <= 122) ? 87 : 48));
 }
 
-unsigned char		*new_bytecode(int size)
+int		return_bytes(int num, int octet)
 {
-	unsigned char	*new;
-
-	new = NULL;
-	if (size > 0)
+	if (octet == 4)
 	{
-		new = (unsigned char *)malloc(sizeof(unsigned char) * size + 1);
-		if (!new)
-			return (NULL);
-		ft_bzero((unsigned char *)new, size + 1);
-		return (new);
+
+		return (((num >> 24) & 0xff) |
+			((num << 8) & 0xff0000) |
+			((num >> 8) & 0xff00) |
+			((num << 24) & 0xff000000));
 	}
+	if (octet == 3)
+	{
+		return (((num << 16) & 0xff0000) |
+			((num << 0) & 0xff00) |
+			((num >> 16) & (0xff)));
+	}
+	else if (octet == 2)
+		return (num >> 8) | (num << 8);
 	else
-		return (NULL);
+		return (num);
 }
 
 void				write_bytecode1(unsigned int value, int size_value, int fd)
 {
 	char			*tmp;
-	unsigned char	*tmp1;
+	char			*tmp1;
 	int				i;
 	int				j;
 	char			*tmp2;
 
 	tmp = ft_itoa(value, 16);
-	tmp1 = new_bytecode(size_value);
+	tmp1 = ft_strnew(size_value);
 	i = ft_strlen(tmp) - 1;
 	j = size_value - 1;
 	while (i > 0)
@@ -71,13 +76,13 @@ void				write_bytecode1(unsigned int value, int size_value, int fd)
 void				write_bytecode(unsigned int value, int size_value, int fd)
 {
 	char			*tmp;
-	unsigned char	*tmp1;
+	char			*tmp1;
 	int				i;
 	int				j;
 	int				power;
 
 	tmp = ft_itoa(value, 16);
-	tmp1 = new_bytecode(size_value);
+	tmp1 = ft_strnew(size_value);
 	i = ft_strlen(tmp) - 1;
 	j = size_value - 1;
 	power = 0;

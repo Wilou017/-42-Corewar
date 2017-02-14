@@ -130,6 +130,7 @@ void					write_bytecode(unsigned int value, int size, int fd);
 void					write_bytecode1(unsigned int value, int size, int fd);
 void					write_arg(int fd, t_op_token *tok, int i,
 	t_asm_data *data);
+int						return_bytes(int num, int octet);
 
 void					tab_del(char **tab);
 int						op_tabcmp(t_optab_info *op_tab, char *str);
