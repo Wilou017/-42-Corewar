@@ -40,6 +40,7 @@ SRC					+=	src/fill_map.c
 SRC					+=	src/utils.c
 SRC					+=	src/cw_free.c
 SRC					+=	src/verbose.c
+SRC					+=	src/instruc.c
 
 SRCO				=	$(addprefix obj/,$(notdir $(SRC:.c=.o)))
 HEADERSLIB			=	libftprintf/includes

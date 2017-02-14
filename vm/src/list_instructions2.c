@@ -21,18 +21,12 @@ void		cw_sti(t_cwdata *data, t_process *proc)
 	int		adresse;
 	int		new_loca;
 
-	//if (!proc->wait_cicle)
-		proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
+
+	proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 	proc->wait_cicle++;
-	// if (data->verbose && proc->wait_cicle != WAIT_STI)
-	// 	ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_STI);
-	good_cicle(proc, WAIT_STI);
 	if (proc->wait_cicle == WAIT_STI && !proc->bad_encodage)
 	{
-		proc->wait_cicle = 0;
-		init_inst(&inst, proc);
-		inst.bin = ft_itoa(proc->encod, 2);
-		inst.bin = ft_strjoin(ft_chartostr('0', 8 - ft_strlen(inst.bin)), inst.bin, 3);
+		init_instruc(proc, &inst);
 		if (!if_registre(data, proc, inst))
 			return ;
 		if (data->verbose)
@@ -57,13 +51,8 @@ void		cw_sti(t_cwdata *data, t_process *proc)
 			ft_printf("       | -> store to %d + %d = %d (with pc and mod %d)\n", param2, param3, param2 + param3, new_loca);
 		}
 	}
-	else if (proc->wait_cicle == WAIT_STI && proc->bad_encodage)
-	{
-		proc->wait_cicle = 0;
-		proc->bad_encodage = 0;
-	}
 	else
-		proc->move = 0;
+		bad_encodage(proc, WAIT_STI);
 }
 
 void		cw_ldi(t_cwdata *data, t_process *proc)
@@ -75,19 +64,11 @@ void		cw_ldi(t_cwdata *data, t_process *proc)
 	t_param param;
 
 	init_param(&param);
-	//if (!proc->wait_cicle)
-		proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
+	proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 	proc->wait_cicle++;
-	// if (data->verbose && proc->wait_cicle != WAIT_LDI)
-	// 	ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_LDI);
-	good_cicle(proc, WAIT_LDI);
 	if (proc->wait_cicle == WAIT_LDI && !proc->bad_encodage)
 	{
-		proc->wait_cicle = 0;
-		init_inst(&inst, proc);
-		inst.label_size = check_opcode(proc->pc);
-		inst.bin = ft_itoa(proc->encod, 2);
-		inst.bin = ft_strjoin(ft_chartostr('0', 8 - ft_strlen(inst.bin)), inst.bin, 3);
+		init_instruc_ind(proc, &inst);
 		if (!if_registre(data, proc, inst))
 			return ;
 		if (data->verbose)
@@ -120,13 +101,8 @@ void		cw_ldi(t_cwdata *data, t_process *proc)
 			ft_printf("              | -> load from %d + %d = %d\n", param.param1, param.param2, param.param1 + param.param2);
 		proc->reg[param3 - 1] = return_size_reg(data, proc, param.param1 + param.param2, 0);
 	}
-	else if (proc->wait_cicle == WAIT_LDI && proc->bad_encodage)
-	{
-		proc->wait_cicle = 0;
-		proc->bad_encodage = 0;
-	}
 	else
-		proc->move = 0;
+		bad_encodage(proc, WAIT_LDI);
 }
 
 void		cw_xor(t_cwdata *data, t_process *proc)
@@ -136,19 +112,11 @@ void		cw_xor(t_cwdata *data, t_process *proc)
 	int		param2;
 	int		param3;
 
-//	if (!proc->wait_cicle)
-		proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
+	proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 	proc->wait_cicle++;
-	// if (data->verbose && proc->wait_cicle != WAIT_XOR)
-	// 	ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_XOR);
-	good_cicle(proc, WAIT_XOR);
 	if (proc->wait_cicle == WAIT_XOR && !proc->bad_encodage)
 	{
-		proc->wait_cicle = 0;
-		init_inst(&inst, proc);
-		inst.label_size = check_opcode(proc->pc);
-		inst.bin = ft_itoa(proc->encod, 2);
-		inst.bin = ft_strjoin(ft_chartostr('0', 8 - ft_strlen(inst.bin)), inst.bin, 3);
+		init_instruc_ind(proc, &inst);
 		if (!if_registre(data, proc, inst))
 			return ;
 		if (data->verbose)
@@ -168,13 +136,8 @@ void		cw_xor(t_cwdata *data, t_process *proc)
 		proc->reg[param3 - 1] = param1 ^ param2;
 		check_reg_carry(proc, proc->reg[param3 - 1]);
 	}
-	else if (proc->wait_cicle == WAIT_XOR && proc->bad_encodage)
-	{
-		proc->wait_cicle = 0;
-		proc->bad_encodage = 0;
-	}
 	else
-		proc->move = 0;
+		bad_encodage(proc, WAIT_XOR);
 }
 
 void		cw_or(t_cwdata *data, t_process *proc)
@@ -184,19 +147,11 @@ void		cw_or(t_cwdata *data, t_process *proc)
 	int		param2;
 	int		param3;
 
-	//if (!proc->wait_cicle)
-		proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
+	proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 	proc->wait_cicle++;
-	// if (data->verbose && proc->wait_cicle != WAIT_OR)
-	// 	ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_OR);
-	good_cicle(proc, WAIT_OR);
 	if (proc->wait_cicle == WAIT_OR && !proc->bad_encodage)
 	{
-		proc->wait_cicle = 0;
-		init_inst(&inst, proc);
-		inst.label_size = check_opcode(proc->pc);
-		inst.bin = ft_itoa(proc->encod, 2);
-		inst.bin = ft_strjoin(ft_chartostr('0', 8 - ft_strlen(inst.bin)), inst.bin, 3);
+		init_instruc_ind(proc, &inst);
 		if (!if_registre(data, proc, inst))
 			return ;
 		if (data->verbose)
@@ -216,13 +171,8 @@ void		cw_or(t_cwdata *data, t_process *proc)
 		proc->reg[param3 - 1] = param1 | param2;
 		check_reg_carry(proc, proc->reg[param3 - 1]);
 	}
-	else if (proc->wait_cicle == WAIT_OR && proc->bad_encodage)
-	{
-		proc->wait_cicle = 0;
-		proc->bad_encodage = 0;
-	}
 	else
-		proc->move = 0;
+		bad_encodage(proc, WAIT_OR);
 }
 
 void		cw_and(t_cwdata *data, t_process *proc)
@@ -232,19 +182,11 @@ void		cw_and(t_cwdata *data, t_process *proc)
 	int		param2;
 	int		param3;
 
-	//if (!proc->wait_cicle)
-		proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
+	proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 	proc->wait_cicle++;
-	// if (data->verbose && proc->wait_cicle != WAIT_AND)
-	// 	ft_printf("wait_cicle %d/%d", proc->wait_cicle, WAIT_AND);
-	good_cicle(proc, WAIT_AND);
 	if (proc->wait_cicle == WAIT_AND && !proc->bad_encodage)
 	{
-		proc->wait_cicle = 0;
-		init_inst(&inst, proc);
-		inst.label_size = check_opcode(proc->pc);
-		inst.bin = ft_itoa(proc->encod, 2);
-		inst.bin = ft_strjoin(ft_chartostr('0', 8 - ft_strlen(inst.bin)), inst.bin, 3);
+		init_instruc_ind(proc, &inst);
 		if (!if_registre(data, proc, inst))
 			return ;
 		if (data->verbose)
@@ -262,11 +204,6 @@ void		cw_and(t_cwdata *data, t_process *proc)
 		proc->reg[param3 - 1] = param1 & param2;
 		check_reg_carry(proc, proc->reg[param3 - 1]);
 	}
-	else if (proc->wait_cicle == WAIT_AND && proc->bad_encodage)
-	{
-		proc->wait_cicle = 0;
-		proc->bad_encodage = 0;
-	}
 	else
-		proc->move = 0;
+		bad_encodage(proc, WAIT_AND);
 }

@@ -29,7 +29,6 @@ void		write_map(t_cwdata *data, t_process *proc, int dest, int src);
 ** src/init.c
 */
 
-void		init_inst(t_inst *inst, t_process *proc);
 int			cw_init(t_cwdata *data);
 void		cw_lastoption(t_cwdata *data, int i);
 
@@ -216,5 +215,14 @@ void			cw_sub(t_cwdata *data, t_process *proc);
 void			cw_add(t_cwdata *data, t_process *proc);
 void			cw_st(t_cwdata *data, t_process *proc);
 void			cw_ld(t_cwdata *data, t_process *proc);
+
+/*
+**	src/instruc.c
+*/
+
+void		init_instruc_ind(t_process *proc, t_inst *inst);
+void		init_instruc(t_process *proc, t_inst *inst);
+void		bad_encodage(t_process *proc, int inst);
+
 
 #endif
