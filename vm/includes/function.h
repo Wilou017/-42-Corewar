@@ -187,7 +187,7 @@ void		redirect_function(t_cwdata *data, t_func func, t_process *proc);
 void	init_param(t_param *param);
 void	check_reg_carry(t_process *proc, int reg);
 void	change_carry(t_process *proc);
-void	good_cicle(t_process *proc, int limit);
+void	good_cicle(t_process *proc);
 int		return_size_reg(t_cwdata *data, t_process *proc, int adresse, int lldi);
 
 
@@ -222,7 +222,7 @@ void			cw_ld(t_cwdata *data, t_process *proc);
 
 void		init_instruc_ind(t_process *proc, t_inst *inst);
 void		init_instruc(t_process *proc, t_inst *inst);
-void		bad_encodage(t_process *proc, int inst);
+void		bad_encodage(t_process *proc);
 
 
 #endif

@@ -27,7 +27,7 @@ static t_process	cw_init_proc_data(t_cwdata *data, int id, t_process *proc)
 	new_node.id = data->nb_process;
 	new_node.last_clive = 0;
 	new_node.nb_live = (proc) ? proc->nb_live : 0;
-	new_node.wait_cicle = 0;
+	new_node.wait_cicle = -1;
 	new_node.move = 1;
 	new_node.id_champ = id;
 	new_node.good_cicle = 0;

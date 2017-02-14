@@ -15,14 +15,15 @@
 void		cw_aff(t_cwdata *data, t_process *proc)
 {
 	proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
-	proc->wait_cicle++;
-	if (proc->wait_cicle == WAIT_AFF && !proc->bad_encodage)
+	if (proc->wait_cicle == -1)
+		proc->wait_cicle = WAIT_AFF;
+	if (proc->wait_cicle == 0 && !proc->bad_encodage)
 	{
 		if (data->verbose)
 			ft_printf("P %4d | aff\n", proc->name);
 		proc->wait_cicle = 0;
 	}
-	else if (proc->wait_cicle == WAIT_AFF && proc->bad_encodage)
+	else if (proc->wait_cicle == 0 && proc->bad_encodage)
 	{
 		proc->wait_cicle = 0;
 		proc->bad_encodage = 0;
@@ -39,8 +40,9 @@ void		cw_lldi(t_cwdata *data, t_process *proc)
 	int		param3;
 
 	proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
-	proc->wait_cicle++;
-	if (proc->wait_cicle == WAIT_LLDI && !proc->bad_encodage)
+	if (proc->wait_cicle == -1)
+		proc->wait_cicle = WAIT_LLDI;
+	if (proc->wait_cicle == 0 && !proc->bad_encodage)
 	{
 		init_instruc_ind(proc, &inst);
 		if (!if_registre(data, proc, inst))
@@ -58,7 +60,7 @@ void		cw_lldi(t_cwdata *data, t_process *proc)
 		check_reg_carry(proc, proc->reg[param3 - 1]);
 	}
 	else
-		bad_encodage(proc, WAIT_LLDI);
+		bad_encodage(proc);
 }
 
 void			cw_lld(t_cwdata *data, t_process *proc)
@@ -68,8 +70,9 @@ void			cw_lld(t_cwdata *data, t_process *proc)
 	int			reg;
 
 	proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
-	proc->wait_cicle++;
-	if (proc->wait_cicle == WAIT_LLD && !proc->bad_encodage)
+	if (proc->wait_cicle == -1)
+		proc->wait_cicle = WAIT_LLD;
+	if (proc->wait_cicle == 0 && !proc->bad_encodage)
 	{
 		init_instruc_ind(proc, &inst);
 		if (!if_registre(data, proc, inst))
@@ -84,5 +87,5 @@ void			cw_lld(t_cwdata *data, t_process *proc)
 		check_reg_carry(proc, proc->reg[reg - 1]);
 	}
 	else
-		bad_encodage(proc, WAIT_LLD);
+		bad_encodage(proc);
 }

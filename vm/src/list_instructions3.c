@@ -17,9 +17,9 @@ void	cw_live(t_cwdata *data, t_process *proc)
 	int			num_champ;
 	t_header	*champ;
 
-	proc->wait_cicle++;
-	good_cicle(proc, WAIT_LIVE);
-	if (proc->wait_cicle == WAIT_LIVE)
+	if (proc->wait_cicle == -1)
+		proc->wait_cicle = WAIT_LIVE;
+	if (proc->wait_cicle == 0)
 	{
 		num_champ = return_num_champ(proc, data);
 		(data->verbose) ? ft_printf("%d\n", num_champ) : 0;
@@ -45,9 +45,9 @@ void	cw_fork(t_cwdata *data, t_process *proc)
 {
 	t_process	*new;
 
-	proc->wait_cicle++;
-	good_cicle(proc, WAIT_FORK);
-	if (proc->wait_cicle >= WAIT_FORK)
+	if (proc->wait_cicle == -1)
+		proc->wait_cicle = WAIT_FORK;
+	if (proc->wait_cicle == 0)
 	{
 		new = cw_add_process_to_lst(data, proc->id_champ, proc);
 		new->loca = cw_get_new_loca(data, proc->loca, 0);
@@ -63,9 +63,9 @@ void	cw_lfork(t_cwdata *data, t_process *proc)
 {
 	t_process	*new;
 
-	proc->wait_cicle++;
-	good_cicle(proc, WAIT_LFORK);
-	if (proc->wait_cicle == WAIT_LFORK)
+	if (proc->wait_cicle == -1)
+		proc->wait_cicle = WAIT_LFORK;
+	if (proc->wait_cicle == 0)
 	{
 		new = cw_add_process_to_lst(data, proc->id_champ, proc);
 		new->loca = cw_get_new_loca(data, proc->loca, 1);
@@ -81,9 +81,9 @@ void	cw_zjump(t_cwdata *data, t_process *proc)
 {
 	int nl;
 
-	proc->wait_cicle++;
-	good_cicle(proc, WAIT_ZJUMP);
-	if (proc->wait_cicle == WAIT_ZJUMP)
+	if (proc->wait_cicle == -1)
+		proc->wait_cicle = WAIT_ZJUMP;
+	if (proc->wait_cicle == 0)
 	{
 		nl = cw_get_new_loca(data, proc->loca, 0);
 		if (proc->carry)

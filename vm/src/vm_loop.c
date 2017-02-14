@@ -93,6 +93,6 @@ void		cw_loop(t_cwdata *data)
 			cw_check_cycle(data, &vm_data);
 		cw_data_print(data);
 		if (data->slow >= 0 && data->cur_cycle >= data->slow)
-			usleep(50000);
+			usleep(1000000);
 	}
 }

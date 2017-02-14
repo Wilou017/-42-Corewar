@@ -61,6 +61,7 @@ int			cw_get_valid_champ_id(t_cwdata *data)
 {
 	int	id;
 
+
 	id = (data->lastdata) ? ft_atoi(data->lastdata) : -(data->nb_champion);
 	while (cw_id_champ_valid(data, id))
 		id = (id > 0) ? (id + 1) : (id - 1);
