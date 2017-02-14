@@ -35,14 +35,17 @@ static void		instructions_generator(int fd, t_asm_data *data)
 
 static void		header_generator(int fd, t_asm_data *data)
 {
-	unsigned char *tmp;
+	unsigned char	*tmp;
+	unsigned int	bin;
 
+	bin = 0;
 	tmp = (unsigned char *)malloc(sizeof(unsigned char) * 2052);
 	write(fd, "\x00\xea\x83\xf3", sizeof(int));
 	write(fd, data->name, ft_strlen(data->name));
 	tmp = ft_memset(tmp, 0, (PROG_NAME_LENGTH - ft_strlen(data->name)) + 4);
 	write(fd, tmp, PROG_NAME_LENGTH - ft_strlen(data->name) + 4);
-	write_bytecode(data->prog_size, sizeof(int), fd);
+	bin = return_bytes(data->prog_size, sizeof(int));
+	write(fd, &bin, sizeof(int));
 	write(fd, data->comment_name, ft_strlen(data->comment_name));
 	tmp = ft_memset(tmp, 0, COMMENT_LENGTH - ft_strlen(data->comment_name) + 4);
 	write(fd, tmp, COMMENT_LENGTH - ft_strlen(data->comment_name) + 4);
