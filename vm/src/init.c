@@ -64,14 +64,6 @@ void		cw_lastoption(t_cwdata *data, int i)
 		data->lastoption = ERROR;
 }
 
-void		init_inst(t_inst *inst, t_process *proc)
-{
-	inst->label_size = 0;
-	inst->size = 0;
-	inst->param = 0;
-	proc->good_cicle = 0;
-}
-
 static void	cw_prit_starter(t_cwdata *data)
 {
 	int			i;
