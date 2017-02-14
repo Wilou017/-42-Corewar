@@ -2,7 +2,7 @@
 .comment "I'm gonna make him an offer he can't refuse"
 
 add			r1, r11, r11
-# ld			%589824, r13
+ld			%589824, r13
 ld			%0, r16
 base:
 	sti		r11, %:alive, %1
@@ -24,6 +24,8 @@ base:
 	sti		r11, %:salve3, %1
 	sti		r11, %:salve4, %1
 	sti		r11, %:salve5, %1
+	sti		r11, %:initsalve1, %2
+	sti		r11, %:initsalve5, %2
 	live	%4294967295
 	fork	%:wall
 
@@ -70,25 +72,6 @@ wall:
 	st		r13, -342
 	zjmp	%:wall
 
-shot:
-	fork	%:initshot2
-
-initshot1:
-	ld      %190054927, r2
-	ld      %-425, r3
-	ld		%0, r15
-	zjmp    %:printshot
-
-initshot2:
-	# ld      %50921472, r2 || jump 0
-	ld      %50986578, r2
-	ld      %-421, r3
-	ld		%0, r15
-	zjmp    %:printshot
-
-printshot:
-	sti		r2, r15, r3
-	zjmp	%-430 # shot1 - 5
 
 usine:
 	live	%2863311530
@@ -111,7 +94,7 @@ attforker:
 	live	%2863311530
 	fork	%:salve
 	live	%2863311530
-	fork	%:shot
+	fork	%:salve
 	ld		%0, r16
 	zjmp	%:attforker
 
@@ -119,16 +102,19 @@ salve:
 	live	%2863311530
 	fork	%:salve
 	live	%2863311530
-	fork	%:salve4
+	fork	%:salve_2
+
+salve_1:
 	live	%2863311530
-	fork	%:salve5
+	fork	%:salve4
 
 salve3:
 	live	%2863311530
 	fork	%:initsalve3
 
 initsalve1:
-	add		r16, r11, r2
+	# add		r16, r11, r2
+	ld		%0, r2
 	ld      %22, r3
 	ld		%0, r15
 	zjmp    %:printsalve
@@ -138,36 +124,41 @@ salve4:
 	fork	%:initsalve4
 
 initsalve2:
-	lld      %1409421059, r2
+	ld      %1409421059, r2
 	ld      %17, r3
 	ld		%0, r15
 	zjmp    %:printsalve
+
+salve_2:
+	live	%2863311530
+	fork	%:salve5
 
 salve5:
 	live	%2863311530
 	fork	%:initsalve6
 
 initsalve5:
-	add		r16, r11, r2
+	# add		r16, r11, r2
+	ld		%0, r2
 	ld      %502, r3
 	ld		%0, r15
 	zjmp    %:printsalve
 
 initsalve3:
 	# add		r16, r11, r2
-	lld      %27962026, r2
+	ld      %27962026, r2
 	ld      %21, r3
 	ld		%0, r15
 	zjmp    %:printsalve
 
 initsalve4:
-	lld      %2852716550, r2
+	ld      %2852716550, r2
 	ld      %25, r3
 	ld		%0, r15
 	zjmp    %:printsalve
 
 initsalve6:
-	lld      %150994955, r2
+	ld      %150994955, r2
 	ld      %13, r3
 	ld		%0, r15
 	zjmp    %:printsalve
