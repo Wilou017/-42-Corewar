@@ -15,7 +15,7 @@
 static void		write_indir(int fd, char *arg)
 {
 	int					value;
-	unsigned int 		bin;
+	unsigned int		bin;
 
 	value = ft_atoi(arg);
 	if (value < 0)
@@ -37,7 +37,7 @@ static void		write_dir(int fd, t_op_token *token,
 	int					label_size;
 	int					value;
 	char				*tmp;
-	unsigned int 		bin;
+	unsigned int		bin;
 
 	label_size = search_label_size(data, token->opcode);
 	tmp = ft_strsub(token->arg[index], 1, ft_strlen(token->arg[index]) - 1);
@@ -57,8 +57,8 @@ static void		write_dir(int fd, t_op_token *token,
 
 static void		write_label(int fd, t_op_token *token, t_asm_data *data)
 {
-	unsigned int value;
-	int			 label_size;
+	unsigned int	value;
+	int				label_size;
 
 	value = 0;
 	label_size = search_label_size(data, token->opcode);
