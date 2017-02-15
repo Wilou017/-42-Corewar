@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/13 19:50:47 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/15 19:22:56 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	cw_decrement(t_cwdata *data, t_vm_data *vm_data)
 	data->nb_live_per_cycle = 0;
 }
 
-static int	cw_check_live(t_cwdata *data, t_vm_data *vm_data)
+int			cw_check_live(t_cwdata *data, t_vm_data *vm_data)
 {
 	t_list		*tmp;
 	t_list		*prev_tmp;

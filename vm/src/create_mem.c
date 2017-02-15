@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 15:29:21 by dmathe            #+#    #+#             */
-/*   Updated: 2017/02/13 19:54:12 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/15 18:52:38 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void		fill_map(t_cwdata *data)
 	index = MEM_SIZE;
 	i = 0;
 	champ_field = MEM_SIZE / data->nb_champion;
+	(data->nb_champion == 3) ? champ_field-- : 0;
 	while (tmp)
 	{
 		index -= champ_field;

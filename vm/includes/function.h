@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/13 20:58:35 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/15 19:02:38 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void		cw_createnode(t_header *champion, int *tab, int size);
 /*
 ** src/check_cycle.c
 */
+int		cw_check_live(t_cwdata *data, t_vm_data *vm_data);
 void	cw_check_cycle(t_cwdata *data, t_vm_data *vm_data);
 
 /*

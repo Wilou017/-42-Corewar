@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/13 21:00:55 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/15 19:26:54 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,20 @@ static void	cw_data_print_head(t_cwdata *data)
 	ft_printf("CYCLE TO DIE %21d", data->cycle_to_die);
 	ft_termcaps_poscurs(8, COLONE_TEXT);
 	ft_printf("------------------------");
+}
+
+static void	refresh_proc(t_cwdata *data)
+{
+	t_list		*tmp;
+	t_process	*proc;
+
+	tmp = data->processlist;
+	while (data->show_vm && tmp)
+	{
+		proc = ((t_process *)(tmp->content));
+		show_hide_proc(data, proc, 1);
+		tmp = tmp->next;
+	}
 }
 
 static void	cw_data_print(t_cwdata *data)
@@ -82,16 +96,16 @@ void		cw_loop(t_cwdata *data)
 	init_process(data);
 	while (data->nb_process > 0 && data->cycle_to_die > 0)
 	{
-		data->cur_cycle++;
-		vm_data.cur_cycle++;
-		if (data->verbose)
-			ft_printf("It is now cycle %d\n", data->cur_cycle);
-		corewar(data);
-		if (data->dumpcycles > -1 && data->dumpcycles >= data->cur_cycle)
-			return (cw_dump_mem(data));
 		if (vm_data.cur_cycle == data->cycle_to_die)
 			cw_check_cycle(data, &vm_data);
 		cw_data_print(data);
+		data->cur_cycle++;
+		vm_data.cur_cycle++;
+		(data->verbose) ? ft_printf("It is now cycle %d\n", data->cur_cycle) : 0;
+		corewar(data);
+		if (data->dumpcycles > -1 && data->dumpcycles >= data->cur_cycle)
+			return (cw_dump_mem(data));
+		refresh_proc(data);
 		if (data->slow >= 0 && data->cur_cycle >= data->slow)
 			usleep(1000000);
 	}
