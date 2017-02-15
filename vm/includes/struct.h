@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 17:33:59 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/13 20:51:17 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/15 21:30:08 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ typedef enum			e_opt
 	V,
 	VM,
 	H,
-	R
+	R,
+	W
 }						t_opt;
 
 typedef enum			e_func
@@ -100,6 +101,7 @@ typedef	struct			s_cwdata
 	int					last_champ_live;
 	int					*mem;
 	int					cur_cycle;
+	int					slow_time;
 	int					cycle_to_die;
 	int					dumpcycles;
 	int					lastoption;

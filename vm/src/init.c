@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:28:37 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/13 20:57:11 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/15 21:45:45 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	init_data_default(t_cwdata *data)
 	data->slow = -1;
 	data->verbose = 0;
 	data->hide = 0;
+	data->slow_time = 1;
 	data->cycle_to_die = CYCLE_TO_DIE;
 	data->color = ft_strsplit(CHAMP_COLOR, ' ');
 }
@@ -39,16 +40,21 @@ void		cw_lastoption(t_cwdata *data, int i)
 {
 	if (!ft_strcmp(data->v[i], "-dump") || !ft_strcmp(data->v[i], "-d"))
 	{
-		data->d = (!ft_strcmp(data->v[i], "-d")) ? 1 : 0;
-		data->lastoption = DUMP;
+		if (data->show_vm == 0)
+		{
+			data->d = (!ft_strcmp(data->v[i], "-d")) ? 1 : 0;
+			data->lastoption = DUMP;
+		}
 	}
 	else if (!ft_strcmp(data->v[i], "-n"))
 		data->lastoption = N;
 	else if (!ft_strcmp(data->v[i], "-r"))
 		data->lastoption = R;
+	else if (!ft_strcmp(data->v[i], "-w"))
+		data->lastoption = W;
 	else if (!ft_strcmp(data->v[i], "-v"))
 	{
-		if (data->show_vm == 0 && data->dumpcycles == -1)
+		if (data->show_vm == 0)
 			data->verbose = 1;
 		data->lastoption = V;
 	}
@@ -69,17 +75,21 @@ static void	cw_prit_starter(t_cwdata *data)
 	int			i;
 	t_list		*tmp;
 	t_header	*champ;
+	char		*str;
 
 	ft_printf("Introducing contestants...\n");
 	tmp = data->beginlist;
-	i = 1;
+	str = ft_strnew(0);
+	i = data->nb_champion;
 	while (tmp)
 	{
 		champ = ((t_header*)tmp->content);
-		ft_printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", (i++),
-			champ->prog_size, champ->prog_name, champ->comment);
+		str = ft_strjoin(ft_sprintf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", (i--),
+			champ->prog_size, champ->prog_name, champ->comment), str, 3);
 		tmp = tmp->next;
 	}
+	ft_putstr(str);
+	free(str);
 }
 
 int			cw_init(t_cwdata *data)

@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 13:17:10 by dmathe            #+#    #+#             */
-/*   Updated: 2017/02/08 20:08:59 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/15 21:29:12 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ void		cw_ldi(t_cwdata *data, t_process *proc)
 		param3 = bin_offset(proc, data, 4, &inst);
 		print_verbose(data, param3, 1, inst);
 		if (data->verbose)
-			ft_printf("              | -> load from %d + %d = %d\n", param.param1, param.param2, param.param1 + param.param2);
+			ft_printf("       | -> load from %d + %d = %d (with pc and mod %d)\n", param.param1,
+				param.param2, param.param1 + param.param2, ((param.param1 + param.param2 + proc->loca) % MEM_SIZE));
 		proc->reg[param3 - 1] = return_size_reg(data, proc, param.param1 + param.param2, 0);
 	}
 	else

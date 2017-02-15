@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 13:57:58 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/14 19:14:34 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/15 21:42:44 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	cw_dump_mem(t_cwdata *data)
 	{
 		if (i % size == 0)
 			ft_printf("%#0.4x : ", i);
-		ft_printf("%0.2X ", data->mem[i++]);
+		ft_printf("%0.2x ", data->mem[i++]);
 		if (i % size == 0)
 			ft_putchar('\n');
 	}
