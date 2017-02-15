@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:03:17 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/13 21:30:47 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/15 19:37:57 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_process	cw_init_proc_data(t_cwdata *data, int id, t_process *proc)
 	new_node.size = 0;
 	new_node.carry = (proc) ? proc->carry : 0;
 	new_node.id = data->nb_process;
-	new_node.last_clive = 0;
+	new_node.last_clive = (proc) ? proc->last_clive : 0;
 	new_node.nb_live = (proc) ? proc->nb_live : 0;
 	new_node.wait_cicle = -1;
 	new_node.move = 1;
