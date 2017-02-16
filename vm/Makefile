@@ -6,7 +6,7 @@
 #    By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 12:19:31 by amaitre           #+#    #+#              #
-#    Updated: 2017/02/15 21:49:14 by amaitre          ###   ########.fr        #
+#    Updated: 2017/02/16 20:22:26 by amaitre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,7 @@ $(NAME): $(SRCO)
 	@echo "\033[32m	[-v]              : Verbose\033[0m"
 	@echo "\033[32m	[-vm]             : Affichage de la loop\033[0m"
 	@echo "\033[32m	|    [-h]         : Cache les octets de -vm\033[0m"
+	@echo "\033[32m	|    [-b]         : Cache les processus pour augmenter le vitesse\033[0m"
 	@echo "\033[32m	[-dump nbr_cycles]: Affiche la memoire au cycle nbr_cycles\033[0m"
 	@echo "\033[32m	[-r nbr_cycles]   : Ralentit a nbr_cycles\033[0m"
 	@echo "\033[32m	|    [-w nbr_sec] : nbr_sec entre les cycles\033[0m"

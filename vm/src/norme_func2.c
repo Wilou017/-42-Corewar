@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 13:57:58 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/15 21:42:44 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/16 19:56:25 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,17 @@ void	show_hide_proc(t_cwdata *data, t_process *proc, int force)
 {
 	int boolean;
 
-	boolean = (force == 0) ? force : 1;
-	ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3,
-	(proc->loca % NB_OCT_LINE) * 3 + 3);
-	ft_printf("{bg%s} ",
-		(boolean) ? right_color(data, proc->id_champ) : "black");
-	ft_termcaps_poscurs(proc->loca / NB_OCT_LINE + 3,
-		(proc->loca % NB_OCT_LINE) * 3 + 6);
-	ft_printf(" {eoc}");
+	if (!data->boost)
+	{
+		boolean = (force == 0) ? force : 1;
+		ft_termcaps_poscurs((proc->loca % MEM_SIZE) / NB_OCT_LINE + 3,
+		((proc->loca % MEM_SIZE) % NB_OCT_LINE) * 3 + 3);
+		ft_printf("{bg%s} ",
+			(boolean) ? right_color(data, proc->id_champ) : "black");
+		ft_termcaps_poscurs((proc->loca % MEM_SIZE) / NB_OCT_LINE + 3,
+			((proc->loca % MEM_SIZE) % NB_OCT_LINE) * 3 + 6);
+		ft_printf(" {eoc}");
+	}
 }
 
 void	adv_print(t_cwdata *data, t_process saveproc)

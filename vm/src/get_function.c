@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 19:24:41 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/15 21:29:37 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/16 19:34:38 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int				cw_get_option(t_cwdata *data, int *i)
 {
 	cw_lastoption(data, *i);
-	if (data->lastoption && data->c > *i)
+	if (data->lastoption && data->c >= *i)
 	{
 		if ((data->lastoption == N || data->lastoption == DUMP
 			|| data->lastoption == R|| data->lastoption == W)
@@ -32,8 +32,10 @@ int				cw_get_option(t_cwdata *data, int *i)
 			data->lastdata = ft_strdup(data->v[(*i) + 1]);
 		else if (data->lastoption == H)
 			data->hide = 1;
+		else if (data->lastoption == B)
+			data->boost = 1;
 		if (data->lastoption != VM && data->lastoption != V
-			&& data->lastoption != H)
+			&& data->lastoption != B && data->lastoption != H)
 			*i = (*i) + 1;
 	}
 	else if (data->lastoption == 0)

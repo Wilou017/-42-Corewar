@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:15:30 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/15 21:49:00 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/16 19:32:49 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int			main(int argc, t_tab argv)
 	[-v]              : Verbose\n\
 	[-vm]             : Affichage de la loop\n\
 	|    [-h]         : Cache les octets de -vm\n\
+	|    [-b]         : Cache les processus pour augmenter le vitesse\n\
 	[-dump nbr_cycles]: Affiche la memoire au cycle nbr_cycles\n\
 	[-r nbr_cycles]   : Relenti a nbr_cycles\n\
 	|    [-w nbr_sec] : nbr_sec entre les cycles {eoc}\n");
