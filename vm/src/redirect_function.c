@@ -13,23 +13,23 @@
 #include <corewar.h>
 
 static void	redirect_function3(t_cwdata *data, t_func func, t_process *proc,
-	t_process saveproc)
+	t_process *saveproc)
 {
 	if (func == LLD)
 		cw_lld(data, proc);
 	else if (func == LFORK)
 	{
 		if (data->verbose && proc->good_cicle && func >= LIVE && func <= AFF)
-			ft_printf("P %4d | lfork\n", proc->name);
+			ft_printf("P %4d | lfork", proc->name);
 		cw_lfork(data, proc);
 	}
 	else if (func == AFF)
 		cw_aff(data, proc);
-	adv_print(data, saveproc);
+	adv_print(data, *saveproc);
 }
 
 static void	redirect_function2(t_cwdata *data, t_func func, t_process *proc,
-	t_process saveproc)
+	t_process *saveproc)
 {
 	if (func == SUB)
 		cw_sub(data, proc);
@@ -42,6 +42,7 @@ static void	redirect_function2(t_cwdata *data, t_func func, t_process *proc,
 		if (data->verbose && proc->good_cicle && func >= LIVE && func <= AFF)
 			ft_printf("P %4d | zjmp", proc->name);
 		cw_zjump(data, proc);
+		saveproc->good_cicle = 0;
 	}
 	else if (func == LDI)
 		cw_ldi(data, proc);
@@ -55,7 +56,7 @@ static void	redirect_function2(t_cwdata *data, t_func func, t_process *proc,
 	}
 	else
 		return (redirect_function3(data, func, proc, saveproc));
-	adv_print(data, saveproc);
+	adv_print(data, *saveproc);
 }
 
 void		redirect_function(t_cwdata *data, t_func func, t_process *proc)
@@ -82,6 +83,6 @@ void		redirect_function(t_cwdata *data, t_func func, t_process *proc)
 	else if (func == OR)
 		cw_or(data, proc);
 	else
-		return (redirect_function2(data, func, proc, saveproc));
+		return (redirect_function2(data, func, proc, &saveproc));
 	adv_print(data, saveproc);
 }

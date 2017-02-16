@@ -40,13 +40,15 @@ int		return_size_reg(t_cwdata *data, t_process *proc, int adresse, int lldi)
 	int	new_loca;
 	int	value;
 
-	if (adresse < 0 && !lldi)
+	if (adresse < 0 && lldi != 1)
 		new_loca = (proc->loca - (-adresse % IDX_MOD)) % MEM_SIZE;
 	else
 		new_loca = (proc->loca + (adresse % IDX_MOD)) % MEM_SIZE;
-	if (adresse < 0 && lldi)
+	if (adresse < 0 && lldi == 1)
 		new_loca = (proc->loca + adresse) % MEM_SIZE;
 	new_loca = (new_loca < 0) ? new_loca + MEM_SIZE : new_loca;
+	if (data->verbose && lldi != 2)
+		ft_printf(" %d)\n", new_loca);
 	value = (data->mem[new_loca] << 8) + data->mem[(new_loca + 1) % MEM_SIZE];
 	value = (value << 8) + data->mem[(new_loca + 2) % MEM_SIZE];
 	value = (value << 8) + data->mem[(new_loca + 3) % MEM_SIZE];

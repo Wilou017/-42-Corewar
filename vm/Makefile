@@ -80,7 +80,7 @@ $(NAME): $(SRCO)
 	@echo "\033[32m	[-vm]             : Affichage de la loop\033[0m"
 	@echo "\033[32m	|    [-h]         : Cache les octets de -vm\033[0m"
 	@echo "\033[32m	[-dump nbr_cycles]: Affiche la memoire au cycle nbr_cycles\033[0m"
-	@echo "\033[32m	[-r nbr_cycles]   : Relentit a nbr_cycles\033[0m"
+	@echo "\033[32m	[-r nbr_cycles]   : Ralentit a nbr_cycles\033[0m"
 	@echo "\033[32m	|    [-w nbr_sec] : nbr_sec entre les cycles\033[0m"
 
 libft: logo

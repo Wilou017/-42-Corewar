@@ -87,10 +87,10 @@ void			cw_st(t_cwdata *data, t_process *proc)
 		bin_offset(proc, data, 2, &inst);
 		if (inst.param == REG_CODE)
 		{
-			regdest = data->mem[(proc->loca + inst.size + 2) % MEM_SIZE] - 1;
-			proc->reg[regdest] = proc->reg[regsrc];
+			regdest = data->mem[(proc->loca + inst.size + 1) % MEM_SIZE];
+			proc->reg[regdest - 1] = proc->reg[regsrc];
 			if (data->verbose)
-				ft_printf(" r%d r%d\n", regsrc + 1, regdest);
+				ft_printf(" r%d %d\n", regsrc + 1, regdest);
 		}
 		else if (inst.param == IND_CODE)
 		{

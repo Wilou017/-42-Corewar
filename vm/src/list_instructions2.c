@@ -20,6 +20,7 @@ void		cw_sti(t_cwdata *data, t_process *proc)
 	int		param3;
 	int		adresse;
 	int		new_loca;
+	int		newloca_verbose;
 
 
 	proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
@@ -41,15 +42,21 @@ void		cw_sti(t_cwdata *data, t_process *proc)
 			param3 = proc->reg[param3 - 1];
 		adresse = param2 + param3;
 		if (adresse < 0)
+		{
 			new_loca = (proc->loca - (-adresse % IDX_MOD)) % MEM_SIZE;
+			newloca_verbose = (proc->loca - (-adresse % IDX_MOD));
+		}
 		else
+		{
 			new_loca = (proc->loca + (adresse % IDX_MOD)) % MEM_SIZE;
+			newloca_verbose = (proc->loca + (adresse % IDX_MOD));
+		}
 		adresse = (new_loca < 0) ? new_loca + MEM_SIZE : new_loca;
 		write_map(data, proc, adresse, param1);
 		if (data->verbose)
 		{
 			ft_printf(" r%d %d %d\n", param1 + 1, param2, param3);
-			ft_printf("       | -> store to %d + %d = %d (with pc and mod %d)\n", param2, param3, param2 + param3, new_loca);
+			ft_printf("       | -> store to %d + %d = %d (with pc and mod %d)\n", param2, param3, param2 + param3, newloca_verbose);
 		}
 	}
 	else
@@ -85,7 +92,7 @@ void		cw_ldi(t_cwdata *data, t_process *proc)
 		else if (inst.param == DIR_CODE)
 			param.param1 = param1;
 		else
-			param.param1 = return_size_reg(data, proc, param1, 0);
+			param.param1 = return_size_reg(data, proc, param1, 2);
 		print_verbose(data, param.param1, 0, inst);
 		param2 = bin_offset(proc, data, 2, &inst);
 		if (inst.param == REG_CODE)
@@ -96,12 +103,12 @@ void		cw_ldi(t_cwdata *data, t_process *proc)
 			print_verbose(data, param2, 0, inst);
 		}
 		else
-			param.param2 = return_size_reg(data, proc, param2, 0);
+			param.param2 = return_size_reg(data, proc, param2, 2);
 		param3 = bin_offset(proc, data, 4, &inst);
 		print_verbose(data, param3, 1, inst);
 		if (data->verbose)
-			ft_printf("       | -> load from %d + %d = %d (with pc and mod %d)\n", param.param1,
-				param.param2, param.param1 + param.param2, ((param.param1 + param.param2 + proc->loca) % MEM_SIZE));
+			ft_printf("       | -> load from %d + %d = %d (with pc and mod", param.param1,
+				param.param2, param.param1 + param.param2);
 		proc->reg[param3 - 1] = return_size_reg(data, proc, param.param1 + param.param2, 0);
 	}
 	else

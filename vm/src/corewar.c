@@ -66,7 +66,8 @@ static void			corewar_start2(t_process *proc, t_cwdata *data)
 
 static void			corewar_start(t_process *proc, t_cwdata *data)
 {
-
+	if (proc->wait_cicle <= -1)
+		proc->pc = data->mem[proc->loca];
 	if (!not_opcode(proc, data))
 		return ;
 	if (if_encodage(proc->pc))
@@ -84,9 +85,7 @@ void				corewar(t_cwdata *data)
 	while (tmp)
 	{
 		proc = ((t_process *)(tmp->content));
-		data->lastopfail = 0;
 		good_cicle(proc);
-		//ft_printf("wait%d = %d\n", proc->id, proc->wait_cicle);
 		if (proc->wait_cicle <= 0)
 			corewar_start(proc, data);
 		proc->wait_cicle--;

@@ -25,7 +25,6 @@ void	cw_live(t_cwdata *data, t_process *proc)
 		(data->verbose) ? ft_printf("%d\n", num_champ) : 0;
 		proc->nb_live++;
 		data->nb_live_per_cycle++;
-		proc->wait_cicle = 0;
 		proc->last_clive = data->cur_cycle;
 		champ = cw_id_champ_valid(data, num_champ);
 		if (champ)
@@ -53,7 +52,6 @@ void	cw_fork(t_cwdata *data, t_process *proc)
 		new->loca = cw_get_new_loca(data, proc->loca, 0);
 		(data->verbose) ? ft_printf(" (%d)\n", new->loca) : 0;
 		new->pc = data->mem[new->loca];
-		proc->wait_cicle = 0;
 	}
 	else
 		proc->move = 0;
@@ -69,9 +67,7 @@ void	cw_lfork(t_cwdata *data, t_process *proc)
 	{
 		new = cw_add_process_to_lst(data, proc->id_champ, proc);
 		new->loca = cw_get_new_loca(data, proc->loca, 1);
-		(data->verbose) ? ft_printf(" (%d)\n", new->loca) : 0;
 		new->pc = data->mem[new->loca];
-		proc->wait_cicle = 0;
 	}
 	else
 		proc->move = 0;
@@ -100,7 +96,6 @@ void	cw_zjump(t_cwdata *data, t_process *proc)
 		}
 		else if (data->verbose)
 			data->lastopfail = ft_printf(" FAILED\n");
-		proc->wait_cicle = 0;
 	}
 	else
 		proc->move = 0;

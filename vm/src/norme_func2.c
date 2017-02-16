@@ -31,9 +31,10 @@ void	adv_print(t_cwdata *data, t_process saveproc)
 	int		i;
 
 	i = -1;
-	if (data->verbose && saveproc.good_cicle &&
-		(data->lastopfail || data->mem[saveproc.loca] != ZJUMP))
+	if ((data->verbose && saveproc.good_cicle) ||
+	 (data->verbose && data->lastopfail))
 	{
+		data->lastopfail = 0;
 		ft_printf("ADV %d (%.4p -> %.4p) ", saveproc.size, saveproc.loca,
 			saveproc.loca + saveproc.size);
 		while (++i < saveproc.size)
@@ -100,6 +101,8 @@ int		cw_get_new_loca(t_cwdata *data, int loca, int lfork)
 		new_loca = (lfork) ? (loca - param) : (loca - (param % IDX_MOD));
 		new_loca = (new_loca < 0) ? new_loca + MEM_SIZE : new_loca;
 		(data->verbose) ? ft_printf(" %d", -param) : 0;
+		if (lfork && data->verbose)
+			ft_printf(" (%d)\n", loca - param);
 	}
 	else
 	{
@@ -108,6 +111,8 @@ int		cw_get_new_loca(t_cwdata *data, int loca, int lfork)
 		new_loca = (lfork) ? ((loca + param) % MEM_SIZE) :
 		((loca + (param % IDX_MOD)) % MEM_SIZE);
 		(data->verbose) ? ft_printf(" %d", param) : 0;
+		if (lfork && data->verbose)
+			ft_printf(" (%d)\n", loca + param);
 	}
 	return (new_loca);
 }
