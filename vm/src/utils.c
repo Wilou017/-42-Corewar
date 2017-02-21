@@ -12,7 +12,7 @@
 
 #include <corewar.h>
 
-int			if_encodage(int opcode)
+int		if_encodage(int opcode)
 {
 	if (opcode == 1 || opcode == 9 || opcode == 12 || opcode == 15)
 		return (0);
@@ -30,9 +30,9 @@ void	init_param(t_param *param)
 void	check_reg_carry(t_process *proc, int reg)
 {
 	if (reg == 0)
-	 	proc->carry = 1;
-	 else
-	 	proc->carry = 0;
+		proc->carry = 1;
+	else
+		proc->carry = 0;
 }
 
 void	good_cicle(t_process *proc)
@@ -60,5 +60,5 @@ int		return_size_reg(t_cwdata *data, t_process *proc, int adresse, int lldi)
 	value = (data->mem[new_loca] << 8) + data->mem[(new_loca + 1) % MEM_SIZE];
 	value = (value << 8) + data->mem[(new_loca + 2) % MEM_SIZE];
 	value = (value << 8) + data->mem[(new_loca + 3) % MEM_SIZE];
-	return(value);
+	return (value);
 }
