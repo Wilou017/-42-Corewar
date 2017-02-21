@@ -23,7 +23,7 @@ int			param_and(int param, int name)
 	return (0);
 }
 
-int 		param_sub(int param, int name)
+int			param_sub(int param, int name)
 {
 	if (param == 1 || param == 2 || param == 3)
 	{
@@ -33,7 +33,7 @@ int 		param_sub(int param, int name)
 	return (0);
 }
 
-int 		param_add(int param, int name)
+int			param_add(int param, int name)
 {
 	if (param == 1 || param == 2 || param == 3)
 	{

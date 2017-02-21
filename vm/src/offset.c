@@ -12,8 +12,8 @@
 
 #include <corewar.h>
 
-int		bin_offset_norme(t_process *proc, t_cwdata *data, int param, t_inst
-	*inst)
+int		bin_offset_norme(t_process *proc, t_cwdata *data, int param,
+	t_inst *inst)
 {
 	int	value;
 	int	tmp1;
@@ -85,6 +85,19 @@ int		return_num_champ(t_process *proc, t_cwdata *data)
 	return (value);
 }
 
+int		bin_offsetnorme(t_process *proc, t_cwdata *data, t_inst *inst)
+{
+	int	value;
+
+	value = (data->mem[(proc->loca + 2 + inst->size) % MEM_SIZE]
+	<< 8) + data->mem[(proc->loca + 3 + inst->size) % MEM_SIZE];
+	value = (value << 8) + data->mem[(proc->loca + 4 +
+	inst->size) % MEM_SIZE];
+	value = (value << 8) + data->mem[(proc->loca + 5 +
+	inst->size) % MEM_SIZE];
+	return (value);
+}
+
 int		bin_offset(t_process *proc, t_cwdata *data, int param,
 	t_inst *inst)
 {
@@ -97,14 +110,7 @@ int		bin_offset(t_process *proc, t_cwdata *data, int param,
 		if (data->mem[(proc->loca + 2 + inst->size) % MEM_SIZE] > 0x7f)
 			value = bin_offset_neg(proc, data, inst);
 		else
-		{
-			value = (data->mem[(proc->loca + 2 + inst->size) % MEM_SIZE]
-			<< 8) + data->mem[(proc->loca + 3 + inst->size) % MEM_SIZE];
-			value = (value << 8) + data->mem[(proc->loca + 4 +
-				inst->size) % MEM_SIZE];
-			value = (value << 8) + data->mem[(proc->loca + 5 +
-				inst->size) % MEM_SIZE];
-		}
+			value = bin_offsetnorme(proc, data, inst);
 		inst->size += inst->label_size;
 		return (value);
 	}

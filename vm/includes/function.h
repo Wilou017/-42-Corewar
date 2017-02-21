@@ -103,7 +103,8 @@ void		cw_ld(t_cwdata *data, t_process *proc);
 void		init_instruc_ind(t_process *proc, t_inst *inst);
 void		init_instruc(t_process *proc, t_inst *inst);
 void		bad_encodage(t_process *proc);
-void		print_verbose_details(int param1, int param2, int param3, int newloca_verbose);
+void		print_verbose_details(int param1, int param2, int param3,
+	int newloca_verbose);
 void		print_verbose_details_load(t_cwdata *data, t_param param);
 
 #endif
