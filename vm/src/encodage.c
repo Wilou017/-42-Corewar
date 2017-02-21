@@ -78,24 +78,11 @@ int			check_opcode(int opcode)
 	return (0);
 }
 
-int			if_encodage(int opcode)
+void		check_bin(t_process *proc, char *bin, int size)
 {
-	if (opcode == 1 || opcode == 9 || opcode == 12 || opcode == 15)
-		return (0);
-	else
-		return (1);
-}
-
-int			check_encod(t_process *proc, t_cwdata *data)
-{
-	char	*bin;
-	int		size;
 	int		i;
 
 	i = 0;
-	size = size_encod(proc->pc);
-	bin = ft_itoa(data->mem[(proc->loca + 1) % MEM_SIZE], 2);
-	bin = ft_strjoin(ft_chartostr('0', 8 - ft_strlen(bin)), bin, 3);
 	while (i < size)
 	{
 		if (bin[i] == '0' && bin[i + 1] == '1')
@@ -117,6 +104,18 @@ int			check_encod(t_process *proc, t_cwdata *data)
 			proc->bad_encodage = 1;
 		i += 2;
 	}
+}
+
+int			check_encod(t_process *proc, t_cwdata *data)
+{
+	char	*bin;
+	int		size;
+
+	size = size_encod(proc->pc);
+	bin = ft_itoa(data->mem[(proc->loca + 1) % MEM_SIZE], 2);
+	bin = ft_strjoin(ft_chartostr('0', 8 - ft_strlen(bin)), bin, 3);
+	check_bin(proc, bin, size);
 	free(bin);
-	return (endof_instructions(proc->pc, data->mem[(proc->loca + 1) % MEM_SIZE]));
+	return (endof_instructions(proc->pc, data->mem[(proc->loca + 1)
+		% MEM_SIZE]));
 }

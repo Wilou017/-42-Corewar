@@ -1,271 +1,3 @@
-Norme: ./asmdir/includes/asm.h
-Norme: ./asmdir/includes/op.h
-Norme: ./asmdir/libft/erase_char.c
-Norme: ./asmdir/libft/ft_atoi.c
-Norme: ./asmdir/libft/ft_atoi_base.c
-Norme: ./asmdir/libft/ft_bzero.c
-Norme: ./asmdir/libft/ft_countwords.c
-Norme: ./asmdir/libft/ft_isalnum.c
-Norme: ./asmdir/libft/ft_isalpha.c
-Norme: ./asmdir/libft/ft_isascii.c
-Norme: ./asmdir/libft/ft_isdigit.c
-Norme: ./asmdir/libft/ft_islower.c
-Norme: ./asmdir/libft/ft_isprint.c
-Norme: ./asmdir/libft/ft_isupper.c
-Norme: ./asmdir/libft/ft_itoa.c
-Norme: ./asmdir/libft/ft_lenwords.c
-Norme: ./asmdir/libft/ft_lstadd.c
-Norme: ./asmdir/libft/ft_lstdel.c
-Norme: ./asmdir/libft/ft_lstdelone.c
-Norme: ./asmdir/libft/ft_lstiter.c
-Norme: ./asmdir/libft/ft_lstmap.c
-Norme: ./asmdir/libft/ft_lstnew.c
-Norme: ./asmdir/libft/ft_maketab.c
-Norme: ./asmdir/libft/ft_memalloc.c
-Norme: ./asmdir/libft/ft_memccpy.c
-Norme: ./asmdir/libft/ft_memchr.c
-Norme: ./asmdir/libft/ft_memcmp.c
-Norme: ./asmdir/libft/ft_memcpy.c
-Norme: ./asmdir/libft/ft_memdel.c
-Norme: ./asmdir/libft/ft_memmove.c
-Norme: ./asmdir/libft/ft_memset.c
-Norme: ./asmdir/libft/ft_power.c
-Norme: ./asmdir/libft/ft_printtab.c
-Norme: ./asmdir/libft/ft_putchar.c
-Norme: ./asmdir/libft/ft_putchar_fd.c
-Norme: ./asmdir/libft/ft_putendl.c
-Norme: ./asmdir/libft/ft_putendl_fd.c
-Norme: ./asmdir/libft/ft_putnbr.c
-Norme: ./asmdir/libft/ft_putnbr_fd.c
-Norme: ./asmdir/libft/ft_putstr.c
-Norme: ./asmdir/libft/ft_putstr_fd.c
-Norme: ./asmdir/libft/ft_strcat.c
-Norme: ./asmdir/libft/ft_strchr.c
-Norme: ./asmdir/libft/ft_strclr.c
-Norme: ./asmdir/libft/ft_strcmp.c
-Norme: ./asmdir/libft/ft_strcpy.c
-Norme: ./asmdir/libft/ft_strdel.c
-Norme: ./asmdir/libft/ft_strdup.c
-Norme: ./asmdir/libft/ft_strequ.c
-Norme: ./asmdir/libft/ft_striter.c
-Norme: ./asmdir/libft/ft_striteri.c
-Norme: ./asmdir/libft/ft_strjoin.c
-Norme: ./asmdir/libft/ft_strlcat.c
-Norme: ./asmdir/libft/ft_strlen.c
-Norme: ./asmdir/libft/ft_strmap.c
-Norme: ./asmdir/libft/ft_strmapi.c
-Norme: ./asmdir/libft/ft_strncat.c
-Norme: ./asmdir/libft/ft_strncmp.c
-Norme: ./asmdir/libft/ft_strncpy.c
-Norme: ./asmdir/libft/ft_strnequ.c
-Norme: ./asmdir/libft/ft_strnew.c
-Norme: ./asmdir/libft/ft_strnstr.c
-Norme: ./asmdir/libft/ft_strrchr.c
-Norme: ./asmdir/libft/ft_strsplit.c
-Norme: ./asmdir/libft/ft_strstr.c
-Norme: ./asmdir/libft/ft_strsub.c
-Norme: ./asmdir/libft/ft_strtrim.c
-Norme: ./asmdir/libft/ft_tolower.c
-Norme: ./asmdir/libft/ft_toupper.c
-Norme: ./asmdir/libft/ft_unsigned_itoa.c
-Norme: ./asmdir/libft/get_next_line.c
-Norme: ./asmdir/libft/includes/libft.h
-Norme: ./asmdir/libft/printf/func.c
-Norme: ./asmdir/libft/printf/get.c
-Norme: ./asmdir/libft/printf/handlers/char_handler.c
-Norme: ./asmdir/libft/printf/handlers/decimal_handler.c
-Norme: ./asmdir/libft/printf/handlers/hexadecimal_handler.c
-Norme: ./asmdir/libft/printf/handlers/octal_handler.c
-Norme: ./asmdir/libft/printf/handlers/percent_handler.c
-Norme: ./asmdir/libft/printf/handlers/pointer_handler.c
-Norme: ./asmdir/libft/printf/handlers/string_handler.c
-Norme: ./asmdir/libft/printf/handlers/unsigned_decimal_handler.c
-Norme: ./asmdir/libft/printf/handlers/wchar_handler.c
-Norme: ./asmdir/libft/printf/handlers/wstring_handler.c
-Norme: ./asmdir/libft/printf/includes/ft_printf.h
-Norme: ./asmdir/libft/printf/includes/libft.h
-Norme: ./asmdir/libft/printf/load_struct.c
-Norme: ./asmdir/libft/printf/main.c
-Norme: ./asmdir/libft/printf/search.c
-Norme: ./asmdir/libft/printf/utils.c
-Norme: ./asmdir/sources/argv_checker.c
-Norme: ./asmdir/sources/bytecode_generator.c
-Norme: ./asmdir/sources/check_args.c
-Norme: ./asmdir/sources/check_args1.c
-Norme: ./asmdir/sources/check_args2.c
-Norme: ./asmdir/sources/check_args3.c
-Norme: ./asmdir/sources/check_args4.c
-Norme: ./asmdir/sources/data_delete.c
-Norme: ./asmdir/sources/exit_failure.c
-Norme: ./asmdir/sources/fill_header.c
-Norme: ./asmdir/sources/fill_op.c
-Norme: ./asmdir/sources/fill_op2.c
-Norme: ./asmdir/sources/fill_op3.c
-Norme: ./asmdir/sources/fill_op4.c
-Norme: ./asmdir/sources/fill_token.c
-Norme: ./asmdir/sources/if.c
-Norme: ./asmdir/sources/init_data.c
-Norme: ./asmdir/sources/init_op.c
-Norme: ./asmdir/sources/is_comment.c
-Norme: ./asmdir/sources/is_name.c
-Norme: ./asmdir/sources/main.c
-Norme: ./asmdir/sources/op_tab.c
-Norme: ./asmdir/sources/parse.c
-Norme: ./asmdir/sources/parse_instructions.c
-Norme: ./asmdir/sources/parse_label.c
-Norme: ./asmdir/sources/process_data.c
-Norme: ./asmdir/sources/read_clean.c
-Norme: ./asmdir/sources/search_label_size.c
-Norme: ./asmdir/sources/set_byte_encoding.c
-Norme: ./asmdir/sources/set_index.c
-Norme: ./asmdir/sources/set_label_value.c
-Norme: ./asmdir/sources/set_size.c
-Norme: ./asmdir/sources/utils0.c
-Norme: ./asmdir/sources/utils1.c
-Norme: ./asmdir/sources/write_arg.c
-Norme: ./asmdir/sources/write_bytecode.c
-Norme: ./vm/includes/corewar.h
-Norme: ./vm/includes/define.h
-Norme: ./vm/includes/function.h
-Norme: ./vm/includes/struct.h
-Norme: ./vm/libftprintf/ft_atoi.c
-Norme: ./vm/libftprintf/ft_bzero.c
-Norme: ./vm/libftprintf/ft_chartostr.c
-Norme: ./vm/libftprintf/ft_coltostr.c
-Norme: ./vm/libftprintf/ft_countchar.c
-Norme: ./vm/libftprintf/ft_delcharinstr.c
-Norme: ./vm/libftprintf/ft_ftoa.c
-Norme: ./vm/libftprintf/ft_gather.c
-Norme: ./vm/libftprintf/ft_intinarray.c
-Norme: ./vm/libftprintf/ft_intlen.c
-Norme: ./vm/libftprintf/ft_intswap.c
-Norme: ./vm/libftprintf/ft_inttabdup.c
-Norme: ./vm/libftprintf/ft_inttabjoin.c
-Norme: ./vm/libftprintf/ft_inttabmax.c
-Norme: ./vm/libftprintf/ft_inttabmin.c
-Norme: ./vm/libftprintf/ft_inttabnew.c
-Norme: ./vm/libftprintf/ft_inttabsorted.c
-Norme: ./vm/libftprintf/ft_inttostr.c
-Norme: ./vm/libftprintf/ft_isalnum.c
-Norme: ./vm/libftprintf/ft_isalpha.c
-Norme: ./vm/libftprintf/ft_isascii.c
-Norme: ./vm/libftprintf/ft_isdigit.c
-Norme: ./vm/libftprintf/ft_isprint.c
-Norme: ./vm/libftprintf/ft_isspace.c
-Norme: ./vm/libftprintf/ft_isupper.c
-Norme: ./vm/libftprintf/ft_itoa.c
-Norme: ./vm/libftprintf/ft_lstadd.c
-Norme: ./vm/libftprintf/ft_lstadd_push_back.c
-Norme: ./vm/libftprintf/ft_lstdel.c
-Norme: ./vm/libftprintf/ft_lstdelone.c
-Norme: ./vm/libftprintf/ft_lstiter.c
-Norme: ./vm/libftprintf/ft_lstmap.c
-Norme: ./vm/libftprintf/ft_lstnew.c
-Norme: ./vm/libftprintf/ft_lstrev.c
-Norme: ./vm/libftprintf/ft_memalloc.c
-Norme: ./vm/libftprintf/ft_memccpy.c
-Norme: ./vm/libftprintf/ft_memchr.c
-Norme: ./vm/libftprintf/ft_memcmp.c
-Norme: ./vm/libftprintf/ft_memcpy.c
-Norme: ./vm/libftprintf/ft_memdel.c
-Norme: ./vm/libftprintf/ft_memmove.c
-Norme: ./vm/libftprintf/ft_memset.c
-Norme: ./vm/libftprintf/ft_min.c
-Norme: ./vm/libftprintf/ft_nbchar.c
-Norme: ./vm/libftprintf/ft_nbword.c
-Norme: ./vm/libftprintf/ft_nreplace.c
-Norme: ./vm/libftprintf/ft_nwstrtostr.c
-Norme: ./vm/libftprintf/ft_pf_base.c
-Norme: ./vm/libftprintf/ft_pf_color.c
-Norme: ./vm/libftprintf/ft_pf_cons_pres.c
-Norme: ./vm/libftprintf/ft_pf_initdata.c
-Norme: ./vm/libftprintf/ft_pf_initdata2.c
-Norme: ./vm/libftprintf/ft_pf_select.c
-Norme: ./vm/libftprintf/ft_pf_selector_br.c
-Norme: ./vm/libftprintf/ft_pf_selector_cs.c
-Norme: ./vm/libftprintf/ft_pf_selector_d.c
-Norme: ./vm/libftprintf/ft_pf_selector_e.c
-Norme: ./vm/libftprintf/ft_pf_selector_k.c
-Norme: ./vm/libftprintf/ft_pf_selector_n.c
-Norme: ./vm/libftprintf/ft_pf_selector_ox.c
-Norme: ./vm/libftprintf/ft_pf_selector_p.c
-Norme: ./vm/libftprintf/ft_pf_selector_t.c
-Norme: ./vm/libftprintf/ft_pf_selector_u.c
-Norme: ./vm/libftprintf/ft_printf.c
-Norme: ./vm/libftprintf/ft_putchar.c
-Norme: ./vm/libftprintf/ft_putchar_fd.c
-Norme: ./vm/libftprintf/ft_putendl.c
-Norme: ./vm/libftprintf/ft_putendl_fd.c
-Norme: ./vm/libftprintf/ft_putmessage.c
-Norme: ./vm/libftprintf/ft_putnbr.c
-Norme: ./vm/libftprintf/ft_putnbr_fd.c
-Norme: ./vm/libftprintf/ft_putnstr.c
-Norme: ./vm/libftprintf/ft_putnstr_fd.c
-Norme: ./vm/libftprintf/ft_putstr.c
-Norme: ./vm/libftprintf/ft_putstr_fd.c
-Norme: ./vm/libftprintf/ft_putwchar.c
-Norme: ./vm/libftprintf/ft_putwchar_fd.c
-Norme: ./vm/libftprintf/ft_pwe.c
-Norme: ./vm/libftprintf/ft_replace.c
-Norme: ./vm/libftprintf/ft_return_bytes.c
-Norme: ./vm/libftprintf/ft_show_tab.c
-Norme: ./vm/libftprintf/ft_showtabint.c
-Norme: ./vm/libftprintf/ft_sprintf.c
-Norme: ./vm/libftprintf/ft_sqrt.c
-Norme: ./vm/libftprintf/ft_strcat.c
-Norme: ./vm/libftprintf/ft_strchr.c
-Norme: ./vm/libftprintf/ft_strclr.c
-Norme: ./vm/libftprintf/ft_strcmp.c
-Norme: ./vm/libftprintf/ft_strcpy.c
-Norme: ./vm/libftprintf/ft_strdel.c
-Norme: ./vm/libftprintf/ft_strdup.c
-Norme: ./vm/libftprintf/ft_strequ.c
-Norme: ./vm/libftprintf/ft_strisdigit.c
-Norme: ./vm/libftprintf/ft_striter.c
-Norme: ./vm/libftprintf/ft_striteri.c
-Norme: ./vm/libftprintf/ft_strjoin.c
-Norme: ./vm/libftprintf/ft_strlcat.c
-Norme: ./vm/libftprintf/ft_strlen.c
-Norme: ./vm/libftprintf/ft_strmap.c
-Norme: ./vm/libftprintf/ft_strmapi.c
-Norme: ./vm/libftprintf/ft_strncat.c
-Norme: ./vm/libftprintf/ft_strncmp.c
-Norme: ./vm/libftprintf/ft_strncpy.c
-Norme: ./vm/libftprintf/ft_strndup.c
-Norme: ./vm/libftprintf/ft_strnequ.c
-Norme: ./vm/libftprintf/ft_strnew.c
-Norme: ./vm/libftprintf/ft_strnrev.c
-Norme: ./vm/libftprintf/ft_strnstr.c
-Norme: ./vm/libftprintf/ft_strrchr.c
-Norme: ./vm/libftprintf/ft_strrev.c
-Norme: ./vm/libftprintf/ft_strsplit.c
-Norme: ./vm/libftprintf/ft_strstr.c
-Norme: ./vm/libftprintf/ft_strsub.c
-Norme: ./vm/libftprintf/ft_strtoupper.c
-Norme: ./vm/libftprintf/ft_strtrim.c
-Norme: ./vm/libftprintf/ft_tabcpy.c
-Norme: ./vm/libftprintf/ft_tablen.c
-Norme: ./vm/libftprintf/ft_tabmalloc.c
-Norme: ./vm/libftprintf/ft_termcaps_downline.c
-Norme: ./vm/libftprintf/ft_termcaps_leftcurs.c
-Norme: ./vm/libftprintf/ft_termcaps_lineclear.c
-Norme: ./vm/libftprintf/ft_termcaps_poscurs.c
-Norme: ./vm/libftprintf/ft_termcaps_restorecurs.c
-Norme: ./vm/libftprintf/ft_termcaps_rightcurs.c
-Norme: ./vm/libftprintf/ft_termcaps_savecurs.c
-Norme: ./vm/libftprintf/ft_termcaps_screenclear.c
-Norme: ./vm/libftprintf/ft_termcaps_upline.c
-Norme: ./vm/libftprintf/ft_tolower.c
-Norme: ./vm/libftprintf/ft_toupper.c
-Norme: ./vm/libftprintf/ft_wchrtostr.c
-Norme: ./vm/libftprintf/ft_without_space_len.c
-Norme: ./vm/libftprintf/ft_wstrtostr.c
-Norme: ./vm/libftprintf/get_next_line.c
-Norme: ./vm/libftprintf/includes/ft_printf.h
-Norme: ./vm/libftprintf/includes/ft_termcaps.h
-Norme: ./vm/libftprintf/includes/get_next_line.h
-Norme: ./vm/libftprintf/includes/libft.h
-Norme: ./vm/libftprintf/includes/newlibft.h
 Norme: ./vm/src/check_cycle.c
 Norme: ./vm/src/check_param_op.c
 Norme: ./vm/src/corewar.c
@@ -273,52 +5,22 @@ Norme: ./vm/src/create_mem.c
 Norme: ./vm/src/cw_free.c
 Norme: ./vm/src/distrib_function.c
 Norme: ./vm/src/encodage.c
-Error (line 89): function check_encod has 31 lines
-Error (line 121): line has 83 characters
 Norme: ./vm/src/fill_map.c
 Norme: ./vm/src/get_function.c
 Norme: ./vm/src/init.c
 Norme: ./vm/src/instruc.c
-Error: 42 header not at top of the file
-Error: file must end with a single empty line
-Error (line 22): line has 87 characters
-Error (line 33): line has 87 characters
-Error (line 34, col 0): no newline after block
 Norme: ./vm/src/list_instructions.c
-Error (line 32): line has 86 characters
-Error (line 59): line has 86 characters
-Error (line 69): function cw_st has 36 lines
 Norme: ./vm/src/list_instructions2.c
-Error (line 15): function cw_sti has 47 lines
-Error (line 15): declarations must be followed by one empty line in cw_sti
-Error (line 15, col 0): cw_sti has 7 variables
-Error (line 25): multiple empty lines
-Error (line 25): Empty line
-Error (line 59): line has 133 characters
-Error (line 66): function cw_ldi has 48 lines
-Error (line 110): line has 91 characters
-Error (line 112): line has 93 characters
-Error (line 118): function cw_xor has 32 lines
-Error (line 154): function cw_or has 32 lines
-Error (line 190): function cw_and has 30 lines
+Error: 14 functions in the file
 Norme: ./vm/src/list_instructions3.c
 Norme: ./vm/src/list_instructions4.c
-Error: global scope bad aligned
-Error (line 35): function cw_lldi has 33 lines
 Norme: ./vm/src/lst_function.c
 Norme: ./vm/src/main.c
 Norme: ./vm/src/norme_func.c
 Norme: ./vm/src/norme_func2.c
 Norme: ./vm/src/offset.c
-Error (line 15): line has 83 characters
-Error (line 22): bad indentation
-Error (line 33): bad indentation
-Error (line 33): line has 126 characters
-Error (line 78): line has 104 characters
-Error (line 89): line has 89 characters
-Error (line 96): line has 134 characters
-Error (line 97): line has 88 characters
-Error (line 98): line has 88 characters
+Error (line 18): Bad spacing for argument inst
+Error (line 88): function bin_offset has 28 lines
 Norme: ./vm/src/opcode.c
 Error: file must end with a single empty line
 Error (line 41, col 0): no newline after block
@@ -331,13 +33,17 @@ Error (line 36): Space before function name
 Error (line 36, col 3): bad spacing
 Norme: ./vm/src/redirect_function.c
 Norme: ./vm/src/utils.c
+Error: global scope bad aligned
 Error: file must end with a single empty line
-Error (line 25): bad indentation
-Error (line 25): must begin only by tabulations
-Error (line 26): must begin only by tabulations
-Error (line 27): bad indentation
-Error (line 27): must begin only by tabulations
-Error (line 55, col 1): missing space after return
-Error (line 56, col 0): no newline after block
+Error (line 33): bad indentation
+Error (line 33): must begin only by tabulations
+Error (line 34): must begin only by tabulations
+Error (line 35): bad indentation
+Error (line 35): must begin only by tabulations
+Error (line 63, col 1): missing space after return
+Error (line 64, col 0): no newline after block
 Norme: ./vm/src/verbose.c
+Error (line 18): line has 87 characters
+Error (line 22): line has 95 characters
+Error (line 25): line has 125 characters
 Norme: ./vm/src/vm_loop.c

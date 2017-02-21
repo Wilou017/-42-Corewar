@@ -29,9 +29,10 @@ void			cw_sub(t_cwdata *data, t_process *proc)
 		proc->reg[data->mem[(proc->loca + 4) % MEM_SIZE] - 1] = \
 		proc->reg[data->mem[(proc->loca + 2) % MEM_SIZE] - 1] - \
 		proc->reg[data->mem[(proc->loca + 3) % MEM_SIZE] - 1];
-		check_reg_carry(proc, proc->reg[data->mem[(proc->loca + 4) % MEM_SIZE] - 1]);
+		check_reg_carry(proc, proc->reg[data->mem[(proc->loca + 4) % MEM_SIZE]
+			- 1]);
 		if (data->verbose)
-			ft_printf(" r%d r%d r%d\n", data->mem[(proc->loca + 2) % MEM_SIZE]\
+			ft_printf(" r%d r%d r%d\n", data->mem[(proc->loca + 2) % MEM_SIZE]
 			, data->mem[(proc->loca + 3) % MEM_SIZE]\
 			, data->mem[(proc->loca + 4) % MEM_SIZE]);
 	}
@@ -56,9 +57,10 @@ void			cw_add(t_cwdata *data, t_process *proc)
 		proc->reg[data->mem[(proc->loca + 4) % MEM_SIZE] - 1] = \
 		proc->reg[data->mem[(proc->loca + 2) % MEM_SIZE] - 1] + \
 		proc->reg[data->mem[(proc->loca + 3) % MEM_SIZE] - 1];
-		check_reg_carry(proc, proc->reg[data->mem[(proc->loca + 4) % MEM_SIZE] - 1]);
+		check_reg_carry(proc, proc->reg[data->mem[(proc->loca + 4) % MEM_SIZE]
+			- 1]);
 		if (data->verbose)
-			ft_printf(" r%d r%d r%d\n", data->mem[(proc->loca + 2) % MEM_SIZE]\
+			ft_printf(" r%d r%d r%d\n", data->mem[(proc->loca + 2) % MEM_SIZE]
 			, data->mem[(proc->loca + 3) % MEM_SIZE]\
 			, data->mem[(proc->loca + 4) % MEM_SIZE]);
 	}
@@ -66,12 +68,35 @@ void			cw_add(t_cwdata *data, t_process *proc)
 		bad_encodage(proc);
 }
 
-void			cw_st(t_cwdata *data, t_process *proc)
+void			cw_stnorme(t_cwdata *data, t_process *proc, t_inst *inst)
 {
-	t_inst		inst;
 	int			regsrc;
 	int			regdest;
 	int			dest;
+
+	regsrc = bin_offset(proc, data, 0, inst) - 1;
+	bin_offset(proc, data, 2, inst);
+	if (inst->param == REG_CODE)
+	{
+		regdest = data->mem[(proc->loca + inst->size + 1) % MEM_SIZE];
+		proc->reg[regdest - 1] = proc->reg[regsrc];
+		if (data->verbose)
+			ft_printf(" r%d %d\n", regsrc + 1, regdest);
+	}
+	else if (inst->param == IND_CODE)
+	{
+		if (data->verbose)
+			ft_printf(" r%d", regsrc + 1);
+		dest = cw_get_new_loca(data, proc->loca + 2, 0) - 2;
+		if (data->verbose)
+			ft_putchar('\n');
+		write_map(data, proc, dest, regsrc);
+	}
+}
+
+void			cw_st(t_cwdata *data, t_process *proc)
+{
+	t_inst		inst;
 
 	proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 	if (proc->wait_cicle == -1)
@@ -83,24 +108,7 @@ void			cw_st(t_cwdata *data, t_process *proc)
 			return ;
 		if (data->verbose)
 			ft_printf("P %4d | st", proc->name);
-		regsrc = bin_offset(proc, data, 0, &inst) - 1;
-		bin_offset(proc, data, 2, &inst);
-		if (inst.param == REG_CODE)
-		{
-			regdest = data->mem[(proc->loca + inst.size + 1) % MEM_SIZE];
-			proc->reg[regdest - 1] = proc->reg[regsrc];
-			if (data->verbose)
-				ft_printf(" r%d %d\n", regsrc + 1, regdest);
-		}
-		else if (inst.param == IND_CODE)
-		{
-			if (data->verbose)
-				ft_printf(" r%d", regsrc + 1);
-			dest = cw_get_new_loca(data, proc->loca + 2, 0) - 2;
-			if (data->verbose)
-				ft_putchar('\n');
-			write_map(data, proc, dest, regsrc);
-		}
+		cw_stnorme(data, proc, &inst);
 	}
 	else
 		bad_encodage(proc);

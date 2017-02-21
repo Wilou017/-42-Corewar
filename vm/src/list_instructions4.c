@@ -12,7 +12,7 @@
 
 #include <corewar.h>
 
-void		cw_aff(t_cwdata *data, t_process *proc)
+void			cw_aff(t_cwdata *data, t_process *proc)
 {
 	proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 	if (proc->wait_cicle == -1)
@@ -32,12 +32,32 @@ void		cw_aff(t_cwdata *data, t_process *proc)
 		proc->move = 0;
 }
 
-void		cw_lldi(t_cwdata *data, t_process *proc)
+void			cw_lldinorme(t_cwdata *data, t_process *proc, t_inst inst)
 {
-	t_inst	inst;
-	int		param1;
-	int		param2;
-	int		param3;
+	t_param		param;
+
+	init_param(&param);
+	param.param1 = bin_offset(proc, data, 0, &inst);
+	print_verbose(data, param.param1, 0, inst);
+	if (inst.param == REG_CODE)
+		param.param1 = proc->reg[param.param1 - 1];
+	param.param2 = bin_offset(proc, data, 2, &inst);
+	print_verbose(data, param.param2, 0, inst);
+	if (inst.param == REG_CODE)
+		param.param2 = proc->reg[param.param2 - 1];
+	param.param3 = bin_offset(proc, data, 4, &inst);
+	print_verbose(data, param.param3, 1, inst);
+	if (data->verbose)
+		ft_printf("       | -> load from %d + %d = %d (with pc", param.param1,
+			param.param2, param.param1 + param.param2);
+	proc->reg[param.param3 - 1] = return_size_reg(data, proc, param.param1 +
+		param.param2, 1);
+	check_reg_carry(proc, proc->reg[param.param3 - 1]);
+}
+
+void			cw_lldi(t_cwdata *data, t_process *proc)
+{
+	t_inst		inst;
 
 	proc->encod = data->mem[(proc->loca + 1) % MEM_SIZE];
 	if (proc->wait_cicle == -1)
@@ -49,21 +69,7 @@ void		cw_lldi(t_cwdata *data, t_process *proc)
 			return ;
 		if (data->verbose)
 			ft_printf("P %4d | lldi", proc->name);
-		param1 = bin_offset(proc, data, 0, &inst);
-		print_verbose(data, param1, 0, inst);
-		if (inst.param == REG_CODE)
-			param1 = proc->reg[param1 - 1];
-		param2 = bin_offset(proc, data, 2, &inst);
-		print_verbose(data, param2, 0, inst);
-		if (inst.param == REG_CODE)
-			param2 = proc->reg[param2 - 1];
-		param3 = bin_offset(proc, data, 4, &inst);
-		print_verbose(data, param3, 1, inst);
-		if (data->verbose)
-			ft_printf("       | -> load from %d + %d = %d (with pc", param1,
-				param2, param1 + param2);
-		proc->reg[param3 - 1] = return_size_reg(data, proc, param1 + param2, 1);
-		check_reg_carry(proc, proc->reg[param3 - 1]);
+		cw_lldinorme(data, proc, inst);
 	}
 	else
 		bad_encodage(proc);

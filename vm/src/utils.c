@@ -12,6 +12,14 @@
 
 #include <corewar.h>
 
+int			if_encodage(int opcode)
+{
+	if (opcode == 1 || opcode == 9 || opcode == 12 || opcode == 15)
+		return (0);
+	else
+		return (1);
+}
+
 void	init_param(t_param *param)
 {
 	param->param1 = 0;
