@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:28:37 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/16 19:34:03 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/21 18:11:38 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,22 @@ static void	init_data_default(t_cwdata *data)
 	data->color = ft_strsplit(CHAMP_COLOR, ' ');
 }
 
+static void	cw_lastoption2(t_cwdata *data, int i)
+{
+	if (!ft_strcmp(data->v[i], "-h"))
+		data->lastoption = H;
+	else if (!ft_strcmp(data->v[i], "-b"))
+		data->lastoption = B;
+	else if (!ft_strcmp(data->v[i], "-vm"))
+	{
+		if (data->verbose == 0 && data->dumpcycles == -1)
+			data->show_vm = 1;
+		data->lastoption = VM;
+	}
+	else
+		data->lastoption = ERROR;
+}
+
 void		cw_lastoption(t_cwdata *data, int i)
 {
 	if (!ft_strcmp(data->v[i], "-dump") || !ft_strcmp(data->v[i], "-d"))
@@ -60,18 +76,8 @@ void		cw_lastoption(t_cwdata *data, int i)
 			data->verbose = 1;
 		data->lastoption = V;
 	}
-	else if (!ft_strcmp(data->v[i], "-h"))
-		data->lastoption = H;
-	else if (!ft_strcmp(data->v[i], "-b"))
-		data->lastoption = B;
-	else if (!ft_strcmp(data->v[i], "-vm"))
-	{
-		if (data->verbose == 0 && data->dumpcycles == -1)
-			data->show_vm = 1;
-		data->lastoption = VM;
-	}
 	else
-		data->lastoption = ERROR;
+		cw_lastoption2(data, i);
 }
 
 static void	cw_prit_starter(t_cwdata *data)
@@ -88,7 +94,8 @@ static void	cw_prit_starter(t_cwdata *data)
 	while (tmp)
 	{
 		champ = ((t_header*)tmp->content);
-		str = ft_strjoin(ft_sprintf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", (i--),
+		str = ft_strjoin(ft_sprintf("* Player %d, weighing %d bytes, \"%s\" \
+(\"%s\") !\n", (i--),
 			champ->prog_size, champ->prog_name, champ->comment), str, 3);
 		tmp = tmp->next;
 	}

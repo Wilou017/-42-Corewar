@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 13:57:58 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/16 19:56:25 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/21 17:57:05 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	adv_print(t_cwdata *data, t_process saveproc)
 
 	i = -1;
 	if ((data->verbose && saveproc.good_cicle) ||
-	 (data->verbose && data->lastopfail))
+	(data->verbose && data->lastopfail))
 	{
 		data->lastopfail = 0;
 		ft_printf("ADV %d (%.4p -> %.4p) ", saveproc.size, saveproc.loca,
@@ -95,7 +95,6 @@ int		cw_get_new_loca(t_cwdata *data, int loca, int lfork)
 	int	tmp_param2;
 	int	new_loca;
 
-	param = 0;
 	if (data->mem[(loca + 1) % MEM_SIZE] > 0x7F)
 	{
 		tmp_param1 = 0xFF - data->mem[(loca + 1) % MEM_SIZE];
@@ -104,8 +103,7 @@ int		cw_get_new_loca(t_cwdata *data, int loca, int lfork)
 		new_loca = (lfork) ? (loca - param) : (loca - (param % IDX_MOD));
 		new_loca = (new_loca < 0) ? new_loca + MEM_SIZE : new_loca;
 		(data->verbose) ? ft_printf(" %d", -param) : 0;
-		if (lfork && data->verbose)
-			ft_printf(" (%d)\n", loca - param);
+		(lfork && data->verbose) ? ft_printf(" (%d)\n", loca - param) : 0;
 	}
 	else
 	{
@@ -114,8 +112,7 @@ int		cw_get_new_loca(t_cwdata *data, int loca, int lfork)
 		new_loca = (lfork) ? ((loca + param) % MEM_SIZE) :
 		((loca + (param % IDX_MOD)) % MEM_SIZE);
 		(data->verbose) ? ft_printf(" %d", param) : 0;
-		if (lfork && data->verbose)
-			ft_printf(" (%d)\n", loca + param);
+		(lfork && data->verbose) ? ft_printf(" (%d)\n", loca + param) : 0;
 	}
 	return (new_loca);
 }

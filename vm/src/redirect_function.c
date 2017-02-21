@@ -17,6 +17,8 @@ static void	redirect_function3(t_cwdata *data, t_func func, t_process *proc,
 {
 	if (func == LLD)
 		cw_lld(data, proc);
+	else if (func == LDI)
+		cw_ldi(data, proc);
 	else if (func == LFORK)
 	{
 		if (data->verbose && proc->good_cicle && func >= LIVE && func <= AFF)
@@ -44,8 +46,6 @@ static void	redirect_function2(t_cwdata *data, t_func func, t_process *proc,
 		cw_zjump(data, proc);
 		saveproc->good_cicle = 0;
 	}
-	else if (func == LDI)
-		cw_ldi(data, proc);
 	else if (func == STI)
 		cw_sti(data, proc);
 	else if (func == FORK)

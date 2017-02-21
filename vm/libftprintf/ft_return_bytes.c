@@ -16,7 +16,6 @@ int		return_bytes(int num, int octet)
 {
 	if (octet == 4)
 	{
-
 		return (((num >> 24) & 0xff) |
 			((num << 8) & 0xff0000) |
 			((num >> 8) & 0xff00) |

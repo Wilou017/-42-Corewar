@@ -47,7 +47,7 @@ typedef enum			e_func
 	AFF
 }						t_func;
 
-typedef struct 			s_param
+typedef struct			s_param
 {
 	int					param1;
 	int					param2;

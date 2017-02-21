@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:15:30 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/16 19:32:49 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/21 18:06:04 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,17 @@ int			main(int argc, t_tab argv)
 		fill_map(&data);
 		cw_loop(&data);
 		cw_endloop(&data);
-		if (data.dumpcycles == -1)
-			cw_get_winner(&data);
+		(data.dumpcycles == -1) ? cw_get_winner(&data) : 0;
 		cw_freeall(&data);
 	}
 	else
 		ft_printf("{lgreen}use: ./corewar [[-n number] champion1.cor] ...\
 \nOptions:\n\
-	[-v]              : Verbose\n\
-	[-vm]             : Affichage de la loop\n\
+	[-v]              : Verbose\n	[-vm]             : Affichage de la loop\n\
 	|    [-h]         : Cache les octets de -vm\n\
 	|    [-b]         : Cache les processus pour augmenter le vitesse\n\
-	[-dump nbr_cycles]: Affiche la memoire au cycle nbr_cycles\n\
+	[-dump nbr_cycles]: Affiche la memoire au cycle nbr_cycles [format 32bit]\n\
+	[-d nbr_cycles]   : Affiche la memoire au cycle nbr_cycles [format 64bit]\n\
 	[-r nbr_cycles]   : Relenti a nbr_cycles\n\
 	|    [-w nbr_sec] : nbr_sec entre les cycles {eoc}\n");
 	return (0);

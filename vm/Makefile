@@ -6,7 +6,7 @@
 #    By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 12:19:31 by amaitre           #+#    #+#              #
-#    Updated: 2017/02/16 20:22:26 by amaitre          ###   ########.fr        #
+#    Updated: 2017/02/21 18:08:08 by amaitre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ SRC					+=	src/lst_function.c
 SRC					+=	src/distrib_function.c
 SRC					+=	src/norme_func.c
 SRC					+=	src/norme_func2.c
-SRC					+=	src/norme_func3.c
 SRC					+=	src/check_cycle.c
 SRC					+=	src/create_mem.c
 SRC					+=	src/vm_loop.c
@@ -80,7 +79,8 @@ $(NAME): $(SRCO)
 	@echo "\033[32m	[-vm]             : Affichage de la loop\033[0m"
 	@echo "\033[32m	|    [-h]         : Cache les octets de -vm\033[0m"
 	@echo "\033[32m	|    [-b]         : Cache les processus pour augmenter le vitesse\033[0m"
-	@echo "\033[32m	[-dump nbr_cycles]: Affiche la memoire au cycle nbr_cycles\033[0m"
+	@echo "\033[32m	[-dump nbr_cycles]: Affiche la memoire au cycle nbr_cycles [format 32bit]\033[0m"
+	@echo "\033[32m	[-d nbr_cycles]   : Affiche la memoire au cycle nbr_cycles [format 64bit]\033[0m"
 	@echo "\033[32m	[-r nbr_cycles]   : Ralentit a nbr_cycles\033[0m"
 	@echo "\033[32m	|    [-w nbr_sec] : nbr_sec entre les cycles\033[0m"
 

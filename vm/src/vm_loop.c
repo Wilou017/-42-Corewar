@@ -6,7 +6,7 @@
 /*   By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 17:40:38 by amaitre           #+#    #+#             */
-/*   Updated: 2017/02/16 00:04:52 by amaitre          ###   ########.fr       */
+/*   Updated: 2017/02/21 17:47:22 by amaitre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ void		cw_loop(t_cwdata *data)
 		cw_data_print(data);
 		data->cur_cycle++;
 		vm_data.cur_cycle++;
-		(data->verbose) ? ft_printf("It is now cycle %d\n", data->cur_cycle) : 0;
+		if (data->verbose)
+			ft_printf("It is now cycle %d\n", data->cur_cycle);
 		corewar(data);
 		if (data->dumpcycles >= 0 && data->dumpcycles <= data->cur_cycle)
 			return (cw_dump_mem(data));
