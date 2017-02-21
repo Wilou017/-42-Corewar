@@ -6,7 +6,7 @@
 #    By: amaitre <amaitre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 12:19:31 by amaitre           #+#    #+#              #
-#    Updated: 2017/02/16 20:22:26 by amaitre          ###   ########.fr        #
+#    Updated: 2017/02/21 17:46:41 by amaitre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ SRC					+=	src/lst_function.c
 SRC					+=	src/distrib_function.c
 SRC					+=	src/norme_func.c
 SRC					+=	src/norme_func2.c
-SRC					+=	src/norme_func3.c
 SRC					+=	src/check_cycle.c
 SRC					+=	src/create_mem.c
 SRC					+=	src/vm_loop.c

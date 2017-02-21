@@ -81,6 +81,7 @@ char			*ft_pf_str_conscrtuct(t_pf_data *data, char *a);
 void			pf_initdata_sizefin(t_pf_data *data);
 void			pf_initpreset(t_pf_data *data, va_list ap);
 size_t			pf_specifier(char const *s);
-void			pf_fill(char const *s, va_list ap, t_ret *retval, t_pf_data *data);
+void			pf_fill(char const *s, va_list ap, t_ret *retval,
+				t_pf_data *data);
 
 #endif

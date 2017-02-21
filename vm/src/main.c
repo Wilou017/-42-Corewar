@@ -59,8 +59,7 @@ int			main(int argc, t_tab argv)
 	else
 		ft_printf("{lgreen}use: ./corewar [[-n number] champion1.cor] ...\
 \nOptions:\n\
-	[-v]              : Verbose\n\
-	[-vm]             : Affichage de la loop\n\
+	[-v]              : Verbose\n	[-vm]             : Affichage de la loop\n\
 	|    [-h]         : Cache les octets de -vm\n\
 	|    [-b]         : Cache les processus pour augmenter le vitesse\n\
 	[-dump nbr_cycles]: Affiche la memoire au cycle nbr_cycles\n\
