@@ -15,14 +15,21 @@
 int			find_label(t_label *label, char *str)
 {
 	t_label *tmp;
+	char	*tmp1;
 
 	tmp = label;
+	tmp1 = NULL;
 	if (str[ft_strlen(str) - 1] != ':')
 		return (0);
+	else
+		tmp1 = ft_strsub(str, 0, ft_strlen(str) - 1);
 	while (tmp)
 	{
-		if (!ft_strcmp(tmp->name, str))
+		if (!ft_strcmp(tmp->name, tmp1))
+		{
+			ft_strdel(&tmp1);
 			return (1);
+		}
 		tmp = tmp->next;
 	}
 	return (0);

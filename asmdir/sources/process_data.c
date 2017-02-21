@@ -48,4 +48,6 @@ void			process_data(t_asm_data *data)
 	}
 	tab_delete(&(data->file));
 	set_label_value(data);
+	if (!data->name || !data->comment_name)
+		exit_failure("Name and comment_name needed", data);
 }
