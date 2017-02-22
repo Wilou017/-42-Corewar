@@ -52,6 +52,7 @@ static void		write_dir(int fd, t_op_token *token,
 	}
 	else
 		bin = return_bytes(value, label_size);
+	ft_strdel(&tmp);
 	write(fd, &bin, label_size);
 }
 
@@ -100,5 +101,5 @@ void			write_arg(int fd, t_op_token *tok, int i, t_asm_data *data)
 		write_reg(fd, tok->arg[i]);
 	else
 		write_indir(fd, tok->arg[i]);
-	free(tmp);
+	ft_strdel(&tmp);
 }

@@ -53,7 +53,7 @@ SRCO				=	$(addprefix obj/,$(notdir $(SRC:.c=.o)))
 HEADERSLIB	=	libft/includes
 HEADERS			=	includes
 CC					=	gcc
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS			=	-Wall -Wextra -Werror -g
 
 all: logo $(NAME)
 

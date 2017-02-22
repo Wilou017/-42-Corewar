@@ -30,6 +30,8 @@ int				main(int ac, char **av)
 			process_data(&asm_data);
 			bytecode_generator(&asm_data, av[i]);
 			data_delete(&asm_data);
+			while (1)
+				;
 		}
 	}
 	return (0);

@@ -14,25 +14,22 @@
 
 int			if_dir(char *s, t_label *label, int last_arg)
 {
-	char *str;
-
-	str = s;
-	if (str[ft_strlen(str) - 1] == ',')
+	if (s[ft_strlen(s) - 1] == ',')
 	{
 		if (last_arg)
 			return (0);
-		str[ft_strlen(str) - 1] = '\0';
+		s[ft_strlen(s) - 1] = '\0';
 	}
-	if (str[0] == DIRECT_CHAR)
+	if (s[0] == DIRECT_CHAR)
 	{
-		if (str[1] == LABEL_CHAR)
+		if (s[1] == LABEL_CHAR)
 		{
-			if (!ind_label(str, label))
+			if (!ind_label(s, label))
 				return (0);
 		}
-		else if (str[1] == '\0')
+		else if (s[1] == '\0')
 			return (0);
-		else if (!dir_value(str))
+		else if (!dir_value(s))
 			return (0);
 		return (1);
 	}
@@ -42,24 +39,22 @@ int			if_dir(char *s, t_label *label, int last_arg)
 int			if_ind(char *s, t_label *label, int last_arg)
 {
 	int		i;
-	char	*str;
 
-	str = ft_strdup(s);
 	i = 0;
-	if (str[ft_strlen(str) - 1] == ',')
+	if (s[ft_strlen(s) - 1] == ',')
 	{
 		if (last_arg)
 			return (0);
-		str[ft_strlen(str) - 1] = '\0';
+		s[ft_strlen(s) - 1] = '\0';
 	}
-	if (str[0] == LABEL_CHAR)
-		if (!ind_label(str, label))
+	if (s[0] == LABEL_CHAR)
+		if (!ind_label(s, label))
 			return (0);
-	if (str[i] == '-')
+	if (s[i] == '-')
 		i++;
-	while (str[i])
+	while (s[i])
 	{
-		if (str[i] < 48 || str[i] > 57)
+		if (s[i] < 48 || s[i] > 57)
 			return (0);
 		i++;
 	}

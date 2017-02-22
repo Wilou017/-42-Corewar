@@ -48,10 +48,7 @@ static int			check_instructions(t_asm_data *data, char **tab)
 	else
 		i = op_tabcmp(data->info_op, tab[0]);
 	if (!i)
-	{
-		ft_printf("tab[0] = {%s} && tab[1] = {%s}\n", tab[0], tab[1]);
 		exit_failure("Fail Check Instructions", data);
-	}
 	else if (i == 1)
 		return (live_instruction(data, tab));
 	else if (i == 2)
