@@ -75,13 +75,14 @@ void		cw_ldi(t_cwdata *data, t_process *proc)
 	if (proc->wait_cicle == 0 && !proc->bad_encodage)
 	{
 		init_instruc_ind(proc, &inst);
-		if (!if_registre(data, proc, inst))
+		if (!if_registre(data, proc, &inst))
 			return ;
 		if (data->verbose)
 			ft_printf("P %4d | ldi", proc->name);
 		cw_ldinorme(data, proc, &inst, &param);
 		cw_ldinorme(data, proc, &inst, &param);
 		param3 = bin_offset(proc, data, 4, &inst);
+		free(inst.bin);
 		print_verbose(data, param3, 1, inst);
 		print_verbose_details_load(data, param);
 		proc->reg[param3 - 1] = return_size_reg(data, proc,

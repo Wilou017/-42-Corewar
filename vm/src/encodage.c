@@ -12,7 +12,7 @@
 
 #include <corewar.h>
 
-int			if_registre(t_cwdata *data, t_process *proc, t_inst inst)
+int			if_registre(t_cwdata *data, t_process *proc, t_inst *inst)
 {
 	int		size;
 	int		i;
@@ -21,19 +21,21 @@ int			if_registre(t_cwdata *data, t_process *proc, t_inst inst)
 	len = size_encod(proc->pc);
 	i = 0;
 	size = 0;
-	(void)data;
 	while (i < len)
 	{
-		if (inst.bin[i] == '0' && inst.bin[i + 1] == '1')
+		if (inst->bin[i] == '0' && inst->bin[i + 1] == '1')
 		{
 			if (data->mem[(proc->loca + 2 + size) % MEM_SIZE] < 1 ||
 				data->mem[(proc->loca + 2 + size) % MEM_SIZE] > REG_NUMBER)
+			{
+				free(inst->bin);
 				return (0);
+			}
 			size += 1;
 		}
-		else if (inst.bin[i] == '1' && inst.bin[i + 1] == '1')
+		else if (inst->bin[i] == '1' && inst->bin[i + 1] == '1')
 			size += 2;
-		else if (inst.bin[i] == '1' && inst.bin[i + 1] == '0')
+		else if (inst->bin[i] == '1' && inst->bin[i + 1] == '0')
 			size += check_opcode(proc->pc);
 		i += 2;
 	}

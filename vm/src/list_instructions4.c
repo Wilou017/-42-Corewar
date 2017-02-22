@@ -32,21 +32,21 @@ void			cw_aff(t_cwdata *data, t_process *proc)
 		proc->move = 0;
 }
 
-void			cw_lldinorme(t_cwdata *data, t_process *proc, t_inst inst)
+void			cw_lldinorme(t_cwdata *data, t_process *proc, t_inst *inst)
 {
 	t_param		param;
 
 	init_param(&param);
-	param.param1 = bin_offset(proc, data, 0, &inst);
-	print_verbose(data, param.param1, 0, inst);
-	if (inst.param == REG_CODE)
+	param.param1 = bin_offset(proc, data, 0, inst);
+	print_verbose(data, param.param1, 0, *inst);
+	if (inst->param == REG_CODE)
 		param.param1 = proc->reg[param.param1 - 1];
-	param.param2 = bin_offset(proc, data, 2, &inst);
-	print_verbose(data, param.param2, 0, inst);
-	if (inst.param == REG_CODE)
+	param.param2 = bin_offset(proc, data, 2, inst);
+	print_verbose(data, param.param2, 0, *inst);
+	if (inst->param == REG_CODE)
 		param.param2 = proc->reg[param.param2 - 1];
-	param.param3 = bin_offset(proc, data, 4, &inst);
-	print_verbose(data, param.param3, 1, inst);
+	param.param3 = bin_offset(proc, data, 4, inst);
+	print_verbose(data, param.param3, 1, *inst);
 	if (data->verbose)
 		ft_printf("       | -> load from %d + %d = %d (with pc", param.param1,
 			param.param2, param.param1 + param.param2);
@@ -65,11 +65,11 @@ void			cw_lldi(t_cwdata *data, t_process *proc)
 	if (proc->wait_cicle == 0 && !proc->bad_encodage)
 	{
 		init_instruc_ind(proc, &inst);
-		if (!if_registre(data, proc, inst))
+		if (!if_registre(data, proc, &inst))
 			return ;
 		if (data->verbose)
 			ft_printf("P %4d | lldi", proc->name);
-		cw_lldinorme(data, proc, inst);
+		cw_lldinorme(data, proc, &inst);
 	}
 	else
 		bad_encodage(proc);
@@ -87,12 +87,13 @@ void			cw_lld(t_cwdata *data, t_process *proc)
 	if (proc->wait_cicle == 0 && !proc->bad_encodage)
 	{
 		init_instruc_ind(proc, &inst);
-		if (!if_registre(data, proc, inst))
+		if (!if_registre(data, proc, &inst))
 			return ;
 		if (data->verbose)
 			ft_printf("P %4d | lld\n", proc->name);
 		param = bin_offset(proc, data, 0, &inst);
 		reg = bin_offset(proc, data, 2, &inst);
+		free(inst.bin);
 		if (data->verbose)
 			ft_printf("reg = %d %.2X, param = %d \n", reg, reg, param);
 		proc->reg[reg - 1] = param;
