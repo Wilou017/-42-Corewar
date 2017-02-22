@@ -108,6 +108,6 @@ void		cw_loop(t_cwdata *data)
 			return (cw_dump_mem(data));
 		refresh_proc(data);
 		if (data->slow >= 0 && data->cur_cycle >= data->slow)
-			usleep(1000000 * data->slow_time);
+			usleep(100000 * data->slow_time);
 	}
 }

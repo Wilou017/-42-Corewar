@@ -15,7 +15,7 @@
 int				cw_get_option(t_cwdata *data, int *i)
 {
 	cw_lastoption(data, *i);
-	if (data->lastoption && data->c >= *i)
+	if (data->lastoption && data->c > *i)
 	{
 		if ((data->lastoption == N || data->lastoption == DUMP
 			|| data->lastoption == R || data->lastoption == W)
@@ -86,11 +86,13 @@ taille max = %d\n", name, reed.buf, CHAMP_MAX_SIZE));
 
 static int		reed_champion(char *name, t_header *champion)
 {
-	t_reedstruct reed;
+	t_reedstruct	reed;
+	int				boolean;
 
 	reed.fd = open(name, O_RDONLY);
 	reed.status = 0;
 	reed.reedsize = sizeof(int);
+	boolean = 0;
 	while ((reed.ret = read(reed.fd, &reed.buf, reed.reedsize)))
 	{
 		if (reed.ret < 0)
@@ -101,7 +103,11 @@ static int		reed_champion(char *name, t_header *champion)
 			return (1);
 		reed.buf = 0;
 		reed.status++;
+		boolean = 1;
 	}
+	if (!boolean || !ft_strlen(champion->prog_name) ||
+		!ft_strlen(champion->comment))
+		return (ft_printf("{red}Champion invalide\n"));
 	return (cw_norme1(reed, champion));
 }
 

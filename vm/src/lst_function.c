@@ -86,9 +86,8 @@ void				cw_del_process_to_lst(t_cwdata *data, t_list *prev_proc,
 			ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
 			proc->name, data->cur_cycle - proc->last_clive, data->cycle_to_die);
 		next_proc = del_proc->next;
-		free(proc->reg);
-		free(proc);
-		free(del_proc);
+		ft_memdel((void**)&(proc->reg));
+		ft_memdel((void**)&proc);
 		if (prev_proc)
 			prev_proc->next = next_proc;
 		else
