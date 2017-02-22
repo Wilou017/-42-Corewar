@@ -65,7 +65,5 @@ int			main(int argc, t_tab argv)
 	[-d nbr_cycles]   : Affiche la memoire au cycle nbr_cycles [format 64bit]\n\
 	[-r nbr_cycles]   : Relenti a nbr_cycles\n\
 	|    [-w nbr_sec] : nbr_sec entre les cycles {eoc}\n");
-	while (1)
-		;
 	return (0);
 }
