@@ -55,9 +55,9 @@ void		cw_ldinorme(t_cwdata *data, t_process *proc, t_inst *inst,
 
 	i++;
 	if (i == 1)
-		cw_ldinorme1(data, proc, &inst, &param);
+		cw_ldinorme1(data, proc, inst, param);
 	else if (i == 2)
-		cw_ldinorme2(data, proc, &inst, &param);
+		cw_ldinorme2(data, proc, inst, param);
 	if (i == 2)
 		i = 0;
 }
