@@ -12,6 +12,19 @@
 
 #include <corewar.h>
 
+void 		cw_freechar(char **tofree)
+{
+	int i;
+
+	i = 0;
+	while(tofree[i])
+	{
+		free(tofree[i]);
+		i++;
+	}
+	free(tofree);
+}
+
 void		cw_freeall(t_cwdata *data)
 {
 	t_list		*tmp;
@@ -27,4 +40,8 @@ void		cw_freeall(t_cwdata *data)
 		tmp = tmp->next;
 		free(tmp2);
 	}
+	free(data->mem);
+	free(data->lastdata);
+	free(data->begin_champ);
+	cw_freechar(data->color);
 }
