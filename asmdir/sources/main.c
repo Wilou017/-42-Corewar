@@ -28,6 +28,8 @@ int				main(int ac, char **av)
 			check_argv(av[i], &asm_data);
 			parse(&asm_data, av[i]);
 			process_data(&asm_data);
+			if (asm_data.prog_size <= 0)
+				exit_failure("Error no code", &asm_data);
 			bytecode_generator(&asm_data, av[i]);
 			data_delete(&asm_data);
 		}
