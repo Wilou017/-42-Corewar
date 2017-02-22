@@ -19,7 +19,7 @@ int				lldi_instruction_bis(t_asm_data *data, char **tab, int len)
 	if (!if_reg(tab[1], 0) && !if_dir(tab[1], data->label, 0) &&
 		!if_ind(tab[1], data->label, 0))
 		return (0);
-	if (!if_reg(tab[2], 0) && !if_ind(tab[2], data->label, 0))
+	if (!if_reg(tab[2], 0) && !if_dir(tab[1], data->label, 0))
 		return (0);
 	if (!if_reg(tab[3], 1))
 		return (0);
