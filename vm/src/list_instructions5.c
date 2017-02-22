@@ -24,7 +24,6 @@ void			cw_add(t_cwdata *data, t_process *proc)
 		init_instruc(proc, &inst);
 		if (!if_registre(data, proc, &inst))
 			return ;
-		free(inst.bin);
 		if (data->verbose)
 			ft_printf("P %4d | add", proc->name);
 		proc->reg[data->mem[(proc->loca + 4) % MEM_SIZE] - 1] = \
@@ -86,7 +85,6 @@ int				cw_stinorme3(t_cwdata *data, t_process *proc)
 	if (inst.param == REG_CODE)
 		param.param2 = proc->reg[param.param2 - 1];
 	param.param3 = bin_offset(proc, data, 4, &inst);
-	free(inst.bin);
 	if (inst.param == REG_CODE)
 		param.param3 = proc->reg[param.param3 - 1];
 	adresse = param.param2 + param.param3;

@@ -24,7 +24,6 @@ void			cw_sub(t_cwdata *data, t_process *proc)
 		init_instruc(proc, &inst);
 		if (!if_registre(data, proc, &inst))
 			return ;
-		free(inst.bin);
 		if (data->verbose)
 			ft_printf("P %4d | sub", proc->name);
 		proc->reg[data->mem[(proc->loca + 4) % MEM_SIZE] - 1] = \
@@ -57,7 +56,6 @@ void			cw_ornorme(t_cwdata *data, t_process *proc, t_inst *inst)
 	inst->param = 0;
 	print_verbose(data, param.param2, 0, *inst);
 	param.param3 = bin_offset(proc, data, 4, inst);
-	free(inst->bin);
 	print_verbose(data, param.param3, 1, *inst);
 	proc->reg[param.param3 - 1] = param.param1 | param.param2;
 	check_reg_carry(proc, proc->reg[param.param3 - 1]);
@@ -97,7 +95,6 @@ void			cw_andnorme(t_cwdata *data, t_process *proc, t_inst *inst)
 	if (inst->param == REG_CODE)
 		param.param2 = proc->reg[param.param2 - 1];
 	param.param3 = bin_offset(proc, data, 4, inst);
-	free(inst->bin);
 	print_verbose(data, param.param1, 1, *inst);
 	proc->reg[param.param3 - 1] = param.param1 & param.param2;
 	check_reg_carry(proc, proc->reg[param.param3 - 1]);

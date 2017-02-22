@@ -82,7 +82,6 @@ void		cw_ldi(t_cwdata *data, t_process *proc)
 		cw_ldinorme(data, proc, &inst, &param);
 		cw_ldinorme(data, proc, &inst, &param);
 		param3 = bin_offset(proc, data, 4, &inst);
-		free(inst.bin);
 		print_verbose(data, param3, 1, inst);
 		print_verbose_details_load(data, param);
 		proc->reg[param3 - 1] = return_size_reg(data, proc,

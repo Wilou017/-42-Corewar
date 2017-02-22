@@ -27,10 +27,7 @@ int			if_registre(t_cwdata *data, t_process *proc, t_inst *inst)
 		{
 			if (data->mem[(proc->loca + 2 + size) % MEM_SIZE] < 1 ||
 				data->mem[(proc->loca + 2 + size) % MEM_SIZE] > REG_NUMBER)
-			{
-				free(inst->bin);
 				return (0);
-			}
 			size += 1;
 		}
 		else if (inst->bin[i] == '1' && inst->bin[i + 1] == '1')

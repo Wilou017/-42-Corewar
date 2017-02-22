@@ -12,12 +12,12 @@
 
 #include <corewar.h>
 
-void 		cw_freechar(char **tofree)
+void		cw_freechar(char **tofree)
 {
 	int i;
 
 	i = 0;
-	while(tofree[i])
+	while (tofree[i])
 	{
 		free(tofree[i]);
 		i++;

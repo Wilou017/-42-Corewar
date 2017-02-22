@@ -93,7 +93,6 @@ void			cw_lld(t_cwdata *data, t_process *proc)
 			ft_printf("P %4d | lld\n", proc->name);
 		param = bin_offset(proc, data, 0, &inst);
 		reg = bin_offset(proc, data, 2, &inst);
-		free(inst.bin);
 		if (data->verbose)
 			ft_printf("reg = %d %.2X, param = %d \n", reg, reg, param);
 		proc->reg[reg - 1] = param;

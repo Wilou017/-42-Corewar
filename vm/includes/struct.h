@@ -108,7 +108,7 @@ typedef	struct			s_cwdata
 	int					dumpcycles;
 	int					lastoption;
 	char				*lastdata;
-	char				**color;
+	t_tab				color;
 	int					nb_champion;
 	int					show_vm;
 	int					slow;
